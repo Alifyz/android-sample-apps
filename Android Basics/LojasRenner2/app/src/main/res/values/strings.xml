@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LojasRenner</string>
+    <string name="logo_description">Lojas Renner Logo</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>
