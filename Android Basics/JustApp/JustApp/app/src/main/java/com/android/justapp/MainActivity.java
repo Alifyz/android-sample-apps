@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
-
 import java.text.NumberFormat;
 
 
@@ -23,6 +22,20 @@ public class MainActivity extends AppCompatActivity {
         display(numberofCoffes);
         displayPrice(numberofCoffes * 5);
     }
+
+    public void increment(View view)
+    {
+        int quantity = 3;
+        display(quantity);
+
+    }
+
+    public void decrement(View view)
+    {
+        int quantity = 1;
+        display(quantity);
+    }
+
 
     private void display(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
