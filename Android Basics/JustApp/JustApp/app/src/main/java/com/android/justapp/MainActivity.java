@@ -9,6 +9,10 @@ import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    int quantity = 0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,21 +22,22 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitOrder(View view)
     {
-        int numberofCoffes = 2;
-        display(numberofCoffes);
-        displayPrice(numberofCoffes * 5);
+        
+        displayPrice(quantity * 5);
     }
 
     public void increment(View view)
     {
-        int quantity = 3;
+
+        quantity++;
         display(quantity);
 
     }
 
     public void decrement(View view)
     {
-        int quantity = 1;
+
+        quantity--;
         display(quantity);
     }
 
