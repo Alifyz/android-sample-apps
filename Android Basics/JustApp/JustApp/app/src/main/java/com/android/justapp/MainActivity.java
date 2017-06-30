@@ -22,13 +22,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitOrder(View view)
     {
-        
+
         displayPrice(quantity * 5);
     }
 
     public void increment(View view)
     {
-
         quantity++;
         display(quantity);
 
