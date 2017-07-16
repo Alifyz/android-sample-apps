@@ -30,7 +30,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
                 android:fontFamily="sans-serif-medium"
-                android:text="Time - A"
+                android:text="@string/teama"
                 android:textSize="21sp" />
 
             <TextView
@@ -57,7 +57,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:onClick="increaseTeamA"
-                android:text="+ PONTOS" />
+                android:text="@string/pontos"
+                android:textAllCaps="true"/>
 
             <Button
                 android:id="@+id/faltas_a"
@@ -65,7 +66,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:onClick="increaseFaltasA"
-                android:text="+ FALTAS" />
+                android:text="@string/faltas"
+                android:textAllCaps="true"/>
         </LinearLayout>
 
 
@@ -82,7 +84,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
                 android:fontFamily="sans-serif-medium"
-                android:text="Time - B"
+                android:text="@string/teamb"
                 android:textSize="21sp" />
 
             <TextView
@@ -109,7 +111,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:onClick="increaseTeamB"
-                android:text="+ PONTOS" />
+                android:text="@string/pontos"
+                android:textAllCaps="true"/>
 
             <Button
                 android:id="@+id/faltas_b"
@@ -117,7 +120,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:onClick="increaseFaltasB"
-                android:text="+ FALTAS" />
+                android:text="@string/faltas"
+                android:textAllCaps="true"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -130,6 +134,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="54dp"
         android:onClick="cleanScore"
-        android:text="Reset" />
+        android:text="@string/reset"
+        android:textAllCaps="true"/>
 
 </RelativeLayout>

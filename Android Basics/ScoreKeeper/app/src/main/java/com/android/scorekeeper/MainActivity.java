@@ -11,10 +11,10 @@ public class MainActivity extends AppCompatActivity {
      * Initializing Global Variables
      */
 
-    int pointsTeamA = 0;
-    int pointsTeamB = 0;
-    int faltasA = 0;
-    int faltasB = 0;
+    private int pointsTeamA = 0;
+    private int pointsTeamB = 0;
+    private int faltasA = 0;
+    private int faltasB = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
