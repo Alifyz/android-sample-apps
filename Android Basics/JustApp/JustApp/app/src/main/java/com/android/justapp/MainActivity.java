@@ -22,8 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitOrder(View view)
     {
-        int priceFinal = quantity * 5;
-        displayMessage("Total: $" + priceFinal);
+        int priceFinal = calculatePrice();
+        //displayMessage("Total: $" + priceFinal);
+        displayMessage(createOrderSummary(priceFinal));
+        createOrderSummary(priceFinal);
 
     }
 
@@ -38,6 +40,16 @@ public class MainActivity extends AppCompatActivity {
     {
         quantity--;
         display(quantity);
+    }
+
+    public int calculatePrice()
+    {
+        return quantity * 5;
+    }
+
+    public String createOrderSummary(int price)
+    {
+        return "Kaptan Kunal \n" + "Quantity: " + quantity + "\n" + "Total: R$" + price + "\n" + "Thank you!";
     }
 
     /**
