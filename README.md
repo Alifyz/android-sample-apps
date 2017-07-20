@@ -1,4 +1,4 @@
-# Personal - Mobile Development Repository
+# Mobile Development - Repository
 ![Main Logo](http://i63.tinypic.com/9rljyt.jpg)
 
 # Description
