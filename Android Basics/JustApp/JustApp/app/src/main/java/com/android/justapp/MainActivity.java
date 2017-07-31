@@ -3,6 +3,7 @@ package com.android.justapp;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 
@@ -48,7 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
     public String createOrderSummary(int price)
     {
-        return "Customer Name \n" + "Do you want Toppings? \n" +"Quantity: " + quantity + "\n" + "Total: R$" + price + "\n" + "Thank you!";
+        CheckBox chbox = (CheckBox) findViewById(R.id.checkBox);
+        boolean ischecked = chbox.isChecked();
+        return "Customer Name \n" + "Do you want Toppings? " + ischecked + "\n" +"Quantity: "
+                + quantity + "\n" + "Total: R$" + price + "\n" + "Thank you!";
     }
 
     /**
