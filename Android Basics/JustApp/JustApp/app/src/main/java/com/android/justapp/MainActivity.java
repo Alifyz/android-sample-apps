@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
-import java.text.NumberFormat;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     public String createOrderSummary(int price)
     {
-        return "Customer Name \n" + "Quantity: " + quantity + "\n" + "Total: R$" + price + "\n" + "Thank you!";
+        return "Customer Name \n" + "Do you want Toppings? \n" +"Quantity: " + quantity + "\n" + "Total: R$" + price + "\n" + "Thank you!";
     }
 
     /**
