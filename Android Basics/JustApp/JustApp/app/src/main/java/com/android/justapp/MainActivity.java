@@ -50,9 +50,20 @@ public class MainActivity extends AppCompatActivity {
     public String createOrderSummary(int price)
     {
         CheckBox chbox = (CheckBox) findViewById(R.id.checkBox);
+        CheckBox chocCheckBox = (CheckBox) findViewById(R.id.chocolate);
+        boolean ischecked_chock = chocCheckBox.isChecked();
         boolean ischecked = chbox.isChecked();
-        return "Customer Name \n" + "Do you want Toppings? " + ischecked + "\n" +"Quantity: "
-                + quantity + "\n" + "Total: R$" + price + "\n" + "Thank you!";
+
+        String summary;
+        summary  = "Customer Name \n";
+        summary += "Do you want Toppings? ";
+        summary += ischecked + "\n";
+        summary += "Do you want chocolate? ";
+        summary += ischecked_chock + "\n";
+        summary += "Quantity: " + quantity + "\n";
+        summary += "Total: R$" + price + "\n";
+        summary += "Thank you!";
+        return summary;
     }
 
     /**

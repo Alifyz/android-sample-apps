@@ -26,6 +26,15 @@
         android:text="Whipped Cream"
         android:textSize="16sp"
         android:paddingLeft="16dp"
+        android:layout_marginTop="16dp" />
+
+    <CheckBox
+        android:id="@+id/chocolate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chocolate"
+        android:textSize="16sp"
+        android:paddingLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"/>
 
