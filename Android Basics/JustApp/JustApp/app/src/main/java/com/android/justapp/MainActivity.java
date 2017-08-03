@@ -12,13 +12,11 @@ public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
 
     public void submitOrder(View view)
     {
@@ -51,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     {
         CheckBox chbox = (CheckBox) findViewById(R.id.checkBox);
         CheckBox chocCheckBox = (CheckBox) findViewById(R.id.chocolate);
+
         boolean ischecked_chock = chocCheckBox.isChecked();
         boolean ischecked = chbox.isChecked();
 
