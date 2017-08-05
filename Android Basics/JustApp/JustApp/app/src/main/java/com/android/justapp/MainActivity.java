@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -49,12 +50,16 @@ public class MainActivity extends AppCompatActivity {
     {
         CheckBox chbox = (CheckBox) findViewById(R.id.checkBox);
         CheckBox chocCheckBox = (CheckBox) findViewById(R.id.chocolate);
+        EditText customername = (EditText) findViewById(R.id.customer_name);
 
         boolean ischecked_chock = chocCheckBox.isChecked();
         boolean ischecked = chbox.isChecked();
+        String name = customername.getText().toString();
+
+
 
         String summary;
-        summary  = "Customer Name \n";
+        summary  = "Customer Name: " + name + "\n";
         summary += "Do you want Toppings? ";
         summary += ischecked + "\n";
         summary += "Do you want chocolate? ";
