@@ -11,6 +11,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
 
+
     int quantity = 0;
 
     @Override
@@ -48,16 +49,26 @@ public class MainActivity extends AppCompatActivity {
 
     public String createOrderSummary(int price)
     {
-        CheckBox chbox = (CheckBox) findViewById(R.id.checkBox);
-        CheckBox chocCheckBox = (CheckBox) findViewById(R.id.chocolate);
+        int additionalPrice = 0;
+        CheckBox chbox = (CheckBox) findViewById(R.id.checkBox);         // WhippedCream
+        CheckBox chocCheckBox = (CheckBox) findViewById(R.id.chocolate); // Chocolate Cream
         EditText customername = (EditText) findViewById(R.id.customer_name);
 
         boolean ischecked_chock = chocCheckBox.isChecked();
         boolean ischecked = chbox.isChecked();
         String name = customername.getText().toString();
 
+        // Checking if Toppings is selected and Update the finalPrice
+        if(chbox.isChecked() && chocCheckBox.isChecked()) {
+            additionalPrice = 3;
+        } else if(chocCheckBox.isChecked() && !chbox.isChecked()) {
+            additionalPrice = 2;
+        } else if (chbox.isChecked() && !chocCheckBox.isChecked()) {
+            additionalPrice = 1;
+        }
 
-
+        int finalAdditionprice = additionalPrice * quantity;
+        price += finalAdditionprice;
         String summary;
         summary  = "Customer Name: " + name + "\n";
         summary += "Do you want Toppings? ";
