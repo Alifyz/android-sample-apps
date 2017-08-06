@@ -51,19 +51,19 @@ public class MainActivity extends AppCompatActivity {
     {
         int additionalPrice = 0;
         CheckBox hasWhippedCream = (CheckBox) findViewById(R.id.checkBox);         // WhippedCream
-        CheckBox chocCheckBox = (CheckBox) findViewById(R.id.chocolate); // Chocolate Cream
-        EditText customername = (EditText) findViewById(R.id.customer_name);
+        CheckBox hasChocolateCream = (CheckBox) findViewById(R.id.chocolate); // Chocolate Cream
+        EditText customerName = (EditText) findViewById(R.id.customer_name);
 
-        boolean ischecked_chock = chocCheckBox.isChecked();
+        boolean ischecked_chock = hasChocolateCream.isChecked();
         boolean ischecked = hasWhippedCream.isChecked();
-        String name = customername.getText().toString();
+        String name = customerName.getText().toString();
 
         // Checking if Toppings is selected and Update the finalPrice
-        if(hasWhippedCream.isChecked() && chocCheckBox.isChecked()) {
+        if(hasWhippedCream.isChecked() && hasChocolateCream.isChecked()) {
             additionalPrice = 3;
-        } else if(chocCheckBox.isChecked() && !hasWhippedCream.isChecked()) {
+        } else if(hasChocolateCream.isChecked() && !hasWhippedCream.isChecked()) {
             additionalPrice = 2;
-        } else if (hasWhippedCream.isChecked() && !chocCheckBox.isChecked()) {
+        } else if (hasWhippedCream.isChecked() && !hasChocolateCream.isChecked()) {
             additionalPrice = 1;
         }
 
