@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
     {
         quantity++;
         display(quantity);
+        if(quantity >= 100) {
+            quantity = 100;
+            display(quantity);
+            return;
+        }
 
     }
 
@@ -40,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
     {
         quantity--;
         display(quantity);
+        if (quantity <= 1) {
+            Toast.makeText(this,"You can't order negative caffees!",Toast.LENGTH_SHORT).show();
+            quantity = 1;
+            display(quantity);
+            return;
+        }
     }
 
     public int calculatePrice()
