@@ -50,20 +50,20 @@ public class MainActivity extends AppCompatActivity {
     public String createOrderSummary(int price)
     {
         int additionalPrice = 0;
-        CheckBox chbox = (CheckBox) findViewById(R.id.checkBox);         // WhippedCream
+        CheckBox hasWhippedCream = (CheckBox) findViewById(R.id.checkBox);         // WhippedCream
         CheckBox chocCheckBox = (CheckBox) findViewById(R.id.chocolate); // Chocolate Cream
         EditText customername = (EditText) findViewById(R.id.customer_name);
 
         boolean ischecked_chock = chocCheckBox.isChecked();
-        boolean ischecked = chbox.isChecked();
+        boolean ischecked = hasWhippedCream.isChecked();
         String name = customername.getText().toString();
 
         // Checking if Toppings is selected and Update the finalPrice
-        if(chbox.isChecked() && chocCheckBox.isChecked()) {
+        if(hasWhippedCream.isChecked() && chocCheckBox.isChecked()) {
             additionalPrice = 3;
-        } else if(chocCheckBox.isChecked() && !chbox.isChecked()) {
+        } else if(chocCheckBox.isChecked() && !hasWhippedCream.isChecked()) {
             additionalPrice = 2;
-        } else if (chbox.isChecked() && !chocCheckBox.isChecked()) {
+        } else if (hasWhippedCream.isChecked() && !chocCheckBox.isChecked()) {
             additionalPrice = 1;
         }
 
