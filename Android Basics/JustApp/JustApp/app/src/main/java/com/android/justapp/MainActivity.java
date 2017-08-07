@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         quantity++;
         display(quantity);
         if(quantity >= 100) {
+            Toast.makeText(this,"You can't order more than 100", Toast.LENGTH_SHORT).show();
             quantity = 100;
             display(quantity);
             return;
