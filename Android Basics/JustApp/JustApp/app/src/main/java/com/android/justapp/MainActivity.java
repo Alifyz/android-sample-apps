@@ -1,5 +1,7 @@
 package com.android.justapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -91,7 +93,21 @@ public class MainActivity extends AppCompatActivity {
         summary += "Quantity: " + quantity + "\n";
         summary += "Total: R$" + price + "\n";
         summary += "Thank you!";
+        finishOrder(summary);
         return summary;
+    }
+
+    public void finishOrder(String message) {
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:alify@hotmail.com"));
+        emailIntent.setType("*/*");
+        emailIntent.putExtra(emailIntent.EXTRA_SUBJECT, "Order Summary");
+        emailIntent.putExtra(emailIntent.EXTRA_TEXT, message);
+
+        //Look if there at least one app that can handle the intent, if not the Intent is not started.
+        if (emailIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(emailIntent);
+        }
     }
 
     /**
@@ -102,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
-
 
     /**
      * This method displays the given text on the screen.
