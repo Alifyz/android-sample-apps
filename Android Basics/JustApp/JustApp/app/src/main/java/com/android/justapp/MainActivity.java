@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         emailIntent.setData(Uri.parse("mailto:alify@hotmail.com"));
         emailIntent.setType("*/*");
         emailIntent.putExtra(emailIntent.EXTRA_SUBJECT, "Order Summary");
-        emailIntent.putExtra(emailIntent.EXTRA_TEXT, message);
+        //emailIntent.putExtra(emailIntent.EXTRA_TEXT, message);
 
         //Look if there at least one app that can handle the intent, if not the Intent is not started.
         if (emailIntent.resolveActivity(getPackageManager()) != null) {
