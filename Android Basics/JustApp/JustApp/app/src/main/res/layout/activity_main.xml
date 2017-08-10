@@ -22,9 +22,9 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
         android:text="Toppings"
-        android:textAllCaps="true"
-        android:textSize="16dp"/>
+        style="@style/HeaderTextStyle" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:text="quantity"
-        android:textAllCaps="true" />
+        style="@style/HeaderTextStyle" />
 
     <LinearLayout
         android:layout_width="match_parent"
