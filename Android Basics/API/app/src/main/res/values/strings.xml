@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">API</string>
+    <string name="app_name">API - Investment Profile</string>
+    <string name="hint">What is your name?</string>
 </resources>
