@@ -60,6 +60,7 @@
             android:id="@+id/question1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/question1"
             android:textSize="18sp" />
@@ -67,29 +68,40 @@
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <RadioButton
                 android:id="@+id/radioButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/answer1" />
+
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/answer2"/>
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/answer2" />
+
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/answer3"/>
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/answer3" />
+
             <RadioButton
+                android:id="@+id/radioButton3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/answer4"/>
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/answer4" />
         </RadioGroup>
 
         <TextView
             android:id="@+id/question2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/question2"
             android:textSize="18sp" />
@@ -101,17 +113,18 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/answer5"/>
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/answer5" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/answer6"/>
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/answer6" />
 
         </RadioGroup>
 
     </LinearLayout>
-
 
 
 </LinearLayout>
