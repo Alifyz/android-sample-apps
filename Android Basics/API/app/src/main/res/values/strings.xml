@@ -3,4 +3,12 @@
     <string name="hint">What is your name?</string>
     <string name="mainTitle">Investment Questions</string>
     <string name="mainLogo">Money Logo</string>
+    <string name="question1">In general, how much do you spend related to your income?</string>
+    <string name="answer1">Less than 50% </string>
+    <string name="answer2">Between 50% and 75%</string>
+    <string name="answer3">Between 76% and 90%</string>
+    <string name="answer4">Above 90%</string>
+    <string name="question2">Do you save or Invest Money?</string>
+    <string name="answer5">Yes</string>
+    <string name="answer6">No</string>
 </resources>
