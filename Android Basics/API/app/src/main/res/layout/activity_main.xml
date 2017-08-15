@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,14 +20,31 @@
             android:src="@drawable/ic_attach_money_black_24dp"
             android:tint="@color/colorAccent"
             tools:layout_editor_absoluteX="48dp"
-            tools:layout_editor_absoluteY="35dp" />
+            tools:layout_editor_absoluteY="35dp"
+            android:contentDescription="@string/mainLogo"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="sans-serif-smallcaps"
             android:hint="@string/hint"
-            android:inputType="textMultiLine" />
+            android:inputType="textPersonName" />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/mainTitle"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
 </LinearLayout>
