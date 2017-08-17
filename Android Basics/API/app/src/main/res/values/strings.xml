@@ -11,4 +11,9 @@
     <string name="question2">Do you save or Invest Money?</string>
     <string name="answer5">Yes</string>
     <string name="answer6">No</string>
+    <string name="question3">As an investor, do you prefer?</string>
+    <string name="answer7">Safe Investment, Low possibility of loss</string>
+    <string name="answer8">Better return compared to safe options</string>
+    <string name="answer9">Higher returns, but with higher risk</string>
+    <string name="question4"></string>
 </resources>
