@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">API - Investment Profile</string>
-    <string name="hint">What is your name?</string>
+    <string name="hint">Type here</string>
     <string name="mainTitle">Investment Questions</string>
     <string name="mainLogo">Money Logo</string>
+    <string name="question0">What is your name?</string>
+    <string name="question">How old are you?</string>
     <string name="question1">In general, how much do you spend related to your income?</string>
     <string name="answer1">Less than 50% </string>
     <string name="answer2">Between 50% and 75%</string>
@@ -15,5 +17,20 @@
     <string name="answer7">Safe Investment, Low possibility of loss</string>
     <string name="answer8">Better return compared to safe options</string>
     <string name="answer9">Higher returns, but with higher risk</string>
-    <string name="question4"></string>
+    <string name="question4">If something unexpected happen, would you?</string>
+    <string name="answer10">Rescue all my money, losing part of my capital</string>
+    <string name="answer11">Wait a little longer to rescue</string>
+    <string name="answer12">Wait a long period of time to see If I can recover what I lost</string>
+    <string name="question5">What are your goals?</string>
+    <string name="answer13">Just to save money for the future</string>
+    <string name="answer14">Buy something in five years or so</string>
+    <string name="answer15">Save for retirement</string>
+
+    <string-array name="array_name">
+        <item>Array Item One</item>
+        <item>Array Item Two</item>
+        <item>Array Item Three</item>
+    </string-array>
+
+
 </resources>
