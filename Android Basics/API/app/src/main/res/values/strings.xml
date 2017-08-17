@@ -26,10 +26,11 @@
     <string name="answer14">Buy something in five years or so</string>
     <string name="answer15">Save for retirement</string>
 
-    <string-array name="array_name">
-        <item>Array Item One</item>
-        <item>Array Item Two</item>
-        <item>Array Item Three</item>
+    <string-array name="age">
+        <item>Less than 18</item>
+        <item>Between 19 and 25</item>
+        <item>Between 25 and 35</item>
+        <item>Above 35</item>
     </string-array>
 
 
