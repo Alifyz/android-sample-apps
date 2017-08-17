@@ -27,10 +27,10 @@
     <string name="answer15">Save for retirement</string>
 
     <string-array name="age">
-        <item>Less than 18</item>
-        <item>Between 19 and 25</item>
-        <item>Between 25 and 35</item>
-        <item>Above 35</item>
+        <item>LESS THAN 18</item>
+        <item>BETWEEN 19 AND 25</item>
+        <item>BETWEEN 25 AND 35</item>
+        <item>ABOVE 35</item>
     </string-array>
 
 
