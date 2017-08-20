@@ -31,12 +31,10 @@
 
             <TextView
                 android:id="@+id/question0"
+                style="@style/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/question0"
-                android:textSize="18sp" />
+                android:text="@string/question0" />
 
             <EditText
                 android:id="@+id/name"
@@ -49,10 +47,9 @@
 
             <TextView
                 android:id="@+id/question"
+                style="@style/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/question" />
 
             <Spinner
@@ -67,12 +64,10 @@
 
             <TextView
                 android:id="@+id/question1"
+                style="@style/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/question1"
-                android:textSize="18sp" />
+                android:text="@string/question1" />
 
             <RadioGroup
                 android:id="@+id/q1"
@@ -110,13 +105,10 @@
 
             <TextView
                 android:id="@+id/question2"
+                style="@style/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/question2"
-                android:textSize="18sp" />
+                android:text="@string/question2" />
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -137,13 +129,10 @@
 
             <TextView
                 android:id="@+id/question3"
+                style="@style/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/question3"
-                android:textSize="18sp" />
+                android:text="@string/question3" />
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -170,13 +159,10 @@
 
             <TextView
                 android:id="@+id/question4"
+                style="@style/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/question4"
-                android:textSize="18sp" />
+                android:text="@string/question4" />
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -203,13 +189,10 @@
 
             <TextView
                 android:id="@+id/question5"
+                style="@style/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/question5"
-                android:textSize="18sp" />
+                android:text="@string/question5" />
 
             <CheckBox
                 android:layout_width="wrap_content"
@@ -229,6 +212,11 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/answer15" />
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:text="@string/button" />
 
         </LinearLayout>
 

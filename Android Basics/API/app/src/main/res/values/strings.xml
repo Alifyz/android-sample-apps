@@ -25,6 +25,7 @@
     <string name="answer13">Just to save money for the future</string>
     <string name="answer14">Buy something in five years or so</string>
     <string name="answer15">Save for retirement</string>
+    <string name="button">Evalue - Profile</string>
 
     <string-array name="age">
         <item>LESS THAN 18</item>
