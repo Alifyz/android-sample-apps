@@ -56,6 +56,7 @@
                 android:id="@+id/age"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                style="@style/spinner"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:drawSelectorOnTop="true"
