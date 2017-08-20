@@ -18,7 +18,7 @@
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="spinner">
+    <style name="edittext">
         <item name="android:textColorPrimary">@color/textColor</item>
         <item name="android:textColor">@color/textColor</item>
     </style>
