@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     public void evaluateProfile(View v) {
 
         int Index = firstQuestion.indexOfChild(findViewById(firstQuestion.getCheckedRadioButtonId()));
