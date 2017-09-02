@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">API - Perfil de Investimento</string>
+    <string name="answer1">Menos que 50%</string>
+    <string name="answer10">Resgatar todo dinheiro, perdendo parte do capital</string>
+    <string name="answer11">Esperaria um pouco mais</string>
+    <string name="answer12">Esperaria um longo periodo para tentar recuperar o capital</string>
+    <string name="answer13">Salvar para o futuro</string>
+    <string name="answer14">Comprar algo em 5 anos ou mais</string>
+    <string name="answer15">Salvar para aposentadoria</string>
+    <string name="answer2">Entre 50 e 75%</string>
+    <string name="answer3">Entre 76 e 90%</string>
+    <string name="answer4">Acima de 90%</string>
+    <string name="answer5">Sim</string>
+    <string name="answer6">Não</string>
+    <string name="answer7">Investimento Seguro, sem perdas</string>
+    <string name="answer8">Melhor retorno em relação a opções seguras</string>
+    <string name="answer9">Alto retorno, com alto risco</string>
+    <string name="button">Avaliar - Perfil</string>
+    <string name="hint">Digite aqui</string>
+    <string name="mainLogo">Logo dinheiro</string>
+    <string name="mainTitle">Questionário de Investimento</string>
+    <string name="question">Quantos anos você tem?</string>
+    <string name="question0">Qual é seu nome?</string>
+    <string name="question1">Em geral, quanto você gasta comparado com sua renda?</string>
+    <string name="question2">Você guarda dinheiro?</string>
+    <string name="question3">Como investidor, você prefere?</string>
+    <string name="question4">Se algo inesperado acontecer, o que você faria?</string>
+    <string name="question5">Quais são seus objetivos?</string>
+</resources>

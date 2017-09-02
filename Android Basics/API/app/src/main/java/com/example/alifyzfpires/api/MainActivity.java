@@ -1,7 +1,7 @@
 package com.example.alifyzfpires.api;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
@@ -31,16 +31,103 @@ public class MainActivity extends AppCompatActivity {
         thirdQuestion = (RadioGroup) findViewById(R.id.q3);
         fourthQuestion = (RadioGroup) findViewById(R.id.q4);
 
-
-
-
-
     }
-
 
     public void evaluateProfile(View v) {
 
-        int Index = firstQuestion.indexOfChild(findViewById(firstQuestion.getCheckedRadioButtonId()));
-        Log.e("MainActivity", Index + "");
+        int firstQuestionIndex = ageSpinner.getSelectedItemPosition();
+
+        int secondQuestionIndex = firstQuestion.indexOfChild(findViewById
+                (firstQuestion.getCheckedRadioButtonId()));
+        int thirdQuestionIndex = secondQuestion.indexOfChild(findViewById
+                (secondQuestion.getCheckedRadioButtonId()));
+        int fourthQuestionIndex = thirdQuestion.indexOfChild(findViewById
+                (thirdQuestion.getCheckedRadioButtonId()));
+        int fithQuestionIndex = fourthQuestion.indexOfChild(findViewById
+                (fourthQuestion.getCheckedRadioButtonId()));
+
+        switch (firstQuestionIndex) {
+            case 0:
+                conservador += 1;
+                break;
+            case 1:
+                moderado += 1;
+                break;
+            case 2:
+                moderado += 1;
+                break;
+            case 3:
+                agressivo += 1;
+            default:
+                break;
+        }
+
+        switch (secondQuestionIndex) {
+            case 0:
+                conservador += 1;
+                break;
+            case 1:
+                moderado += 1;
+                agressivo += 1;
+                break;
+            default:
+                break;
+        }
+
+        switch (thirdQuestionIndex) {
+            case 0:
+                conservador += 1;
+                break;
+            case 1:
+                moderado += 1;
+                break;
+            case 2:
+                moderado += 1;
+                break;
+            case 3:
+                agressivo += 1;
+            default:
+                break;
+        }
+
+
+        switch (fourthQuestionIndex) {
+            case 0:
+                conservador += 1;
+                break;
+            case 1:
+                moderado += 1;
+                break;
+            case 2:
+                moderado += 1;
+                break;
+            case 3:
+                agressivo += 1;
+            default:
+                break;
+        }
+
+        switch (fithQuestionIndex) {
+            case 0:
+                conservador += 1;
+                break;
+            case 1:
+                moderado += 1;
+                break;
+            case 2:
+                moderado += 1;
+                break;
+            case 3:
+                agressivo += 1;
+            default:
+                break;
+        }
+
+        Log.e("MainActivity", conservador + "");
+        Log.e("MainActivity", moderado + "");
+        Log.e("MainActivity", agressivo + "");
+
     }
+
+
 }

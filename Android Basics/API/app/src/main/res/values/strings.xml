@@ -28,10 +28,10 @@
     <string name="button">Evalue - Profile</string>
 
     <string-array name="age">
-        <item>LESS THAN 18</item>
-        <item>BETWEEN 19 AND 25</item>
-        <item>BETWEEN 25 AND 35</item>
-        <item>ABOVE 35</item>
+        <item>MENOS QUE 18</item>
+        <item>ENTRE 19 E 25</item>
+        <item>ENTRE 26 E 35</item>
+        <item>ACIMA 35</item>
     </string-array>
 
 
