@@ -216,11 +216,16 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/answer15" />
+            <View
+                android:id="@+id/lineBottom"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorAccent" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_gravity="right"
                 android:onClick="evaluateProfile"
                 android:text="@string/button" />
 

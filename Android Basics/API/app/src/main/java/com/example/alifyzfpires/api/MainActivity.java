@@ -2,7 +2,6 @@ package com.example.alifyzfpires.api;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -36,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     public void evaluateProfile(View v) {
 
         int firstQuestionIndex = ageSpinner.getSelectedItemPosition();
-
         int secondQuestionIndex = firstQuestion.indexOfChild(findViewById
                 (firstQuestion.getCheckedRadioButtonId()));
         int thirdQuestionIndex = secondQuestion.indexOfChild(findViewById
@@ -90,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-
         switch (fourthQuestionIndex) {
             case 0:
                 conservador += 1;
@@ -122,10 +119,9 @@ public class MainActivity extends AppCompatActivity {
             default:
                 break;
         }
+    }
 
-        Log.e("MainActivity", conservador + "");
-        Log.e("MainActivity", moderado + "");
-        Log.e("MainActivity", agressivo + "");
+    public void getScore() {
 
     }
 
