@@ -225,9 +225,24 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_gravity="center_horizontal"
                 android:onClick="evaluateProfile"
                 android:text="@string/button" />
+
+            <View
+                android:id="@+id/lineBottom2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/pts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="96sp"
+                android:layout_marginLeft="16dp"
+                android:text="0" />
+
 
         </LinearLayout>
 
