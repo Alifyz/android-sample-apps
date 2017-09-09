@@ -3,125 +3,113 @@ package com.example.alifyzfpires.api;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Contador - Pontos de Perfil
-    int conservador = 0;
-    int moderado = 0;
-    int agressivo = 0;
 
-    Spinner ageSpinner;
-    RadioGroup firstQuestion;
-    RadioGroup secondQuestion;
-    RadioGroup thirdQuestion;
-    RadioGroup fourthQuestion;
+    int rightAnswers; // Right Answers Counter
+    int wrongAnswers; // Wrong Answers Counter
+
+    EditText name; // Get Name of the User
+
+    // Each view Representing one Question
+    RadioGroup question1;
+    RadioGroup question2;
+    RadioGroup question3;
+    RadioGroup question4;
+
+    // First Statement of the last question and so on...
+    CheckBox firstAnswer;
+    CheckBox seconAnswer;
+    CheckBox thirdAnswer;
+    CheckBox fourtAnswer;
+    CheckBox fifthAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ageSpinner = (Spinner) findViewById(R.id.age);
-        firstQuestion = (RadioGroup) findViewById(R.id.q1);
-        secondQuestion = (RadioGroup) findViewById(R.id.q2);
-        thirdQuestion = (RadioGroup) findViewById(R.id.q3);
-        fourthQuestion = (RadioGroup) findViewById(R.id.q4);
+        name = (EditText) findViewById(R.id.name);
+
+        question1 = (RadioGroup) findViewById(R.id.q1);
+        question2 = (RadioGroup) findViewById(R.id.q2);
+        question3 = (RadioGroup) findViewById(R.id.q3);
+        question4 = (RadioGroup) findViewById(R.id.q4);
+
+        firstAnswer = (CheckBox) findViewById(R.id.a);
+        seconAnswer = (CheckBox) findViewById(R.id.b);
+        thirdAnswer = (CheckBox) findViewById(R.id.c);
+        fourtAnswer = (CheckBox) findViewById(R.id.d);
+        fifthAnswer = (CheckBox) findViewById(R.id.e);
 
     }
 
-    public void evaluateProfile(View v) {
+    public void getScore(View v) {
 
-        int firstQuestionIndex = ageSpinner.getSelectedItemPosition();
-        int secondQuestionIndex = firstQuestion.indexOfChild(findViewById
-                (firstQuestion.getCheckedRadioButtonId()));
-        int thirdQuestionIndex = secondQuestion.indexOfChild(findViewById
-                (secondQuestion.getCheckedRadioButtonId()));
-        int fourthQuestionIndex = thirdQuestion.indexOfChild(findViewById
-                (thirdQuestion.getCheckedRadioButtonId()));
-        int fithQuestionIndex = fourthQuestion.indexOfChild(findViewById
-                (fourthQuestion.getCheckedRadioButtonId()));
+        int firstIndex = question1.indexOfChild(findViewById
+                (question1.getCheckedRadioButtonId()));
+        int secondIndex = question2.indexOfChild(findViewById
+                (question2.getCheckedRadioButtonId()));
+        int thirdIndex = question3.indexOfChild(findViewById
+                (question3.getCheckedRadioButtonId()));
+        int fourthIndex = question4.indexOfChild(findViewById
+                (question4.getCheckedRadioButtonId()));
 
-        switch (firstQuestionIndex) {
+        switch (firstIndex) {
             case 0:
-                conservador += 1;
+                rightAnswers++;
                 break;
-            case 1:
-                moderado += 1;
+            default:
+                wrongAnswers++;
+        }
+
+        switch (secondIndex) {
+            case 0:
+                rightAnswers++;
                 break;
-            case 2:
-                moderado += 1;
-                break;
+            default:
+                wrongAnswers++;
+        }
+
+        switch (thirdIndex) {
             case 3:
-                agressivo += 1;
-            default:
-                break;
-        }
-
-        switch (secondQuestionIndex) {
-            case 0:
-                conservador += 1;
-                break;
-            case 1:
-                moderado += 1;
-                agressivo += 1;
+                rightAnswers++;
                 break;
             default:
-                break;
+                wrongAnswers++;
         }
 
-        switch (thirdQuestionIndex) {
-            case 0:
-                conservador += 1;
-                break;
-            case 1:
-                moderado += 1;
-                break;
-            case 2:
-                moderado += 1;
-                break;
+        switch (fourthIndex) {
             case 3:
-                agressivo += 1;
-            default:
+                rightAnswers++;
                 break;
+            default:
+                wrongAnswers++;
         }
 
-        switch (fourthQuestionIndex) {
-            case 0:
-                conservador += 1;
-                break;
-            case 1:
-                moderado += 1;
-                break;
-            case 2:
-                moderado += 1;
-                break;
-            case 3:
-                agressivo += 1;
-            default:
-                break;
-        }
+        if (firstAnswer.isChecked())
+            rightAnswers++;
+        if (seconAnswer.isChecked())
+            wrongAnswers++;
+        if (thirdAnswer.isChecked())
+            wrongAnswers++;
+        if (fourtAnswer.isChecked())
+            rightAnswers++;
+        if (fifthAnswer.isChecked())
+            rightAnswers++;
 
-        switch (fithQuestionIndex) {
-            case 0:
-                conservador += 1;
-                break;
-            case 1:
-                moderado += 1;
-                break;
-            case 2:
-                moderado += 1;
-                break;
-            case 3:
-                agressivo += 1;
-            default:
-                break;
-        }
-    }
+        Toast.makeText(this, "You got: " + rightAnswers +
+                        " right, and " + wrongAnswers + " wrong" + ", " + name.getText(),
+                Toast.LENGTH_SHORT).show();
 
-    public void getScore() {
+        //Restarting Values
+        rightAnswers = 0;
+        wrongAnswers = 0;
 
     }
 

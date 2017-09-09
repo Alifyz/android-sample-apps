@@ -38,31 +38,13 @@
 
             <EditText
                 android:id="@+id/name"
+                style="@style/edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/edittext"
                 android:layout_gravity="center"
                 android:fontFamily="sans-serif-smallcaps"
                 android:hint="@string/hint"
                 android:inputType="textPersonName" />
-
-            <TextView
-                android:id="@+id/question"
-                style="@style/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/question" />
-
-            <Spinner
-                android:id="@+id/age"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:drawSelectorOnTop="true"
-                android:entries="@array/age"
-                android:spinnerMode="dialog"
-                android:fontFamily="sans-serif-smallcaps" />
 
             <TextView
                 android:id="@+id/question1"
@@ -81,28 +63,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="@string/answer1" />
+                    android:text="@string/answer1a" />
 
                 <RadioButton
                     android:id="@+id/radioButton2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="@string/answer2" />
+                    android:text="@string/answer1b" />
 
                 <RadioButton
                     android:id="@+id/radioButton3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="@string/answer3" />
+                    android:text="@string/answer1c" />
 
                 <RadioButton
                     android:id="@+id/radioButton4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="@string/answer4" />
+                    android:text="@string/answer1d" />
             </RadioGroup>
 
             <TextView
@@ -121,13 +103,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="@string/answer5" />
+                    android:text="@string/answer2a" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="@string/answer6" />
+                    android:text="@string/answer2b" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:text="@string/answer2c" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:text="@string/answer2d" />
+
             </RadioGroup>
 
             <TextView
@@ -146,19 +141,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="@string/answer7" />
+                    android:text="@string/answer3a" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="@string/answer8" />
+                    android:text="@string/answer3b" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="@string/answer9" />
+                    android:text="@string/answer3c" />
+
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:text="@string/answer3d" />
             </RadioGroup>
 
             <TextView
@@ -177,19 +179,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="@string/answer10" />
+                    android:text="@string/answer4a" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="@string/answer11" />
+                    android:text="@string/answer4b" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="@string/answer12" />
+                    android:text="@string/answer4c" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:text="@string/answer4d" />
             </RadioGroup>
 
             <TextView
@@ -200,22 +208,40 @@
                 android:text="@string/question5" />
 
             <CheckBox
+                android:id="@+id/a"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/answer13" />
+                android:text="@string/answer5a" />
 
             <CheckBox
+                android:id="@+id/b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/answer14" />
+                android:text="@string/answer5b" />
 
             <CheckBox
+                android:id="@+id/c"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/answer15" />
+                android:text="@string/answer5c" />
+
+            <CheckBox
+                android:id="@+id/d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/answer5d" />
+
+            <CheckBox
+                android:id="@+id/e"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/answer5e" />
+
             <View
                 android:id="@+id/lineBottom"
                 android:layout_width="match_parent"
@@ -226,23 +252,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:onClick="evaluateProfile"
+                android:onClick="getScore"
                 android:text="@string/button" />
-
-            <View
-                android:id="@+id/lineBottom2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorAccent" />
-
-            <TextView
-                android:id="@+id/pts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="96sp"
-                android:layout_marginLeft="16dp"
-                android:text="0" />
-
 
         </LinearLayout>
 
