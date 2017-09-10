@@ -11,10 +11,10 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
 
-    int rightAnswers; // Right Answers Counter
-    int wrongAnswers; // Wrong Answers Counter
+    int rightAnswers;
+    int wrongAnswers;
 
-    EditText name; // Get Name of the User
+    EditText name;
 
     // Each view Representing one Question
     RadioGroup question1;
