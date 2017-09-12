@@ -32,9 +32,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OpenNumbers(View view) {
-        //TODO: Intent - Start Numbers Acitivity
         Intent openNumbers = new Intent(this, NumbersActivity.class);
         startActivity(openNumbers);
+    }
 
+    public void OpenFamily(View view) {
+        Intent openFamily = new Intent(this, FamilyMembersActivity.class);
+        startActivity(openFamily);
+    }
+
+    public void OpenColors(View view) {
+        Intent openColors = new Intent(this, ColorsActivity.class);
+        startActivity(openColors);
+    }
+
+    public void OpenPhrases(View view) {
+        Intent openPhrases = new Intent(this, PhrasesActivity.class);
+        startActivity(openPhrases);
     }
 }
