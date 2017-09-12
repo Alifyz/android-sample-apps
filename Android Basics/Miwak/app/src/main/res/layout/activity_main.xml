@@ -26,6 +26,7 @@
         android:id="@+id/numbers"
         style="@style/CategoryStyle"
         android:background="@color/category_numbers"
+        android:onClick="OpenNumbers"
         android:text="@string/category_numbers" />
 
     <TextView
