@@ -11,26 +11,38 @@
         android:layout_height="0dp"
         android:layout_weight="5"
         android:background="@color/colorAccent"
-        android:contentDescription="MainLogo" />
+        android:contentDescription="@string/logo" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background=""/>
+        android:text="@string/play"
+        android:textColor="@color/colorTextPrimary"
+        android:background="@color/colorPrimaryDark"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:text="@string/playlist"
+        android:textColor="@color/colorTextPrimary"
+        android:background="@color/colorPrimaryDark"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:textColor="@color/colorTextPrimary"
+        android:text="@string/premium"
+        android:background="@color/colorPrimaryDark"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:text="@string/settings"
+        android:textColor="@color/colorTextPrimary"
+        android:background="@color/colorPrimaryDark"/>
 
 </LinearLayout>

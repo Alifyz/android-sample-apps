@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MusicStation</string>
+    <string name="play">Reproduzir</string>
+    <string name="playlist">Playlist</string>
+    <string name="premium">Premium</string>
+    <string name="settings">Configurações</string>
+    <string name="logo">Logo principal</string>
 </resources>
