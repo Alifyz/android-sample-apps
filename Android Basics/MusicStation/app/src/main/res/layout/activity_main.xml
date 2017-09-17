@@ -14,35 +14,31 @@
         android:contentDescription="@string/logo" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:id="@+id/reproduzir"
+        style="@style/mainText"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="@string/play"
-        android:textColor="@color/colorTextPrimary"
-        android:background="@color/colorPrimaryDark"/>
+        android:text="@string/play" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/playlist"
+        style="@style/mainText"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="@string/playlist"
-        android:textColor="@color/colorTextPrimary"
-        android:background="@color/colorPrimaryDark"/>
+        android:text="@string/playlist" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/premium"
+        style="@style/mainText"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:textColor="@color/colorTextPrimary"
-        android:text="@string/premium"
-        android:background="@color/colorPrimaryDark"/>
+        android:text="@string/premium" />
+
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/configurações"
+        style="@style/mainText"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="@string/settings"
-        android:textColor="@color/colorTextPrimary"
-        android:background="@color/colorPrimaryDark"/>
+        android:text="@string/settings" />
 
 </LinearLayout>
