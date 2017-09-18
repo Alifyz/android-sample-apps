@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Reproduzir" />
+        <activity android:name=".Playlist" />
+        <activity android:name=".premium" />
+        <activity android:name=".configuracoes"></activity>
     </application>
 
 </manifest>
