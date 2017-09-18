@@ -16,10 +16,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Reproduzir" />
-        <activity android:name=".Playlist" />
-        <activity android:name=".Premium" />
-        <activity android:name=".Configuracoes"></activity>
+        <activity
+            android:label="@string/play"
+            android:name=".Reproduzir" />
+        <activity
+            android:label="@string/playlist"
+            android:name=".Playlist" />
+        <activity
+            android:label="@string/premium"
+            android:name=".Premium" />
+        <activity
+            android:label="@string/settings"
+            android:name=".Configuracoes">
+        </activity>
     </application>
 
 </manifest>
