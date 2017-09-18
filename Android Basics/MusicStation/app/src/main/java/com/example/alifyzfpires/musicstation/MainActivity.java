@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         premium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent premium = new Intent(MainActivity.this, com.example.alifyzfpires.musicstation.premium.class);
+                Intent premium = new Intent(MainActivity.this, Premium.class);
                 startActivity(premium);
             }
         });
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         config.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent configuracoes = new Intent(MainActivity.this, com.example.alifyzfpires.musicstation.configuracoes.class);
+                Intent configuracoes = new Intent(MainActivity.this, Configuracoes.class);
                 startActivity(configuracoes);
             }
         });

@@ -18,8 +18,8 @@
         </activity>
         <activity android:name=".Reproduzir" />
         <activity android:name=".Playlist" />
-        <activity android:name=".premium" />
-        <activity android:name=".configuracoes"></activity>
+        <activity android:name=".Premium" />
+        <activity android:name=".Configuracoes"></activity>
     </application>
 
 </manifest>
