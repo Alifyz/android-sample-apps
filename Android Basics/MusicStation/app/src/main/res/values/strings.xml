@@ -5,4 +5,25 @@
     <string name="premium">Premium</string>
     <string name="settings">Configurações</string>
     <string name="logo">Logo principal</string>
+    <string name="reproduzir">
+        Objetivo desta activity é ler a biblioteca de audio do smartphone e mostrar os arquivos para serem reproduzidos,
+        separados por, Gênero, Album, Artista e músicas Favoritas. (Se o usuário tiver a assinatura premium será possível executar os
+        arquivos de podcast nessa activity.
+
+        Caso o usuário tenha assinatura, essa activity terá uma opção de procurar por músicas disponíveis na nuvem para ouvir no modo streaming.
+    </string>
+    <string name="playlistDescription">
+        Objetivo desta activity é gerenciar a playlist do usuário, permitindo criar novas, editar existentes e selecionar playlist
+        a serem reproduzidas. Nesta activity também encontraram-se os episódios de AudioLivro, Podcast e outros afins (se o usuário tiver assinatura).
+    </string>
+    <string name="premiumDescription">
+        Nessa activity o usuário tera a possibilidade de assinar conteúdos premium (como audiolivros, podcast pagos e conteúdo de streaming).
+        O desenvolvedor irá usar o Google Developers API (Serviços de Assinatura dentro do Aplicativo)
+    </string>
+    <string name="configDescription">
+        Nesta tela o usuário poderá ter a opção de configurar um Timer para a música interromper a execução
+        Outro recurso é o cancelamento das assinaturas premium, limpar o cache das músicas ou podcast baixados na memória do celular, acessar ferramentas
+        de equalização de audio.
+    </string>
+
 </resources>

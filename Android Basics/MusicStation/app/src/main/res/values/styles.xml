@@ -17,4 +17,7 @@
         <item name="android:paddingStart">10dp</item>
     </style>
 
+    <style name="descriptionText">
+        <item name="android:layout_margin">8dp</item>
+    </style>
 </resources>

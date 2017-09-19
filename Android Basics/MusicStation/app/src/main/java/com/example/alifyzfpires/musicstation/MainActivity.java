@@ -14,9 +14,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView reproduzir = (TextView) findViewById(R.id.reproduzir);
-        TextView playlist   = (TextView) findViewById(R.id.playlist);
-        TextView premium    = (TextView) findViewById(R.id.premium);
-        TextView config     = (TextView) findViewById(R.id.configurações);
+        TextView playlist = (TextView) findViewById(R.id.playlist);
+        TextView premium = (TextView) findViewById(R.id.premium);
+        TextView config = (TextView) findViewById(R.id.configurações);
 
         reproduzir.setOnClickListener(new View.OnClickListener() {
             @Override
