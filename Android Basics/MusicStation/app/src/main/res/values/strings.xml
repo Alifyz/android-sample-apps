@@ -18,7 +18,7 @@
     </string>
     <string name="premiumDescription">
         Nessa activity o usuário tera a possibilidade de assinar conteúdos premium (como audiolivros, podcast pagos e conteúdo de streaming).
-        O desenvolvedor irá usar o Google Developers API (Serviços de Assinatura dentro do Aplicativo)
+        O desenvolvedor irá usar o Stripe API para implementar serviços de Assinatura dentro do Aplicativo.
     </string>
     <string name="configDescription">
         Nesta tela o usuário poderá ter a opção de configurar um Timer para a música interromper a execução

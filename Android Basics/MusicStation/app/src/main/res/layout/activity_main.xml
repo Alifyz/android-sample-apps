@@ -19,29 +19,21 @@
     <TextView
         android:id="@+id/reproduzir"
         style="@style/mainText"
-        android:layout_height="0dp"
-        android:layout_weight="1"
         android:text="@string/play" />
 
     <TextView
         android:id="@+id/playlist"
         style="@style/mainText"
-        android:layout_height="0dp"
-        android:layout_weight="1"
         android:text="@string/playlist" />
 
     <TextView
         android:id="@+id/premium"
         style="@style/mainText"
-        android:layout_height="0dp"
-        android:layout_weight="1"
         android:text="@string/premium" />
 
     <TextView
         android:id="@+id/configurações"
         style="@style/mainText"
-        android:layout_height="0dp"
-        android:layout_weight="1"
         android:text="@string/settings" />
 
 </LinearLayout>
