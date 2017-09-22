@@ -10,7 +10,6 @@ public class NumbersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numbers);
 
-        //Arrays
         String[] words = new String[10];
         words[0] = "one";
         words[1] = "two";
@@ -22,5 +21,7 @@ public class NumbersActivity extends AppCompatActivity {
         words[7] = "eight";
         words[8] = "nine";
         words[9] = "ten";
+
+
     }
 }
