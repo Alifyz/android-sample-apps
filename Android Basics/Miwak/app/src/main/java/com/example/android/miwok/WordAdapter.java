@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View listItemView = convertView;
+
         if(listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.numbers_listview, parent, false);
@@ -30,10 +32,21 @@ public class WordAdapter extends ArrayAdapter<Word> {
         Word currentWord = getItem(position);
 
         TextView nameTextView = (TextView) listItemView.findViewById(R.id.TextView1);
-        nameTextView.setText(currentWord.getMiwakTranslation());
+        nameTextView.setText(currentWord.getDefautTranslation());
 
         TextView numberTextView = (TextView) listItemView.findViewById(R.id.TextView2);
-        numberTextView.setText(currentWord.getDefautTranslation());
+        numberTextView.setText(currentWord.getMiwakTranslation());
+
+
+        ImageView iconImageView = (ImageView) listItemView.findViewById(R.id.image);
+        iconImageView.setImageResource(currentWord.getResourceImageId());
+
+
+        if(currentWord.getResourceImageId() != 0) {
+            iconImageView.setVisibility(View.VISIBLE);
+        }else {
+            iconImageView.setVisibility(View.GONE);
+        }
 
         return listItemView;
     }
