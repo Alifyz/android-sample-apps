@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/listView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,7 +9,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="88dp"
-        android:background="@color/category_numbers"
         android:orientation="horizontal">
 
         <ImageView
@@ -22,29 +20,31 @@
             android:src="@mipmap/ic_launcher" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/category_numbers"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/TextView1"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="#FFFFFF"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 tools:text="lutti" />
 
             <TextView
                 android:id="@+id/TextView2"
-                android:textSize="18sp"
-                android:textColor="#FFFFFF"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
                 tools:text="one" />
 
         </LinearLayout>
