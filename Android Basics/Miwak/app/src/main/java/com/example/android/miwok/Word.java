@@ -33,6 +33,15 @@ public class Word {
         this.resouceAudioId = resouceAudioId;
     }
 
+    @Override
+    public String toString() {
+        return "Word{" +
+                "miwakTranslation='" + miwakTranslation + '\'' +
+                ", defautTranslation='" + defautTranslation + '\'' +
+                ", resourceImageId=" + resourceImageId +
+                ", resouceAudioId=" + resouceAudioId +
+                '}';
+    }
 
     //Get Methods
     public String getMiwakTranslation() {
