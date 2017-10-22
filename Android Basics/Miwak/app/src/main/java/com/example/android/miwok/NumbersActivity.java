@@ -18,20 +18,7 @@ public class NumbersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numbers);
 
-<<<<<<< HEAD
-        String[] words = new String[10];
-        words[0] = "one";
-        words[1] = "two";
-        words[2] = "three";
-        words[3] = "four";
-        words[4] = "five";
-        words[5] = "six";
-        words[6] = "seven";
-        words[7] = "eight";
-        words[8] = "nine";
-        words[9] = "ten";
 
-=======
         final ArrayList<Word> words = new ArrayList<Word>();
 
         words.add(new Word("one","lutti", R.drawable.number_one, R.raw.number_one));
@@ -57,7 +44,7 @@ public class NumbersActivity extends AppCompatActivity {
                 audioPlayer.start();
             }
         });
->>>>>>> app_test
+
 
     }
 }

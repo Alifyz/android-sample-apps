@@ -15,8 +15,9 @@ import java.util.ArrayList;
 
 public class WordAdapter extends ArrayAdapter<Word> {
 
-
+    //Store the background color of the LinearLayout
     private int mBackGroundColor;
+
 
     public WordAdapter(Context context, ArrayList<Word> words, int mBackGroundColor) {
         super(context, 0, words);
@@ -56,7 +57,6 @@ public class WordAdapter extends ArrayAdapter<Word> {
         } else {
             iconImageView.setVisibility(View.GONE);
         }
-
 
 
         return listItemView;
