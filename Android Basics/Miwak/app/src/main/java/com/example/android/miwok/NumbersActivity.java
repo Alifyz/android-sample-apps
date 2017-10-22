@@ -10,6 +10,11 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
+    @Override
+    protected void onStop() {
+        super.onStop();
+        audioPlayer.release();
+    }
 
     MediaPlayer audioPlayer;
 
