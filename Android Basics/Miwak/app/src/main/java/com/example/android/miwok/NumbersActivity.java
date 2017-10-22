@@ -1,5 +1,6 @@
 package com.example.android.miwok;
 
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,18 +11,17 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
-    @Override
-    protected void onStop() {
-        super.onStop();
-        audioPlayer.release();
-    }
 
-    MediaPlayer audioPlayer;
+
+
+    private MediaPlayer audioPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numbers);
+
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
 
         final ArrayList<Word> words = new ArrayList<Word>();
@@ -45,7 +45,7 @@ public class NumbersActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                releaseMediaPlayer();
+
                 audioPlayer = MediaPlayer.create(getApplicationContext(), words.get(i).getResourceAudioId());
                 audioPlayer.start();
 
@@ -60,6 +60,15 @@ public class NumbersActivity extends AppCompatActivity {
 
 
     }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
+    }
+
+
 
     /**
      * Clean up the media player by releasing its resources.
@@ -77,4 +86,5 @@ public class NumbersActivity extends AppCompatActivity {
             audioPlayer = null;
         }
     }
+
 }

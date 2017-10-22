@@ -60,8 +60,9 @@ public class PhrasesActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        audioPlayer.release();
+        releaseMediaPlayer();
     }
+
 
     /**
      * Clean up the media player by releasing its resources.
