@@ -10,6 +10,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class MiwakPageAdapter extends FragmentPagerAdapter {
 
+    private String tabTitles[] = new String[] { "Numbers", "Family", "Colors", "Phrases" };
+
     public MiwakPageAdapter(FragmentManager fm) {
         super(fm);
 
@@ -36,6 +38,11 @@ public class MiwakPageAdapter extends FragmentPagerAdapter {
                 return null;
         }
 
+    }
 
+    @Override
+    public CharSequence getPageTitle(int position) {
+        // Generate title based on item position
+        return tabTitles[position];
     }
 }
