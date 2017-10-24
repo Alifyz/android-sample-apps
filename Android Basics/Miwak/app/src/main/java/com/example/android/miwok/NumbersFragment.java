@@ -1,26 +1,38 @@
 package com.example.android.miwok;
 
+
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
-public class NumbersActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class NumbersFragment extends Fragment {
 
 
+    private MediaPlayer audioPlayer;
 
-//    private MediaPlayer audioPlayer;
+
+    public NumbersFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.container);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, new NumbersFragment())
-                .commit();
-        }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-/*
+        View rootView = inflater.inflate(R.layout.activity_numbers, container, false);
+
+
         final ArrayList<Word> words = new ArrayList<Word>();
-
         words.add(new Word("one","lutti", R.drawable.number_one, R.raw.number_one));
         words.add(new Word("two","otiiko", R.drawable.number_two, R.raw.number_two));
         words.add(new Word("three","toloosaku", R.drawable.number_three, R.raw.number_three));
@@ -32,16 +44,20 @@ public class NumbersActivity extends AppCompatActivity {
         words.add(new Word("nine","wo’e", R.drawable.number_nine, R.raw.number_nine));
         words.add(new Word("ten","\t\n" + "na’aacha", R.drawable.number_ten, R.raw.number_ten));
 
-        WordAdapter wordAdapter = new WordAdapter(this, words, R.color.category_numbers);
 
-        ListView listView = (ListView) findViewById(R.id.rootView);
+
+        WordAdapter wordAdapter = new WordAdapter(getActivity(), words, R.color.category_numbers);
+        
+
+        ListView listView = (ListView) rootView.findViewById(R.id.rootView);
         listView.setAdapter(wordAdapter);
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                audioPlayer = MediaPlayer.create(getApplicationContext(), words.get(i).getResourceAudioId());
+                audioPlayer = MediaPlayer.create(getActivity(), words.get(i).getResourceAudioId());
                 audioPlayer.start();
 
                 audioPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -51,20 +67,14 @@ public class NumbersActivity extends AppCompatActivity {
                     }
                 });
             }
-        });*/
+        });
 
-
+        return rootView;
     }
 
-/*
-    @Override
-    protected void onStop() {
-        super.onStop();
-        releaseMediaPlayer();
-    }
-
-
-
+    /**
+     * Clean up the media player by releasing its resources.
+     */
     private void releaseMediaPlayer() {
         // If the media player is not null, then it may be currently playing a sound.
         if (audioPlayer != null) {
@@ -79,4 +89,11 @@ public class NumbersActivity extends AppCompatActivity {
         }
     }
 
-}*/
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
+    }
+
+}

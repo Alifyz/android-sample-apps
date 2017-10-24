@@ -15,20 +15,27 @@
  */
 package com.example.android.miwok;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.viewpager);
 
-        TextView numbers = (TextView) findViewById(R.id.numbers);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        MiwakPageAdapter miwakAdapter = new MiwakPageAdapter(getSupportFragmentManager());
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+        viewPager.setAdapter(miwakAdapter);
+        tabLayout.setupWithViewPager(viewPager);
+
+
+
+        /*TextView numbers = (TextView) findViewById(R.id.numbers);
         TextView family =  (TextView) findViewById(R.id.family);
         TextView colors =  (TextView) findViewById(R.id.colors);
         TextView phrases = (TextView) findViewById(R.id.phrases);
@@ -64,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(openPhrases);
             }
         });
-
+*/
     }
 
 
