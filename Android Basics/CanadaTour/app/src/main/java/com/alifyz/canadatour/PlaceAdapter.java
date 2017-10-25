@@ -31,7 +31,6 @@ public class PlaceAdapter extends ArrayAdapter<Place> {
         }
 
 
-
         return listItemView;
 
     }
