@@ -8,10 +8,11 @@
     tools:context="com.alifyz.canadatour.MainActivity">
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="10dp"
-        android:contentDescription="image_of_the_place" />
+        android:contentDescription="@string/imageDescription" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,8 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="TITLE"
-            android:textColor="@color/primaryTextColor"
+            android:text="@string/title"
             android:textSize="36sp" />
 
     </LinearLayout>
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="TESTETETETE"
+        android:text="@string/description"
         android:textSize="24sp" />
 
 </LinearLayout>

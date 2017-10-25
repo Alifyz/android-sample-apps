@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">CanadaTour</string>
+    <string name="title">TITLE</string>
+    <string name="description">Description</string>
+    <string name="imageDescription">Image Description</string>
 </resources>
