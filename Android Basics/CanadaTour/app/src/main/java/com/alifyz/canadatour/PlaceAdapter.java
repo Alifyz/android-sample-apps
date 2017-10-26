@@ -22,14 +22,13 @@ public class PlaceAdapter extends ArrayAdapter<Place> {
         super(context, 0, places);
     }
 
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View listItemView = convertView;
         if(listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.listview_container, parent, false);
+                    R.layout.listview_template, parent, false);
         }
 
         final Place places = getItem(position);

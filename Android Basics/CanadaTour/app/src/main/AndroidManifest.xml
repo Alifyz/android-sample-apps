@@ -18,7 +18,6 @@
         </activity>
         <activity android:name=".Nature" />
         <activity android:name=".Sport" />
-        <activity android:name=".Museaum" />
         <activity android:name=".Restaurants"></activity>
     </application>
 
