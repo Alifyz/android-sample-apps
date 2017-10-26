@@ -35,6 +35,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="@string/description"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 
 </LinearLayout>
