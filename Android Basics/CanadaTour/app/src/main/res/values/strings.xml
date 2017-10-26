@@ -3,7 +3,21 @@
     <string name="title">TITLE</string>
     <string name="description">Description</string>
     <string name="imageDescription">Image Description</string>
+    <string name="firstMuseaumTitle">48th Highlanders Museum</string>
+    <string name="firstMuseaumDesc">The 48th Highlanders Museum is located in downtown Toronto in
+        the basement of St. Andrews Church at the corner of King and Simcoe. The mission of the
+        Museumis to collect, preserve, research and photograph material relating to the history of
+        the 48th Highlanders of Canada</string>
+    <string name="secondMuseaumTitle">A Space Gallery</string>
+    <string name="secondMuseaumDesc">Founded in 1971, A Space Gallery is one of the oldest artist-run
+        centres in Canada. A Space has played a significant role in the evolution of contemporary
+        art in Canada.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="thirdMuseaumTitle">Art Gallery of Ontario</string>
+    <string name="thirdMuseaumDesc">The Art Gallery of Ontario (AGO) (French: Musée des beaux-arts
+        de Ontario) is an art museum in Toronto, Ontario, Canada. Its collection includes more than
+        90,000 works spanning the first century to the present day. The gallery has 45,000 square
+        metres (480,000 sq ft) of physical space, making it one of the largest galleries in North America.
+        Significant collections include the largest collection of Canadian art</string>
+
 </resources>

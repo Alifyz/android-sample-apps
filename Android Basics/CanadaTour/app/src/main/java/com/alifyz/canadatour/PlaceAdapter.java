@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -30,6 +32,15 @@ public class PlaceAdapter extends ArrayAdapter<Place> {
                     R.layout.listview_container, parent, false);
         }
 
+        final Place places = getItem(position);
+
+        ImageView img = (ImageView) listItemView.findViewById(R.id.imageView);
+        TextView title = (TextView) listItemView.findViewById(R.id.title);
+        TextView description = (TextView) listItemView.findViewById(R.id.description);
+
+        img.setImageResource(places.getImageResourceId());
+        title.setText(places.getTitle());
+        description.setText(places.getDescription());
 
         return listItemView;
 

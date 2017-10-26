@@ -7,21 +7,21 @@ package com.alifyz.canadatour;
 
 public class Place {
 
-    private String title;
-    private String description;
+    private int title;
+    private int description;
     private int imageResourceId;
 
-    public Place(String title, String description, int imageResourceId) {
+    public Place(int title, int description, int imageResourceId) {
         this.title = title;
         this.description = description;
         this.imageResourceId = imageResourceId;
     }
 
-    public String getTitle() {
+    public int getTitle() {
         return title;
     }
 
-    public String getDescription() {
+    public int getDescription() {
         return description;
     }
 
