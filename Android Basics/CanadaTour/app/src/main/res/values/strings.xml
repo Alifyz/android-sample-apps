@@ -3,22 +3,20 @@
     <string name="title">TITLE</string>
     <string name="description">Description</string>
     <string name="imageDescription">Image Description</string>
-    <string name="firstMuseaumTitle">48th Highlanders Museum</string>
-    <string name="firstMuseaumDesc">The 48th Highlanders Museum is located in downtown Toronto in
-        the basement of St. Andrews Church at the corner of King and Simcoe. The mission of the
-        Museumis to collect, preserve, research and photograph material relating to the history of
-        the 48th Highlanders of Canada</string>
-    <string name="secondMuseaumTitle">A Space Gallery</string>
-    <string name="secondMuseaumDesc">Founded in 1971, A Space Gallery is one of the oldest artist-run
-        centres in Canada. A Space has played a significant role in the evolution of contemporary
-        art in Canada.</string>
 
-    <string name="thirdMuseaumTitle">Art Gallery of Ontario</string>
-    <string name="thirdMuseaumDesc">The Art Gallery of Ontario (AGO) (French: Musée des beaux-arts
-        de Ontario) is an art museum in Toronto, Ontario, Canada. Its collection includes more than
-        90,000 works spanning the first century to the present day. The gallery has 45,000 square
-        metres (480,000 sq ft) of physical space, making it one of the largest galleries in North America.
-        Significant collections include the largest collection of Canadian art</string>
+    <string name="firstMuseaumTitle">Toronto Museum of Nature</string>
+    <string name="firstMuseaumDesc">The Canadian Museum of Nature is a federal Crown corporation and
+        Canada national museum of natural history and natural sciences.</string>
+
+    <string name="secondMuseaumTitle">Canadian Museum of History</string>
+    <string name="secondMuseaumDesc">The Canadian Museum of History - British Home Children
+        portrayed the history of over 100k children that emigrated to Canada as a source
+        of cheap work force.</string>
+
+    <string name="thirdMuseaumTitle">Ottawa Museum of Nature</string>
+    <string name="thirdMuseaumDesc">The Canadian Museum of Nature is a natural history museum that
+        features exhibits ranging from native animal and bird species to the human cultivation of
+        natural resources. </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

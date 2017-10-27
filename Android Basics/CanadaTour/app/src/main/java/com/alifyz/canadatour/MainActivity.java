@@ -16,11 +16,11 @@ public class MainActivity extends AppCompatActivity {
         final ArrayList<Place> places = new ArrayList<Place>();
 
         places.add(new Place(R.string.firstMuseaumTitle, R.string.firstMuseaumDesc,
-                R.drawable.standrew));
+                R.drawable.webredone));
         places.add(new Place(R.string.secondMuseaumTitle, R.string.secondMuseaumDesc,
-                R.drawable.space));
+                R.drawable.british));
         places.add(new Place(R.string.thirdMuseaumTitle, R.string.thirdMuseaumDesc,
-                R.drawable.single));
+                R.drawable.ottwa));
 
         PlaceAdapter adapter = new PlaceAdapter(this, places);
 
