@@ -1,31 +1,28 @@
 package com.alifyz.canadatour;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ListView;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_viewpager);
 
-        final ArrayList<Place> places = new ArrayList<Place>();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.viewpager_root, new MainFragment())
+                .commit();
 
-        places.add(new Place(R.string.firstMuseaumTitle, R.string.firstMuseaumDesc,
-                R.drawable.webredone));
-        places.add(new Place(R.string.secondMuseaumTitle, R.string.secondMuseaumDesc,
-                R.drawable.british));
-        places.add(new Place(R.string.thirdMuseaumTitle, R.string.thirdMuseaumDesc,
-                R.drawable.ottwa));
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager_root);
 
-        PlaceAdapter adapter = new PlaceAdapter(this, places);
+        PlacePageAdapter pagerAdapter = new PlacePageAdapter(getSupportFragmentManager());
 
 
-        ListView listView = (ListView) findViewById(R.id.main);
-        listView.setAdapter(adapter);
+        viewPager.setAdapter(pagerAdapter);
+
+
+
     }
 }
