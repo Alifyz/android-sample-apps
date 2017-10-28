@@ -18,6 +18,10 @@
         features exhibits ranging from native animal and bird species to the human cultivation of
         natural resources. </string>
 
+    <string name="firstNatureTitle"></string>
+    <string name="firstNatureDescription"></string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
