@@ -15,6 +15,7 @@ public class PlacePageAdapter extends FragmentPagerAdapter {
         super(fm);
     }
 
+    //Returns the Fragments Accordingly with the Position
     @Override
     public Fragment getItem(int position) {
         switch (position) {
@@ -22,10 +23,6 @@ public class PlacePageAdapter extends FragmentPagerAdapter {
                 return new MainFragment();
             case 1:
                 return new NatureFragment();
-            case 2:
-                return new RestaurantsFragment();
-            case 3:
-                return new SportFragment();
             default:
                 return null;
         }
@@ -33,6 +30,6 @@ public class PlacePageAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 2;
     }
 }
