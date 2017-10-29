@@ -16,12 +16,8 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager_root);
-
         PlacePageAdapter pagerAdapter = new PlacePageAdapter(getSupportFragmentManager());
-
-
         viewPager.setAdapter(pagerAdapter);
-
 
 
     }

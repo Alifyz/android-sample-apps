@@ -23,7 +23,7 @@ public class SportFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         TextView textView = new TextView(getActivity());
-        textView.setText("test");
+        textView.setText("Sports");
         return textView;
     }
 

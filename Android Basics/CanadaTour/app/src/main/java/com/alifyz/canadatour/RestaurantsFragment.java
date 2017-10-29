@@ -23,7 +23,7 @@ public class RestaurantsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         TextView textView = new TextView(getActivity());
-        textView.setText("test");
+        textView.setText("Restaurants");
         return textView;
     }
 
