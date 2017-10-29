@@ -32,6 +32,7 @@ public class NatureFragment extends Fragment {
         nature.add(new Place(R.string.firstNatureTitle,R.string.firstNatureDescription,
                 R.drawable.alberta));
 
+        nature.add(new Place(R.string.secondNatureTitle, R.string.secondNatureDescription,R.drawable.niagara));
 
         PlaceAdapter adapter = new PlaceAdapter(getActivity(), nature);
 

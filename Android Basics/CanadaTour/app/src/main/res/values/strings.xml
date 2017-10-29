@@ -22,6 +22,11 @@
     <string name="firstNatureDescription">Wild, rugged, and impossibly beautiful,
         the Canadian Rockies are the epitome of a North American adventure. </string>
 
+    <string name="secondNatureTitle">Niagara Falls</string>
+    <string name="secondNatureDescription">Niagara Falls is the collective name for three waterfalls
+        that straddle the international border between Canada and the United States; more
+        specifically, between the province of Ontario and New York state. They form the southern
+        end of the Niagara Gorge.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
