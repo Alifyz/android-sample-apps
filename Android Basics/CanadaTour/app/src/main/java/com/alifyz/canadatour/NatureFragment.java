@@ -15,21 +15,19 @@ import java.util.ArrayList;
  */
 public class NatureFragment extends Fragment {
 
-
     public NatureFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.activity_nature, container,false);
+        View rootView = inflater.inflate(R.layout.activity_nature, container, false);
 
         ArrayList<Place> nature = new ArrayList<Place>();
 
-        nature.add(new Place(R.string.firstNatureTitle,R.string.firstNatureDescription,
+        nature.add(new Place(R.string.firstNatureTitle, R.string.firstNatureDescription,
                 R.drawable.alberta));
         nature.add(new Place(R.string.secondNatureTitle, R.string.secondNatureDescription,
                 R.drawable.niagara));
