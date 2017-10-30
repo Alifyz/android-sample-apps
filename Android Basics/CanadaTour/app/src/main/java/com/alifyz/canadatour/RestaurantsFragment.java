@@ -24,7 +24,7 @@ public class RestaurantsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.activity_main, container,false);
+        View rootView = inflater.inflate(R.layout.activity_main, container, false);
 
         final ArrayList<Place> restaurants = new ArrayList<Place>();
 
@@ -42,7 +42,6 @@ public class RestaurantsFragment extends Fragment {
 
 
         return rootView;
-
 
 
     }

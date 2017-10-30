@@ -36,4 +36,20 @@ public class PlacePageAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return 4;
     }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position){
+            case 0:
+                return "Museaums";
+            case 1:
+                return "Nature";
+            case 2:
+                return "Food";
+            case 3:
+                return "Sport";
+            default:
+                return "Tab";
+        }
+    }
 }

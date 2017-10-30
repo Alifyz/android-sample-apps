@@ -1,6 +1,7 @@
 package com.alifyz.canadatour;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -17,6 +18,10 @@ public class MainActivity extends AppCompatActivity {
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager_root);
         PlacePageAdapter pagerAdapter = new PlacePageAdapter(getSupportFragmentManager());
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab);
+        tabLayout.setupWithViewPager(viewPager);
+
         viewPager.setAdapter(pagerAdapter);
 
 
