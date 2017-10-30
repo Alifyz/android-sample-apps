@@ -15,11 +15,9 @@ import java.util.ArrayList;
  */
 public class MainFragment extends Fragment {
 
-
     public MainFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,12 +36,9 @@ public class MainFragment extends Fragment {
 
         PlaceAdapter adapter = new PlaceAdapter(getActivity(), places);
 
-
         ListView listView = (ListView) rootView.findViewById(R.id.main);
         listView.setAdapter(adapter);
 
-
         return rootView;
     }
-
 }

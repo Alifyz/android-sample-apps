@@ -11,7 +11,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewpager);
-
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.viewpager_root, new MainFragment())
                 .commit();
@@ -23,7 +22,5 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         viewPager.setAdapter(pagerAdapter);
-
-
     }
 }
