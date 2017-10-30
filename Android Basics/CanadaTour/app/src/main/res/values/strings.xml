@@ -45,8 +45,15 @@
         to Sugar Beach, this restaurant offers a beautiful view of the lake regardless if you go
         during the winter or summer.</string>
 
+    <string name="firstSportTitle">Whistler Blackcomb</string>
+    <string name="firstSportDescription">Together, the adjacent Whistler and Blackcomb mountains offer
+        more than 200 marked runs, 16 alpine bowls and three glaciers over 3,200 hectares of incredibly
+        beautiful terrain.
+    </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="secondSportTitle">Sun Peaks</string>
+    <string name="secondSportDescription">At 1,500 hectares, Sun Peaks is the second largest ski area
+        in British Columbia and is the third-largest in the country. This destination is popular with
+        families and seasoned skiers with its opportunities for alpine and Nordic skiing.</string>
 
 </resources>
