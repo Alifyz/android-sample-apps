@@ -10,13 +10,14 @@
         android:id="@+id/tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabMode="fixed" />
-
+        app:tabBackground="@color/primaryColor"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/secondaryTextColor"
+        app:tabTextColor="@color/primaryTextColor" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager_root"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v4.view.ViewPager>
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
 
 </LinearLayout>

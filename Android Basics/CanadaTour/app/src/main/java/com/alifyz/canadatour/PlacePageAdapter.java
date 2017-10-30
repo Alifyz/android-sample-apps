@@ -39,7 +39,7 @@ public class PlacePageAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 return "Museaums";
             case 1:

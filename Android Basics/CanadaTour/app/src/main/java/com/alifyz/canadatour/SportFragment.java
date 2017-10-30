@@ -32,13 +32,10 @@ public class SportFragment extends Fragment {
         sports.add(new Place(R.string.secondSportTitle, R.string.secondSportDescription,
                 R.drawable.ski2));
 
-
         PlaceAdapter adapter = new PlaceAdapter(getActivity(), sports);
-
 
         ListView listView = (ListView) rootView.findViewById(R.id.main);
         listView.setAdapter(adapter);
-
 
         return rootView;
     }
