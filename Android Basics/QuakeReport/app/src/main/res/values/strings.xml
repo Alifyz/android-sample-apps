@@ -15,4 +15,10 @@
 -->
 <resources>
     <string name="app_name">Quake Report</string>
+    <string name="mag1">5.5</string>
+    <string name="mag2">6.5</string>
+    <string name="loc1">São Francisco</string>
+    <string name="loc2">São Paulo</string>
+    <string name="dat1">25/01/2017</string>
+    <string name="dat2">02/04/2017</string>
 </resources>
