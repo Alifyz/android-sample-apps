@@ -34,6 +34,18 @@
         a beautiful lakefront, convenient parking, easy public transit access, a dog park, a zoo,
         or playgrounds for children.</string>
 
+    <string name="firstRestaurantTitle">Jack Astor\'s</string>
+    <string name="firstRestaurantDescription">Jack Astor\'s in general is affordable and entertaining,
+        but this particular location offers a zestful view. Overlooking Dundas Square, this is by far
+        one of the most popular places in Toronto with a dramatic view.
+    </string>
+
+    <string name="secondRestaurantTitle">Against the Grain</string>
+    <string name="secondRestaurantDescription">Located in the Corus Entertainment Building right next
+        to Sugar Beach, this restaurant offers a beautiful view of the lake regardless if you go
+        during the winter or summer.</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

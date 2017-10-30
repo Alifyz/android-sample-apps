@@ -23,6 +23,8 @@ public class PlacePageAdapter extends FragmentPagerAdapter {
                 return new MainFragment();
             case 1:
                 return new NatureFragment();
+            case 2:
+                return new RestaurantsFragment();
             default:
                 return null;
         }
@@ -30,6 +32,6 @@ public class PlacePageAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 }

@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Nature" />
+        <activity android:name=".Restaurants"></activity>
     </application>
 
 </manifest>
