@@ -6,25 +6,25 @@ package com.example.android.quakereport;
 
 public class Earthquake {
 
-    private int mMagnitude;
-    private int mLocation;
-    private int mDate;
+    private String mMagnitude;
+    private String mLocation;
+    private String mDate;
 
-    public Earthquake(int mMagnitude, int mLocation, int mDate) {
+    public Earthquake(String mMagnitude, String mLocation, String mDate) {
         this.mMagnitude = mMagnitude;
         this.mLocation = mLocation;
         this.mDate = mDate;
     }
 
-    public int getmMagnitude() {
+    public String getmMagnitude() {
         return mMagnitude;
     }
 
-    public int getmLocation() {
+    public String getmLocation() {
         return mLocation;
     }
 
-    public int getmDate() {
+    public String getmDate() {
         return mDate;
     }
 }
