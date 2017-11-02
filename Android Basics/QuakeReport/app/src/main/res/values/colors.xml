@@ -22,4 +22,34 @@
 
     <!-- Accent color of the app -->
     <color name="colorAccent">#10CAC9</color>
+
+    <!-- Cor para um terremoto com magnitude 0 e 2 -->
+    <color name="magnitude1">#4A7BA7</color>
+
+    <!-- Cor de círculo para magnitude para um terremoto com magnitude entre 2 e 3 -->
+    <color name="magnitude2">#04B4B3</color>
+
+    <!-- Cor de círculo para magnitude para um terremoto com magnitude entre 3 e 4 -->
+    <color name="magnitude3">#10CAC9</color>
+
+    <!-- Cor de círculo para magnitude para um terremoto com magnitude entre 4 e 5 -->
+    <color name="magnitude4">#F5A623</color>
+
+    <!-- Cor de círculo para magnitude para um terremoto com magnitude entre 5 e 6 -->
+    <color name="magnitude5">#FF7D50</color>
+
+    <!-- Cor de círculo para magnitude para um terremoto com magnitude entre 6 e 7 -->
+    <color name="magnitude6">#FC6644</color>
+
+    <!-- Cor de círculo para magnitude para um terremoto com magnitude entre 7 e 8 -->
+    <color name="magnitude7">#E75F40</color>
+
+    <!-- Cor de círculo para magnitude para um terremoto com magnitude entre 8 e 9 -->
+    <color name="magnitude8">#E13A20</color>
+
+    <!-- Cor de círculo para magnitude para um terremoto com magnitude entre 9 e 10 -->
+    <color name="magnitude9">#D93218</color>
+
+    <!-- Cor de círculo para magnitude para um terremoto com magnitude acima de 10 -->
+    <color name="magnitude10plus">#C03823</color>
 </resources>

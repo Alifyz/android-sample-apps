@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -39,17 +40,39 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
         Earthquake currentEarthquake = getItem(position);
 
-        TextView magnitude = (TextView)rootView.findViewById(R.id.magnitude);
-        magnitude.setText(currentEarthquake.getmMagnitude());
+        DecimalFormat magFormater = new DecimalFormat("0.0");
+        String currentMag = magFormater.format(currentEarthquake.getmMagnitude());
 
-        TextView location = (TextView)rootView.findViewById(R.id.location);
-        location.setText(currentEarthquake.getmLocation());
+        TextView magnitude = (TextView)rootView.findViewById(R.id.magnitude);
+        magnitude.setText(currentMag);
+
+        //If the Raw Location contains the preposition of we create a split version
+        //containing the near location in the index zero and the precise location on the
+        //index 1. Then we create two textViews and use the set Method to the data we collect trough the method
+        if(currentEarthquake.getmLocation().contains("of")) {
+            String[] locations = currentEarthquake.getmLocation().split("of");
+
+            TextView nearLocation = (TextView) rootView.findViewById(R.id.locationNear);
+            TextView location = (TextView)rootView.findViewById(R.id.location);
+
+            nearLocation.setText(locations[0]);
+            location.setText(locations[1]);
+
+        } else {
+            String[] locations = {"Near to", currentEarthquake.getmLocation()};
+            TextView nearLocation = (TextView) rootView.findViewById(R.id.locationNear);
+            TextView location = (TextView)rootView.findViewById(R.id.location);
+
+            nearLocation.setText(locations[0]);
+            location.setText(locations[1]);
+        }
+
+
 
         //Getting and Formatting the String from the JSON Response into a Readable Format
         Date date = new Date(currentEarthquake.getmDate());
         SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss a");
         String displayDate = dataFormat.format(date);
-
 
         TextView dateTextview = (TextView)rootView.findViewById(R.id.date);
         dateTextview.setText(displayDate);

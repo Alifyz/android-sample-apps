@@ -59,12 +59,12 @@ public final class EarthQuakeUtils {
                 JSONObject earthquake = features.getJSONObject(k);
                 JSONObject properties = earthquake.getJSONObject("properties");
 
-                String mag = properties.getString("mag");
                 String place = properties.getString("place");
-                //String time = properties.getString("time");
-                long timeInMilliSeconds = properties.getLong("time");
 
-                Earthquake currentEartquake = new Earthquake(mag,place,timeInMilliSeconds);
+                long timeInMilliSeconds = properties.getLong("time");
+                Double decimalMag = properties.getDouble("mag");
+
+                Earthquake currentEartquake = new Earthquake(decimalMag,place,timeInMilliSeconds);
                 earthquakes.add(currentEartquake);
 
             }

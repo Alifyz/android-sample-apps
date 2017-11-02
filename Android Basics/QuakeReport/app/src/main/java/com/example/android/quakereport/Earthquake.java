@@ -1,22 +1,24 @@
 package com.example.android.quakereport;
 
+import android.util.Log;
+
 /**
  * Created by Alifyz on 10/30/2017.
  */
 
 public class Earthquake {
 
-    private String mMagnitude;
+    private Double mMagnitude;
     private String mLocation;
     private long mDate;
 
-    public Earthquake(String mMagnitude, String mLocation, long mDate) {
+    public Earthquake(Double mMagnitude, String mLocation, long mDate) {
         this.mMagnitude = mMagnitude;
         this.mLocation = mLocation;
         this.mDate = mDate;
     }
 
-    public String getmMagnitude() {
+    public Double getmMagnitude() {
         return mMagnitude;
     }
 
@@ -27,4 +29,5 @@ public class Earthquake {
     public long getmDate() {
         return mDate;
     }
+
 }
