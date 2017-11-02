@@ -15,10 +15,17 @@
  */
 package com.example.android.quakereport;
 
+import android.app.SearchManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -39,11 +46,30 @@ public class EarthquakeActivity extends AppCompatActivity {
         ArrayList<Earthquake> earthquakes = EarthQuakeUtils.extractEarthquakes();
 
         // Find a reference to the {@link ListView} in the layout
-        ListView earthquakeListView = (ListView) findViewById(R.id.list);
+        final ListView earthquakeListView = (ListView) findViewById(R.id.list);
+
+        earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                TextView offsetText = (TextView)view.findViewById(R.id.location_offset);
+                TextView location = (TextView)view.findViewById(R.id.primary_location);
+
+                StringBuilder keyword = new StringBuilder();
+                keyword.append(offsetText.getText());
+                keyword.append(location.getText());
+
+                Intent goBroswer = new Intent(Intent.ACTION_WEB_SEARCH);
+                goBroswer.putExtra(SearchManager.QUERY, keyword.toString());
+                startActivity(goBroswer);
+
+            }
+        });
+
+
 
         // Create a new {@link ArrayAdapter} of earthquakes
         EarthquakeAdapter adapter = new EarthquakeAdapter(this, earthquakes);
-
 
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface

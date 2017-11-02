@@ -87,6 +87,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         return  rootView;
     }
 
+
     public int getMagnitudeColor(Double getMagnitude) {
 
         int magnitudeColorResourceId;
