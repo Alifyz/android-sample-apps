@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,8 +45,14 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView location = (TextView)rootView.findViewById(R.id.location);
         location.setText(currentEarthquake.getmLocation());
 
-        TextView date = (TextView)rootView.findViewById(R.id.date);
-        date.setText(currentEarthquake.getmDate());
+        //Getting and Formatting the String from the JSON Response into a Readable Format
+        Date date = new Date(currentEarthquake.getmDate());
+        SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss a");
+        String displayDate = dataFormat.format(date);
+
+
+        TextView dateTextview = (TextView)rootView.findViewById(R.id.date);
+        dateTextview.setText(displayDate);
 
         return  rootView;
     }
