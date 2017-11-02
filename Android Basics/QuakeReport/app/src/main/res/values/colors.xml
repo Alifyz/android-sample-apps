@@ -52,4 +52,10 @@
 
     <!-- Cor de círculo para magnitude para um terremoto com magnitude acima de 10 -->
     <color name="magnitude10plus">#C03823</color>
+
+    <!-- Cor do texto para os detalhes do terremoto no item de lista -->
+    <color name="textColorEarthquakeDetails">#B4BAC0</color>
+
+    <!-- Cor do texto para a localização primária do terremoto no item de lista -->
+    <color name="textColorEarthquakeLocation">#2B3D4D</color>
 </resources>
