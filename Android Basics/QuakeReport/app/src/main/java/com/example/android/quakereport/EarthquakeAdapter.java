@@ -73,9 +73,6 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
             nearLocation.setText(locations[0]);
             location.setText(locations[1]);
         }
-
-
-
         //Getting and Formatting the String from the JSON Response into a Readable Format
         Date date = new Date(currentEarthquake.getmDate());
         SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss a");
