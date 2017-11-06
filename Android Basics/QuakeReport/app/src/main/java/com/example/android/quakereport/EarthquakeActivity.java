@@ -15,10 +15,10 @@
  */
 package com.example.android.quakereport;
 
+import android.app.LoaderManager;
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.content.Loader;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -26,18 +26,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
 
-public class EarthquakeActivity extends AppCompatActivity {
+public class EarthquakeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Earthquake>> {
 
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
     public static final String URL_SERVER =
@@ -51,16 +42,17 @@ public class EarthquakeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
 
+        getLoaderManager().initLoader(1, savedInstanceState, this).forceLoad();
+
         // Find a reference to the {@link ListView} in the layout
         earthquakeListView = (ListView) findViewById(R.id.list);
 
-        new EarthquakeAsync().execute(URL_SERVER);
+//        new EarthquakeAsync().execute(URL_SERVER);
 
         //Open an Intent Service to Browse for certain EarthQuake
         earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
                 TextView offsetText = (TextView) view.findViewById(R.id.location_offset);
                 TextView location = (TextView) view.findViewById(R.id.primary_location);
 
@@ -71,16 +63,30 @@ public class EarthquakeActivity extends AppCompatActivity {
                 Intent goBroswer = new Intent(Intent.ACTION_WEB_SEARCH);
                 goBroswer.putExtra(SearchManager.QUERY, keyword.toString());
                 startActivity(goBroswer);
-
             }
         });
+    }
 
+    @Override
+    public Loader<List<Earthquake>> onCreateLoader(int i, Bundle bundle) {
+        return new EarthquakeLoader(EarthquakeActivity.this);
+    }
 
+    @Override
+    public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> earthquakes) {
+        // Create a new {@link ArrayAdapter} of earthquakes
+        adapter = new EarthquakeAdapter(getApplicationContext(), earthquakes);
+        // Set the adapter on the {@link ListView}
+        // so the list can be populated in the user interface
+        earthquakeListView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<List<Earthquake>> loader) {
 
     }
 
-    private class EarthquakeAsync extends AsyncTask<String, Void, List<Earthquake>> {
-
+    /*private class EarthquakeAsync extends AsyncTask<String, Void, List<Earthquake>> {
         @Override
         protected List<Earthquake> doInBackground(String... strings) {
             URL parsedURL = EarthQuakeUtils.parseURL(strings[0]);
@@ -89,7 +95,6 @@ public class EarthquakeActivity extends AppCompatActivity {
             } catch (IOException e) {
                 return null;
             }
-
             List<Earthquake> earthquakes = EarthQuakeUtils.extractEarthquakes(RAW_JSON);
             return earthquakes;
         }
@@ -102,7 +107,5 @@ public class EarthquakeActivity extends AppCompatActivity {
             // so the list can be populated in the user interface
             earthquakeListView.setAdapter(adapter);
         }
-
-
-    }
+    }*/
 }
