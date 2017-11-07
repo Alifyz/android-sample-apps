@@ -17,14 +17,18 @@ package com.example.android.quakereport;
 
 import android.app.LoaderManager;
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -39,6 +43,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     public static ListView earthquakeListView = null;
 
     private TextView mEmpyTextView;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,15 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         setContentView(R.layout.earthquake_activity);
 
         getLoaderManager().initLoader(1, savedInstanceState, this).forceLoad();
+        ConnectivityManager cm =
+                (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        if(isConnected == true) {
+            mEmpyTextView.setText("There is no Internet Connection");
+        }
+
         Log.i("MainActivity", "Initializing the Loader");
         // Find a reference to the {@link ListView} in the layout
         earthquakeListView = (ListView) findViewById(R.id.list);
@@ -70,6 +84,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         });
 
         mEmpyTextView = (TextView)findViewById(R.id.empty_view);
+        mProgressBar = (ProgressBar)findViewById(R.id.progressBar);
         earthquakeListView.setEmptyView(mEmpyTextView);
     }
 
@@ -89,6 +104,8 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         earthquakeListView.setAdapter(adapter);
         Log.i("MainActivity", "Loader is finished");
         mEmpyTextView.setText(R.string.no_eathquake);
+        mProgressBar.setVisibility(View.GONE);
+
     }
 
     @Override
