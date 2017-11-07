@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">CSBooking</string>
+    <string name="app_name">Book Listing App</string>
+    <string name="hint">Keywords, phrases and ...</string>
 </resources>
