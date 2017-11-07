@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -37,17 +38,19 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     public static EarthquakeAdapter adapter;
     public static ListView earthquakeListView = null;
 
+    private TextView mEmpyTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
 
         getLoaderManager().initLoader(1, savedInstanceState, this).forceLoad();
-
+        Log.i("MainActivity", "Initializing the Loader");
         // Find a reference to the {@link ListView} in the layout
         earthquakeListView = (ListView) findViewById(R.id.list);
 
-//        new EarthquakeAsync().execute(URL_SERVER);
+        //new EarthquakeAsync().execute(URL_SERVER);
 
         //Open an Intent Service to Browse for certain EarthQuake
         earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -65,11 +68,16 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
                 startActivity(goBroswer);
             }
         });
+
+        mEmpyTextView = (TextView)findViewById(R.id.empty_view);
+        earthquakeListView.setEmptyView(mEmpyTextView);
     }
 
     @Override
     public Loader<List<Earthquake>> onCreateLoader(int i, Bundle bundle) {
+        Log.i("MainActivity", "Creating the Loader");
         return new EarthquakeLoader(EarthquakeActivity.this);
+
     }
 
     @Override
@@ -79,6 +87,8 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
         earthquakeListView.setAdapter(adapter);
+        Log.i("MainActivity", "Loader is finished");
+        mEmpyTextView.setText(R.string.no_eathquake);
     }
 
     @Override

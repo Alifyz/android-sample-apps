@@ -2,6 +2,7 @@ package com.example.android.quakereport;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.util.Log;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,6 +22,7 @@ public class EarthquakeLoader extends AsyncTaskLoader<List<Earthquake>> {
 
     @Override
     public List<Earthquake> loadInBackground() {
+        Log.i("MainActivity", "Doing Background processing");
         URL parsedURL = EarthQuakeUtils.parseURL(EarthquakeActivity.URL_SERVER);
         try {
             RAW_JSON = EarthQuakeUtils.makeHTTPRequest(parsedURL);
