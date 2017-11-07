@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Book Listing App</string>
     <string name="hint">Keywords, phrases and ...</string>
+    <string name="image">Book Logo - Icon material</string>
+    <string name="button">Search</string>
 </resources>

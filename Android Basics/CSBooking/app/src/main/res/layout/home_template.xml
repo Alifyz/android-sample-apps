@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/book_logo"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:tint="@android:color/white"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="36dp"
+        android:contentDescription="@string/image"
+        app:srcCompat="@drawable/ic_agenda" />
+
+    <SearchView
+        android:id="@+id/search_view"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/book_logo"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/hint"
+        android:iconifiedByDefault="false"
+        android:queryHint="@string/hint" />
+
+</RelativeLayout>
