@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
@@ -39,12 +40,42 @@ public class BookUtils {
         return tempURL;
     }
 
-    public static String makeHttpRequest(URL httpURL) {
-        return null;
+    public static String makeHttpRequest(URL httpURL) throws IOException {
+
+        String jsonResponse = "";
+        HttpURLConnection urlConnection = null;
+        InputStream inputStream = null;
+
+        try {
+
+            urlConnection = (HttpURLConnection) httpURL.openConnection();
+            urlConnection.setReadTimeout(10000);
+            urlConnection.setConnectTimeout(15000);
+            urlConnection.setRequestMethod("GET");
+            urlConnection.connect();
+
+            if(urlConnection.getResponseCode() == 200) {
+                inputStream = urlConnection.getInputStream();
+                jsonResponse = readInputStream(inputStream);
+            }
+
+        } catch (IOException e) {
+            Log.e("BookUtils", "Error trying to Open URL Connection");
+        }
+
+        finally {
+            if(urlConnection != null)
+                urlConnection.disconnect();
+            if(inputStream != null)
+                inputStream.close();
+        }
+
+        return jsonResponse;
     }
 
     public static String readInputStream(InputStream inputStream) throws IOException {
         StringBuilder rawJSON = new StringBuilder();
+
         if (inputStream != null) {
             InputStreamReader inputReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
             BufferedReader reader = new BufferedReader(inputReader);
@@ -57,7 +88,11 @@ public class BookUtils {
         return rawJSON.toString();
     }
 
-    public ArrayList<Book> extractJSON(String rawJSON) {
+    public static ArrayList<Book> extractBooks(String rawJSON) {
+
+        ArrayList<Book> books = new ArrayList<Book>();
+
+
         return null;
     }
 
