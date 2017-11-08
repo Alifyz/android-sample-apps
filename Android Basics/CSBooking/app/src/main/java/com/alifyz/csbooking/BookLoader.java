@@ -16,7 +16,6 @@ public class BookLoader extends AsyncTaskLoader<List<Book>>{
     }
 
 
-
     @Override
     public List<Book> loadInBackground() {
         return null;
