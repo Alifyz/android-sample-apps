@@ -2,6 +2,10 @@ package com.alifyz.csbooking;
 
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -92,6 +96,16 @@ public class BookUtils {
 
         ArrayList<Book> books = new ArrayList<Book>();
 
+        try {
+
+            JSONObject jsonRoot = new JSONObject(rawJSON);
+            //TODO Parse the JSON Response
+
+
+        }
+        catch (JSONException e) {
+            Log.e("BookUtils", "Error parsing the JSON from the Server");
+        }
 
         return null;
     }
