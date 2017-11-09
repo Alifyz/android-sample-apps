@@ -106,15 +106,8 @@ public class BookUtils {
                 String jsonDescription = jsonBookDescription.getString("textSnippet");
                 String jsonImageURL = jsonBookImage.getString("thumbnail");
 
-                Log.i("BookUtils", jsonTitle);
-                Log.i("BookUtils", jsonAuthor);
-                Log.i("BookUtils", jsonDescription);
-                Log.i("BookUtils", jsonImageURL);
-
-                //Bitmap currentBookCover = loadBitmap(jsonImageURL);
-                //books.add(new Book(currentBookCover, jsonTitle, jsonAuthor, jsonDescription));
-
-                Book currentBook = new Book(jsonTitle,jsonAuthor, jsonDescription);
+                Bitmap currentBookCover = loadBitmap(jsonImageURL);
+                Book currentBook = new Book(currentBookCover,jsonTitle,jsonAuthor, jsonDescription);
                 books.add(currentBook);
             }
 
