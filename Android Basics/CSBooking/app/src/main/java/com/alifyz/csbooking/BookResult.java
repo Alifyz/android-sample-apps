@@ -6,8 +6,10 @@ import android.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import java.util.List;
 
@@ -15,6 +17,7 @@ public class BookResult extends AppCompatActivity  implements LoaderManager.Load
 
     private BookAdapter adapter;
     private ListView bookListView;
+    private ProgressBar progressBar;
     public static String keywords = null;
     public static String finalURL = null;
 
@@ -24,6 +27,7 @@ public class BookResult extends AppCompatActivity  implements LoaderManager.Load
         setContentView(R.layout.listview_root);
 
         bookListView = (ListView)findViewById(R.id.listView_root);
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
         Intent intentReceiver = getIntent();
         keywords = intentReceiver.getStringExtra("Keyword");
@@ -50,5 +54,6 @@ public class BookResult extends AppCompatActivity  implements LoaderManager.Load
 
         adapter = new BookAdapter(getApplicationContext(), books);
         bookListView.setAdapter(adapter);
+        progressBar.setVisibility(View.GONE);
     }
 }

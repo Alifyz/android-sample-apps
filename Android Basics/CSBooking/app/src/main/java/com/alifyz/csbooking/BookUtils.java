@@ -17,6 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Alifyz on 11/7/2017.
@@ -86,7 +87,7 @@ public class BookUtils {
 
     public static ArrayList<Book> extractBooks(String rawJSON) {
 
-        ArrayList<Book> books = new ArrayList<Book>();
+        ArrayList<Book> books = new ArrayList<>();
 
         try {
 
@@ -112,14 +113,16 @@ public class BookUtils {
 
                 //Bitmap currentBookCover = loadBitmap(jsonImageURL);
                 //books.add(new Book(currentBookCover, jsonTitle, jsonAuthor, jsonDescription));
-                books.add(new Book(jsonTitle, jsonAuthor, jsonDescription));
+
+                Book currentBook = new Book(jsonTitle,jsonAuthor, jsonDescription);
+                books.add(currentBook);
             }
 
         } catch (JSONException e) {
             Log.e("BookUtils", "Error parsing the JSON from the Server");
         }
 
-        return null;
+        return books;
     }
 
 
