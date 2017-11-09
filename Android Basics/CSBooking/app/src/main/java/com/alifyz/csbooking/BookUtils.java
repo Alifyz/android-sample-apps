@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ public class BookUtils {
         } catch (MalformedURLException e) {
             Log.e("BookLoader", "Malformed URL");
         }
+
         return tempURL;
     }
 

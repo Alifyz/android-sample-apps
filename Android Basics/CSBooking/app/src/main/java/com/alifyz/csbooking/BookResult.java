@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 public class BookResult extends AppCompatActivity  implements LoaderManager.LoaderCallbacks<List<Book>>{
@@ -19,6 +21,7 @@ public class BookResult extends AppCompatActivity  implements LoaderManager.Load
     private ListView bookListView;
     private ProgressBar progressBar;
     public static String keywords = null;
+    public static String encodedKeywords = null;
     public static String finalURL = null;
 
     @Override
@@ -31,11 +34,15 @@ public class BookResult extends AppCompatActivity  implements LoaderManager.Load
 
         Intent intentReceiver = getIntent();
         keywords = intentReceiver.getStringExtra("Keyword");
+
         if(keywords.contains(" ")) {
-            keywords.replace(" ", "%20");
+            encodedKeywords = keywords.replaceAll(" ", "%20");
+            finalURL = "https://www.googleapis.com/books/v1/volumes?q=" + encodedKeywords + "&maxResults=10";
+        }
+        else {
+            finalURL = "https://www.googleapis.com/books/v1/volumes?q=" + keywords + "&maxResults=10";
         }
 
-        finalURL = "https://www.googleapis.com/books/v1/volumes?q=" + keywords + "&maxResults=10";
         getLoaderManager().initLoader(0, null, this).forceLoad();
     }
 
