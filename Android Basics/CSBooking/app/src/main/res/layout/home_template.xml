@@ -18,14 +18,14 @@
 
     <EditText
         android:id="@+id/keyword"
+        style="@style/Widget.AppCompat.EditText"
         android:layout_width="256dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/book_logo"
         android:layout_centerHorizontal="true"
         android:hint="@string/hint"
         android:iconifiedByDefault="false"
-        android:inputType="textShortMessage"
-        android:queryHint="@string/hint" />
+        android:inputType="textNoSuggestions" />
 
     <Button
         android:id="@+id/searchBtn"
