@@ -3,6 +3,8 @@ package com.alifyz.csbooking;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -11,6 +13,8 @@ import java.util.List;
 
 public class BookLoader extends AsyncTaskLoader<List<Book>>{
 
+    public static String rawJSON = "";
+
     public BookLoader(Context context) {
         super(context);
     }
@@ -18,6 +22,13 @@ public class BookLoader extends AsyncTaskLoader<List<Book>>{
 
     @Override
     public List<Book> loadInBackground() {
-        return null;
+        URL parsedURL = BookUtils.parseURL(BookResult.finalURL);
+        try {
+            rawJSON = BookUtils.makeHttpRequest(parsedURL);
+        }catch (IOException e) {
+            return null;
+        }
+        List<Book> books = BookUtils.extractBooks(rawJSON);
+        return books;
     }
 }

@@ -8,10 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -27,17 +24,9 @@ import java.util.ArrayList;
 
 public class BookUtils {
 
-    private String mURL;
-    private int mResults;
-
-    public BookUtils(String mURL, int mResults) {
-        this.mURL = mURL;
-        this.mResults = mResults;
-    }
 
     public BookUtils() {
     }
-
 
     public static URL parseURL(String httpURL) {
         URL tempURL = null;
@@ -63,19 +52,17 @@ public class BookUtils {
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
-            if(urlConnection.getResponseCode() == 200) {
+            if (urlConnection.getResponseCode() == 200) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readInputStream(inputStream);
             }
 
         } catch (IOException e) {
             Log.e("BookUtils", "Error trying to Open URL Connection");
-        }
-
-        finally {
-            if(urlConnection != null)
+        } finally {
+            if (urlConnection != null)
                 urlConnection.disconnect();
-            if(inputStream != null)
+            if (inputStream != null)
                 inputStream.close();
         }
 
@@ -118,14 +105,17 @@ public class BookUtils {
                 String jsonDescription = jsonBookDescription.getString("textSnippet");
                 String jsonImageURL = jsonBookImage.getString("thumbnail");
 
-                Bitmap currentBookCover = loadBitmap(jsonImageURL);
-                books.add(new Book(currentBookCover, jsonTitle, jsonAuthor, jsonDescription));
+                Log.i("BookUtils", jsonTitle);
+                Log.i("BookUtils", jsonAuthor);
+                Log.i("BookUtils", jsonDescription);
+                Log.i("BookUtils", jsonImageURL);
 
+                //Bitmap currentBookCover = loadBitmap(jsonImageURL);
+                //books.add(new Book(currentBookCover, jsonTitle, jsonAuthor, jsonDescription));
+                books.add(new Book(jsonTitle, jsonAuthor, jsonDescription));
             }
 
-
-        }
-        catch (JSONException e) {
+        } catch (JSONException e) {
             Log.e("BookUtils", "Error parsing the JSON from the Server");
         }
 
@@ -144,13 +134,12 @@ public class BookUtils {
         }
 
         try {
-            bookCover = BitmapFactory.decodeStream(imageURL.openConnection() .getInputStream());
+            bookCover = BitmapFactory.decodeStream(imageURL.openConnection().getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return  bookCover;
+        return bookCover;
     }
-
 
 
 }

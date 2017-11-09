@@ -6,25 +6,38 @@ import android.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.List;
 
 public class BookResult extends AppCompatActivity  implements LoaderManager.LoaderCallbacks<List<Book>>{
 
+    private BookAdapter adapter;
+    private ListView bookListView;
+    public static String keywords = null;
+    public static String finalURL = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.listview_template);
+        setContentView(R.layout.listview_root);
 
-        //Extract the Keyword from the HomeActivity
+        bookListView = (ListView)findViewById(R.id.listView_root);
+
         Intent intentReceiver = getIntent();
-        String keywords = intentReceiver.getStringExtra("Keyword");
+        keywords = intentReceiver.getStringExtra("Keyword");
+        if(keywords.contains(" ")) {
+            keywords.replace(" ", "%20");
+        }
 
+        finalURL = "https://www.googleapis.com/books/v1/volumes?q=" + keywords + "&maxResults=10";
+        getLoaderManager().initLoader(0, null, this).forceLoad();
     }
 
     @Override
     public Loader<List<Book>> onCreateLoader(int i, Bundle bundle) {
-        return null;
+        return new BookLoader(BookResult.this);
     }
 
     @Override
@@ -35,5 +48,7 @@ public class BookResult extends AppCompatActivity  implements LoaderManager.Load
     @Override
     public void onLoadFinished(Loader<List<Book>> loader, List<Book> books) {
 
+        adapter = new BookAdapter(getApplicationContext(), books);
+        bookListView.setAdapter(adapter);
     }
 }

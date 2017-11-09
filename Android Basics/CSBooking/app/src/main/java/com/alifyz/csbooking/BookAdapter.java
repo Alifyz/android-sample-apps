@@ -18,13 +18,13 @@ import java.util.List;
 
 public class BookAdapter extends ArrayAdapter<Book> {
 
-    public BookAdapter(@NonNull Context context,@NonNull List<Book> objects) {
+    public BookAdapter(Context context, List<Book> objects) {
         super(context, 0, objects);
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
 
         View rootView = convertView;
         if (rootView == null) {
@@ -34,12 +34,12 @@ public class BookAdapter extends ArrayAdapter<Book> {
 
         Book currentBook = getItem(position);
 
-        ImageView bookCover = (ImageView) rootView.findViewById(R.id.book_thumbnail);
+        //ImageView bookCover = (ImageView) rootView.findViewById(R.id.book_thumbnail);
         TextView title = (TextView) rootView.findViewById(R.id.book_title);
         TextView author = (TextView) rootView.findViewById(R.id.book_author);
         TextView description = (TextView) rootView.findViewById(R.id.book_description);
 
-        bookCover.setImageBitmap(currentBook.getmImageResource());
+        //bookCover.setImageBitmap(currentBook.getmImageResource());
         title.setText(currentBook.getmTitle());
         author.setText(currentBook.getmAuthor());
         description.setText(currentBook.getmDescripton());
