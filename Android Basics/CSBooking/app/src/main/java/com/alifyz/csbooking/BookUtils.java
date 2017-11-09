@@ -1,12 +1,17 @@
 package com.alifyz.csbooking;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -99,7 +104,24 @@ public class BookUtils {
         try {
 
             JSONObject jsonRoot = new JSONObject(rawJSON);
-            //TODO Parse the JSON Response
+            JSONArray jsonItems = jsonRoot.getJSONArray("items");
+
+            for (int i = 0; i < jsonItems.length(); i++) {
+
+                JSONObject jsonBooks = jsonItems.getJSONObject(i);
+                JSONObject jsonVolumeInfo = jsonBooks.getJSONObject("volumeInfo");
+                JSONObject jsonBookImage = jsonVolumeInfo.getJSONObject("imageLinks");
+                JSONObject jsonBookDescription = jsonBooks.getJSONObject("searchInfo");
+
+                String jsonTitle = jsonVolumeInfo.getString("title");
+                String jsonAuthor = jsonVolumeInfo.getString("authors");
+                String jsonDescription = jsonBookDescription.getString("textSnippet");
+                String jsonImageURL = jsonBookImage.getString("thumbnail");
+
+                Bitmap currentBookCover = loadBitmap(jsonImageURL);
+                books.add(new Book(currentBookCover, jsonTitle, jsonAuthor, jsonDescription));
+
+            }
 
 
         }
@@ -108,6 +130,25 @@ public class BookUtils {
         }
 
         return null;
+    }
+
+
+    public static Bitmap loadBitmap(String url) {
+
+        Bitmap bookCover = null;
+        URL imageURL = null;
+        try {
+            imageURL = new URL(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            bookCover = BitmapFactory.decodeStream(imageURL.openConnection() .getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return  bookCover;
     }
 
 
