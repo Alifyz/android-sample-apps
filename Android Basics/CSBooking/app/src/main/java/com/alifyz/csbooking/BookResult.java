@@ -6,22 +6,16 @@ import android.content.Intent;
 import android.content.Loader;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.List;
 
-public class BookResult extends AppCompatActivity  implements LoaderManager.LoaderCallbacks<List<Book>>{
+public class BookResult extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Book>> {
 
     private BookAdapter adapter;
     private ListView bookListView;
@@ -36,7 +30,7 @@ public class BookResult extends AppCompatActivity  implements LoaderManager.Load
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listview_root);
 
-        bookListView = (ListView)findViewById(R.id.listView_root);
+        bookListView = (ListView) findViewById(R.id.listView_root);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         emptyView = (TextView) findViewById(R.id.empty_view);
 
@@ -45,7 +39,7 @@ public class BookResult extends AppCompatActivity  implements LoaderManager.Load
 
         encodeURL();
 
-        if(isNetworkAvailable() == false) {
+        if (isNetworkAvailable() == false) {
             emptyView.setText("There is no Internet Connection");
         }
 
@@ -75,11 +69,10 @@ public class BookResult extends AppCompatActivity  implements LoaderManager.Load
     }
 
     private void encodeURL() {
-        if(keywords.contains(" ")) {
+        if (keywords.contains(" ")) {
             encodedKeywords = keywords.replaceAll(" ", "%20");
             finalURL = "https://www.googleapis.com/books/v1/volumes?q=" + encodedKeywords + "&maxResults=10";
-        }
-        else {
+        } else {
             finalURL = "https://www.googleapis.com/books/v1/volumes?q=" + keywords + "&maxResults=10";
         }
     }
@@ -90,10 +83,9 @@ public class BookResult extends AppCompatActivity  implements LoaderManager.Load
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        if(activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }

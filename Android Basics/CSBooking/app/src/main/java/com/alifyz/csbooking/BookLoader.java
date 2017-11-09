@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Alifyz on 11/7/2017.
  */
 
-public class BookLoader extends AsyncTaskLoader<List<Book>>{
+public class BookLoader extends AsyncTaskLoader<List<Book>> {
 
     public static String rawJSON = "";
 
@@ -19,13 +19,12 @@ public class BookLoader extends AsyncTaskLoader<List<Book>>{
         super(context);
     }
 
-
     @Override
     public List<Book> loadInBackground() {
         URL parsedURL = BookUtils.parseURL(BookResult.finalURL);
         try {
             rawJSON = BookUtils.makeHttpRequest(parsedURL);
-        }catch (IOException e) {
+        } catch (IOException e) {
             return null;
         }
         List<Book> books = BookUtils.extractBooks(rawJSON);

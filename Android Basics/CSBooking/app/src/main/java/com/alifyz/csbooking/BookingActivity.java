@@ -31,6 +31,5 @@ public class BookingActivity extends AppCompatActivity {
                 startActivity(resultActivity);
             }
         });
-
     }
 }

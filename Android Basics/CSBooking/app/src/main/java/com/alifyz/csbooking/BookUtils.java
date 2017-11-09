@@ -15,10 +15,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Alifyz on 11/7/2017.
@@ -26,6 +24,11 @@ import java.util.List;
 
 public class BookUtils {
 
+    private static String jsonTitle;
+    private static String jsonAuthor;
+    private static String jsonDescription;
+    private static String jsonImageURL;
+    private static StringBuilder jsonAuthorArray;
 
     public BookUtils() {
     }
@@ -42,7 +45,6 @@ public class BookUtils {
     }
 
     public static String makeHttpRequest(URL httpURL) throws IOException {
-
         String jsonResponse = "";
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
@@ -88,7 +90,6 @@ public class BookUtils {
     }
 
     public static ArrayList<Book> extractBooks(String rawJSON) {
-
         ArrayList<Book> books = new ArrayList<>();
 
         try {
@@ -103,23 +104,28 @@ public class BookUtils {
                 JSONObject jsonBookImage = jsonVolumeInfo.getJSONObject("imageLinks");
                 JSONObject jsonBookDescription = jsonBooks.getJSONObject("searchInfo");
 
-                String jsonTitle = jsonVolumeInfo.getString("title");
-                String jsonAuthor = jsonVolumeInfo.getString("authors");
-                String jsonDescription = jsonBookDescription.getString("textSnippet");
-                String jsonImageURL = jsonBookImage.getString("thumbnail");
+                jsonTitle = jsonVolumeInfo.getString("title");
+
+                if (jsonVolumeInfo.has("authors")) {
+                    jsonAuthor = jsonVolumeInfo.getString("authors");
+                    jsonAuthor = jsonAuthor.replaceAll("[^A-Za-z0-9 ]", "");
+                } else {
+                    jsonAuthor = jsonVolumeInfo.getString("publisher");
+                    jsonAuthor = jsonAuthor.replaceAll("[^A-Za-z0-9 ]", "");
+                }
+                jsonDescription = jsonBookDescription.getString("textSnippet");
+                jsonImageURL = jsonBookImage.getString("thumbnail");
 
                 Bitmap currentBookCover = loadBitmap(jsonImageURL);
-                Book currentBook = new Book(currentBookCover,jsonTitle,jsonAuthor, jsonDescription);
+                Book currentBook = new Book(currentBookCover, jsonTitle, jsonAuthor, jsonDescription);
                 books.add(currentBook);
             }
 
         } catch (JSONException e) {
             Log.e("BookUtils", "Error parsing the JSON from the Server");
         }
-
         return books;
     }
-
 
     public static Bitmap loadBitmap(String url) {
 
