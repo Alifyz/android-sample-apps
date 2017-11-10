@@ -3,11 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-
     <color name="background">#6600cc</color>
-
     <color name="primaryColor">#262626</color>
-    <color name="primaryLightColor">#4f5b62</color>
+    <color name="primaryLightColor">#f2f2f2</color>
     <color name="primaryDarkColor">#330066</color>
-    <color name="primaryTextColor">#ffffff</color>
+    <color name="primaryTextColor">#000000</color>
 </resources>
