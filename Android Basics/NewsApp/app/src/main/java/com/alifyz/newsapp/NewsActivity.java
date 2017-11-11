@@ -13,7 +13,6 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.list_view);
     }
 
-
     @Override
     public Loader<News> onCreateLoader(int i, Bundle bundle) {
         return null;
