@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">NewsApp</string>
     <string name="guardianlogo">The Guardian Logo</string>
-    <string name="description">News related to: Brazilian Politics, Corruption and more</string>
+    <string name="description">News related to: World News, Brazilian Politics, Corruption and more</string>
     <string name="btnText">Load News</string>
+    <string name="noInternet">Sorry, try again when connected to the Internet</string>
 </resources>

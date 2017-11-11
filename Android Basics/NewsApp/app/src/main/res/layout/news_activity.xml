@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/the_guardian_logo"
             android:layout_centerHorizontal="true"
+            android:textAlignment="center"
             android:text="@string/description" />
 
     </RelativeLayout>

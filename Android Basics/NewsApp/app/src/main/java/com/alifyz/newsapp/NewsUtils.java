@@ -1,7 +1,4 @@
 package com.alifyz.newsapp;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,22 +20,24 @@ import java.util.ArrayList;
 public class NewsUtils {
 
     private static String jsonTitle;
-    private static String mDescription;
-    private static String mDatePublication;
-    private static String mAuthor;
-    private static String mCategory;
+    private static String jsonLink;
+    private static String jsonDatePublication;
+    private static String jsonAuthor;
+    private static String jsonCategory;
+
+    private static String API_URL =
+            "http://content.guardianapis.com/search?show-tags=contributor&q=brazil%20corruption&api-key=67774176-cf6c-432e-81a7-91a9e253c61f";
 
     public NewsUtils() {
     }
 
-    public static URL parseURL(String httpURL) {
+    public static URL parseURL() {
         URL tempURL = null;
         try {
-            tempURL = new URL(httpURL);
+            tempURL = new URL(API_URL);
         } catch (MalformedURLException e) {
             Log.e("BookLoader", "Malformed URL");
         }
-
         return tempURL;
     }
 
@@ -88,12 +87,37 @@ public class NewsUtils {
     }
 
     public static ArrayList<News> extractBooks(String rawJSON) {
-        ArrayList<News> books = new ArrayList<>();
+        ArrayList<News> currentNews = new ArrayList<News>();
 
-        return null;
+        try {
+            JSONObject jsonRoot = new JSONObject(rawJSON);
+            JSONObject jsonResponse = jsonRoot.getJSONObject("response");
+            JSONArray jsonResults = jsonResponse.getJSONArray("results");
+
+            for (int i = 0; i < jsonResults.length(); i++) {
+
+                JSONObject news = jsonResults.getJSONObject(i);
+                jsonTitle = news.getString("webTitle");
+                jsonLink = news.getString("webUrl");
+                jsonDatePublication = news.getString("webPublicationDate").replaceAll("Z","");
+                jsonCategory = news.getString("sectionName");
+
+                JSONArray jsonTags = news.getJSONArray("tags");
+                if (jsonTags.length() != 0) {
+                    JSONObject jsonAuthorTag = jsonTags.getJSONObject(0);
+                    jsonAuthor = jsonAuthorTag.getString("webTitle");
+                } else {
+                    jsonAuthor = "Unkown Author";
+                }
+                News currentNewsObject = new News(jsonTitle, jsonDatePublication, jsonAuthor, jsonCategory, jsonLink);
+                currentNews.add(currentNewsObject);
+            }
+
+        } catch (JSONException e) {
+            Log.e("NewsUtils", "Error Parsing the JSON");
+        }
+        return currentNews;
     }
-
-
 }
 
 

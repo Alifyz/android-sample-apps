@@ -7,14 +7,15 @@ package com.alifyz.newsapp;
 public class News {
 
     private String mTitle;
-    private String mDescription;
     private String mDatePublication;
     private String mAuthor;
     private String mCategory;
+    private String mLink;
 
-    public News(String mTitle, String mDescription, String mDatePublication, String mAuthor, String mCategory) {
+    public News(String mTitle, String mDatePublication, String mAuthor, String mCategory, String mLink) {
         this.mTitle = mTitle;
-        this.mDescription = mDescription;
+
+        this.mLink = mLink;
         this.mDatePublication = mDatePublication;
         this.mAuthor = mAuthor;
         this.mCategory = mCategory;
@@ -24,8 +25,8 @@ public class News {
         return mTitle;
     }
 
-    public String getmDescription() {
-        return mDescription;
+    public String getmLink() {
+        return mLink;
     }
 
     public String getmDatePublication() {
