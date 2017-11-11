@@ -4,13 +4,20 @@ import android.app.LoaderManager;
 import android.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class NewsActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<News>{
+
+    private ListView listView;
+    private ArrayAdapter<News> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_view);
+
+        listView = (ListView) findViewById(R.id.listView);
     }
 
     @Override
