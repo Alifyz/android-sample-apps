@@ -17,6 +17,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="161dp"
+            android:contentDescription="@string/guardianlogo"
             android:padding="12dp"
             android:src="@drawable/guardian_logo" />
 
@@ -27,7 +28,7 @@
             android:layout_below="@+id/the_guardian_logo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="65dp"
-            android:text="Button" />
+            android:text="@string/btnText" />
 
         <TextView
             android:id="@+id/textView"
@@ -35,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/the_guardian_logo"
             android:layout_centerHorizontal="true"
-            android:text="TextView" />
+            android:text="@string/description" />
 
     </RelativeLayout>
 </ScrollView>
