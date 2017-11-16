@@ -26,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.pets.data.PetContract.PetEntry;
 import com.example.android.pets.data.PetDbHelper;
@@ -83,12 +84,12 @@ public class CatalogActivity extends AppCompatActivity {
 
         // Perform a query on the pets table
         Cursor cursor = db.query(
-                PetEntry.TABLE_NAME,   // The table to query
-                projection,            // The columns to return
-                null,                  // The columns for the WHERE clause
-                null,                  // The values for the WHERE clause
-                null,                  // Don't group the rows
-                null,                  // Don't filter by row groups
+                PetEntry.TABLE_NAME,            // The table to query
+                projection,                     // The columns to return
+                null,                    // The columns for the WHERE clause
+                null,                // The values for the WHERE clause
+                null,                   // Don't group the rows
+                null,                    // Don't filter by row groups
                 null);                   // The sort order
 
         TextView displayView = (TextView) findViewById(R.id.text_view_pet);
@@ -161,6 +162,7 @@ public class CatalogActivity extends AppCompatActivity {
         // there are no values).
         // The third argument is the ContentValues object containing the info for Toto.
         long newRowId = db.insert(PetEntry.TABLE_NAME, null, values);
+        Toast.makeText(this, "" + newRowId, Toast.LENGTH_SHORT).show();
     }
 
     @Override
