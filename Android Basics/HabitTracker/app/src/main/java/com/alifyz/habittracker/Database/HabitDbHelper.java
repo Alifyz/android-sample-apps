@@ -21,11 +21,11 @@ public class HabitDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
         String CREATE_TABLE = "CREATE TABLE " + HabitDataEntry.TAB_NAME + " ("
-                +HabitDataEntry._ID + "INTEGER PRIMARY KEY AUTO INCREMENT, "
-                +HabitDataEntry.COLUMN_NAME + "TEXT NOT NULL, "
-                +HabitDataEntry.COLUMN_GENDER + "INTEGER NOT NULL, "
-                +HabitDataEntry.COLUMN_HEIGHT + "INTEGER NOT NULL, "
-                +HabitDataEntry.COLUMN_WEIGHT + "INTEGER NOT NULL);";
+                +HabitDataEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                +HabitDataEntry.COLUMN_NAME + " TEXT NOT NULL, "
+                +HabitDataEntry.COLUMN_GENDER + " INTEGER NOT NULL, "
+                +HabitDataEntry.COLUMN_HEIGHT + " INTEGER NOT NULL, "
+                +HabitDataEntry.COLUMN_WEIGHT + " INTEGER NOT NULL);";
 
         database.execSQL(CREATE_TABLE);
 
