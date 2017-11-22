@@ -8,14 +8,18 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 /**
- * Created by alifyzpires on 2017-11-20.
+ * Created by Alifyz Pires on 2017-11-20.
  * Implementing the Class Content Providor where we will implement the CRUD Methods
  */
 
 public class ProductProvider extends ContentProvider{
 
+    private ProductDbHelper mDatabase;
+
+
     @Override
     public boolean onCreate() {
+        mDatabase = new ProductDbHelper(getContext());
         return false;
     }
 

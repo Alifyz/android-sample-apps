@@ -17,6 +17,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".ProductDetails"></activity>
-    </application>
 
+        <provider
+            android:authorities="com.alifyz.inventoryapp.product"
+            android:name=".Database.ProductProvider"
+            android:exported="false"/>
+
+    </application>
 </manifest>
