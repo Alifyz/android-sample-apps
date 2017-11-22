@@ -6,11 +6,12 @@ import android.provider.BaseColumns;
 /**
  * Created by Alifyz on 11/19/2017.
  * Schema Class for Grouping the Structure of the Database
+ * Contract Class for the Content Provider and DbHelper
  */
 
 public class ProductDb {
 
-    public static final String CONTENT_AUTHORITY = "";
+    public static final String CONTENT_AUTHORITY = "com.alifyz.inventoryapp.product";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
     public static final String PATH_PRODUCT = "products";
 
