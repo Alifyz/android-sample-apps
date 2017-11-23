@@ -4,6 +4,7 @@ import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -12,7 +13,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.alifyz.inventoryapp.Database.ProductDb.ProductEntry;
-
+import com.alifyz.inventoryapp.R;
 
 
 /**
@@ -20,8 +21,9 @@ import com.alifyz.inventoryapp.Database.ProductDb.ProductEntry;
  * Implementing the Class Content Providor where we will implement the CRUD Methods
  */
 
-public class ProductProvider extends ContentProvider{
+public class ProductProvider extends ContentProvider {
 
+    private static String LOG_TAG = "Product Provider";
     private static ProductDbHelper mDatabase;
     private static final int PRODUCT_DB = 100;
     private static final int PRODUCT_ID = 101;
@@ -29,7 +31,7 @@ public class ProductProvider extends ContentProvider{
 
     static {
         sUriMatcher.addURI(ProductDb.CONTENT_AUTHORITY, ProductDb.PATH_PRODUCT, PRODUCT_DB);
-        sUriMatcher.addURI(ProductDb.CONTENT_AUTHORITY, ProductDb.PATH_PRODUCT+"/#", PRODUCT_ID);
+        sUriMatcher.addURI(ProductDb.CONTENT_AUTHORITY, ProductDb.PATH_PRODUCT + "/#", PRODUCT_ID);
     }
 
 
@@ -54,7 +56,7 @@ public class ProductProvider extends ContentProvider{
                 break;
             case PRODUCT_ID:
                 selection = ProductEntry._ID + "=?";
-                selectionArgs = new String[] {String.valueOf(ContentUris.parseId(uri))};
+                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 cursor = database.query(ProductEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
@@ -75,12 +77,22 @@ public class ProductProvider extends ContentProvider{
 
         switch (match) {
             case PRODUCT_DB:
-                id =  database.insert(ProductEntry.TABLE_NAME, null, contentValues);
-                if(id == -1) {
-                    Log.e("Content Provider", "Error trying to Insert Data");
+
+                String productName = contentValues.getAsString(ProductEntry.COLUMN_NAME);
+                String suplierName = contentValues.getAsString(ProductEntry.COLUMN_SUPLIER_NAME);
+                String suplierContact = contentValues.getAsString(ProductEntry.COLUMN_SUPLIER_CONTACT);
+
+                if (productName == null || suplierName == null || suplierContact == null) {
+                    throw new IllegalArgumentException(
+                            Resources.getSystem().getString(R.string.sanity_check));
+                }
+
+                id = database.insert(ProductEntry.TABLE_NAME, null, contentValues);
+                if (id == -1) {
+                    Log.e(LOG_TAG, Resources.getSystem().getString(R.string.data_ok));
                     return null;
-                }else {
-                    Log.i("Content Provider", "Data inserted corrently");
+                } else {
+                    Log.i(LOG_TAG, Resources.getSystem().getString(R.string.data_not_ok));
                 }
                 break;
             default:
@@ -91,14 +103,15 @@ public class ProductProvider extends ContentProvider{
     }
 
     @Override
-    public int delete(@NonNull Uri uri, @Nullable String s, @Nullable String[] strings) {
+    public int update(Uri uri, ContentValues contentValues, String s, String[] strings) {
         return 0;
     }
 
     @Override
-    public int update(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String s, @Nullable String[] strings) {
+    public int delete(@NonNull Uri uri, @Nullable String s, @Nullable String[] strings) {
         return 0;
     }
+
 
     @Nullable
     @Override

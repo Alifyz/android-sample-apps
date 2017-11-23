@@ -5,8 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
-
 import com.alifyz.inventoryapp.Database.ProductDb.ProductEntry;
 
 public class InventoryCatalog extends AppCompatActivity {
@@ -16,8 +14,8 @@ public class InventoryCatalog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inventory_catalog);
         insertTest();
-    }
 
+    }
 
     //Method used to test the insert implementation.
     //TODO Delete this mehod once it becomes useless
