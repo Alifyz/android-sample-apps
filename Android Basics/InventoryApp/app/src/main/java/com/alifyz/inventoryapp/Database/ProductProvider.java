@@ -7,12 +7,9 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.alifyz.inventoryapp.Database.ProductDb.ProductEntry;
-
 
 
 /**
@@ -113,7 +110,7 @@ public class ProductProvider extends ContentProvider {
                 return updateProduct(uri, contentValues, selection, selectionArgs);
             case PRODUCT_ID:
                 selection = ProductEntry._ID + "=?";
-                selectionArgs = new String[] {String.valueOf(ContentUris.parseId(uri))};
+                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 return updateProduct(uri, contentValues, selection, selectionArgs);
             default:
                 throw new IllegalArgumentException("Invalid URI " + uri);
@@ -121,31 +118,79 @@ public class ProductProvider extends ContentProvider {
     }
 
     @Override
-    public int delete(@NonNull Uri uri, @Nullable String s, @Nullable String[] strings) {
-        return 0;
+    public int delete(Uri uri, String selection, String[] selectionArgs) {
+
+        SQLiteDatabase database = mDatabase.getWritableDatabase();
+        final int match = sUriMatcher.match(uri);
+        switch (match) {
+            case PRODUCT_DB:
+                return database.delete(ProductEntry.TABLE_NAME,selection,selectionArgs);
+            case PRODUCT_ID:
+                selection = ProductEntry._ID + "=?";
+                selectionArgs = new String[] {String.valueOf(ContentUris.parseId(uri))};
+                return database.delete(ProductEntry.TABLE_NAME, selection, selectionArgs);
+            default:
+                throw new IllegalArgumentException("Error trying to delete URI " + uri);
+        }
     }
 
     @Override
     public String getType(Uri uri) {
-        return null;
+        final int match = sUriMatcher.match(uri);
+        switch (match) {
+            case PRODUCT_DB:
+                return ProductEntry.CONTENT_LIST_TYPE;
+            case PRODUCT_ID:
+                return ProductEntry.CONTENT_ITEM_TYPE;
+            default:
+                throw new IllegalArgumentException("Invalid MIME type");
+        }
     }
 
     private int updateProduct(Uri uri, ContentValues contentValues,
-                          String selection, String[] selectionArgs) {
+                              String selection, String[] selectionArgs) {
 
         SQLiteDatabase database = mDatabase.getWritableDatabase();
 
-        String productName = contentValues.getAsString(ProductEntry.COLUMN_NAME);
-        String suplierName = contentValues.getAsString(ProductEntry.COLUMN_SUPLIER_NAME);
-        String suplierContact = contentValues.getAsString(ProductEntry.COLUMN_SUPLIER_CONTACT);
-        int quantity = contentValues.getAsInteger(ProductEntry.COLUMN_QUANTITY);
-        int sales = contentValues.getAsInteger(ProductEntry.COLUMN_SALES);
-
-        if (productName == null || suplierName == null ||
-                suplierContact == null || quantity < 0 || sales < 0) {
-            throw new IllegalArgumentException("Invalid data being inserted into the database");
-        } else {
-            return database.update(ProductEntry.TABLE_NAME, contentValues, selection, selectionArgs);
+        if (contentValues.size() == 0) {
+            return 0;
         }
+
+        if (contentValues.containsKey(ProductEntry.COLUMN_NAME)) {
+            String productName = contentValues.getAsString(ProductEntry.COLUMN_NAME);
+            if (productName == null) {
+                throw new IllegalArgumentException("Name can't be empty");
+            }
+        }
+
+        if (contentValues.containsKey(ProductEntry.COLUMN_SUPLIER_NAME)) {
+            String suplierName = contentValues.getAsString(ProductEntry.COLUMN_SUPLIER_NAME);
+            if (suplierName == null) {
+                throw new IllegalArgumentException("Suplier can't be empty");
+            }
+        }
+
+        if (contentValues.containsKey(ProductEntry.COLUMN_SUPLIER_CONTACT)) {
+            String suplierContact = contentValues.getAsString(ProductEntry.COLUMN_SUPLIER_CONTACT);
+            if (suplierContact == null) {
+                throw new IllegalArgumentException("Suplier contact can't be empty");
+            }
+        }
+
+        if (contentValues.containsKey(ProductEntry.COLUMN_QUANTITY)) {
+            int quantity = contentValues.getAsInteger(ProductEntry.COLUMN_QUANTITY);
+            if (quantity < 0) {
+                throw new IllegalArgumentException("quantity can't be negative");
+            }
+        }
+
+        if (contentValues.containsKey(ProductEntry.COLUMN_SALES)) {
+            int sales = contentValues.getAsInteger(ProductEntry.COLUMN_SALES);
+            if (sales < 0) {
+                throw new IllegalArgumentException("sales can't be negative");
+            }
+        }
+
+        return database.update(ProductEntry.TABLE_NAME, contentValues, selection, selectionArgs);
     }
 }

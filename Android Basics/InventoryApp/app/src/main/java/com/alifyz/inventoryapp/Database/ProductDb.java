@@ -1,5 +1,6 @@
 package com.alifyz.inventoryapp.Database;
 
+import android.content.ContentResolver;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
@@ -31,5 +32,10 @@ public class ProductDb {
         public static final String COLUMN_SUPLIER_NAME = "suplier";
         public static final String COLUMN_SUPLIER_CONTACT = "contact";
 
+
+        public static final String CONTENT_LIST_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE
+                            + "/" + CONTENT_AUTHORITY + "/" + PATH_PRODUCT;
+        public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE
+                          + "/" + CONTENT_AUTHORITY + "/" + PATH_PRODUCT;
     }
 }
