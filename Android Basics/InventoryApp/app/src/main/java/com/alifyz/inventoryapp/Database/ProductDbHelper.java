@@ -24,12 +24,12 @@ public class ProductDbHelper extends SQLiteOpenHelper{
         String SQL_CREATE_TABLE = "CREATE TABLE " + ProductDb.ProductEntry.TABLE_NAME + " ("
                 + ProductDb.ProductEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + ProductDb.ProductEntry.COLUMN_NAME +  " TEXT NOT NULL, "
-                + ProductDb.ProductEntry.COLUMN_PRICE + " INTEGER NOT NULL DEFAULT 0, "
-                + ProductDb.ProductEntry.COLUMN_IMAGE + " TEXT NOT NULL, "
-                + ProductDb.ProductEntry.COLUMN_QUANTITY + " INTEGER NOT NULL DEFAULT 0, "
-                + ProductDb.ProductEntry.COLUMN_SALES +    " INTEGER NOT NULL DEFAULT 0, "
-                + ProductDb.ProductEntry.COLUMN_SUPLIER_NAME + " TEXT NOT NULL, "
-                + ProductDb.ProductEntry.COLUMN_SUPLIER_CONTACT + " TEXT NOT NULL);";
+                + ProductDb.ProductEntry.COLUMN_PRICE + " INTEGER DEFAULT 0, "
+                + ProductDb.ProductEntry.COLUMN_IMAGE + " TEXT, "
+                + ProductDb.ProductEntry.COLUMN_QUANTITY + " INTEGER DEFAULT 0, "
+                + ProductDb.ProductEntry.COLUMN_SALES +    " INTEGER DEFAULT 0, "
+                + ProductDb.ProductEntry.COLUMN_SUPLIER_NAME + " TEXT, "
+                + ProductDb.ProductEntry.COLUMN_SUPLIER_CONTACT + " TEXT);";
 
         sqLiteDatabase.execSQL(SQL_CREATE_TABLE);
     }

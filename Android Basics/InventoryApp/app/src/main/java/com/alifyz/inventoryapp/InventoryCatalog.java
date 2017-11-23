@@ -20,6 +20,7 @@ public class InventoryCatalog extends AppCompatActivity {
 
 
     //Method used to test the insert implementation.
+    //TODO Delete this mehod once it becomes useless
     private void insertTest() {
         ContentValues content = new ContentValues();
 
