@@ -15,6 +15,8 @@ import android.util.Log;
 import com.alifyz.inventoryapp.Database.ProductDb.ProductEntry;
 import com.alifyz.inventoryapp.R;
 
+import static android.content.res.Resources.*;
+
 
 /**
  * Created by Alifyz Pires on 2017-11-20.
@@ -83,16 +85,15 @@ public class ProductProvider extends ContentProvider {
                 String suplierContact = contentValues.getAsString(ProductEntry.COLUMN_SUPLIER_CONTACT);
 
                 if (productName == null || suplierName == null || suplierContact == null) {
-                    throw new IllegalArgumentException(
-                            Resources.getSystem().getString(R.string.sanity_check));
+                    throw new IllegalArgumentException("Invalid data being inserted into the database");
                 }
 
                 id = database.insert(ProductEntry.TABLE_NAME, null, contentValues);
                 if (id == -1) {
-                    Log.e(LOG_TAG, Resources.getSystem().getString(R.string.data_ok));
+                    Log.e(LOG_TAG, "Data inserted correctly");
                     return null;
                 } else {
-                    Log.i(LOG_TAG, Resources.getSystem().getString(R.string.data_not_ok));
+                    Log.i(LOG_TAG, "Error trying to insert the data");
                 }
                 break;
             default:
