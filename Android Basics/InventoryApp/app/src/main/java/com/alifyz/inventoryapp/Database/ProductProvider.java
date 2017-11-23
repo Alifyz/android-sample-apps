@@ -4,7 +4,6 @@ import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -13,9 +12,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.alifyz.inventoryapp.Database.ProductDb.ProductEntry;
-import com.alifyz.inventoryapp.R;
 
-import static android.content.res.Resources.*;
 
 
 /**
@@ -35,7 +32,6 @@ public class ProductProvider extends ContentProvider {
         sUriMatcher.addURI(ProductDb.CONTENT_AUTHORITY, ProductDb.PATH_PRODUCT, PRODUCT_DB);
         sUriMatcher.addURI(ProductDb.CONTENT_AUTHORITY, ProductDb.PATH_PRODUCT + "/#", PRODUCT_ID);
     }
-
 
     @Override
     public boolean onCreate() {
@@ -83,8 +79,11 @@ public class ProductProvider extends ContentProvider {
                 String productName = contentValues.getAsString(ProductEntry.COLUMN_NAME);
                 String suplierName = contentValues.getAsString(ProductEntry.COLUMN_SUPLIER_NAME);
                 String suplierContact = contentValues.getAsString(ProductEntry.COLUMN_SUPLIER_CONTACT);
+                int quantity = contentValues.getAsInteger(ProductEntry.COLUMN_QUANTITY);
+                int sales = contentValues.getAsInteger(ProductEntry.COLUMN_SALES);
 
-                if (productName == null || suplierName == null || suplierContact == null) {
+                if (productName == null || suplierName == null || suplierContact == null ||
+                        quantity < 0 || sales < 0) {
                     throw new IllegalArgumentException("Invalid data being inserted into the database");
                 }
 
@@ -104,8 +103,21 @@ public class ProductProvider extends ContentProvider {
     }
 
     @Override
-    public int update(Uri uri, ContentValues contentValues, String s, String[] strings) {
-        return 0;
+    public int update(Uri uri, ContentValues contentValues, String selection, String[] selectionArgs) {
+
+        SQLiteDatabase database = mDatabase.getWritableDatabase();
+        final int match = sUriMatcher.match(uri);
+
+        switch (match) {
+            case PRODUCT_DB:
+                return updateProduct(uri, contentValues, selection, selectionArgs);
+            case PRODUCT_ID:
+                selection = ProductEntry._ID + "=?";
+                selectionArgs = new String[] {String.valueOf(ContentUris.parseId(uri))};
+                return updateProduct(uri, contentValues, selection, selectionArgs);
+            default:
+                throw new IllegalArgumentException("Invalid URI " + uri);
+        }
     }
 
     @Override
@@ -113,10 +125,27 @@ public class ProductProvider extends ContentProvider {
         return 0;
     }
 
-
-    @Nullable
     @Override
-    public String getType(@NonNull Uri uri) {
+    public String getType(Uri uri) {
         return null;
+    }
+
+    private int updateProduct(Uri uri, ContentValues contentValues,
+                          String selection, String[] selectionArgs) {
+
+        SQLiteDatabase database = mDatabase.getWritableDatabase();
+
+        String productName = contentValues.getAsString(ProductEntry.COLUMN_NAME);
+        String suplierName = contentValues.getAsString(ProductEntry.COLUMN_SUPLIER_NAME);
+        String suplierContact = contentValues.getAsString(ProductEntry.COLUMN_SUPLIER_CONTACT);
+        int quantity = contentValues.getAsInteger(ProductEntry.COLUMN_QUANTITY);
+        int sales = contentValues.getAsInteger(ProductEntry.COLUMN_SALES);
+
+        if (productName == null || suplierName == null ||
+                suplierContact == null || quantity < 0 || sales < 0) {
+            throw new IllegalArgumentException("Invalid data being inserted into the database");
+        } else {
+            return database.update(ProductEntry.TABLE_NAME, contentValues, selection, selectionArgs);
+        }
     }
 }
