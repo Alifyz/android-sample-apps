@@ -38,4 +38,5 @@ public class ProductDbHelper extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         //TODO Implement the Logic of Upgrading the DB
     }
+
 }

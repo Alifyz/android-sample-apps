@@ -9,9 +9,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
+
 import com.alifyz.inventoryapp.Database.ProductDb.ProductEntry;
 
-import java.util.function.ToDoubleBiFunction;
+
 
 /**
  * Created by Alifyz Pires on 2017-11-20.
@@ -63,16 +65,29 @@ public class ProductProvider extends ContentProvider{
         return cursor;
     }
 
-    @Nullable
-    @Override
-    public String getType(@NonNull Uri uri) {
-        return null;
-    }
 
-    @Nullable
     @Override
-    public Uri insert(@NonNull Uri uri, @Nullable ContentValues contentValues) {
-        return null;
+    public Uri insert(Uri uri, ContentValues contentValues) {
+
+        SQLiteDatabase database = mDatabase.getWritableDatabase();
+        long id;
+        final int match = sUriMatcher.match(uri);
+
+        switch (match) {
+            case PRODUCT_DB:
+                id =  database.insert(ProductEntry.TABLE_NAME, null, contentValues);
+                if(id == -1) {
+                    Log.e("Content Provider", "Error trying to Insert Data");
+                    return null;
+                }else {
+                    Log.i("Content Provider", "Data inserted corrently");
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid URI for " + uri);
+        }
+
+        return ContentUris.withAppendedId(uri, id);
     }
 
     @Override
@@ -83,5 +98,11 @@ public class ProductProvider extends ContentProvider{
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String s, @Nullable String[] strings) {
         return 0;
+    }
+
+    @Nullable
+    @Override
+    public String getType(@NonNull Uri uri) {
+        return null;
     }
 }
