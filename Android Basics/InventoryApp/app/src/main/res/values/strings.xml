@@ -3,4 +3,7 @@
     <string name="sanity_check">Product, or Suplier name or Suplier Contact is empty</string>
     <string name="data_ok">The Data is properly inserted into the database</string>
     <string name="data_not_ok">There was an error trying to insert data</string>
+    <string name="empty">Sorry, no items were added</string>
+    <string name="delete">Delete All</string>
+    <string name="save">Save Product</string>
 </resources>

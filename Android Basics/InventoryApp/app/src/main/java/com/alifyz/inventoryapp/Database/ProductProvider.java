@@ -58,7 +58,7 @@ public class ProductProvider extends ContentProvider {
             default:
                 throw new IllegalArgumentException("Invalid URI, " + uri);
         }
-
+        cursor.setNotificationUri(getContext().getContentResolver(), uri);
         return cursor;
     }
 
@@ -96,6 +96,7 @@ public class ProductProvider extends ContentProvider {
                 throw new IllegalArgumentException("Invalid URI for " + uri);
         }
 
+        getContext().getContentResolver().notifyChange(uri, null);
         return ContentUris.withAppendedId(uri, id);
     }
 
@@ -115,6 +116,8 @@ public class ProductProvider extends ContentProvider {
             default:
                 throw new IllegalArgumentException("Invalid URI " + uri);
         }
+
+
     }
 
     @Override
@@ -124,11 +127,17 @@ public class ProductProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         switch (match) {
             case PRODUCT_DB:
-                return database.delete(ProductEntry.TABLE_NAME,selection,selectionArgs);
+                int rowsUpdated_DB = database.delete(ProductEntry.TABLE_NAME,selection,selectionArgs);
+                if(rowsUpdated_DB != 0)
+                    getContext().getContentResolver().notifyChange(uri, null);
+                return rowsUpdated_DB;
             case PRODUCT_ID:
                 selection = ProductEntry._ID + "=?";
                 selectionArgs = new String[] {String.valueOf(ContentUris.parseId(uri))};
-                return database.delete(ProductEntry.TABLE_NAME, selection, selectionArgs);
+                int rowsUpdated_ID = database.delete(ProductEntry.TABLE_NAME, selection, selectionArgs);
+                if(rowsUpdated_ID != 0)
+                    getContext().getContentResolver().notifyChange(uri, null);
+                return rowsUpdated_ID;
             default:
                 throw new IllegalArgumentException("Error trying to delete URI " + uri);
         }
@@ -191,6 +200,7 @@ public class ProductProvider extends ContentProvider {
             }
         }
 
+        getContext().getContentResolver().notifyChange(uri, null);
         return database.update(ProductEntry.TABLE_NAME, contentValues, selection, selectionArgs);
     }
 }
