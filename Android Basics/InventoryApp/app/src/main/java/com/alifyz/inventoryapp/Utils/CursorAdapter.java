@@ -7,7 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
+import com.alifyz.inventoryapp.Database.ProductDb;
+import com.alifyz.inventoryapp.Database.ProductDb.ProductEntry;
 import com.alifyz.inventoryapp.R;
 
 /**
@@ -30,15 +31,19 @@ public class CursorAdapter extends android.widget.CursorAdapter{
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
 
-        TextView name = (TextView) view.findViewById(R.id.name);
-        TextView price = (TextView) view.findViewById(R.id.price);
 
-        String nameFromDb = cursor.getString(cursor.getColumnIndexOrThrow("name"));
-        int priceFromDb = cursor.getInt(cursor.getColumnIndexOrThrow("price"));
-        double priceInUS = priceFromDb / 100;
+        TextView productName = (TextView) view.findViewById(R.id.name);
+        TextView productPrice = (TextView) view.findViewById(R.id.price);
 
-        name.setText(nameFromDb);
-        price.setText(String.valueOf(priceInUS));
+
+        String nameFromDb = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_NAME));
+        double priceFromDb = cursor.getDouble(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_PRICE));
+        double price = priceFromDb / 100;
+
+
+        productName.setText(nameFromDb);
+        productPrice.setText(String.valueOf(price));
+
 
     }
 }

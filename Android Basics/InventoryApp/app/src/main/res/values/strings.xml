@@ -6,4 +6,24 @@
     <string name="empty">Sorry, no items were added</string>
     <string name="delete">Delete All</string>
     <string name="save">Save Product</string>
+    <string name="add_product">Add new Item</string>
+    <string name="edit_product">Update Item</string>
+    <string name="category_overview">Product</string>
+    <string name="hint">Product Name</string>
+    <string name="name">Name:</string>
+    <string name="quantity">Qtd:</string>
+    <string name="price">Price:</string>
+    <string name="sales">Sales:</string>
+    <string name="product_info">Product Information</string>
+    <string name="storage_info">Storage Information</string>
+    <string name="add">+</string>
+    <string name="remove">-</string>
+    <string name="picture">Product Picture</string>
+    <string name="availability">Availability:</string>
+    <string name="supplier_info">Supplier Information</string>
+    <string name="supplier_name">Supplier name</string>
+    <string name="supplier">Supplier:</string>
+    <string name="supplier_contact">Email:</string>
+    <string name="emailHint">Contact email</string>
+    <string name="buymore">New Order</string>
 </resources>
