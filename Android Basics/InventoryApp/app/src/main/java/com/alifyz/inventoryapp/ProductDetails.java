@@ -1,5 +1,6 @@
 package com.alifyz.inventoryapp;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
@@ -8,6 +9,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -17,12 +21,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.alifyz.inventoryapp.Database.ProductDb.ProductEntry;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class ProductDetails extends AppCompatActivity  implements LoaderManager.LoaderCallbacks<Cursor>{
 
@@ -38,8 +46,11 @@ public class ProductDetails extends AppCompatActivity  implements LoaderManager.
     private Button addQtd;
     private Button remQtd;
     private Button mSalesBtn;
+    private ImageView mProductImage;
     public static int mCurrentSales = 0;
     private int mCurrentQtd;
+    private Uri mImageResourceUri;
+    private TextView mProductImageText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +66,8 @@ public class ProductDetails extends AppCompatActivity  implements LoaderManager.
         addQtd = (Button) findViewById(R.id.add_qtd);
         remQtd = (Button) findViewById(R.id.rem_qtd);
         mSalesBtn = (Button) findViewById(R.id.sell_item);
+        mProductImage = (ImageView) findViewById(R.id.profile_image);
+        mProductImageText = (TextView) findViewById(R.id.picture_text);
 
         addQtd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +111,36 @@ public class ProductDetails extends AppCompatActivity  implements LoaderManager.
                     salesData.put(ProductEntry.COLUMN_QUANTITY, mCurrentQtd);
                     getContentResolver().update(currentUri, salesData, null, null);
                 }
+            }
+        });
+
+        mProductImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent getImageUri = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                getImageUri.addCategory(Intent.CATEGORY_OPENABLE);
+                getImageUri.setType("image/*");
+                startActivityForResult(getImageUri, 1);
+            }
+        });
+
+
+        mProductImageText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO Start Intent
+            }
+        });
+
+        //Stack Overflow
+        //Creditos for this Solution: User Blessenm
+        //https://stackoverflow.com/questions/7733813/how-can-you-tell-when-a-layout-has-been-drawn/7735122#7735122
+        ViewTreeObserver viewTreeObserver = mProductImage.getViewTreeObserver();
+        viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                mProductImage.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                mProductImage.setImageBitmap(getBitmapFromUri(mImageResourceUri));
             }
         });
 
@@ -182,7 +225,7 @@ public class ProductDetails extends AppCompatActivity  implements LoaderManager.
         int ProductSales = 0;
         String ProductSupplier = "";
         String ProductContact  = "";
-
+        String imageUri = null;
         try {
 
              ProductName = mProductName.getText().toString();
@@ -190,6 +233,7 @@ public class ProductDetails extends AppCompatActivity  implements LoaderManager.
              ProductQtd = Integer.parseInt(mProductQtd.getText().toString());
              ProductSupplier = mProductSupplier.getText().toString();
              ProductContact = mProductSuppEmail.getText().toString();
+             imageUri = getImageURI();
 
         } catch (NumberFormatException e) {
             Log.e("ProductDetails", "Error parsing the Price or Qtd or Sales");
@@ -211,9 +255,10 @@ public class ProductDetails extends AppCompatActivity  implements LoaderManager.
             data.put(ProductEntry.COLUMN_SALES, ProductSales);
             data.put(ProductEntry.COLUMN_SUPLIER_NAME, ProductSupplier);
             data.put(ProductEntry.COLUMN_SUPLIER_CONTACT, ProductContact);
-            return data;
-
+            data.put(ProductEntry.COLUMN_IMAGE, imageUri);
         }
+
+        return data;
     }
 
 
@@ -252,9 +297,9 @@ public class ProductDetails extends AppCompatActivity  implements LoaderManager.
             String productName = cursor.getString(nameColumnIndex);
             int productQuantity= cursor.getInt(qtdColumnIndex);
             double productPrice = cursor.getDouble(priceColumnIndex);
-            int productSales = cursor.getInt(salesColumnIndex);
             String productSupplier = cursor.getString(suppColumnIndex);
             String productContact = cursor.getString(emailColumIndex);
+
 
             mProductName.setText(productName);
             mProductQtd.setText(String.valueOf(productQuantity));
@@ -379,6 +424,85 @@ public class ProductDetails extends AppCompatActivity  implements LoaderManager.
         getContentResolver().delete(currentUri, null, null);
         Toast.makeText(this, getString(R.string.productremoved), Toast.LENGTH_SHORT).show();
         finish();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
+        // The ACTION_OPEN_DOCUMENT intent was sent with the request code READ_REQUEST_CODE.
+        // If the request code seen here doesn't match, it's the response to some other intent,
+        // and the below code shouldn't run at all.
+
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            // The document selected by the user won't be returned in the intent.
+            // Instead, a URI to that document will be contained in the return intent
+            // provided to this method as a parameter.  Pull that uri using "resultData.getData()"
+
+            if (resultData != null) {
+                mImageResourceUri = resultData.getData();
+                Log.i("Intent Images", "Uri: " + mImageResourceUri.toString());
+
+                mProductImage.setImageBitmap(getBitmapFromUri(mImageResourceUri));
+            }
+        }
+    }
+
+    private String getImageURI() {
+        if(mImageResourceUri != null)
+        {
+            return mImageResourceUri.toString();
+        }else {
+            return null;
+        }
+    }
+
+    public Bitmap getBitmapFromUri(Uri uri) {
+
+        if (uri == null || uri.toString().isEmpty())
+            return null;
+
+        // Get the dimensions of the View
+        int targetW = mProductImage.getWidth();
+        int targetH = mProductImage.getHeight();
+
+        InputStream input = null;
+        try {
+            input = this.getContentResolver().openInputStream(uri);
+
+            // Get the dimensions of the bitmap
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            bmOptions.inJustDecodeBounds = true;
+            BitmapFactory.decodeStream(input, null, bmOptions);
+            input.close();
+
+            int photoW = bmOptions.outWidth;
+            int photoH = bmOptions.outHeight;
+
+            // Determine how much to scale down the image
+            int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
+
+            // Decode the image file into a Bitmap sized to fill the View
+            bmOptions.inJustDecodeBounds = false;
+            bmOptions.inSampleSize = scaleFactor;
+            bmOptions.inPurgeable = true;
+
+            input = this.getContentResolver().openInputStream(uri);
+            Bitmap bitmap = BitmapFactory.decodeStream(input, null, bmOptions);
+            input.close();
+            return bitmap;
+
+        } catch (FileNotFoundException fne) {
+            Log.e("Product details", "Failed to load image.", fne);
+            return null;
+        } catch (Exception e) {
+            Log.e("product Details", "Failed to load image.", e);
+            return null;
+        } finally {
+            try {
+                input.close();
+            } catch (IOException ioe) {
+
+            }
+        }
     }
 
 

@@ -3,6 +3,8 @@ package com.alifyz.inventoryapp.Utils;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.media.Image;
+import android.net.Uri;
 import android.text.Layout;
 import android.util.Log;
 
@@ -11,6 +13,7 @@ import com.alifyz.inventoryapp.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.alifyz.inventoryapp.Database.ProductDb;
 import com.alifyz.inventoryapp.Database.ProductDb.ProductEntry;
@@ -43,6 +46,7 @@ public class CursorAdapter extends android.widget.CursorAdapter{
         int quantityFromDb = cursor.getInt(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_QUANTITY));
         int salesFromDb = ProductDetails.mCurrentSales;
         String SupplierFromDb = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_SUPLIER_NAME));
+        String imageFromDb = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_IMAGE));
 
         TextView productName = (TextView) view.findViewById(R.id.name);
         TextView productPrice = (TextView) view.findViewById(R.id.price);
@@ -50,6 +54,7 @@ public class CursorAdapter extends android.widget.CursorAdapter{
         TextView productSales = (TextView) view.findViewById(R.id.sales);
         TextView productAvailable = (TextView) view.findViewById(R.id.in_stock);
         TextView productSupplier = (TextView) view.findViewById(R.id.suplier);
+        ImageView productImage = (ImageView) view.findViewById(R.id.profile_image);
 
         productName.setText(nameFromDb);
         productPrice.setText(context.getString(R.string.moneyTag));
@@ -60,6 +65,7 @@ public class CursorAdapter extends android.widget.CursorAdapter{
         productSales.append(" " + context.getString(R.string.salesInfo));
         productSupplier.setText(context.getString(R.string.supplier));
         productSupplier.append(" " + SupplierFromDb);
+        productImage.setImageURI(Uri.parse(imageFromDb));
 
         if(quantityFromDb <= 0) {
             productAvailable.setText(context.getString(R.string.noStock));
