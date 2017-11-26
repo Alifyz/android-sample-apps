@@ -21,6 +21,8 @@ import com.alifyz.inventoryapp.R;
 
 import org.w3c.dom.Text;
 
+import java.util.Locale;
+
 /**
  * Created by alifyzpires on 2017-11-21.
  */
@@ -43,10 +45,13 @@ public class CursorAdapter extends android.widget.CursorAdapter{
 
         String nameFromDb = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_NAME));
         double priceFromDb = (cursor.getDouble(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_PRICE))) /100;
+        String priceFromDbDisplayed =  String.format(Locale.getDefault(),"%.2f", priceFromDb);
         int quantityFromDb = cursor.getInt(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_QUANTITY));
         int salesFromDb = ProductDetails.mCurrentSales;
         String SupplierFromDb = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_SUPLIER_NAME));
         String imageFromDb = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_IMAGE));
+
+        Uri imageUri = Uri.parse(imageFromDb);
 
         TextView productName = (TextView) view.findViewById(R.id.name);
         TextView productPrice = (TextView) view.findViewById(R.id.price);
@@ -58,14 +63,19 @@ public class CursorAdapter extends android.widget.CursorAdapter{
 
         productName.setText(nameFromDb);
         productPrice.setText(context.getString(R.string.moneyTag));
-        productPrice.append(String.valueOf(priceFromDb));
+        productPrice.append(priceFromDbDisplayed);
         productQuantity.setText(context.getString(R.string.qtdCode));
         productQuantity.append(String.valueOf(quantityFromDb));
         productSales.setText(String.valueOf(salesFromDb));
         productSales.append(" " + context.getString(R.string.salesInfo));
         productSupplier.setText(context.getString(R.string.supplier));
         productSupplier.append(" " + SupplierFromDb);
-        productImage.setImageURI(Uri.parse(imageFromDb));
+
+        if(imageUri != null) {
+            productImage.setImageURI(Uri.parse(imageFromDb));
+        }else {
+            productImage.setImageResource(R.drawable.default_photo);
+        }
 
         if(quantityFromDb <= 0) {
             productAvailable.setText(context.getString(R.string.noStock));

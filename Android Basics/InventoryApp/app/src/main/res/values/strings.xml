@@ -35,17 +35,19 @@
     <string name="productadded">Product Added</string>
     <string name="productupdated">Product Updated</string>
     <string name="productremoved">Product Removed</string>
-    <string name="invalidinput">Name, Supplier or Contact Info can\'t be blank</string>
+    <string name="invalidinput">Name, Supplier, Image or Contact Info can\'t be blank</string>
     <string name="unsaved">Are you sure that you want to quit?</string>
     <string name="discard">Discard changes</string>
     <string name="keep_editing">Keep Editing?</string>
     <string name="sell">Sell Item</string>
 
+    <!-- Strings based on Udacity - Android Basics Content Providers and Loaders Lessons -->
+
     <!-- Toast message in editor when current pet was successfully deleted [CHAR LIMIT=NONE] -->
-    <string name="editor_delete_pet_successful">Product deleted</string>
+    <string name="editor_delete_product_successful">Product deleted</string>
 
     <!-- Toast message in editor when current pet has failed to be deleted [CHAR LIMIT=NONE] -->
-    <string name="editor_delete_pet_failed">Error with deleting the product</string>
+    <string name="editor_delete_product_failed">Error with deleting the product</string>
 
     <!-- Dialog message to ask the user to confirm deleting the current pet [CHAR LIMIT=NONE] -->
     <string name="delete_dialog_msg">Delete this product?</string>

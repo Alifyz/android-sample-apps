@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,8 +81,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/remove"
                 tools:text="-" />
-
-
         </LinearLayout>
 
         <!-- Price Row -->
@@ -124,7 +123,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/sell" />
-
         </LinearLayout>
 
         <View
@@ -150,7 +148,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/profile_image"
+                android:id="@+id/product_image"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_gravity="center"
@@ -184,7 +182,6 @@
             android:background="@android:color/black" />
 
         <!-- Supplier Section-->
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -217,7 +214,6 @@
                 android:inputType="text"
                 android:textAlignment="center"
                 android:textSize="24sp" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -246,7 +242,6 @@
                 android:textSize="24sp" />
 
         </LinearLayout>
-
         <!-- Ask for more products from the Supplier-->
         <Button
             android:id="@+id/new_order"

@@ -25,12 +25,11 @@ public class ProductDbHelper extends SQLiteOpenHelper{
                 + ProductDb.ProductEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + ProductDb.ProductEntry.COLUMN_NAME +  " TEXT NOT NULL, "
                 + ProductDb.ProductEntry.COLUMN_PRICE + " INTEGER DEFAULT 0, "
-                + ProductDb.ProductEntry.COLUMN_IMAGE + " TEXT, "
+                + ProductDb.ProductEntry.COLUMN_IMAGE + " TEXT NOT NULL, "
                 + ProductDb.ProductEntry.COLUMN_QUANTITY + " INTEGER DEFAULT 0, "
                 + ProductDb.ProductEntry.COLUMN_SALES +    " INTEGER DEFAULT 0, "
                 + ProductDb.ProductEntry.COLUMN_SUPLIER_NAME + " TEXT, "
                 + ProductDb.ProductEntry.COLUMN_SUPLIER_CONTACT + " TEXT);";
-
         sqLiteDatabase.execSQL(SQL_CREATE_TABLE);
     }
 

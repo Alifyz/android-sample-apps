@@ -72,37 +72,37 @@ public class ProductProvider extends ContentProvider {
 
         switch (match) {
             case PRODUCT_DB:
-                if(contentValues.containsKey(ProductEntry.COLUMN_QUANTITY)) {
+                if (contentValues.containsKey(ProductEntry.COLUMN_QUANTITY)) {
                     int quantity = contentValues.getAsInteger(ProductEntry.COLUMN_QUANTITY);
-                    if(quantity < 0) {
+                    if (quantity < 0) {
                         throw new IllegalArgumentException("Invalid negative quantity");
                     }
                 }
 
-                if(contentValues.containsKey(ProductEntry.COLUMN_SUPLIER_NAME)) {
+                if (contentValues.containsKey(ProductEntry.COLUMN_SUPLIER_NAME)) {
                     String productName = contentValues.getAsString(ProductEntry.COLUMN_NAME);
-                    if(productName == null) {
+                    if (productName == null) {
                         throw new IllegalArgumentException("Can't allow empty names");
                     }
                 }
 
-                if(contentValues.containsKey(ProductEntry.COLUMN_SUPLIER_NAME)) {
+                if (contentValues.containsKey(ProductEntry.COLUMN_SUPLIER_NAME)) {
                     String suplierName = contentValues.getAsString(ProductEntry.COLUMN_SUPLIER_NAME);
-                    if(suplierName == null) {
+                    if (suplierName == null) {
                         throw new IllegalArgumentException("Can't allow empty names");
                     }
                 }
 
-                if(contentValues.containsKey(ProductEntry.COLUMN_SUPLIER_CONTACT)) {
+                if (contentValues.containsKey(ProductEntry.COLUMN_SUPLIER_CONTACT)) {
                     String suplierContact = contentValues.getAsString(ProductEntry.COLUMN_SUPLIER_CONTACT);
-                    if(suplierContact == null) {
+                    if (suplierContact == null) {
                         throw new IllegalArgumentException("Can't allow empty contact");
                     }
                 }
 
-                if(contentValues.containsKey(ProductEntry.COLUMN_SALES)) {
+                if (contentValues.containsKey(ProductEntry.COLUMN_SALES)) {
                     int sales = contentValues.getAsInteger(ProductEntry.COLUMN_SALES);
-                    if(sales < 0 ) {
+                    if (sales < 0) {
                         throw new IllegalArgumentException("Invalid number of sales");
                     }
                 }
@@ -150,15 +150,15 @@ public class ProductProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         switch (match) {
             case PRODUCT_DB:
-                int rowsUpdated_DB = database.delete(ProductEntry.TABLE_NAME,selection,selectionArgs);
-                if(rowsUpdated_DB != 0)
+                int rowsUpdated_DB = database.delete(ProductEntry.TABLE_NAME, selection, selectionArgs);
+                if (rowsUpdated_DB != 0)
                     getContext().getContentResolver().notifyChange(uri, null);
                 return rowsUpdated_DB;
             case PRODUCT_ID:
                 selection = ProductEntry._ID + "=?";
-                selectionArgs = new String[] {String.valueOf(ContentUris.parseId(uri))};
+                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 int rowsUpdated_ID = database.delete(ProductEntry.TABLE_NAME, selection, selectionArgs);
-                if(rowsUpdated_ID != 0)
+                if (rowsUpdated_ID != 0)
                     getContext().getContentResolver().notifyChange(uri, null);
                 return rowsUpdated_ID;
             default:
