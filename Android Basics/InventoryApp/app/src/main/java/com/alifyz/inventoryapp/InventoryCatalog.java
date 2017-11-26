@@ -1,8 +1,10 @@
 package com.alifyz.inventoryapp;
 
+import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
@@ -70,7 +72,12 @@ public class InventoryCatalog extends AppCompatActivity implements LoaderManager
         String[] projection = {
                 ProductEntry._ID,
                 ProductEntry.COLUMN_NAME,
-                ProductEntry.COLUMN_PRICE
+                ProductEntry.COLUMN_PRICE,
+                ProductEntry.COLUMN_QUANTITY,
+                ProductEntry.COLUMN_SALES,
+                ProductEntry.COLUMN_IMAGE,
+                ProductEntry.COLUMN_SUPLIER_NAME,
+                ProductEntry.COLUMN_SUPLIER_CONTACT
         };
 
         return new CursorLoader(this, ProductEntry.CONTENT_URI,
@@ -98,9 +105,43 @@ public class InventoryCatalog extends AppCompatActivity implements LoaderManager
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.delete_all:
-                getContentResolver().delete(ProductEntry.CONTENT_URI,  null,null);
+                showDeleteConfirmationDialog();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void showDeleteConfirmationDialog() {
+        // Create an AlertDialog.Builder and set the message, and click listeners
+        // for the postivie and negative buttons on the dialog.
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.delete_all);
+        builder.setPositiveButton(R.string.deleteDialog, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked the "Delete" button, so delete the pet.
+                deleteProduct();
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked the "Cancel" button, so dismiss the dialog
+                // and continue editing the pet.
+                if (dialog != null) {
+                    dialog.dismiss();
+                }
+            }
+        });
+
+        // Create and show the AlertDialog
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    /**
+     * Perform the deletion of the pet in the database.
+     */
+    private void deleteProduct() {
+        getContentResolver().delete(ProductEntry.CONTENT_URI,  null,null);
     }
 }

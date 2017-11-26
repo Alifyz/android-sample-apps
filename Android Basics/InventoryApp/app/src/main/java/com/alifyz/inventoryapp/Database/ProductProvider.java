@@ -72,24 +72,48 @@ public class ProductProvider extends ContentProvider {
 
         switch (match) {
             case PRODUCT_DB:
+                if(contentValues.containsKey(ProductEntry.COLUMN_QUANTITY)) {
+                    int quantity = contentValues.getAsInteger(ProductEntry.COLUMN_QUANTITY);
+                    if(quantity < 0) {
+                        throw new IllegalArgumentException("Invalid negative quantity");
+                    }
+                }
 
-                String productName = contentValues.getAsString(ProductEntry.COLUMN_NAME);
-                String suplierName = contentValues.getAsString(ProductEntry.COLUMN_SUPLIER_NAME);
-                String suplierContact = contentValues.getAsString(ProductEntry.COLUMN_SUPLIER_CONTACT);
-                int quantity = contentValues.getAsInteger(ProductEntry.COLUMN_QUANTITY);
-                int sales = contentValues.getAsInteger(ProductEntry.COLUMN_SALES);
+                if(contentValues.containsKey(ProductEntry.COLUMN_SUPLIER_NAME)) {
+                    String productName = contentValues.getAsString(ProductEntry.COLUMN_NAME);
+                    if(productName == null) {
+                        throw new IllegalArgumentException("Can't allow empty names");
+                    }
+                }
 
-                if (productName == null || suplierName == null || suplierContact == null ||
-                        quantity < 0 || sales < 0) {
-                    throw new IllegalArgumentException("Invalid data being inserted into the database");
+                if(contentValues.containsKey(ProductEntry.COLUMN_SUPLIER_NAME)) {
+                    String suplierName = contentValues.getAsString(ProductEntry.COLUMN_SUPLIER_NAME);
+                    if(suplierName == null) {
+                        throw new IllegalArgumentException("Can't allow empty names");
+                    }
+                }
+
+                if(contentValues.containsKey(ProductEntry.COLUMN_SUPLIER_CONTACT)) {
+                    String suplierContact = contentValues.getAsString(ProductEntry.COLUMN_SUPLIER_CONTACT);
+                    if(suplierContact == null) {
+                        throw new IllegalArgumentException("Can't allow empty contact");
+                    }
+                }
+
+                if(contentValues.containsKey(ProductEntry.COLUMN_SALES)) {
+                    int sales = contentValues.getAsInteger(ProductEntry.COLUMN_SALES);
+                    if(sales < 0 ) {
+                        throw new IllegalArgumentException("Invalid number of sales");
+                    }
                 }
 
                 id = database.insert(ProductEntry.TABLE_NAME, null, contentValues);
+
                 if (id == -1) {
-                    Log.e(LOG_TAG, "Data inserted correctly");
+                    Log.e(LOG_TAG, "Error trying to insert the data");
                     return null;
                 } else {
-                    Log.i(LOG_TAG, "Error trying to insert the data");
+                    Log.i(LOG_TAG, "Everything works fine here");
                 }
                 break;
             default:
@@ -116,7 +140,6 @@ public class ProductProvider extends ContentProvider {
             default:
                 throw new IllegalArgumentException("Invalid URI " + uri);
         }
-
 
     }
 
