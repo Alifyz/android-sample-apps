@@ -66,5 +66,10 @@ public class CursorUtils {
         }
     }
 
-
+    public static Uri getDefaultUri(Context context) {
+        Uri defautImageUri = Uri.parse("android.resource://"
+                + context.getPackageName()
+                + "/drawable/default_photo");
+        return defautImageUri;
+    }
 }

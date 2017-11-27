@@ -43,7 +43,6 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
     private Button mNewOrder;
     private Uri currentUri;
     private ImageView mProductImage;
-
     private Boolean mProductHasChanged = false;
     private Button addQtd;
     private Button remQtd;
@@ -54,6 +53,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
     private Uri mImageResourceUri;
     private TextView mProductImageText;
     private static final int REQUEST_CODE = 1;
+    private  String imageStringURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -220,10 +220,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
             int emailColumIndex = cursor.getColumnIndex(ProductEntry.COLUMN_SUPLIER_CONTACT);
             int imageUriColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_IMAGE);
 
-            String imageStringURL = cursor.getString(imageUriColumnIndex);
-
-            Log.d("Image current Uri", imageStringURL);
-
+            imageStringURL = cursor.getString(imageUriColumnIndex);
             String productName = cursor.getString(nameColumnIndex);
             int productQuantity = cursor.getInt(qtdColumnIndex);
             double productPrice = cursor.getDouble(priceColumnIndex);
@@ -235,6 +232,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
             mProductPrice.setText(String.valueOf(productPrice));
             mProductSupplier.setText(String.valueOf(productSupplier));
             mProductSuppEmail.setText(productContact);
+            mProductImage.setImageURI(Uri.parse(imageStringURL));
         }
     }
 
@@ -354,8 +352,10 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
     private String getImageURI() {
         if (mImageResourceUri != null) {
             return mImageResourceUri.toString();
-        } else {
-            return null;
+        } else if(!imageStringURL.isEmpty()) {
+            return Uri.parse(imageStringURL).toString();
+        }else {
+            return CursorUtils.getDefaultUri(ProductDetailsActivity.this).toString();
         }
     }
 
@@ -457,4 +457,6 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
         Toast.makeText(ProductDetailsActivity.this, getString(R.string.invalidinput),
                 Toast.LENGTH_LONG).show();
     }
+
+
 }
