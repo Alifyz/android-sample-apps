@@ -108,28 +108,24 @@ public class InventoryCatalogActivity extends AppCompatActivity implements Loade
         return super.onOptionsItemSelected(item);
     }
 
+    //Code Based on the Udacity - Android Basics Content Provider Lessons
     private void showDeleteConfirmationDialog() {
-        // Create an AlertDialog.Builder and set the message, and click listeners
-        // for the postivie and negative buttons on the dialog.
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.delete_all);
         builder.setPositiveButton(R.string.deleteDialog, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                // User clicked the "Delete" button, so delete the pet.
                 deleteProduct();
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                // User clicked the "Cancel" button, so dismiss the dialog
-                // and continue editing the pet.
                 if (dialog != null) {
                     dialog.dismiss();
                 }
             }
         });
 
-        // Create and show the AlertDialog
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }

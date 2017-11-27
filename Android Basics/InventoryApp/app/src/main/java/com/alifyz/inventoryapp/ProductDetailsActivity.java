@@ -113,6 +113,13 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
             }
         });
 
+        mNewOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                composeEmail();
+            }
+        });
+
         //Stack Overflow
         //Creditos for this Solution: User Blessenm
         //https://stackoverflow.com/questions/7733813/how-can-you-tell-when-a-layout-has-been-drawn/7735122#7735122
@@ -145,7 +152,6 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
                 showDeleteConfirmationDialog();
                 break;
             case android.R.id.home:
-                //Code Based on Lesson - Content Providers - Udacity
                 if (!mProductHasChanged) {
                     NavUtils.navigateUpFromSameTask(ProductDetailsActivity.this);
                     return true;
@@ -425,6 +431,20 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         imageViewLoaderListener();
         super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    public void composeEmail() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("*/*");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "New Order: " + mProductName.getText().toString());
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[] {mProductSuppEmail.getText().toString()});
+
+        String bodyMessage = "Dear, " + mProductSupplier.getText().toString() + "\n"
+                + "Our Store would like to order more of " + mProductName.getText().toString();
+        intent.putExtra(Intent.EXTRA_TEXT, bodyMessage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     //Helper methods to Manage the Store Functions
