@@ -410,7 +410,9 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
                 ContentValues salesData = new ContentValues();
                 salesData.put(ProductEntry.COLUMN_SALES, mCurrentSales);
                 salesData.put(ProductEntry.COLUMN_QUANTITY, mCurrentQtd);
-                getContentResolver().update(currentUri, salesData, null, null);
+                if(currentUri != null) {
+                    getContentResolver().update(currentUri, salesData, null, null);
+                }
             }
         }
     }
@@ -418,7 +420,9 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
     private void updateQuantity() {
         ContentValues data = new ContentValues();
         data.put(ProductEntry.COLUMN_QUANTITY, mCurrentQtd);
-        getContentResolver().update(currentUri, data, null, null);
+        if(currentUri != null) {
+            getContentResolver().update(currentUri, data, null, null);
+        }
     }
 
     private void bindViews() {
