@@ -176,12 +176,10 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
             ProductQtd = 0;
             ProductSales = 0;
         }
-
-        if (mProductName.getText().toString().isEmpty() || mProductSupplier.getText().toString().isEmpty()
-            || mProductSuppEmail.getText().toString().isEmpty()) {
-                Toast.makeText(ProductDetailsActivity.this, getString(R.string.invalidinput), Toast.LENGTH_LONG).show();
-                finish();
-                return null;
+        if (isEntryValid()) {
+            showInvalidToast();
+            finish();
+            return null;
         } else {
             data.put(ProductEntry.COLUMN_NAME, ProductName);
             data.put(ProductEntry.COLUMN_PRICE, ProductPrice);
@@ -193,7 +191,6 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
         }
         return data;
     }
-
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
 
@@ -210,7 +207,6 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
 
         return new CursorLoader(this, currentUri,
                 projection, null, null, null);
-
     }
 
     @Override
@@ -222,6 +218,11 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
             int priceColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRICE);
             int suppColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_SUPLIER_NAME);
             int emailColumIndex = cursor.getColumnIndex(ProductEntry.COLUMN_SUPLIER_CONTACT);
+            int imageUriColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_IMAGE);
+
+            String imageStringURL = cursor.getString(imageUriColumnIndex);
+
+            Log.d("Image current Uri", imageStringURL);
 
             String productName = cursor.getString(nameColumnIndex);
             int productQuantity = cursor.getInt(qtdColumnIndex);
@@ -234,7 +235,6 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
             mProductPrice.setText(String.valueOf(productPrice));
             mProductSupplier.setText(String.valueOf(productSupplier));
             mProductSuppEmail.setText(productContact);
-            mProductImage.setImageResource(R.drawable.default_photo);
         }
     }
 
@@ -343,7 +343,6 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
         if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             if (resultData != null) {
                 mImageResourceUri = resultData.getData();
-                Log.i("Intent Images", "Uri: " + mImageResourceUri.toString());
                 Bitmap extractedImageUtils = CursorUtils.getBitmapFromUri(mImageResourceUri, this, mProductImage);
                 if (extractedImageUtils != null) {
                     mProductImage.setImageBitmap(extractedImageUtils);
@@ -443,5 +442,19 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
         mProductQtd.setOnTouchListener(mTouchListener);
         mProductSupplier.setOnTouchListener(mTouchListener);
         mProductSuppEmail.setOnTouchListener(mTouchListener);
+    }
+
+    private Boolean isEntryValid() {
+        if(mProductName.getText().toString().isEmpty()  || mProductSupplier.getText().toString().isEmpty()
+            || mProductSuppEmail.getText().toString().isEmpty()) {
+                return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void showInvalidToast() {
+        Toast.makeText(ProductDetailsActivity.this, getString(R.string.invalidinput),
+                Toast.LENGTH_LONG).show();
     }
 }
