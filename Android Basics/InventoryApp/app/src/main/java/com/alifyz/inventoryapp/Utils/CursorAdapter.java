@@ -2,6 +2,7 @@ package com.alifyz.inventoryapp.Utils;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 
 import com.alifyz.inventoryapp.ProductDetailsActivity;
@@ -88,6 +89,7 @@ public class CursorAdapter extends android.widget.CursorAdapter{
          mImageStringURI = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_IMAGE));
          mImageUri = Uri.parse(mImageStringURI);
     }
+
     private void setData(Context context) {
         mProductName.setText(mNameFromDatabase);
         mProductPrice.setText(context.getString(R.string.moneyTag));
@@ -98,6 +100,10 @@ public class CursorAdapter extends android.widget.CursorAdapter{
         mProductSales.append(" " + context.getString(R.string.salesInfo));
         mProductSupplier.setText(context.getString(R.string.supplier));
         mProductSupplier.append(" " + mSupplierFromDatabase);
+    }
+
+    private void BitmapOptimization() {
+
     }
 
 }
