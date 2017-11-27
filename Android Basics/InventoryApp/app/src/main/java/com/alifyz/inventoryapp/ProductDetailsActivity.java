@@ -26,14 +26,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.alifyz.inventoryapp.Database.ProductDb.ProductEntry;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class ProductDetails extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class ProductDetailsActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private EditText mProductName;
     private EditText mProductPrice;
@@ -42,17 +41,18 @@ public class ProductDetails extends AppCompatActivity implements LoaderManager.L
     private EditText mProductSuppEmail;
     private Button mNewOrder;
     private Uri currentUri;
-    private Cursor currentData = null;
+    private ImageView mProductImage;
+
     private Boolean mProductHasChanged = false;
     private Button addQtd;
     private Button remQtd;
     private Button mSalesBtn;
-    private ImageView mProductImage;
+
     public static int mCurrentSales = 0;
     private int mCurrentQtd = 0;
     private Uri mImageResourceUri;
     private TextView mProductImageText;
-    private final int REQUEST_CODE = 1;
+    private static final int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +95,7 @@ public class ProductDetails extends AppCompatActivity implements LoaderManager.L
         remQtd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                remQuantity();
+                removeQuantity();
             }
         });
 
@@ -147,14 +147,14 @@ public class ProductDetails extends AppCompatActivity implements LoaderManager.L
             case android.R.id.home:
                 //Code Based on Lesson - Content Providers - Udacity
                 if (!mProductHasChanged) {
-                    NavUtils.navigateUpFromSameTask(ProductDetails.this);
+                    NavUtils.navigateUpFromSameTask(ProductDetailsActivity.this);
                     return true;
                 }
                 DialogInterface.OnClickListener discardButtonClickListener =
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                NavUtils.navigateUpFromSameTask(ProductDetails.this);
+                                NavUtils.navigateUpFromSameTask(ProductDetailsActivity.this);
                             }
                         };
                 showUnsavedChangesDialog(discardButtonClickListener);
@@ -184,7 +184,7 @@ public class ProductDetails extends AppCompatActivity implements LoaderManager.L
             imageUri = getImageURI();
 
         } catch (NumberFormatException e) {
-            Log.e("ProductDetails", "Error parsing the Price or Qtd or Sales");
+            Log.e("ProductDetailsActivity", "Error parsing the Price or Qtd or Sales");
             ProductPrice = 0;
             ProductQtd = 0;
             ProductSales = 0;
@@ -192,7 +192,7 @@ public class ProductDetails extends AppCompatActivity implements LoaderManager.L
 
         if (mProductName.getText().toString().isEmpty() || mProductSupplier.getText().toString().isEmpty()
             || mProductSuppEmail.getText().toString().isEmpty() || imageUri == null) {
-                Toast.makeText(ProductDetails.this, getString(R.string.invalidinput), Toast.LENGTH_LONG).show();
+                Toast.makeText(ProductDetailsActivity.this, getString(R.string.invalidinput), Toast.LENGTH_LONG).show();
                 finish();
                 return null;
         } else {
@@ -439,7 +439,7 @@ public class ProductDetails extends AppCompatActivity implements LoaderManager.L
         }
     }
 
-    private void remQuantity() {
+    private void removeQuantity() {
         if (!mProductQtd.getText().toString().isEmpty()) {
             mCurrentQtd = Integer.parseInt(mProductQtd.getText().toString());
             mCurrentQtd--;

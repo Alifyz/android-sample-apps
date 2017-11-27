@@ -1,25 +1,18 @@
 package com.alifyz.inventoryapp.Utils;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.Cursor;
-import android.media.Image;
 import android.net.Uri;
-import android.text.Layout;
-import android.util.Log;
 
-import com.alifyz.inventoryapp.ProductDetails;
+import com.alifyz.inventoryapp.ProductDetailsActivity;
 import com.alifyz.inventoryapp.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.alifyz.inventoryapp.Database.ProductDb;
-import com.alifyz.inventoryapp.Database.ProductDb.ProductEntry;
-import com.alifyz.inventoryapp.R;
 
-import org.w3c.dom.Text;
+import com.alifyz.inventoryapp.Database.ProductDb.ProductEntry;
 
 import java.util.Locale;
 
@@ -29,6 +22,22 @@ import java.util.Locale;
 
 public class CursorAdapter extends android.widget.CursorAdapter{
 
+    private TextView mProductName;
+    private TextView mProductPrice;
+    private TextView mProductQuantity;
+    private TextView mProductSales;
+    private TextView mProductAvailable;
+    private TextView mProductSupplier;
+    private ImageView mProductImage;
+
+    private String mNameFromDatabase;
+    private double mPriceFromDatabase;
+    private String mPriceNumberFromDatabase;
+    private int mQuantityFromDatabase;
+    private int mSalesFromDatabase;
+    private String mSupplierFromDatabase;
+    private String mImageStringURI;
+    private Uri mImageUri;
 
     public CursorAdapter(Context context, Cursor c) {
         super(context, c);
@@ -39,49 +48,56 @@ public class CursorAdapter extends android.widget.CursorAdapter{
         return LayoutInflater.from(context).inflate(R.layout.item_list, parent,false);
     }
 
-    //TODO - Fix the price dislay
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
 
-        String nameFromDb = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_NAME));
-        double priceFromDb = (cursor.getDouble(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_PRICE))) /100;
-        String priceFromDbDisplayed =  String.format(Locale.getDefault(),"%.2f", priceFromDb);
-        int quantityFromDb = cursor.getInt(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_QUANTITY));
-        int salesFromDb = ProductDetails.mCurrentSales;
-        String SupplierFromDb = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_SUPLIER_NAME));
-        String imageFromDb = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_IMAGE));
+        extractData(cursor);
 
-        Uri imageUri = Uri.parse(imageFromDb);
+        bindViews(view);
 
-        TextView productName = (TextView) view.findViewById(R.id.name);
-        TextView productPrice = (TextView) view.findViewById(R.id.price);
-        TextView productQuantity = (TextView) view.findViewById(R.id.quantity);
-        TextView productSales = (TextView) view.findViewById(R.id.sales);
-        TextView productAvailable = (TextView) view.findViewById(R.id.in_stock);
-        TextView productSupplier = (TextView) view.findViewById(R.id.suplier);
-        ImageView productImage = (ImageView) view.findViewById(R.id.profile_image);
+        setData(context);
 
-        productName.setText(nameFromDb);
-        productPrice.setText(context.getString(R.string.moneyTag));
-        productPrice.append(priceFromDbDisplayed);
-        productQuantity.setText(context.getString(R.string.qtdCode));
-        productQuantity.append(String.valueOf(quantityFromDb));
-        productSales.setText(String.valueOf(salesFromDb));
-        productSales.append(" " + context.getString(R.string.salesInfo));
-        productSupplier.setText(context.getString(R.string.supplier));
-        productSupplier.append(" " + SupplierFromDb);
-
-        if(imageUri != null) {
-            productImage.setImageURI(Uri.parse(imageFromDb));
-        }else {
-            productImage.setImageResource(R.drawable.default_photo);
+        if(mImageUri != null) {
+            mProductImage.setImageURI(Uri.parse(mImageStringURI));
         }
 
-        if(quantityFromDb <= 0) {
-            productAvailable.setText(context.getString(R.string.noStock));
+        if(mQuantityFromDatabase <= 0) {
+            mProductAvailable.setText(context.getString(R.string.noStock));
         } else {
-            productAvailable.setText(context.getString(R.string.inStock));
+            mProductAvailable.setText(context.getString(R.string.inStock));
         }
-
     }
+
+    private void bindViews(View view) {
+         mProductName = (TextView) view.findViewById(R.id.name);
+         mProductPrice = (TextView) view.findViewById(R.id.price);
+         mProductQuantity = (TextView) view.findViewById(R.id.quantity);
+         mProductSales = (TextView) view.findViewById(R.id.sales);
+         mProductAvailable = (TextView) view.findViewById(R.id.in_stock);
+         mProductSupplier = (TextView) view.findViewById(R.id.suplier);
+         mProductImage = (ImageView) view.findViewById(R.id.profile_image);
+    }
+
+    private void extractData(Cursor cursor) {
+         mNameFromDatabase = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_NAME));
+         mPriceFromDatabase = (cursor.getDouble(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_PRICE))) /100;
+         mPriceNumberFromDatabase =  String.format(Locale.getDefault(),"%.2f", mPriceFromDatabase);
+         mQuantityFromDatabase = cursor.getInt(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_QUANTITY));
+         mSalesFromDatabase = ProductDetailsActivity.mCurrentSales;
+         mSupplierFromDatabase = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_SUPLIER_NAME));
+         mImageStringURI = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_IMAGE));
+         mImageUri = Uri.parse(mImageStringURI);
+    }
+    private void setData(Context context) {
+        mProductName.setText(mNameFromDatabase);
+        mProductPrice.setText(context.getString(R.string.moneyTag));
+        mProductPrice.append(mPriceNumberFromDatabase);
+        mProductQuantity.setText(context.getString(R.string.qtdCode));
+        mProductQuantity.append(String.valueOf(mQuantityFromDatabase));
+        mProductSales.setText(String.valueOf(mSalesFromDatabase));
+        mProductSales.append(" " + context.getString(R.string.salesInfo));
+        mProductSupplier.setText(context.getString(R.string.supplier));
+        mProductSupplier.append(" " + mSupplierFromDatabase);
+    }
+
 }

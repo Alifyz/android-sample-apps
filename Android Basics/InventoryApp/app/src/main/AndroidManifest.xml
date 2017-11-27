@@ -9,14 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InventoryCatalog">
+        <activity android:name=".InventoryCatalogActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProductDetails"></activity>
+        <activity android:name=".ProductDetailsActivity"></activity>
 
         <provider
             android:authorities="com.alifyz.inventoryapp.product"

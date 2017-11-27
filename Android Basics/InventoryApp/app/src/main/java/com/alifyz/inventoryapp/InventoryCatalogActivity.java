@@ -21,14 +21,13 @@ import android.widget.TextView;
 import com.alifyz.inventoryapp.Database.ProductDb.ProductEntry;
 import com.alifyz.inventoryapp.Utils.CursorAdapter;
 
-public class InventoryCatalog extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class InventoryCatalogActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private final int LOADER_ID = 0;
     private TextView mEmptyText;
     private ListView mListView;
     private CursorAdapter mCursorAdapter;
     private FloatingActionButton mActionButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,22 +42,20 @@ public class InventoryCatalog extends AppCompatActivity implements LoaderManager
         mActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent ProductDetails = new Intent(InventoryCatalog.this, ProductDetails.class);
+                Intent ProductDetails = new Intent(InventoryCatalogActivity.this, ProductDetailsActivity.class);
                 startActivity(ProductDetails);
             }
         });
 
-
         mCursorAdapter = new CursorAdapter(this, null);
         mListView.setAdapter(mCursorAdapter);
-
 
         getLoaderManager().initLoader(LOADER_ID, null, this);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent updateProduct = new Intent(InventoryCatalog.this, ProductDetails.class);
+                Intent updateProduct = new Intent(InventoryCatalogActivity.this, ProductDetailsActivity.class);
                 Uri getCurrentProduct = ContentUris.withAppendedId(ProductEntry.CONTENT_URI, id);
                 updateProduct.setData(getCurrentProduct);
                 startActivity(updateProduct);
@@ -111,7 +108,6 @@ public class InventoryCatalog extends AppCompatActivity implements LoaderManager
         return super.onOptionsItemSelected(item);
     }
 
-
     private void showDeleteConfirmationDialog() {
         // Create an AlertDialog.Builder and set the message, and click listeners
         // for the postivie and negative buttons on the dialog.
@@ -138,9 +134,6 @@ public class InventoryCatalog extends AppCompatActivity implements LoaderManager
         alertDialog.show();
     }
 
-    /**
-     * Perform the deletion of the pet in the database.
-     */
     private void deleteProduct() {
         getContentResolver().delete(ProductEntry.CONTENT_URI,  null,null);
     }
