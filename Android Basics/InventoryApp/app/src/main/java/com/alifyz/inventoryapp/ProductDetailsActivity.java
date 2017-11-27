@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.alifyz.inventoryapp.Database.ProductDb.ProductEntry;
+import com.alifyz.inventoryapp.Utils.CursorUtils;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -62,18 +63,8 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
         Intent getUpdateRequest = getIntent();
         currentUri = getUpdateRequest.getData();
 
-        mProductName = (EditText) findViewById(R.id.edit_name);
-        mProductPrice = (EditText) findViewById(R.id.edit_price);
-        mProductQtd = (EditText) findViewById(R.id.edit_quantity);
-        mProductSupplier = (EditText) findViewById(R.id.edit_supplier_name);
-        mProductSuppEmail = (EditText) findViewById(R.id.edit_contact);
-        mNewOrder = (Button) findViewById(R.id.new_order);
-        addQtd = (Button) findViewById(R.id.add_qtd);
-        remQtd = (Button) findViewById(R.id.rem_qtd);
-        mSalesBtn = (Button) findViewById(R.id.sell_item);
-        mProductImage = (ImageView) findViewById(R.id.product_image);
-        mProductImage.setImageResource(R.drawable.default_photo);
-        mProductImageText = (TextView) findViewById(R.id.picture_text);
+        bindViews();
+        setViewsListeners();
 
         if (currentUri == null) {
             setTitle(getString(R.string.add_product));
@@ -120,16 +111,6 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
             }
         });
 
-        //Stack Overflow
-        //Creditos for this Solution: User Blessenm
-        //https://stackoverflow.com/questions/7733813/how-can-you-tell-when-a-layout-has-been-drawn/7735122#7735122
-        imageViewLoaderListener();
-
-        mProductName.setOnTouchListener(mTouchListener);
-        mProductPrice.setOnTouchListener(mTouchListener);
-        mProductQtd.setOnTouchListener(mTouchListener);
-        mProductSupplier.setOnTouchListener(mTouchListener);
-        mProductSuppEmail.setOnTouchListener(mTouchListener);
     }
 
     @Override
@@ -197,7 +178,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
         }
 
         if (mProductName.getText().toString().isEmpty() || mProductSupplier.getText().toString().isEmpty()
-            || mProductSuppEmail.getText().toString().isEmpty() || imageUri == null) {
+            || mProductSuppEmail.getText().toString().isEmpty()) {
                 Toast.makeText(ProductDetailsActivity.this, getString(R.string.invalidinput), Toast.LENGTH_LONG).show();
                 finish();
                 return null;
@@ -235,8 +216,6 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
         if (cursor.moveToFirst()) {
-            //Attach a Listener to the ImageView to Listener and Set the Image
-            imageViewLoaderListener();
 
             int nameColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_NAME);
             int qtdColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_QUANTITY);
@@ -365,9 +344,9 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
             if (resultData != null) {
                 mImageResourceUri = resultData.getData();
                 Log.i("Intent Images", "Uri: " + mImageResourceUri.toString());
-                Bitmap extractedImage = getBitmapFromUri(mImageResourceUri);
-                if (extractedImage != null) {
-                    mProductImage.setImageBitmap(extractedImage);
+                Bitmap extractedImageUtils = CursorUtils.getBitmapFromUri(mImageResourceUri, this, mProductImage);
+                if (extractedImageUtils != null) {
+                    mProductImage.setImageBitmap(extractedImageUtils);
                 }
             }
         }
@@ -381,55 +360,8 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
         }
     }
 
-    //Code based on: Carlos Jimenez (@crlsndrsjmnz)
-    //https://github.com/crlsndrsjmnz/MyShareImageExample
-    public Bitmap getBitmapFromUri(Uri uri) {
-
-        if (uri == null || uri.toString().isEmpty())
-            return null;
-        int targetW = mProductImage.getWidth();
-        int targetH = mProductImage.getHeight();
-
-        InputStream input = null;
-        try {
-            input = this.getContentResolver().openInputStream(uri);
-            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-            bmOptions.inJustDecodeBounds = true;
-            BitmapFactory.decodeStream(input, null, bmOptions);
-            input.close();
-
-            int photoW = bmOptions.outWidth;
-            int photoH = bmOptions.outHeight;
-
-            // Determine how much to scale down the image
-            int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
-
-            // Decode the image file into a Bitmap sized to fill the View
-            bmOptions.inJustDecodeBounds = false;
-            bmOptions.inSampleSize = scaleFactor;
-            bmOptions.inPurgeable = true;
-
-            input = this.getContentResolver().openInputStream(uri);
-            Bitmap bitmap = BitmapFactory.decodeStream(input, null, bmOptions);
-            input.close();
-            return bitmap;
-
-        } catch (FileNotFoundException fne) {
-            Log.e("Product details", "Failed to load image.", fne);
-            return null;
-        } catch (Exception e) {
-            Log.e("product Details", "Failed to load image.", e);
-            return null;
-        } finally {
-            try {
-                input.close();
-            } catch (IOException ioe) {}
-        }
-    }
-
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        imageViewLoaderListener();
         super.onRestoreInstanceState(savedInstanceState);
     }
 
@@ -447,15 +379,12 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
         }
     }
 
-    //Helper methods to Manage the Store Functions
     private void addQuantity() {
         if (!mProductQtd.getText().toString().isEmpty()) {
             mCurrentQtd = Integer.parseInt(mProductQtd.getText().toString());
             mCurrentQtd++;
             mProductQtd.setText(String.valueOf(mCurrentQtd));
-            ContentValues data = new ContentValues();
-            data.put(ProductEntry.COLUMN_QUANTITY, mCurrentQtd);
-            getContentResolver().update(currentUri, data, null, null);
+            updateQuantity();
         }
     }
 
@@ -468,9 +397,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
                 mCurrentQtd = 0;
                 mProductQtd.setText(String.valueOf(mCurrentQtd));
             }
-            ContentValues data = new ContentValues();
-            data.put(ProductEntry.COLUMN_QUANTITY, mCurrentQtd);
-            getContentResolver().update(currentUri, data, null, null);
+            updateQuantity();
         }
     }
 
@@ -489,14 +416,32 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
         }
     }
 
-    private void imageViewLoaderListener() {
-        ViewTreeObserver viewTreeObserver = mProductImage.getViewTreeObserver();
-        viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                mProductImage.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                mProductImage.setImageBitmap(getBitmapFromUri(mImageResourceUri));
-            }
-        });
+    private void updateQuantity() {
+        ContentValues data = new ContentValues();
+        data.put(ProductEntry.COLUMN_QUANTITY, mCurrentQtd);
+        getContentResolver().update(currentUri, data, null, null);
+    }
+
+    private void bindViews() {
+        mProductName = (EditText) findViewById(R.id.edit_name);
+        mProductPrice = (EditText) findViewById(R.id.edit_price);
+        mProductQtd = (EditText) findViewById(R.id.edit_quantity);
+        mProductSupplier = (EditText) findViewById(R.id.edit_supplier_name);
+        mProductSuppEmail = (EditText) findViewById(R.id.edit_contact);
+        mNewOrder = (Button) findViewById(R.id.new_order);
+        addQtd = (Button) findViewById(R.id.add_qtd);
+        remQtd = (Button) findViewById(R.id.rem_qtd);
+        mSalesBtn = (Button) findViewById(R.id.sell_item);
+        mProductImage = (ImageView) findViewById(R.id.product_image);
+        mProductImage.setImageResource(R.drawable.default_photo);
+        mProductImageText = (TextView) findViewById(R.id.picture_text);
+    }
+
+    private void setViewsListeners() {
+        mProductName.setOnTouchListener(mTouchListener);
+        mProductPrice.setOnTouchListener(mTouchListener);
+        mProductQtd.setOnTouchListener(mTouchListener);
+        mProductSupplier.setOnTouchListener(mTouchListener);
+        mProductSuppEmail.setOnTouchListener(mTouchListener);
     }
 }
