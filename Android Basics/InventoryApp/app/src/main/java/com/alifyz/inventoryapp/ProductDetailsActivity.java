@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -20,7 +19,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,31 +27,26 @@ import android.widget.Toast;
 import com.alifyz.inventoryapp.Database.ProductDb.ProductEntry;
 import com.alifyz.inventoryapp.Utils.CursorUtils;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-
 public class ProductDetailsActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private EditText mProductName;
     private EditText mProductPrice;
-    private EditText mProductQtd;
+    private EditText mProductQuantity;
     private EditText mProductSupplier;
     private EditText mProductSuppEmail;
     private Button mNewOrder;
     private Uri currentUri;
     private ImageView mProductImage;
     private Boolean mProductHasChanged = false;
-    private Button addQtd;
-    private Button remQtd;
+    private Button addQuantity;
+    private Button removeQuantity;
     private Button mSalesBtn;
-
-    public static int mCurrentSales = 0;
-    private int mCurrentQtd = 0;
-    private Uri mImageResourceUri;
     private TextView mProductImageText;
-    private static final int REQUEST_CODE = 1;
     private  String imageStringURL;
+    private Uri mImageResourceUri;
+    private static final int REQUEST_CODE = 1;
+    public static int mCurrentSales = 0;
+    private int mCurrentQuantity = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,14 +69,14 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
             mNewOrder.setVisibility(View.VISIBLE);
         }
 
-        addQtd.setOnClickListener(new View.OnClickListener() {
+        addQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addQuantity();
             }
         });
 
-        remQtd.setOnClickListener(new View.OnClickListener() {
+        removeQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 removeQuantity();
@@ -165,7 +158,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
         try {
             ProductName = mProductName.getText().toString();
             ProductPrice = Double.parseDouble(mProductPrice.getText().toString());
-            ProductQtd = Integer.parseInt(mProductQtd.getText().toString());
+            ProductQtd = Integer.parseInt(mProductQuantity.getText().toString());
             ProductSupplier = mProductSupplier.getText().toString();
             ProductContact = mProductSuppEmail.getText().toString();
             imageUri = getImageURI();
@@ -178,7 +171,6 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
         }
         if (isEntryValid()) {
             showInvalidToast();
-            finish();
             return null;
         } else {
             data.put(ProductEntry.COLUMN_NAME, ProductName);
@@ -228,7 +220,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
             String productContact = cursor.getString(emailColumIndex);
 
             mProductName.setText(productName);
-            mProductQtd.setText(String.valueOf(productQuantity));
+            mProductQuantity.setText(String.valueOf(productQuantity));
             mProductPrice.setText(String.valueOf(productPrice));
             mProductSupplier.setText(String.valueOf(productSupplier));
             mProductSuppEmail.setText(productContact);
@@ -352,9 +344,11 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
     private String getImageURI() {
         if (mImageResourceUri != null) {
             return mImageResourceUri.toString();
-        } else if(!imageStringURL.isEmpty()) {
+        } else if(imageStringURL == null) {
+            return CursorUtils.getDefaultUri(ProductDetailsActivity.this).toString();
+        } else if (!imageStringURL.isEmpty()){
             return Uri.parse(imageStringURL).toString();
-        }else {
+        } else {
             return CursorUtils.getDefaultUri(ProductDetailsActivity.this).toString();
         }
     }
@@ -379,37 +373,37 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
     }
 
     private void addQuantity() {
-        if (!mProductQtd.getText().toString().isEmpty()) {
-            mCurrentQtd = Integer.parseInt(mProductQtd.getText().toString());
-            mCurrentQtd++;
-            mProductQtd.setText(String.valueOf(mCurrentQtd));
+        if (!mProductQuantity.getText().toString().isEmpty()) {
+            mCurrentQuantity = Integer.parseInt(mProductQuantity.getText().toString());
+            mCurrentQuantity++;
+            mProductQuantity.setText(String.valueOf(mCurrentQuantity));
             updateQuantity();
         }
     }
 
     private void removeQuantity() {
-        if (!mProductQtd.getText().toString().isEmpty()) {
-            mCurrentQtd = Integer.parseInt(mProductQtd.getText().toString());
-            mCurrentQtd--;
-            mProductQtd.setText(String.valueOf(mCurrentQtd));
-            if (mCurrentQtd <= 0) {
-                mCurrentQtd = 0;
-                mProductQtd.setText(String.valueOf(mCurrentQtd));
+        if (!mProductQuantity.getText().toString().isEmpty()) {
+            mCurrentQuantity = Integer.parseInt(mProductQuantity.getText().toString());
+            mCurrentQuantity--;
+            mProductQuantity.setText(String.valueOf(mCurrentQuantity));
+            if (mCurrentQuantity <= 0) {
+                mCurrentQuantity = 0;
+                mProductQuantity.setText(String.valueOf(mCurrentQuantity));
             }
             updateQuantity();
         }
     }
 
     private void sellProduct() {
-        if (!mProductQtd.getText().toString().isEmpty()) {
-            mCurrentQtd = Integer.parseInt(mProductQtd.getText().toString());
-            if (mCurrentQtd > 0) {
+        if (!mProductQuantity.getText().toString().isEmpty()) {
+            mCurrentQuantity = Integer.parseInt(mProductQuantity.getText().toString());
+            if (mCurrentQuantity > 0) {
                 mCurrentSales++;
-                mCurrentQtd--;
-                mProductQtd.setText(String.valueOf(mCurrentQtd));
+                mCurrentQuantity--;
+                mProductQuantity.setText(String.valueOf(mCurrentQuantity));
                 ContentValues salesData = new ContentValues();
                 salesData.put(ProductEntry.COLUMN_SALES, mCurrentSales);
-                salesData.put(ProductEntry.COLUMN_QUANTITY, mCurrentQtd);
+                salesData.put(ProductEntry.COLUMN_QUANTITY, mCurrentQuantity);
                 if(currentUri != null) {
                     getContentResolver().update(currentUri, salesData, null, null);
                 }
@@ -419,7 +413,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
 
     private void updateQuantity() {
         ContentValues data = new ContentValues();
-        data.put(ProductEntry.COLUMN_QUANTITY, mCurrentQtd);
+        data.put(ProductEntry.COLUMN_QUANTITY, mCurrentQuantity);
         if(currentUri != null) {
             getContentResolver().update(currentUri, data, null, null);
         }
@@ -428,12 +422,12 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
     private void bindViews() {
         mProductName = (EditText) findViewById(R.id.edit_name);
         mProductPrice = (EditText) findViewById(R.id.edit_price);
-        mProductQtd = (EditText) findViewById(R.id.edit_quantity);
+        mProductQuantity = (EditText) findViewById(R.id.edit_quantity);
         mProductSupplier = (EditText) findViewById(R.id.edit_supplier_name);
         mProductSuppEmail = (EditText) findViewById(R.id.edit_contact);
         mNewOrder = (Button) findViewById(R.id.new_order);
-        addQtd = (Button) findViewById(R.id.add_qtd);
-        remQtd = (Button) findViewById(R.id.rem_qtd);
+        addQuantity = (Button) findViewById(R.id.add_qtd);
+        removeQuantity = (Button) findViewById(R.id.rem_qtd);
         mSalesBtn = (Button) findViewById(R.id.sell_item);
         mProductImage = (ImageView) findViewById(R.id.product_image);
         mProductImage.setImageResource(R.drawable.default_photo);
@@ -443,7 +437,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
     private void setViewsListeners() {
         mProductName.setOnTouchListener(mTouchListener);
         mProductPrice.setOnTouchListener(mTouchListener);
-        mProductQtd.setOnTouchListener(mTouchListener);
+        mProductQuantity.setOnTouchListener(mTouchListener);
         mProductSupplier.setOnTouchListener(mTouchListener);
         mProductSuppEmail.setOnTouchListener(mTouchListener);
     }
