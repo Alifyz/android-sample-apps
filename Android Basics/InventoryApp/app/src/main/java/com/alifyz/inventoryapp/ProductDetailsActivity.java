@@ -34,7 +34,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
     private EditText mProductQuantity;
     private EditText mProductSupplier;
     private EditText mProductSuppEmail;
-    private Button mNewOrder;
+    private Button mNewOrderBtn;
     private Uri currentUri;
     private ImageView mProductImage;
     private Boolean mProductHasChanged = false;
@@ -42,7 +42,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
     private Button removeQuantity;
     private Button mSalesBtn;
     private TextView mProductImageText;
-    private  String imageStringURL;
+    private String imageStringURL;
     private Uri mImageResourceUri;
     private static final int REQUEST_CODE = 1;
     public static int mCurrentSales = 0;
@@ -61,12 +61,12 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
 
         if (currentUri == null) {
             setTitle(getString(R.string.add_product));
-            mNewOrder.setVisibility(View.GONE);
+            mNewOrderBtn.setVisibility(View.GONE);
             invalidateOptionsMenu();
         } else {
             setTitle(getString(R.string.edit_product));
             getLoaderManager().initLoader(0, null, this);
-            mNewOrder.setVisibility(View.VISIBLE);
+            mNewOrderBtn.setVisibility(View.VISIBLE);
         }
 
         addQuantity.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +97,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
             }
         });
 
-        mNewOrder.setOnClickListener(new View.OnClickListener() {
+        mNewOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 composeEmail();
@@ -425,7 +425,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
         mProductQuantity = (EditText) findViewById(R.id.edit_quantity);
         mProductSupplier = (EditText) findViewById(R.id.edit_supplier_name);
         mProductSuppEmail = (EditText) findViewById(R.id.edit_contact);
-        mNewOrder = (Button) findViewById(R.id.new_order);
+        mNewOrderBtn = (Button) findViewById(R.id.new_order);
         addQuantity = (Button) findViewById(R.id.add_qtd);
         removeQuantity = (Button) findViewById(R.id.rem_qtd);
         mSalesBtn = (Button) findViewById(R.id.sell_item);
@@ -455,6 +455,4 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
         Toast.makeText(ProductDetailsActivity.this, getString(R.string.invalidinput),
                 Toast.LENGTH_LONG).show();
     }
-
-
 }

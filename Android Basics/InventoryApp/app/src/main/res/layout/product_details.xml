@@ -12,10 +12,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:text="@string/product_info"
-            android:textSize="24sp"
-            tools:text="Product Information" />
+            style="@style/details_title"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -242,7 +240,7 @@
                 android:textSize="24sp" />
 
         </LinearLayout>
-        <!-- Ask for more products from the Supplier-->
+
         <Button
             android:id="@+id/new_order"
             android:layout_width="wrap_content"

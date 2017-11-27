@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!-- Layout for a single list item in the list of pets -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
@@ -13,10 +12,7 @@
 
         <ImageView
             android:id="@+id/profile_image"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_gravity="center"
-            android:layout_margin="4dp"
+            style="@style/image_item_list"
             android:src="@drawable/default_photo" />
 
         <LinearLayout
@@ -24,39 +20,24 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
-            <!-- Refactor some of the unnecessary code-->
+
             <TextView
                 android:id="@+id/name"
+                style="@style/item_list_title"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif-medium"
-                android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="#2B3D4D"
-                tools:text="Refrigerante" />
-            <!-- Refactor some of the unnecessary code-->
+                android:layout_height="wrap_content" />
+
             <TextView
                 android:id="@+id/price"
+                style="@style/item_list_subtitle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD"
-                tools:text="Price: R$ 10.50" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/sales"
+                style="@style/item_list_subtitle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD"
-                tools:text="200 - sales" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
@@ -64,38 +45,24 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
-            <!-- Refactor some of the unnecessary code-->
+
             <TextView
                 android:id="@+id/quantity"
+                style="@style/item_list_title"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif-medium"
-                android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="#2B3D4D"
-                tools:text="Qtd: 400" />
-            <!-- Refactor some of the unnecessary code-->
+                android:layout_height="wrap_content" />
+
             <TextView
                 android:id="@+id/in_stock"
+                style="@style/item_list_subtitle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD"
-                tools:text="Disponivel" />
+                android:layout_height="wrap_content" />
+
             <TextView
                 android:id="@+id/suplier"
+                style="@style/item_list_subtitle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD"
-                tools:text="Supplier: Netflix" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
 

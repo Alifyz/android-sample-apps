@@ -31,6 +31,7 @@ public class CursorUtils {
 
         InputStream input = null;
         try {
+
             input = context.getContentResolver().openInputStream(uri);
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
             bmOptions.inJustDecodeBounds = true;
@@ -47,6 +48,7 @@ public class CursorUtils {
             bmOptions.inJustDecodeBounds = false;
             bmOptions.inSampleSize = scaleFactor;
             bmOptions.inPurgeable = true;
+
 
             input = context.getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(input, null, bmOptions);
