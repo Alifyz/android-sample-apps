@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">Volei - Sistema de Pontos</string>
-    <string name="teama">Time - A</string>
-    <string name="teamb">Time - B</string>
-    <string name="pontos">+ Pontos</string>
-    <string name="faltas">+ Faltas</string>
-    <string name="reset">Reset</string>
-</resources>
