@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PopularMovies</string>
+    <string name="poster_iv">Movie poster</string>
+    <string name="show_popular">Show Popular Movies</string>
+    <string name="show_top_rated">Show Most Rated Movies</string>
+    <string name="show_duration">120m</string>
+    <string name="mark_favorite">Mark as Favorite</string>
 </resources>
