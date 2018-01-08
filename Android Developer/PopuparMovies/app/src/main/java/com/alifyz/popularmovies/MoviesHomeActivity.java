@@ -21,8 +21,6 @@ import java.util.List;
 public class MoviesHomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<MoviesObject>>, MoviesViewAdapter.clickListener {
 
     private RecyclerView mRecyclerView;
-    private MoviesViewAdapter mMoviesViewAdapter;
-    private GridLayoutManager mLayout;
 
     private final int LOADER_ID = 0;
     private final String MOVIE_DB_POPULAR = "http://api.themoviedb.org/3/movie/popular?api_key=62d5d37de3d19b41fbd9f819e9ef5513";
@@ -39,7 +37,7 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
 
         getLoaderManager().initLoader(LOADER_ID, null, this).forceLoad();
 
-        mLayout = new GridLayoutManager(MoviesHomeActivity.this, 2);
+        GridLayoutManager mLayout = new GridLayoutManager(MoviesHomeActivity.this, 2);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_main);
         mRecyclerView.setHasFixedSize(true);
@@ -75,7 +73,7 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
 
     @Override
     public Loader<List<MoviesObject>> onCreateLoader(int i, Bundle bundle) {
-        if (isTopRatedActive == true) {
+        if (isTopRatedActive) {
             return new MoviesLoader(this, MOVIE_DB_TOP_RATED);
         } else {
             return new MoviesLoader(this, MOVIE_DB_POPULAR);
@@ -86,7 +84,7 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
     public void onLoadFinished(Loader<List<MoviesObject>> loader, List<MoviesObject> results) {
         mLoadingBar.setVisibility(View.GONE);
         mMovieInfo = results;
-        mMoviesViewAdapter = new MoviesViewAdapter(getApplicationContext(), results, this);
+        MoviesViewAdapter mMoviesViewAdapter = new MoviesViewAdapter(getApplicationContext(), results, this);
         mRecyclerView.setAdapter(mMoviesViewAdapter);
     }
 

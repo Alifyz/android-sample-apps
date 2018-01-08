@@ -23,7 +23,7 @@ public class MoviesViewAdapter extends RecyclerView.Adapter<MoviesViewHolder> {
     private List<MoviesObject> mMovieData;
     public final static int QUANTITY_VIEWS = 11;
 
-    static protected clickListener mListener;
+    static clickListener mListener;
 
     public MoviesViewAdapter(Context mContext, List<MoviesObject> data, clickListener listener) {
         this.mContext = mContext;
