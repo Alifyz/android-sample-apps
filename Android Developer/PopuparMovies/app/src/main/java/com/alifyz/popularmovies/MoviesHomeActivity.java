@@ -23,8 +23,8 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
     private RecyclerView mRecyclerView;
 
     private final int LOADER_ID = 0;
-    private final String MOVIE_DB_POPULAR = "http://api.themoviedb.org/3/movie/popular?api_key=62d5d37de3d19b41fbd9f819e9ef5513";
-    private final String MOVIE_DB_TOP_RATED = "http://api.themoviedb.org/3/movie/top_rated?api_key=62d5d37de3d19b41fbd9f819e9ef5513";
+    private final String MOVIE_DB_POPULAR = "http://api.themoviedb.org/3/movie/popular?api_key=" + BuildConfig.MOVIES_API_KEY;
+    private final String MOVIE_DB_TOP_RATED = "http://api.themoviedb.org/3/movie/top_rated?api_key=" + BuildConfig.MOVIES_API_KEY;
 
     private Boolean isTopRatedActive = false;
     private ProgressBar mLoadingBar;
