@@ -46,6 +46,7 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
         mLoadingBar = (ProgressBar) findViewById(R.id.pb_loading_bar);
         mLoadingBar.setVisibility(View.VISIBLE);
 
+        setTitle(getString(R.string.app_name));
     }
 
     @Override
