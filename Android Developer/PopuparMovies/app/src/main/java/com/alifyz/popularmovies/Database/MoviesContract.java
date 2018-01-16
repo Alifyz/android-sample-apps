@@ -11,8 +11,10 @@ public class MoviesContract {
 
     public static final String CONTENT_AUTHORITY = "com.alifyz.popularmovies";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
+    public static final Uri CONTENT_URI = Uri.parse("content://"+ CONTENT_AUTHORITY + "/movies");
 
-    private MoviesContract(){}
+
+    private MoviesContract() {}
 
     public class MoviesEntry implements BaseColumns {
         public static final String TABLE_NAME = "movies";

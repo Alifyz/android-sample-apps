@@ -1,8 +1,10 @@
 package com.alifyz.popularmovies.Database;
 
+import com.alifyz.popularmovies.Database.MoviesContract.MoviesEntry;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Movie;
 
 /**
  * Created by alify on 1/15/2018.
@@ -19,7 +21,18 @@ public class MoviesDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        String SQL_CREATE = "CREATE TABLE " + MoviesEntry.TABLE_NAME + "(" +
+                MoviesEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + MoviesEntry.COLUMN_TITLE + " TEXT NOT NULL, "
+                + MoviesEntry.COLUMN_RELEASE_DATE + " TEXT NOT NULL, "
+                + MoviesEntry.COLUMN_DURATION + " TEXT NOT NULL, "
+                + MoviesEntry.COLUMN_RATING + " TEXT NOT NULL, "
+                + MoviesEntry.COLUMN_IMAGE + " TEXT NOT NULL, "
+                + MoviesEntry.COLUMN_DESCRIPTION + " TEXT NOT NULL, "
+                + MoviesEntry.COLUMN_COMMENTS + "TEXT NOT NULL, "
+                + MoviesEntry.COLUMN_TITLE + "TEXT NOT NULL);";
 
+        sqLiteDatabase.execSQL(SQL_CREATE);
     }
 
     @Override
