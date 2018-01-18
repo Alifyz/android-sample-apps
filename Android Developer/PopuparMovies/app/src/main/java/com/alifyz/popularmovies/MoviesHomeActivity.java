@@ -1,8 +1,11 @@
 package com.alifyz.popularmovies;
 
 import android.app.LoaderManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.alifyz.popularmovies.Database.MoviesContract;
+import com.alifyz.popularmovies.Database.MoviesDbHelper;
 import com.alifyz.popularmovies.RecyclerView.MoviesViewAdapter;
 import com.alifyz.popularmovies.Utils.MoviesLoader;
 import com.alifyz.popularmovies.Utils.MoviesObject;

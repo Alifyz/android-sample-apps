@@ -2,6 +2,8 @@ package com.alifyz.popularmovies.Database;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -13,9 +15,25 @@ import android.support.annotation.Nullable;
 
 public class MoviesContentProvider extends ContentProvider {
 
+    private MoviesDbHelper moviesDbHelper;
+
+    public static final int DIRECTORY = 100;
+    public static final int ITEM = 101;
+
+    private static final UriMatcher sUriMatcher = buildUriMatcher();
+
+    public static UriMatcher buildUriMatcher() {
+        UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
+        matcher.addURI(MoviesContract.CONTENT_AUTHORITY, MoviesContract.PATH_MOVIES, DIRECTORY);
+        matcher.addURI(MoviesContract.CONTENT_AUTHORITY, MoviesContract.PATH_MOVIES_ID, ITEM);
+        return matcher;
+    }
+
     @Override
     public boolean onCreate() {
-        return false;
+        Context context = getContext();
+        moviesDbHelper = new MoviesDbHelper(context);
+        return true;
     }
 
     @Nullable
