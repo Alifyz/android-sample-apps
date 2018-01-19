@@ -4,7 +4,7 @@ import com.alifyz.popularmovies.Database.MoviesContract.MoviesEntry;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
+import android.util.Log;
 
 
 /**
@@ -30,8 +30,8 @@ public class MoviesDbHelper extends SQLiteOpenHelper {
                 + MoviesEntry.COLUMN_RATING + " TEXT NOT NULL, "
                 + MoviesEntry.COLUMN_IMAGE + " TEXT NOT NULL, "
                 + MoviesEntry.COLUMN_DESCRIPTION + " TEXT NOT NULL, "
-                + MoviesEntry.COLUMN_COMMENTS + "TEXT NOT NULL, "
-                + MoviesEntry.COLUMN_TRAILER + "TEXT NOT NULL);";
+                + MoviesEntry.COLUMN_COMMENTS + " TEXT , "
+                + MoviesEntry.COLUMN_TRAILER + " TEXT);";
 
         sqLiteDatabase.execSQL(SQL_CREATE);
     }

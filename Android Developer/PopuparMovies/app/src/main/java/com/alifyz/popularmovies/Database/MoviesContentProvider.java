@@ -1,13 +1,16 @@
 package com.alifyz.popularmovies.Database;
 
 import android.content.ContentProvider;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
 
 /**
  * Created by alify on 1/15/2018.
@@ -51,7 +54,30 @@ public class MoviesContentProvider extends ContentProvider {
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues contentValues) {
-        return null;
+
+        final SQLiteDatabase database = moviesDbHelper.getWritableDatabase();
+        Uri returnedUri = null;
+
+        int matcher = sUriMatcher.match(uri);
+        switch (matcher) {
+            case DIRECTORY:
+                long id = database.insert(MoviesContract.MoviesEntry.TABLE_NAME, null,contentValues);
+                if(id > 0) {
+                    returnedUri = ContentUris.withAppendedId(MoviesContract.BASE_CONTENT_URI, id);
+                } else {
+                   throw new android.database.sqlite.SQLiteException("Error inserting the movie");
+                }
+                break;
+
+            default:
+                throw new UnsupportedOperationException("Unknown URI " + uri);
+        }
+
+        getContext().getContentResolver().notifyChange(uri, null);
+        if(returnedUri != null) {
+            Toast.makeText(getContext(), returnedUri.toString(), Toast.LENGTH_LONG).show();
+        }
+        return returnedUri;
     }
 
     @Override

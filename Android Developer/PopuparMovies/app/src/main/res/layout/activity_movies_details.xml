@@ -45,9 +45,11 @@
                 android:id="@+id/tv_ratings"
                 style="@style/ratings_details" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/tv_add_favorite"
-                style="@style/favorite_details" />
+                style="@style/favorite_details"
+                android:src="@drawable/ic_favorite_black_24dp"
+                android:text="@string/mark_favorite" />
         </LinearLayout>
 
     </LinearLayout>
