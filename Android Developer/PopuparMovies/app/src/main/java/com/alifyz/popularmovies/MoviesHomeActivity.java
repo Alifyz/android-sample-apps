@@ -108,6 +108,7 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
         movieDetails.putExtra("Year", currentMovie.getmReleaseDate());
         movieDetails.putExtra("PosterImage", currentMovie.getmMovieImage());
         movieDetails.putExtra("Ratings", currentMovie.getmMovieRatings());
+        movieDetails.putExtra("Id", currentMovie.getmMovieId());
         startActivity(movieDetails);
     }
 }

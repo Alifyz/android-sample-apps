@@ -11,8 +11,7 @@ public class MoviesObject {
     private String mReleaseDate;
     private String mMovieImage;
     private String mMovieRatings;
-    private String[] mMoviesComments;
-    private String[] mMoviesTrailer;
+    private String mMovieId;
 
 
     public MoviesObject(String mMoviesTitle, String mMoviesDescription, String mReleaseDate, String mMovieImage,  String mMovieRatings) {
@@ -24,23 +23,17 @@ public class MoviesObject {
 
     }
 
-    public MoviesObject(String mMoviesTitle, String mMoviesDescription, String mReleaseDate, String mMovieImage, String mMovieRatings,
-                        String mMoviesComments[], String mMoviesTrailer[]) {
+    public MoviesObject(String mMoviesTitle, String mMoviesDescription, String mReleaseDate, String mMovieImage, String mMovieRatings, String mMovieId) {
         this.mMoviesTitle = mMoviesTitle;
         this.mMoviesDescription = mMoviesDescription;
         this.mReleaseDate = mReleaseDate;
         this.mMovieImage = mMovieImage;
         this.mMovieRatings = mMovieRatings;
-        this.mMoviesComments = mMoviesComments;
-        this.mMoviesTrailer = mMoviesTrailer;
+        this.mMovieId = mMovieId;
     }
 
-    public String[] getmMoviesComments() {
-        return mMoviesComments;
-    }
-
-    public String[] getmMoviesTrailer() {
-        return mMoviesTrailer;
+    public String getmMovieId() {
+        return mMovieId;
     }
 
     public String getmMoviesTitle() {

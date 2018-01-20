@@ -16,7 +16,6 @@ public class MoviesLoader extends AsyncTaskLoader<List<MoviesObject>> {
     public MoviesLoader(Context context, String getUrl) {
         super(context);
         urlAddress = getUrl;
-
     }
 
     @Override

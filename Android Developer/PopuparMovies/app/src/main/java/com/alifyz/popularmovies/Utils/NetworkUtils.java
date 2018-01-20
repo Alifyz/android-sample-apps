@@ -1,5 +1,7 @@
 package com.alifyz.popularmovies.Utils;
+
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.alifyz.popularmovies.BuildConfig;
@@ -12,6 +14,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -24,7 +27,7 @@ public class NetworkUtils {
 
     //CONSTANT -> Size of the Poster Image
     private final static String SIZE = "w185";
-
+    private static String[] results = null;
 
     public static String makeHttpRequest(String url) {
         OkHttpClient client = new OkHttpClient();
@@ -49,6 +52,7 @@ public class NetworkUtils {
         List<MoviesObject> movieList = new ArrayList<>();
 
         try {
+
             JSONObject jsonRoot = new JSONObject(jsonResponse);
             JSONArray results = jsonRoot.getJSONArray("results");
 
@@ -56,7 +60,6 @@ public class NetworkUtils {
 
                 JSONObject movieJson = results.getJSONObject(k);
 
-                //Get the Movie ID for extract the Comments and the Video Url
                 String movieId = movieJson.getString("id");
                 String title = movieJson.getString("title");
                 String description = movieJson.getString("overview");
@@ -64,16 +67,14 @@ public class NetworkUtils {
                 String imageUrl = NetworkUtils.getPosterUrl(movieJson.getString("poster_path"));
                 String ratings = movieJson.getString("vote_average");
 
-                String[] comments = getComments(movieId);
-                String[] trailers = getTrailers(movieId);
 
-                MoviesObject currentMovie = new MoviesObject(title,description,releaseDate,imageUrl, ratings, comments, trailers);
+                MoviesObject currentMovie = new MoviesObject(title, description, releaseDate, imageUrl, ratings, movieId);
                 movieList.add(currentMovie);
 
             }
 
         } catch (JSONException e) {
-            Log.e("NetworkUtils","Error while parsing the Json Response");
+            Log.e("NetworkUtils", "Error while parsing the Json Response");
             return null;
         }
 
@@ -82,62 +83,64 @@ public class NetworkUtils {
 
     }
 
-    private static String[] getTrailers(String movieId) {
+    public static String[] getTrailers(String movieId) {
+
         String url = getVideoUrl(movieId);
         String rawJson = makeHttpRequest(url);
 
-        String[] content = null;
+        String[] content = new String[3];
 
         try {
 
             JSONObject jsonRoot = new JSONObject(rawJson);
             JSONArray results = jsonRoot.getJSONArray("results");
 
-            for(int i = 0; i < results.length(); i ++) {
+            for(int i = 0; i < content.length; i ++) {
 
                 JSONObject videoJson = results.getJSONObject(i);
-                String baseUrl = "https://www.youtube.com/watch?v=";
-                String key = videoJson.getString("key");
 
-                content = new String[results.length() * 2];
-                content[i] = baseUrl +  key;
+                if(videoJson != null) {
+                    String baseUrl = "https://www.youtube.com/watch?v=";
+                    String key = videoJson.getString("key");
+                    content[i] = baseUrl +  key;
+                }
+
             }
 
 
-        }catch (JSONException e) {
-            Log.e("Parsing the videos", "Error trying to parse the videos");
-            return null;
+        } catch (JSONException e) {
+            Log.e("Parsing the videos", "Error Loading the Videos");
         }
 
         return content;
     }
 
-    private static String[] getComments(String movieId) {
+    public static String[] getComments(String movieId) {
 
         String url = getCommentUrl(movieId);
         String rawJson = makeHttpRequest(url);
 
-        String[] content = null;
+
+        String[] content = new String[3];
 
         try {
 
             JSONObject jsonRoot = new JSONObject(rawJson);
             JSONArray results = jsonRoot.getJSONArray("results");
 
-            for(int i = 0; i < results.length(); i ++) {
+            for (int i = 0; i < content.length; i++) {
 
                 JSONObject commentJson = results.getJSONObject(i);
-                String author = commentJson.getString("author");
-                String comment = commentJson.getString("content");
+                if(commentJson != null) {
+                    String author = commentJson.getString("author");
+                    String comment = commentJson.getString("content");
+                    content[i] = author + "-" + comment;
+                }
 
-                content = new String[results.length() * 2];
-                content[i] = author + "-" + comment;
             }
 
-
         } catch (JSONException e) {
-            Log.e("Parsing the Comments", "Error Trying to Parse the Comments");
-            return null;
+            Log.e("Parsing the Comments", "Error Loading the Comments");
         }
 
         return content;
@@ -151,10 +154,8 @@ public class NetworkUtils {
                 .appendPath("t")
                 .appendPath("p")
                 .appendPath(SIZE)
-                .appendPath(path.replace("/",""));
-
-        String finalPath = absolutePath.build().toString();
-        return finalPath;
+                .appendPath(path.replace("/", ""));
+        return absolutePath.build().toString();
     }
 
     private static String getCommentUrl(String movieId) {
@@ -167,7 +168,6 @@ public class NetworkUtils {
                 .appendPath(movieId)
                 .appendPath("reviews")
                 .appendQueryParameter("api_key", BuildConfig.MOVIES_API_KEY);
-
         return absolutePath.build().toString();
     }
 
@@ -181,7 +181,7 @@ public class NetworkUtils {
                 .appendPath(movieId)
                 .appendPath("videos")
                 .appendQueryParameter("api_key", BuildConfig.MOVIES_API_KEY);
-
         return absolutePath.build().toString();
     }
+
 }
