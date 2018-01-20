@@ -1,10 +1,8 @@
 package com.alifyz.popularmovies.Utils;
-
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 
-import java.util.HashMap;
-import java.util.Map;
+
 
 /**
  * Created by alify on 1/20/2018.
