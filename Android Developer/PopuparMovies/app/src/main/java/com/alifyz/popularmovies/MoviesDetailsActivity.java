@@ -3,7 +3,6 @@ package com.alifyz.popularmovies;
 import android.app.LoaderManager;
 import android.content.ContentValues;
 import android.content.Intent;
-
 import android.content.Loader;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.alifyz.popularmovies.Database.MoviesContract.MoviesEntry;
 import com.alifyz.popularmovies.Utils.MovieDetailsLoader;
 import com.alifyz.popularmovies.Utils.MovieDetailsObject;
@@ -22,9 +20,9 @@ import com.squareup.picasso.Picasso;
 public class MoviesDetailsActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<MovieDetailsObject> {
 
-    private String[] currentTrailer;
-    private String[] currentComment;
-    private String[] currentAuthors;
+    private String[] mCurrentTrailer;
+    private String[] mCurrentComment;
+    private String[] mCurrentAuthors;
 
     private TextView mReviewsTitle;
 
@@ -39,6 +37,7 @@ public class MoviesDetailsActivity extends AppCompatActivity
 
     private ProgressBar mDetailsProgressBar;
     private TextView mDuration;
+
     private boolean isDownloadFinished = false;
 
     @Override
@@ -115,7 +114,7 @@ public class MoviesDetailsActivity extends AppCompatActivity
             public void onClick(View view) {
                 if (isDownloadFinished) {
                     Intent trailerIntent = new Intent(Intent.ACTION_VIEW);
-                    trailerIntent.setData(Uri.parse(currentTrailer[0]));
+                    trailerIntent.setData(Uri.parse(mCurrentTrailer[0]));
                     if (trailerIntent.resolveActivity(getPackageManager()) != null) {
                         startActivity(trailerIntent);
                     }
@@ -128,7 +127,7 @@ public class MoviesDetailsActivity extends AppCompatActivity
             public void onClick(View view) {
                 if (isDownloadFinished) {
                     Intent trailerIntent = new Intent(Intent.ACTION_VIEW);
-                    trailerIntent.setData(Uri.parse(currentTrailer[1]));
+                    trailerIntent.setData(Uri.parse(mCurrentTrailer[1]));
                     if (trailerIntent.resolveActivity(getPackageManager()) != null) {
                         startActivity(trailerIntent);
                     }
@@ -141,7 +140,7 @@ public class MoviesDetailsActivity extends AppCompatActivity
             public void onClick(View view) {
                 if (isDownloadFinished) {
                     Intent trailerIntent = new Intent(Intent.ACTION_VIEW);
-                    trailerIntent.setData(Uri.parse(currentTrailer[2]));
+                    trailerIntent.setData(Uri.parse(mCurrentTrailer[2]));
                     if (trailerIntent.resolveActivity(getPackageManager()) != null) {
                         startActivity(trailerIntent);
                     }
@@ -162,24 +161,24 @@ public class MoviesDetailsActivity extends AppCompatActivity
     public void onLoadFinished(Loader<MovieDetailsObject> loader, MovieDetailsObject movieDetailsObject) {
 
         String currentDuration = movieDetailsObject.getmDuration() + "m";
-        currentTrailer = movieDetailsObject.getmTrailers();
-        currentComment = movieDetailsObject.getmComments();
-        currentAuthors = movieDetailsObject.getmAuthors();
+        mCurrentTrailer = movieDetailsObject.getmTrailers();
+        mCurrentComment = movieDetailsObject.getmComments();
+        mCurrentAuthors = movieDetailsObject.getmAuthors();
 
         isDownloadFinished = true;
         mDuration.setText(currentDuration);
         mDetailsProgressBar.setVisibility(View.GONE);
 
-        if (currentAuthors != null && currentComment != null) {
+        if (mCurrentAuthors != null && mCurrentComment != null) {
             mReviewsTitle.setText(getString(R.string.found_Results));
-            mComment1.setText(currentComment[0]);
-            mAuthor1.setText(currentAuthors[0]);
+            mComment1.setText(mCurrentComment[0]);
+            mAuthor1.setText(mCurrentAuthors[0]);
 
-            mComment2.setText(currentComment[1]);
-            mAuthor2.setText(currentAuthors[1]);
+            mComment2.setText(mCurrentComment[1]);
+            mAuthor2.setText(mCurrentAuthors[1]);
 
-            mComment3.setText(currentComment[2]);
-            mAuthor3.setText(currentAuthors[2]);
+            mComment3.setText(mCurrentComment[2]);
+            mAuthor3.setText(mCurrentAuthors[2]);
         } else {
             mReviewsTitle.setText(getString(R.string.no_results));
             mComment1.setVisibility(View.GONE);
@@ -189,12 +188,11 @@ public class MoviesDetailsActivity extends AppCompatActivity
             mComment3.setVisibility(View.GONE);
             mAuthor3.setVisibility(View.GONE);
         }
-
     }
 
     @Override
     public void onLoaderReset(Loader<MovieDetailsObject> loader) {
-        currentTrailer = null;
-        currentComment = null;
+        mCurrentTrailer = null;
+        mCurrentComment = null;
     }
 }
