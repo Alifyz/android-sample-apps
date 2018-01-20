@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.alifyz.popularmovies.Database.MoviesContract.MoviesEntry;
@@ -23,6 +24,18 @@ public class MoviesDetailsActivity extends AppCompatActivity
 
     private String[] currentTrailer;
     private String[] currentComment;
+    private String[] currentAuthors;
+
+    private TextView mComment1;
+    private TextView mAuthor1;
+
+    private TextView mComment2;
+    private TextView mAuthor2;
+
+    private TextView mComment3;
+    private TextView mAuthor3;
+
+    private ProgressBar mDetailsProgressBar;
     private boolean isDownloadFinished = false;
 
     @Override
@@ -41,6 +54,17 @@ public class MoviesDetailsActivity extends AppCompatActivity
         final ImageView mTrailerIcon1 = (ImageView) findViewById(R.id.movie_trailer_icon);
         final ImageView mTrailerIcon2 = (ImageView) findViewById(R.id.movie_trailer_icon2);
         final ImageView mTrailerIcon3 = (ImageView) findViewById(R.id.movie_trailer_icon3);
+
+        mDetailsProgressBar = (ProgressBar) findViewById(R.id.pbProcessing);
+
+         mComment1 = (TextView) findViewById(R.id.comment1);
+         mAuthor1 = (TextView) findViewById(R.id.author1);
+
+         mComment2 = (TextView) findViewById(R.id.comment2);
+         mAuthor2 = (TextView) findViewById(R.id.author2);
+
+         mComment3 = (TextView) findViewById(R.id.comment3);
+         mAuthor3 = (TextView) findViewById(R.id.author3);
 
         ImageView mAddFavorite = (ImageView) findViewById(R.id.tv_add_favorite);
 
@@ -117,6 +141,8 @@ public class MoviesDetailsActivity extends AppCompatActivity
                 }
             }
         });
+
+
     }
 
 
@@ -127,9 +153,22 @@ public class MoviesDetailsActivity extends AppCompatActivity
 
     @Override
     public void onLoadFinished(Loader<MovieDetailsObject> loader, MovieDetailsObject movieDetailsObject) {
+
         currentTrailer = movieDetailsObject.getmTrailers();
         currentComment = movieDetailsObject.getmComments();
+        currentAuthors = movieDetailsObject.getmAuthors();
         isDownloadFinished = true;
+
+        mDetailsProgressBar.setVisibility(View.GONE);
+
+        mComment1.setText(currentComment[0]);
+        mAuthor1.setText(currentAuthors[0]);
+
+        mComment2.setText(currentComment[1]);
+        mAuthor2.setText(currentAuthors[1]);
+
+        mComment3.setText(currentComment[2]);
+        mAuthor3.setText(currentAuthors[2]);
     }
 
     @Override

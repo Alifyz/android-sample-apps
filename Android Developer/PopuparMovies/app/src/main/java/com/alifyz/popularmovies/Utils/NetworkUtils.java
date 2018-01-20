@@ -115,7 +115,8 @@ public class NetworkUtils {
         return content;
     }
 
-    public static String[] getComments(String movieId) {
+
+    public static String[] getAuthors(String movieId) {
 
         String url = getCommentUrl(movieId);
         String rawJson = makeHttpRequest(url);
@@ -133,8 +134,37 @@ public class NetworkUtils {
                 JSONObject commentJson = results.getJSONObject(i);
                 if(commentJson != null) {
                     String author = commentJson.getString("author");
+                    content[i] = author;
+                }
+
+            }
+
+        } catch (JSONException e) {
+            Log.e("Parsing the Comments", "Error Loading the Authors");
+        }
+
+        return content;
+    }
+
+    public static String[] getComments(String movieId) {
+
+        String url = getCommentUrl(movieId);
+        String rawJson = makeHttpRequest(url);
+
+
+        String[] content = new String[3];
+
+        try {
+
+            JSONObject jsonRoot = new JSONObject(rawJson);
+            JSONArray results = jsonRoot.getJSONArray("results");
+
+            for (int i = 0; i < content.length; i++) {
+
+                JSONObject commentJson = results.getJSONObject(i);
+                if(commentJson != null) {
                     String comment = commentJson.getString("content");
-                    content[i] = author + "-" + comment;
+                    content[i] =  comment;
                 }
 
             }

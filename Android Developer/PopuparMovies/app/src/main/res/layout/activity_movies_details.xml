@@ -1,142 +1,268 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.alifyz.popularmovies.MoviesDetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/title_background"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.alifyz.popularmovies.MoviesDetailsActivity">
 
-        <TextView
-            android:id="@+id/tv_movie_title"
-            style="@style/title_details" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/iv_poster_details"
-            style="@style/poster_details"
-            android:contentDescription="@string/content" />
-
-        <LinearLayout
-            android:id="@+id/ll_header"
+        <ProgressBar
+            android:id="@+id/pbProcessing"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:indeterminateOnly="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/title_background"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_year"
-                style="@style/year_details" />
+                android:id="@+id/tv_movie_title"
+                style="@style/title_details" />
 
-            <TextView
-                android:id="@+id/tv_duration"
-                style="@style/duration_details" />
-
-            <TextView
-                android:id="@+id/tv_ratings"
-                style="@style/ratings_details" />
-
-            <ImageView
-                android:id="@+id/tv_add_favorite"
-                style="@style/favorite_details"
-                android:contentDescription="@string/content_fav"
-                android:src="@drawable/ic_favorite_black_24dp"
-                android:text="@string/mark_favorite" />
         </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_movie_description"
-        style="@style/description_details" />
+            <ImageView
+                android:id="@+id/iv_poster_details"
+                style="@style/poster_details"
+                android:contentDescription="@string/content" />
 
-    <!-- Trailer Section -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/ll_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/movie_trailer_icon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:contentDescription="@string/content_trailer"
-            android:padding="8dp"
-            android:src="@drawable/ic_video_library_black_48dp" />
+                <TextView
+                    android:id="@+id/tv_year"
+                    style="@style/year_details" />
+
+                <TextView
+                    android:id="@+id/tv_duration"
+                    style="@style/duration_details" />
+
+                <TextView
+                    android:id="@+id/tv_ratings"
+                    style="@style/ratings_details" />
+
+                <ImageView
+                    android:id="@+id/tv_add_favorite"
+                    style="@style/favorite_details"
+                    android:contentDescription="@string/content_fav"
+                    android:src="@drawable/ic_favorite_black_24dp"
+                    android:text="@string/mark_favorite" />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/textTrailer1"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_movie_description"
+            style="@style/description_details" />
+
+        <!-- Trailer Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/movie_trailer_icon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/content_trailer"
+                android:padding="8dp"
+                android:src="@drawable/ic_video_library_black_48dp" />
+
+            <TextView
+                android:id="@+id/textTrailer1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingStart="8dp"
+                android:text="@string/trailer_1"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <!-- Trailer Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/movie_trailer_icon2"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/content_trailer"
+                android:padding="8dp"
+                android:src="@drawable/ic_video_library_black_48dp" />
+
+            <TextView
+                android:id="@+id/textTrailer2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingStart="8dp"
+                android:text="@string/trailer_2"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <!-- Trailer Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/movie_trailer_icon3"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/content_trailer"
+                android:padding="8dp"
+                android:src="@drawable/ic_video_library_black_48dp" />
+
+            <TextView
+                android:id="@+id/textTrailer3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingStart="8dp"
+                android:text="@string/trailer_3"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+
+        <!-- Public Reviews Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingStart="8dp"
-            android:text="@string/trailer_1"
-            android:textSize="24sp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_author_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/title_review"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/black" />
+
+        </LinearLayout>
+
+        <!-- First Comment -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingTop="4dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/comment1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/author1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textAlignment="textEnd"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <!-- Second Comment -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingTop="4dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/comment2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/author2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textAlignment="textEnd"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <!-- Third Comment -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingTop="4dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/comment3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/author3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textAlignment="textEnd"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
     </LinearLayout>
-
-    <!-- Trailer Section -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/movie_trailer_icon2"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:contentDescription="@string/content_trailer"
-            android:padding="8dp"
-            android:src="@drawable/ic_video_library_black_48dp" />
-
-        <TextView
-            android:id="@+id/textTrailer2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingStart="8dp"
-            android:text="@string/trailer_2"
-            android:textSize="24sp" />
-    </LinearLayout>
-
-    <!-- Trailer Section -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/movie_trailer_icon3"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:contentDescription="@string/content_trailer"
-            android:padding="8dp"
-            android:src="@drawable/ic_video_library_black_48dp" />
-
-        <TextView
-            android:id="@+id/textTrailer3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingStart="8dp"
-            android:text="@string/trailer_3"
-            android:textSize="24sp" />
-    </LinearLayout>
-
-
-
-
-</LinearLayout>
 </ScrollView>

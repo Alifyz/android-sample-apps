@@ -8,6 +8,10 @@ public class MovieDetailsObject {
 
     private String[] mTrailers;
     private String[] mComments;
+    private String[] mAuthors;
+
+
+
     private String mDuration;
 
     public MovieDetailsObject(String[] mTrailers, String[] mComments, String mDuration) {
@@ -19,6 +23,16 @@ public class MovieDetailsObject {
     public MovieDetailsObject(String[] mTrailers, String[] mComments) {
         this.mTrailers = mTrailers;
         this.mComments = mComments;
+    }
+
+    public MovieDetailsObject(String[] mTrailers, String[] mComments, String[] mAuthors) {
+        this.mTrailers = mTrailers;
+        this.mComments = mComments;
+        this.mAuthors = mAuthors;
+    }
+
+    public String[] getmAuthors() {
+        return mAuthors;
     }
 
     public String[] getmTrailers() {

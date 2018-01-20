@@ -22,8 +22,9 @@ public class MovieDetailsLoader extends AsyncTaskLoader<MovieDetailsObject>{
 
         String[] trailer = NetworkUtils.getTrailers(String.valueOf(movieId));
         String[] comment = NetworkUtils.getComments(String.valueOf(movieId));
+        String[] authors = NetworkUtils.getAuthors(String.valueOf(movieId));
 
-        MovieDetailsObject result = new MovieDetailsObject(trailer, comment);
+        MovieDetailsObject result = new MovieDetailsObject(trailer, comment, authors);
 
         return result;
     }

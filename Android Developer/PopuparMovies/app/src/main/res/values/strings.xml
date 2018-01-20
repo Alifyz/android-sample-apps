@@ -12,4 +12,5 @@
     <string name="content">Poster</string>
     <string name="content_fav">Fav Icon</string>
     <string name="content_trailer">Trailer icon</string>
+    <string name="title_review">Public Reviews</string>
 </resources>
