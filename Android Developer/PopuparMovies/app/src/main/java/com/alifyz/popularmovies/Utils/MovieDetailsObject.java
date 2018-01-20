@@ -9,26 +9,14 @@ public class MovieDetailsObject {
     private String[] mTrailers;
     private String[] mComments;
     private String[] mAuthors;
-
-
-
     private String mDuration;
 
-    public MovieDetailsObject(String[] mTrailers, String[] mComments, String mDuration) {
-        this.mTrailers = mTrailers;
-        this.mComments = mComments;
-        this.mDuration = mDuration;
-    }
 
-    public MovieDetailsObject(String[] mTrailers, String[] mComments) {
-        this.mTrailers = mTrailers;
-        this.mComments = mComments;
-    }
-
-    public MovieDetailsObject(String[] mTrailers, String[] mComments, String[] mAuthors) {
+    public MovieDetailsObject(String[] mTrailers, String[] mComments, String[] mAuthors, String mDuration) {
         this.mTrailers = mTrailers;
         this.mComments = mComments;
         this.mAuthors = mAuthors;
+        this.mDuration = mDuration;
     }
 
     public String[] getmAuthors() {

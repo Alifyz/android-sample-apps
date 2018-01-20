@@ -26,6 +26,8 @@ public class MoviesDetailsActivity extends AppCompatActivity
     private String[] currentComment;
     private String[] currentAuthors;
 
+    private TextView mReviewsTitle;
+
     private TextView mComment1;
     private TextView mAuthor1;
 
@@ -36,6 +38,7 @@ public class MoviesDetailsActivity extends AppCompatActivity
     private TextView mAuthor3;
 
     private ProgressBar mDetailsProgressBar;
+    private TextView mDuration;
     private boolean isDownloadFinished = false;
 
     @Override
@@ -49,7 +52,7 @@ public class MoviesDetailsActivity extends AppCompatActivity
         final TextView mMovieRatings = (TextView) findViewById(R.id.tv_ratings);
         final TextView mMovieDescription = (TextView) findViewById(R.id.tv_movie_description);
         final ImageView mMoviePoster = (ImageView) findViewById(R.id.iv_poster_details);
-        final TextView mMovieDuration = (TextView) findViewById(R.id.tv_duration);
+
 
         final ImageView mTrailerIcon1 = (ImageView) findViewById(R.id.movie_trailer_icon);
         final ImageView mTrailerIcon2 = (ImageView) findViewById(R.id.movie_trailer_icon2);
@@ -57,14 +60,18 @@ public class MoviesDetailsActivity extends AppCompatActivity
 
         mDetailsProgressBar = (ProgressBar) findViewById(R.id.pbProcessing);
 
-         mComment1 = (TextView) findViewById(R.id.comment1);
-         mAuthor1 = (TextView) findViewById(R.id.author1);
+        mReviewsTitle = (TextView) findViewById(R.id.tv_author_1);
 
-         mComment2 = (TextView) findViewById(R.id.comment2);
-         mAuthor2 = (TextView) findViewById(R.id.author2);
+        mComment1 = (TextView) findViewById(R.id.comment1);
+        mAuthor1 = (TextView) findViewById(R.id.author1);
 
-         mComment3 = (TextView) findViewById(R.id.comment3);
-         mAuthor3 = (TextView) findViewById(R.id.author3);
+        mComment2 = (TextView) findViewById(R.id.comment2);
+        mAuthor2 = (TextView) findViewById(R.id.author2);
+
+        mComment3 = (TextView) findViewById(R.id.comment3);
+        mAuthor3 = (TextView) findViewById(R.id.author3);
+
+        mDuration = (TextView) findViewById(R.id.tv_duration);
 
         ImageView mAddFavorite = (ImageView) findViewById(R.id.tv_add_favorite);
 
@@ -77,7 +84,7 @@ public class MoviesDetailsActivity extends AppCompatActivity
                 values.put(MoviesEntry.COLUMN_RATING, mMovieRatings.getText().toString());
                 values.put(MoviesEntry.COLUMN_DESCRIPTION, mMovieDescription.getText().toString());
                 values.put(MoviesEntry.COLUMN_IMAGE, mMoviePoster.getDrawable().toString());
-                values.put(MoviesEntry.COLUMN_DURATION, mMovieDuration.getText().toString());
+                values.put(MoviesEntry.COLUMN_DURATION, mDuration.getText().toString());
 
                 getContentResolver().insert(MoviesEntry.CONTENT_MOVIES, values);
             }
@@ -99,7 +106,7 @@ public class MoviesDetailsActivity extends AppCompatActivity
         mMovieYear.setText(year.substring(0, 4));
         mMovieRatings.setText(ratings);
         mMovieDescription.setText(description);
-        mMovieDuration.setText(getString(R.string.show_duration));
+
         Picasso.with(getApplicationContext()).load(posterUrl).into(mMoviePoster);
 
 
@@ -154,21 +161,35 @@ public class MoviesDetailsActivity extends AppCompatActivity
     @Override
     public void onLoadFinished(Loader<MovieDetailsObject> loader, MovieDetailsObject movieDetailsObject) {
 
+        String currentDuration = movieDetailsObject.getmDuration() + "m";
         currentTrailer = movieDetailsObject.getmTrailers();
         currentComment = movieDetailsObject.getmComments();
         currentAuthors = movieDetailsObject.getmAuthors();
-        isDownloadFinished = true;
 
+        isDownloadFinished = true;
+        mDuration.setText(currentDuration);
         mDetailsProgressBar.setVisibility(View.GONE);
 
-        mComment1.setText(currentComment[0]);
-        mAuthor1.setText(currentAuthors[0]);
+        if (currentAuthors != null && currentComment != null) {
+            mReviewsTitle.setText(getString(R.string.found_Results));
+            mComment1.setText(currentComment[0]);
+            mAuthor1.setText(currentAuthors[0]);
 
-        mComment2.setText(currentComment[1]);
-        mAuthor2.setText(currentAuthors[1]);
+            mComment2.setText(currentComment[1]);
+            mAuthor2.setText(currentAuthors[1]);
 
-        mComment3.setText(currentComment[2]);
-        mAuthor3.setText(currentAuthors[2]);
+            mComment3.setText(currentComment[2]);
+            mAuthor3.setText(currentAuthors[2]);
+        } else {
+            mReviewsTitle.setText(getString(R.string.no_results));
+            mComment1.setVisibility(View.GONE);
+            mAuthor1.setVisibility(View.GONE);
+            mComment2.setVisibility(View.GONE);
+            mAuthor2.setVisibility(View.GONE);
+            mComment3.setVisibility(View.GONE);
+            mAuthor3.setVisibility(View.GONE);
+        }
+
     }
 
     @Override

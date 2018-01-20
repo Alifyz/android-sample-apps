@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">MyMovies - Reviews</string>
+    <string name="app_name">MyMovies</string>
     <string name="poster_iv">Movie poster</string>
     <string name="show_popular">Show Popular Movies</string>
     <string name="show_top_rated">Show Most Rated Movies</string>
-    <string name="show_duration">120m</string>
+    <string name="show_duration">Loading</string>
+    <string name="show_duration_minutes">m</string>
     <string name="mark_favorite">Mark as Favorite</string>
     <string name="favorites_menu">Show Favorites</string>
     <string name="trailer_1">Trailer - 1</string>
@@ -12,5 +13,7 @@
     <string name="content">Poster</string>
     <string name="content_fav">Fav Icon</string>
     <string name="content_trailer">Trailer icon</string>
-    <string name="title_review">Public Reviews</string>
+    <string name="title_review">Loading Reviews</string>
+    <string name="found_Results">Public Reviews</string>
+    <string name="no_results">Reviews not found</string>
 </resources>

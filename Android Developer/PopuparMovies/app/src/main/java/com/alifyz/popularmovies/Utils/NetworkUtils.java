@@ -150,12 +150,9 @@ public class NetworkUtils {
 
         String url = getCommentUrl(movieId);
         String rawJson = makeHttpRequest(url);
-
-
         String[] content = new String[3];
 
         try {
-
             JSONObject jsonRoot = new JSONObject(rawJson);
             JSONArray results = jsonRoot.getJSONArray("results");
 
@@ -166,11 +163,26 @@ public class NetworkUtils {
                     String comment = commentJson.getString("content");
                     content[i] =  comment;
                 }
-
             }
 
         } catch (JSONException e) {
             Log.e("Parsing the Comments", "Error Loading the Comments");
+        }
+
+        return content;
+    }
+
+    public static String getDuration(String movieId) {
+
+        String url = getMovieUrl(movieId);
+        String rawJson = makeHttpRequest(url);
+        String content = null;
+
+        try {
+            JSONObject jsonRoot = new JSONObject(rawJson);
+            content = jsonRoot.getString("runtime");
+        } catch (JSONException e) {
+            Log.e("Parsing the Comments", "Error Loading the Duration");
         }
 
         return content;
@@ -210,6 +222,18 @@ public class NetworkUtils {
                 .appendPath("movie")
                 .appendPath(movieId)
                 .appendPath("videos")
+                .appendQueryParameter("api_key", BuildConfig.MOVIES_API_KEY);
+        return absolutePath.build().toString();
+    }
+
+    private static String getMovieUrl(String movieId) {
+
+        Uri.Builder absolutePath = new Uri.Builder()
+                .scheme("https")
+                .authority("api.themoviedb.org")
+                .appendPath("3")
+                .appendPath("movie")
+                .appendPath(movieId)
                 .appendQueryParameter("api_key", BuildConfig.MOVIES_API_KEY);
         return absolutePath.build().toString();
     }
