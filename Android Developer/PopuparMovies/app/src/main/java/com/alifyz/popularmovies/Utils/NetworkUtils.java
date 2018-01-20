@@ -2,6 +2,7 @@ package com.alifyz.popularmovies.Utils;
 import android.net.Uri;
 import android.util.Log;
 
+import com.alifyz.popularmovies.BuildConfig;
 import com.alifyz.popularmovies.RecyclerView.MoviesViewAdapter;
 
 import org.json.JSONArray;
@@ -54,13 +55,19 @@ public class NetworkUtils {
             for (int k = 0; k <= MoviesViewAdapter.QUANTITY_VIEWS; k++) {
 
                 JSONObject movieJson = results.getJSONObject(k);
+
+                //Get the Movie ID for extract the Comments and the Video Url
+                String movieId = movieJson.getString("id");
                 String title = movieJson.getString("title");
                 String description = movieJson.getString("overview");
                 String releaseDate = movieJson.getString("release_date");
                 String imageUrl = NetworkUtils.getPosterUrl(movieJson.getString("poster_path"));
                 String ratings = movieJson.getString("vote_average");
 
-                MoviesObject currentMovie = new MoviesObject(title,description,releaseDate,imageUrl, ratings);
+                String[] comments = getComments(movieId);
+                String[] trailers = getTrailers(movieId);
+
+                MoviesObject currentMovie = new MoviesObject(title,description,releaseDate,imageUrl, ratings, comments, trailers);
                 movieList.add(currentMovie);
 
             }
@@ -75,7 +82,68 @@ public class NetworkUtils {
 
     }
 
-    public static String getPosterUrl(String path) {
+    private static String[] getTrailers(String movieId) {
+        String url = getVideoUrl(movieId);
+        String rawJson = makeHttpRequest(url);
+
+        String[] content = null;
+
+        try {
+
+            JSONObject jsonRoot = new JSONObject(rawJson);
+            JSONArray results = jsonRoot.getJSONArray("results");
+
+            for(int i = 0; i < results.length(); i ++) {
+
+                JSONObject videoJson = results.getJSONObject(i);
+                String baseUrl = "https://www.youtube.com/watch?v=";
+                String key = videoJson.getString("key");
+
+                content = new String[results.length() * 2];
+                content[i] = baseUrl +  key;
+            }
+
+
+        }catch (JSONException e) {
+            Log.e("Parsing the videos", "Error trying to parse the videos");
+            return null;
+        }
+
+        return content;
+    }
+
+    private static String[] getComments(String movieId) {
+
+        String url = getCommentUrl(movieId);
+        String rawJson = makeHttpRequest(url);
+
+        String[] content = null;
+
+        try {
+
+            JSONObject jsonRoot = new JSONObject(rawJson);
+            JSONArray results = jsonRoot.getJSONArray("results");
+
+            for(int i = 0; i < results.length(); i ++) {
+
+                JSONObject commentJson = results.getJSONObject(i);
+                String author = commentJson.getString("author");
+                String comment = commentJson.getString("content");
+
+                content = new String[results.length() * 2];
+                content[i] = author + "-" + comment;
+            }
+
+
+        } catch (JSONException e) {
+            Log.e("Parsing the Comments", "Error Trying to Parse the Comments");
+            return null;
+        }
+
+        return content;
+    }
+
+    private static String getPosterUrl(String path) {
 
         Uri.Builder absolutePath = new Uri.Builder()
                 .scheme("http")
@@ -87,5 +155,33 @@ public class NetworkUtils {
 
         String finalPath = absolutePath.build().toString();
         return finalPath;
+    }
+
+    private static String getCommentUrl(String movieId) {
+
+        Uri.Builder absolutePath = new Uri.Builder()
+                .scheme("https")
+                .authority("api.themoviedb.org")
+                .appendPath("3")
+                .appendPath("movie")
+                .appendPath(movieId)
+                .appendPath("reviews")
+                .appendQueryParameter("api_key", BuildConfig.MOVIES_API_KEY);
+
+        return absolutePath.build().toString();
+    }
+
+    private static String getVideoUrl(String movieId) {
+
+        Uri.Builder absolutePath = new Uri.Builder()
+                .scheme("https")
+                .authority("api.themoviedb.org")
+                .appendPath("3")
+                .appendPath("movie")
+                .appendPath(movieId)
+                .appendPath("videos")
+                .appendQueryParameter("api_key", BuildConfig.MOVIES_API_KEY);
+
+        return absolutePath.build().toString();
     }
 }
