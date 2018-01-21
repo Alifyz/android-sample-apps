@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Movie;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -41,8 +42,23 @@ public class MoviesContentProvider extends ContentProvider {
 
     @Nullable
     @Override
-    public Cursor query(@NonNull Uri uri, @Nullable String[] strings, @Nullable String s, @Nullable String[] strings1, @Nullable String s1) {
-        return null;
+    public Cursor query(@NonNull Uri uri, @Nullable String[] columns, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String s1) {
+
+        SQLiteDatabase database = moviesDbHelper.getWritableDatabase();
+        int mather = sUriMatcher.match(uri);
+        Cursor result = null;
+
+        switch (mather) {
+            case DIRECTORY:
+                result = database.query(MoviesContract.MoviesEntry.TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+                if(result != null) {
+                    return result;
+                }
+                break;
+            default:
+                throw new UnsupportedOperationException("Not implemented yet");
+        }
+        return result;
     }
 
     @Nullable

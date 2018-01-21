@@ -40,6 +40,13 @@ public class MoviesDetailsActivity extends AppCompatActivity
 
     private boolean isDownloadFinished = false;
 
+    private String mTitle;
+    private String mDescription;
+    private String mYear;
+    private String mPosterUrl;
+    private String mRatings;
+    private String mId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +91,7 @@ public class MoviesDetailsActivity extends AppCompatActivity
                 values.put(MoviesEntry.COLUMN_RELEASE_DATE, mMovieYear.getText().toString());
                 values.put(MoviesEntry.COLUMN_RATING, mMovieRatings.getText().toString());
                 values.put(MoviesEntry.COLUMN_DESCRIPTION, mMovieDescription.getText().toString());
-                values.put(MoviesEntry.COLUMN_IMAGE, mMoviePoster.getDrawable().toString());
+                values.put(MoviesEntry.COLUMN_IMAGE, mPosterUrl);
                 values.put(MoviesEntry.COLUMN_DURATION, mDuration.getText().toString());
                 getContentResolver().insert(MoviesEntry.CONTENT_MOVIES, values);
             }
@@ -92,22 +99,22 @@ public class MoviesDetailsActivity extends AppCompatActivity
 
 
         Intent movieInfo = getIntent();
-        String title = movieInfo.getStringExtra("Title");
-        String description = movieInfo.getStringExtra("Description");
-        String year = movieInfo.getStringExtra("Year");
-        String posterUrl = movieInfo.getStringExtra("PosterImage");
-        String ratings = movieInfo.getStringExtra("Ratings") + "/10";
-        String id = movieInfo.getStringExtra("Id");
+        mTitle = movieInfo.getStringExtra("Title");
+        mDescription = movieInfo.getStringExtra("Description");
+        mYear = movieInfo.getStringExtra("Year");
+        mPosterUrl = movieInfo.getStringExtra("PosterImage");
+        mRatings = movieInfo.getStringExtra("Ratings") + "/10";
+        mId = movieInfo.getStringExtra("Id");
 
-        getLoaderManager().initLoader(Integer.parseInt(id), null, this).forceLoad();
+        getLoaderManager().initLoader(Integer.parseInt(mId), null, this).forceLoad();
 
 
-        mMovieTitle.setText(title);
-        mMovieYear.setText(year.substring(0, 4));
-        mMovieRatings.setText(ratings);
-        mMovieDescription.setText(description);
+        mMovieTitle.setText(mTitle);
+        mMovieYear.setText(mYear.substring(0, 4));
+        mMovieRatings.setText(mRatings);
+        mMovieDescription.setText(mDescription);
 
-        Picasso.with(getApplicationContext()).load(posterUrl).into(mMoviePoster);
+        Picasso.with(getApplicationContext()).load(mPosterUrl).into(mMoviePoster);
 
 
         mTrailerIcon1.setOnClickListener(new View.OnClickListener() {

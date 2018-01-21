@@ -24,10 +24,10 @@ import com.alifyz.popularmovies.Utils.NetworkUtils;
 
 import java.util.List;
 
-public class MoviesHomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<MoviesObject>>, MoviesViewAdapter.clickListener {
+public class MoviesHomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<MoviesObject>>, MoviesViewAdapter.clickListener
+       {
 
     private RecyclerView mRecyclerView;
-
     private final int LOADER_ID = 0;
     private final int LOADER_ID_POPULAR = 1;
 
@@ -39,7 +39,7 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getLoaderManager().initLoader(LOADER_ID, null, this).forceLoad();
+        getLoaderManager().initLoader(LOADER_ID_POPULAR, null, this).forceLoad();
 
         GridLayoutManager mLayout = new GridLayoutManager(MoviesHomeActivity.this, 2);
 
@@ -68,6 +68,10 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
                 return true;
             case R.id.top_rated_movies:
                 getLoaderManager().restartLoader(LOADER_ID, null, this).forceLoad();
+                return true;
+            case R.id.favorites:
+                Intent openFavorites = new Intent(this, MoviesFavoritesHomeActivity.class);
+                startActivity(openFavorites);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

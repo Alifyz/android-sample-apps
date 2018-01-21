@@ -17,4 +17,5 @@
     <string name="found_Results">Public Reviews</string>
     <string name="no_results">Reviews not found</string>
     <string name="favorites_title">Movie Details</string>
+    <string name="my_favorites_title">Favorite Movies</string>
 </resources>

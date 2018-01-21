@@ -27,7 +27,7 @@ public class NetworkUtils {
 
     //CONSTANT -> Size of the Poster Image
     private final static String SIZE = "w185";
-    private static String[] results = null;
+    private final static String TAG = "NetworkUtils";
 
     public static String makeHttpRequest(String url) {
         OkHttpClient client = new OkHttpClient();
@@ -39,10 +39,10 @@ public class NetworkUtils {
             response = client.newCall(request).execute();
             return response.body().string();
         } catch (IOException e) {
-            Log.e("NetworkUtils", "Error while making the Http Request");
+            Log.e(TAG, "Error while making the Http Request");
             return null;
         } catch (NullPointerException e) {
-            Log.e("NetworkUtils", "Error with a null object while making the Http Request");
+            Log.e(TAG, "Error with a null object while making the Http Request");
             return null;
         }
     }
@@ -74,13 +74,11 @@ public class NetworkUtils {
             }
 
         } catch (JSONException e) {
-            Log.e("NetworkUtils", "Error while parsing the Json Response");
+            Log.e(TAG, "Error while parsing the Json Response");
             return null;
         }
 
-        Log.i("MovieList", movieList.toString());
         return movieList;
-
     }
 
     public static String[] getTrailers(String movieId) {
@@ -91,7 +89,6 @@ public class NetworkUtils {
         String[] content = new String[3];
 
         try {
-
             JSONObject jsonRoot = new JSONObject(rawJson);
             JSONArray results = jsonRoot.getJSONArray("results");
 
@@ -106,12 +103,9 @@ public class NetworkUtils {
                 }
 
             }
-
-
         } catch (JSONException e) {
-            Log.e("Parsing the videos", "Error Loading the Videos");
+            Log.e(TAG, "Error Loading the Videos");
         }
-
         return content;
     }
 
@@ -140,9 +134,8 @@ public class NetworkUtils {
             }
 
         } catch (JSONException e) {
-            Log.e("Parsing the Comments", "Error Loading the Authors");
+            Log.e(TAG, "Error Loading the Authors");
         }
-
         return content;
     }
 
@@ -166,9 +159,8 @@ public class NetworkUtils {
             }
 
         } catch (JSONException e) {
-            Log.e("Parsing the Comments", "Error Loading the Comments");
+            Log.e(TAG, "Error Loading the Comments");
         }
-
         return content;
     }
 
@@ -182,7 +174,7 @@ public class NetworkUtils {
             JSONObject jsonRoot = new JSONObject(rawJson);
             content = jsonRoot.getString("runtime");
         } catch (JSONException e) {
-            Log.e("Parsing the Comments", "Error Loading the Duration");
+            Log.e(TAG, "Error Loading the Duration");
         }
 
         return content;
