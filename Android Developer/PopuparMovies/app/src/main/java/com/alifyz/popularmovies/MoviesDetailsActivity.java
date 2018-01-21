@@ -84,7 +84,6 @@ public class MoviesDetailsActivity extends AppCompatActivity
                 values.put(MoviesEntry.COLUMN_DESCRIPTION, mMovieDescription.getText().toString());
                 values.put(MoviesEntry.COLUMN_IMAGE, mMoviePoster.getDrawable().toString());
                 values.put(MoviesEntry.COLUMN_DURATION, mDuration.getText().toString());
-
                 getContentResolver().insert(MoviesEntry.CONTENT_MOVIES, values);
             }
         });
