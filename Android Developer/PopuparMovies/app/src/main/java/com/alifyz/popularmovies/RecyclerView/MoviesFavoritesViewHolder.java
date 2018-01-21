@@ -7,14 +7,14 @@ import android.widget.ImageView;
 import com.alifyz.popularmovies.R;
 
 /**
- * Created by Alifyz on 12/5/2017.
+ * Created by alify on 1/21/2018.
  */
 
-public class MoviesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class MoviesFavoritesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     ImageView iv_movies;
 
-    public MoviesViewHolder(View itemView) {
+    public MoviesFavoritesViewHolder(View itemView) {
         super(itemView);
         iv_movies = (ImageView) itemView.findViewById(R.id.iv_movies);
         itemView.setOnClickListener(this);
@@ -23,6 +23,6 @@ public class MoviesViewHolder extends RecyclerView.ViewHolder implements View.On
     @Override
     public void onClick(View view) {
         int moviePosition = getAdapterPosition();
-        MoviesViewAdapter.mListener.onListItemClick(moviePosition);
+        MoviesViewCursorAdapter.mListener.onListItemClick(moviePosition);
     }
 }

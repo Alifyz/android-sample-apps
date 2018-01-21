@@ -78,8 +78,11 @@ public class MoviesFavoritesHomeActivity extends AppCompatActivity implements Lo
 
     @Override
     public void onListItemClick(int clickedItem) {
-        mData.moveToPosition(clickedItem);
+        if(mData != null) {
+            mData.moveToPosition(clickedItem);
+        }
 
+        int posterIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_IMAGE);
         int titleIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_TITLE);
         int yearIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_RELEASE_DATE);
         int ratingsIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_RATING);
@@ -87,6 +90,7 @@ public class MoviesFavoritesHomeActivity extends AppCompatActivity implements Lo
         int descriptionIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_DESCRIPTION);
         int trailerIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_TRAILER);
 
+        String Poster = mData.getString(posterIndex);
         String Title = mData.getString(titleIndex);
         String Year = mData.getString(yearIndex);
         String Ratings = mData.getString(ratingsIndex);
@@ -95,6 +99,8 @@ public class MoviesFavoritesHomeActivity extends AppCompatActivity implements Lo
         String Trailer = mData.getString(trailerIndex);
 
         Intent favoritesIntent = new Intent(this, MoviesFavoritesDetailsActivity.class);
+
+        favoritesIntent.putExtra("Poster", Poster);
         favoritesIntent.putExtra("Title", Title);
         favoritesIntent.putExtra("Year", Year);
         favoritesIntent.putExtra("Ratings", Ratings);

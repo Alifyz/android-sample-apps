@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
  * Created by alify on 1/21/2018.
  */
 
-public class MoviesViewCursorAdapter extends RecyclerView.Adapter<MoviesViewHolder> {
+public class MoviesViewCursorAdapter extends RecyclerView.Adapter<MoviesFavoritesViewHolder> {
 
     private Context mContext;
     private Cursor mData;
@@ -29,15 +29,15 @@ public class MoviesViewCursorAdapter extends RecyclerView.Adapter<MoviesViewHold
     }
 
     @Override
-    public MoviesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MoviesFavoritesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_movies, parent, false);
-        MoviesViewHolder viewHolder = new MoviesViewHolder(view);
+        MoviesFavoritesViewHolder viewHolder = new MoviesFavoritesViewHolder(view);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(MoviesViewHolder holder, int position) {
+    public void onBindViewHolder(MoviesFavoritesViewHolder holder, int position) {
         ImageView currentPosterImage = holder.iv_movies;
         mData.moveToPosition(position);
 

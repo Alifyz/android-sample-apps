@@ -31,8 +31,11 @@
             android:authorities="com.alifyz.popularmovies"
             android:exported="false" />
 
-        <activity android:name=".MoviesFavoritesDetailsActivity" />
-        <activity android:name=".MoviesFavoritesHomeActivity"></activity>
+        <activity android:name=".MoviesFavoritesDetailsActivity"
+                  android:parentActivityName=".MoviesFavoritesHomeActivity"  />
+        <activity android:name=".MoviesFavoritesHomeActivity"
+                  android:parentActivityName=".MoviesHomeActivity">
+        </activity>
     </application>
 
 </manifest>
