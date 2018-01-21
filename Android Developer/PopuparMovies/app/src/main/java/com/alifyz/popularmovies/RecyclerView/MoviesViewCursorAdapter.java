@@ -55,4 +55,6 @@ public class MoviesViewCursorAdapter extends RecyclerView.Adapter<MoviesViewHold
     public interface clickListener {
         void onListItemClick(int clickedItem);
     }
+
+
 }

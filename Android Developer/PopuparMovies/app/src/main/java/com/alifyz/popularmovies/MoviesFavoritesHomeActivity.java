@@ -5,6 +5,7 @@ import android.content.AsyncTaskLoader;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -22,7 +23,6 @@ import com.alifyz.popularmovies.RecyclerView.MoviesViewCursorAdapter;
 import com.alifyz.popularmovies.Utils.MoviesFavoriteLoader;
 
 public class MoviesFavoritesHomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, MoviesViewCursorAdapter.clickListener {
-
 
     private static final String TAG = "FavoritesHomeActivity";
     private Cursor mData;
@@ -75,10 +75,33 @@ public class MoviesFavoritesHomeActivity extends AppCompatActivity implements Lo
         mData = null;
     }
 
+
     @Override
     public void onListItemClick(int clickedItem) {
+        mData.moveToPosition(clickedItem);
 
+        int titleIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_TITLE);
+        int yearIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_RELEASE_DATE);
+        int ratingsIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_RATING);
+        int durationIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_DURATION);
+        int descriptionIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_DESCRIPTION);
+        int trailerIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_TRAILER);
+
+        String Title = mData.getString(titleIndex);
+        String Year = mData.getString(yearIndex);
+        String Ratings = mData.getString(ratingsIndex);
+        String Duration = mData.getString(durationIndex);
+        String Description = mData.getString(descriptionIndex);
+        String Trailer = mData.getString(trailerIndex);
+
+        Intent favoritesIntent = new Intent(this, MoviesFavoritesDetailsActivity.class);
+        favoritesIntent.putExtra("Title", Title);
+        favoritesIntent.putExtra("Year", Year);
+        favoritesIntent.putExtra("Ratings", Ratings);
+        favoritesIntent.putExtra("Duration", Duration);
+        favoritesIntent.putExtra("Description", Description);
+        favoritesIntent.putExtra("Trailer", Trailer);
+
+        startActivity(favoritesIntent);
     }
-
-
 }

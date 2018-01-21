@@ -24,5 +24,6 @@ public class MoviesViewHolder extends RecyclerView.ViewHolder implements View.On
     public void onClick(View view) {
         int moviePosition = getAdapterPosition();
         MoviesViewAdapter.mListener.onListItemClick(moviePosition);
+        MoviesViewCursorAdapter.mListener.onListItemClick(moviePosition);
     }
 }
