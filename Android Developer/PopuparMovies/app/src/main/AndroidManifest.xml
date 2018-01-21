@@ -27,12 +27,12 @@
         </activity>
 
         <provider
-            android:authorities="com.alifyz.popularmovies"
             android:name=".Database.MoviesContentProvider"
-            android:exported="false"/>
+            android:authorities="com.alifyz.popularmovies"
+            android:exported="false" />
 
+        <activity android:name=".MoviesFavoritesDetailsActivity" />
+        <activity android:name=".MoviesFavoritesHomeActivity"></activity>
     </application>
-
-
 
 </manifest>

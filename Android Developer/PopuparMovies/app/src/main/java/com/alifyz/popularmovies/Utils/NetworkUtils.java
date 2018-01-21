@@ -197,6 +197,7 @@ public class NetworkUtils {
                 .appendPath("p")
                 .appendPath(SIZE)
                 .appendPath(path.replace("/", ""));
+
         return absolutePath.build().toString();
     }
 
@@ -210,6 +211,7 @@ public class NetworkUtils {
                 .appendPath(movieId)
                 .appendPath("reviews")
                 .appendQueryParameter("api_key", BuildConfig.MOVIES_API_KEY);
+
         return absolutePath.build().toString();
     }
 
@@ -223,6 +225,7 @@ public class NetworkUtils {
                 .appendPath(movieId)
                 .appendPath("videos")
                 .appendQueryParameter("api_key", BuildConfig.MOVIES_API_KEY);
+
         return absolutePath.build().toString();
     }
 
@@ -235,6 +238,33 @@ public class NetworkUtils {
                 .appendPath("movie")
                 .appendPath(movieId)
                 .appendQueryParameter("api_key", BuildConfig.MOVIES_API_KEY);
+
+        return absolutePath.build().toString();
+    }
+
+    public static String getPopularMoviesUrl() {
+
+        Uri.Builder absolutePath = new Uri.Builder()
+                .scheme("http")
+                .authority("api.themoviedb.org")
+                .appendPath("3")
+                .appendPath("movie")
+                .appendPath("popular")
+                .appendQueryParameter("api_key", BuildConfig.MOVIES_API_KEY);
+
+        return absolutePath.build().toString();
+    }
+
+    public static String getMostRatedMoviesUrl() {
+
+        Uri.Builder absolutePath = new Uri.Builder()
+                .scheme("http")
+                .authority("api.themoviedb.org")
+                .appendPath("3")
+                .appendPath("movie")
+                .appendPath("top_rated")
+                .appendQueryParameter("api_key", BuildConfig.MOVIES_API_KEY);
+
         return absolutePath.build().toString();
     }
 

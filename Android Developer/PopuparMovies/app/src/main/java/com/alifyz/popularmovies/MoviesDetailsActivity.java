@@ -46,6 +46,8 @@ public class MoviesDetailsActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_movies_details);
 
+        setTitle(getString(R.string.favorites_title));
+
         final TextView mMovieTitle = (TextView) findViewById(R.id.tv_movie_title);
         final TextView mMovieYear = (TextView) findViewById(R.id.tv_year);
         final TextView mMovieRatings = (TextView) findViewById(R.id.tv_ratings);

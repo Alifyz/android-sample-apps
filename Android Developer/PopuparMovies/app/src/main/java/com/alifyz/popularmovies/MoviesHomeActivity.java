@@ -20,6 +20,7 @@ import com.alifyz.popularmovies.Database.MoviesDbHelper;
 import com.alifyz.popularmovies.RecyclerView.MoviesViewAdapter;
 import com.alifyz.popularmovies.Utils.MoviesLoader;
 import com.alifyz.popularmovies.Utils.MoviesObject;
+import com.alifyz.popularmovies.Utils.NetworkUtils;
 
 import java.util.List;
 
@@ -28,10 +29,8 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
     private RecyclerView mRecyclerView;
 
     private final int LOADER_ID = 0;
-    private final String MOVIE_DB_POPULAR = "http://api.themoviedb.org/3/movie/popular?api_key=" + BuildConfig.MOVIES_API_KEY;
-    private final String MOVIE_DB_TOP_RATED = "http://api.themoviedb.org/3/movie/top_rated?api_key=" + BuildConfig.MOVIES_API_KEY;
+    private final int LOADER_ID_POPULAR = 1;
 
-    private Boolean isTopRatedActive = false;
     private ProgressBar mLoadingBar;
     private List<MoviesObject> mMovieInfo;
 
@@ -65,11 +64,9 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
         int selection = item.getItemId();
         switch (selection) {
             case R.id.popular_movies:
-                isTopRatedActive = false;
-                getLoaderManager().restartLoader(LOADER_ID, null, this).forceLoad();
+                getLoaderManager().restartLoader(LOADER_ID_POPULAR, null, this).forceLoad();
                 return true;
             case R.id.top_rated_movies:
-                isTopRatedActive = true;
                 getLoaderManager().restartLoader(LOADER_ID, null, this).forceLoad();
                 return true;
             default:
@@ -78,12 +75,13 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
     }
 
     @Override
-    public Loader<List<MoviesObject>> onCreateLoader(int i, Bundle bundle) {
-        if (isTopRatedActive) {
-            return new MoviesLoader(this, MOVIE_DB_TOP_RATED);
-        } else {
-            return new MoviesLoader(this, MOVIE_DB_POPULAR);
-        }
+    public Loader<List<MoviesObject>> onCreateLoader(int id, Bundle bundle) {
+
+       if(id == LOADER_ID_POPULAR) {
+           return new MoviesLoader(this, NetworkUtils.getPopularMoviesUrl());
+       } else {
+           return new MoviesLoader(this, NetworkUtils.getMostRatedMoviesUrl());
+       }
     }
 
     @Override
