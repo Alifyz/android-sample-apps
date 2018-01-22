@@ -38,19 +38,23 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        getLoaderManager().initLoader(LOADER_ID_POPULAR, null, this).forceLoad();
-
-        GridLayoutManager mLayout = new GridLayoutManager(MoviesHomeActivity.this, 2);
-
-        mRecyclerView = (RecyclerView) findViewById(R.id.rv_main);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(mLayout);
-
-        mLoadingBar = (ProgressBar) findViewById(R.id.pb_loading_bar);
-        mLoadingBar.setVisibility(View.VISIBLE);
-
         setTitle(getString(R.string.app_name));
+
+        if(NetworkUtils.isInternetOn(this)) {
+            getLoaderManager().initLoader(LOADER_ID_POPULAR, null, this).forceLoad();
+
+            GridLayoutManager mLayout = new GridLayoutManager(MoviesHomeActivity.this, 2);
+
+            mRecyclerView = (RecyclerView) findViewById(R.id.rv_main);
+            mRecyclerView.setHasFixedSize(true);
+            mRecyclerView.setLayoutManager(mLayout);
+
+            mLoadingBar = (ProgressBar) findViewById(R.id.pb_loading_bar);
+            mLoadingBar.setVisibility(View.VISIBLE);
+
+        } else {
+            setContentView(R.layout.activity_no_internet);
+        }
     }
 
     @Override

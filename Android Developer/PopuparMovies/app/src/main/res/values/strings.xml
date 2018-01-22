@@ -10,6 +10,7 @@
     <string name="trailer_1">Trailer - 1</string>
     <string name="trailer_2">Trailer - 2</string>
     <string name="trailer_3">Trailer - 3</string>
+    <string name="no_internet">No Internet Connection, try again when connected.</string>
     <string name="content">Poster</string>
     <string name="content_fav">Fav Icon</string>
     <string name="content_trailer">Trailer icon</string>

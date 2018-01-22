@@ -1,5 +1,8 @@
 package com.alifyz.popularmovies.Utils;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -28,6 +31,13 @@ public class NetworkUtils {
     //CONSTANT -> Size of the Poster Image
     private final static String SIZE = "w185";
     private final static String TAG = "NetworkUtils";
+
+
+    public static boolean isInternetOn(Context context) {
+        ConnectivityManager cmManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cmManager.getActiveNetworkInfo();
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+    }
 
     public static String makeHttpRequest(String url) {
         OkHttpClient client = new OkHttpClient();

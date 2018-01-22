@@ -9,6 +9,7 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.alifyz.popularmovies.Database.MoviesContract;
 
 import com.alifyz.popularmovies.RecyclerView.MoviesViewCursorAdapter;
 import com.alifyz.popularmovies.Utils.MoviesFavoriteLoader;
+import com.alifyz.popularmovies.Utils.NetworkUtils;
 
 public class MoviesFavoritesHomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, MoviesViewCursorAdapter.clickListener {
 
@@ -39,16 +41,21 @@ public class MoviesFavoritesHomeActivity extends AppCompatActivity implements Lo
         setContentView(R.layout.activity_movies_favorites_home);
         setTitle(R.string.my_favorites_title);
 
-        getLoaderManager().initLoader(LOADER_FAV_ID, null, this).forceLoad();
 
-        mProgressBar = (ProgressBar) findViewById(R.id.pbProcessing_fav);
-        GridLayoutManager mLayout = new GridLayoutManager(MoviesFavoritesHomeActivity.this, 2);
+        if(NetworkUtils.isInternetOn(this)) {
+            getLoaderManager().initLoader(LOADER_FAV_ID, null, this).forceLoad();
+            mProgressBar = (ProgressBar) findViewById(R.id.pbProcessing_fav);
+            GridLayoutManager mLayout = new GridLayoutManager(MoviesFavoritesHomeActivity.this, 2);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.rv_main_fav);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(mLayout);
+            mRecyclerView = (RecyclerView) findViewById(R.id.rv_main_fav);
+            mRecyclerView.setHasFixedSize(true);
+            mRecyclerView.setLayoutManager(mLayout);
+            mProgressBar.setVisibility(View.VISIBLE);
 
-        mProgressBar.setVisibility(View.VISIBLE);
+        } else {
+            setContentView(R.layout.activity_no_internet);
+        }
+
 
     }
 
