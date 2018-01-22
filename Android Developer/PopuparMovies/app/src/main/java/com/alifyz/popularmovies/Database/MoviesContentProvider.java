@@ -13,6 +13,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
+import com.alifyz.popularmovies.MoviesFavoritesHomeActivity;
+
 /**
  * Created by alify on 1/15/2018.
  */
@@ -58,6 +60,7 @@ public class MoviesContentProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("Not implemented yet");
         }
+        result.setNotificationUri(getContext().getContentResolver(), uri);
         return result;
     }
 
@@ -97,16 +100,15 @@ public class MoviesContentProvider extends ContentProvider {
     }
 
     @Override
-    public int delete(@NonNull Uri uri, @Nullable String s, @Nullable String[] strings) {
+    public int delete(@NonNull Uri uri, @Nullable String where, @Nullable String[] whereArgs) {
 
         SQLiteDatabase database = moviesDbHelper.getWritableDatabase();
         int matcher = sUriMatcher.match(uri);
         int itemDeleted;
 
         switch (matcher) {
-            case ITEM:
-                String id = uri.getPathSegments().get(1);
-                itemDeleted = database.delete(MoviesContract.MoviesEntry.TABLE_NAME, "_id=?", new String[]{id});
+            case DIRECTORY:
+                itemDeleted = database.delete(MoviesContract.MoviesEntry.TABLE_NAME, where, whereArgs);
                 break;
             default:
                 throw new UnsupportedOperationException("Not Implemented yet");

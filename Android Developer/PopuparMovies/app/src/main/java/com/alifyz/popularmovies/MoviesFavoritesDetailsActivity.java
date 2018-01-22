@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alifyz.popularmovies.Database.MoviesContract;
 import com.squareup.picasso.Picasso;
@@ -26,7 +28,6 @@ public class MoviesFavoritesDetailsActivity extends AppCompatActivity {
     private ImageView mPosterImage;
     private ImageView mTrailerIcon;
 
-    private int mPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +53,6 @@ public class MoviesFavoritesDetailsActivity extends AppCompatActivity {
         String ratings = favorites.getStringExtra("Ratings");
         String description = favorites.getStringExtra("Description");
         final String trailer = favorites.getStringExtra("Trailer");
-        mPosition = favorites.getIntExtra("Position", 0);
-
 
         mTitle.setText(title);
         mYear.setText(year);
@@ -85,21 +84,16 @@ public class MoviesFavoritesDetailsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int selection = item.getItemId();
-
-        Uri.Builder uri = new Uri.Builder()
-                .scheme("content")
-                .authority("com.alifyz.popularmovies")
-                .appendPath("movies")
-                .appendPath(String.valueOf(mPosition));
-
-        Uri finalUri = uri.build();
         switch (selection) {
             case R.id.fav_delete:
-            getContentResolver().delete(finalUri, null, null);
+            int rows = getContentResolver().delete(MoviesContract.MoviesEntry.CONTENT_MOVIES, MoviesContract.MoviesEntry.COLUMN_TITLE+ " = ?", new String[]{mTitle.getText().toString()});
+            if(rows != 0) {
+                Toast.makeText(MoviesFavoritesDetailsActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+            }
             finish();
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
+
 }

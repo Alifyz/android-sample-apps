@@ -1,5 +1,6 @@
 package com.alifyz.popularmovies;
 
+import android.app.Instrumentation;
 import android.app.LoaderManager;
 import android.content.AsyncTaskLoader;
 import android.content.ContentResolver;
@@ -32,7 +33,6 @@ public class MoviesFavoritesHomeActivity extends AppCompatActivity implements Lo
 
     private final int LOADER_FAV_ID = 2;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +63,7 @@ public class MoviesFavoritesHomeActivity extends AppCompatActivity implements Lo
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+
         mProgressBar.setVisibility(View.GONE);
         mData = cursor;
 
@@ -89,7 +90,6 @@ public class MoviesFavoritesHomeActivity extends AppCompatActivity implements Lo
         int durationIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_DURATION);
         int descriptionIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_DESCRIPTION);
         int trailerIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_TRAILER);
-        int position = clickedItem;
 
         String Poster = mData.getString(posterIndex);
         String Title = mData.getString(titleIndex);
@@ -108,8 +108,9 @@ public class MoviesFavoritesHomeActivity extends AppCompatActivity implements Lo
         favoritesIntent.putExtra("Duration", Duration);
         favoritesIntent.putExtra("Description", Description);
         favoritesIntent.putExtra("Trailer", Trailer);
-        favoritesIntent.putExtra("Position", position);
 
         startActivity(favoritesIntent);
     }
+
+
 }
