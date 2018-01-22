@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alifyz.popularmovies.Database.MoviesContract;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -23,6 +25,8 @@ public class MoviesFavoritesDetailsActivity extends AppCompatActivity {
 
     private ImageView mPosterImage;
     private ImageView mTrailerIcon;
+
+    private int mPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,7 @@ public class MoviesFavoritesDetailsActivity extends AppCompatActivity {
         String ratings = favorites.getStringExtra("Ratings");
         String description = favorites.getStringExtra("Description");
         final String trailer = favorites.getStringExtra("Trailer");
+        mPosition = favorites.getIntExtra("Position", 0);
 
 
         mTitle.setText(title);
@@ -77,5 +82,24 @@ public class MoviesFavoritesDetailsActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int selection = item.getItemId();
 
+        Uri.Builder uri = new Uri.Builder()
+                .scheme("content")
+                .authority("com.alifyz.popularmovies")
+                .appendPath("movies")
+                .appendPath(String.valueOf(mPosition));
+
+        Uri finalUri = uri.build();
+        switch (selection) {
+            case R.id.fav_delete:
+            getContentResolver().delete(finalUri, null, null);
+            finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 }

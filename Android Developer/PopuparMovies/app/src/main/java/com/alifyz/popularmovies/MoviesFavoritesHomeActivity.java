@@ -89,6 +89,7 @@ public class MoviesFavoritesHomeActivity extends AppCompatActivity implements Lo
         int durationIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_DURATION);
         int descriptionIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_DESCRIPTION);
         int trailerIndex = mData.getColumnIndex(MoviesContract.MoviesEntry.COLUMN_TRAILER);
+        int position = clickedItem;
 
         String Poster = mData.getString(posterIndex);
         String Title = mData.getString(titleIndex);
@@ -107,6 +108,7 @@ public class MoviesFavoritesHomeActivity extends AppCompatActivity implements Lo
         favoritesIntent.putExtra("Duration", Duration);
         favoritesIntent.putExtra("Description", Description);
         favoritesIntent.putExtra("Trailer", Trailer);
+        favoritesIntent.putExtra("Position", position);
 
         startActivity(favoritesIntent);
     }

@@ -44,7 +44,7 @@ public class MoviesContentProvider extends ContentProvider {
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] columns, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String s1) {
 
-        SQLiteDatabase database = moviesDbHelper.getWritableDatabase();
+        SQLiteDatabase database = moviesDbHelper.getReadableDatabase();
         int mather = sUriMatcher.match(uri);
         Cursor result = null;
 
@@ -91,14 +91,31 @@ public class MoviesContentProvider extends ContentProvider {
 
         getContext().getContentResolver().notifyChange(uri, null);
         if(returnedUri != null) {
-            Toast.makeText(getContext(), returnedUri.toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Added to the Favorites", Toast.LENGTH_LONG).show();
         }
         return returnedUri;
     }
 
     @Override
     public int delete(@NonNull Uri uri, @Nullable String s, @Nullable String[] strings) {
-        return 0;
+
+        SQLiteDatabase database = moviesDbHelper.getWritableDatabase();
+        int matcher = sUriMatcher.match(uri);
+        int itemDeleted;
+
+        switch (matcher) {
+            case ITEM:
+                String id = uri.getPathSegments().get(1);
+                itemDeleted = database.delete(MoviesContract.MoviesEntry.TABLE_NAME, "_id=?", new String[]{id});
+                break;
+            default:
+                throw new UnsupportedOperationException("Not Implemented yet");
+
+        }
+        if(itemDeleted != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+        return itemDeleted;
     }
 
     @Override

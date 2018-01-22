@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.alifyz.popularmovies.Database.MoviesContract.MoviesEntry;
 import com.alifyz.popularmovies.Utils.MovieDetailsLoader;
 import com.alifyz.popularmovies.Utils.MovieDetailsObject;
@@ -86,15 +88,19 @@ public class MoviesDetailsActivity extends AppCompatActivity
         mAddFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ContentValues values = new ContentValues();
-                values.put(MoviesEntry.COLUMN_TITLE, mMovieTitle.getText().toString());
-                values.put(MoviesEntry.COLUMN_RELEASE_DATE, mMovieYear.getText().toString());
-                values.put(MoviesEntry.COLUMN_RATING, mMovieRatings.getText().toString());
-                values.put(MoviesEntry.COLUMN_DESCRIPTION, mMovieDescription.getText().toString());
-                values.put(MoviesEntry.COLUMN_IMAGE, mPosterUrl);
-                values.put(MoviesEntry.COLUMN_DURATION, mDuration.getText().toString());
-                values.put(MoviesEntry.COLUMN_TRAILER, mCurrentTrailer[0]);
-                getContentResolver().insert(MoviesEntry.CONTENT_MOVIES, values);
+                if(isDownloadFinished) {
+                    ContentValues values = new ContentValues();
+                    values.put(MoviesEntry.COLUMN_TITLE, mMovieTitle.getText().toString());
+                    values.put(MoviesEntry.COLUMN_RELEASE_DATE, mMovieYear.getText().toString());
+                    values.put(MoviesEntry.COLUMN_RATING, mMovieRatings.getText().toString());
+                    values.put(MoviesEntry.COLUMN_DESCRIPTION, mMovieDescription.getText().toString());
+                    values.put(MoviesEntry.COLUMN_IMAGE, mPosterUrl);
+                    values.put(MoviesEntry.COLUMN_DURATION, mDuration.getText().toString());
+                    values.put(MoviesEntry.COLUMN_TRAILER, mCurrentTrailer[0]);
+                    getContentResolver().insert(MoviesEntry.CONTENT_MOVIES, values);
+                }else {
+                    Toast.makeText(MoviesDetailsActivity.this, "Wait for the download to end..", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
