@@ -2,25 +2,16 @@ package com.alifyz.popularmovies;
 
 
 import android.app.LoaderManager;
-import android.content.AsyncTaskLoader;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
-
 import com.alifyz.popularmovies.Database.MoviesContract;
-
 import com.alifyz.popularmovies.RecyclerView.MoviesViewCursorAdapter;
 import com.alifyz.popularmovies.Utils.MoviesFavoriteLoader;
 import com.alifyz.popularmovies.Utils.NetworkUtils;
@@ -56,7 +47,6 @@ public class MoviesFavoritesHomeActivity extends AppCompatActivity implements Lo
             setContentView(R.layout.activity_no_internet);
         }
 
-
     }
 
     @Override
@@ -73,6 +63,10 @@ public class MoviesFavoritesHomeActivity extends AppCompatActivity implements Lo
 
         mProgressBar.setVisibility(View.GONE);
         mData = cursor;
+
+        if(mData.getCount() == 0) {
+            setContentView(R.layout.activity_no_favorites);
+        }
 
         MoviesViewCursorAdapter mMoviesViewCursorAdapter = new MoviesViewCursorAdapter(this, mData, this);
         mRecyclerView.setAdapter(mMoviesViewCursorAdapter);

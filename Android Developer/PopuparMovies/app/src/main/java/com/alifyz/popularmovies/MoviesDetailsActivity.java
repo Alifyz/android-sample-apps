@@ -2,11 +2,14 @@ package com.alifyz.popularmovies;
 
 import android.app.LoaderManager;
 import android.content.ContentValues;
+import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -21,6 +24,8 @@ import com.squareup.picasso.Picasso;
 
 public class MoviesDetailsActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<MovieDetailsObject> {
+
+    private final String TAG = "MoviesDetailsActivity";
 
     private String[] mCurrentTrailer;
     private String[] mCurrentComment;
@@ -63,6 +68,8 @@ public class MoviesDetailsActivity extends AppCompatActivity
         final TextView mMovieDescription = (TextView) findViewById(R.id.tv_movie_description);
         final ImageView mMoviePoster = (ImageView) findViewById(R.id.iv_poster_details);
 
+        boolean result = isMovieAlreadyAdded("Its");
+        Log.d(TAG, String.valueOf(result));
 
         final ImageView mTrailerIcon1 = (ImageView) findViewById(R.id.movie_trailer_icon);
         final ImageView mTrailerIcon2 = (ImageView) findViewById(R.id.movie_trailer_icon2);
@@ -89,16 +96,21 @@ public class MoviesDetailsActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 if(isDownloadFinished) {
-                    ContentValues values = new ContentValues();
-                    values.put(MoviesEntry.COLUMN_TITLE, mMovieTitle.getText().toString());
-                    values.put(MoviesEntry.COLUMN_RELEASE_DATE, mMovieYear.getText().toString());
-                    values.put(MoviesEntry.COLUMN_RATING, mMovieRatings.getText().toString());
-                    values.put(MoviesEntry.COLUMN_DESCRIPTION, mMovieDescription.getText().toString());
-                    values.put(MoviesEntry.COLUMN_IMAGE, mPosterUrl);
-                    values.put(MoviesEntry.COLUMN_DURATION, mDuration.getText().toString());
-                    values.put(MoviesEntry.COLUMN_TRAILER, mCurrentTrailer[0]);
-                    getContentResolver().insert(MoviesEntry.CONTENT_MOVIES, values);
-                }else {
+                    if(!isMovieAlreadyAdded(mMovieTitle.getText().toString())) {
+                        ContentValues values = new ContentValues();
+                        values.put(MoviesEntry.COLUMN_TITLE, mMovieTitle.getText().toString());
+                        values.put(MoviesEntry.COLUMN_RELEASE_DATE, mMovieYear.getText().toString());
+                        values.put(MoviesEntry.COLUMN_RATING, mMovieRatings.getText().toString());
+                        values.put(MoviesEntry.COLUMN_DESCRIPTION, mMovieDescription.getText().toString());
+                        values.put(MoviesEntry.COLUMN_IMAGE, mPosterUrl);
+                        values.put(MoviesEntry.COLUMN_DURATION, mDuration.getText().toString());
+                        values.put(MoviesEntry.COLUMN_TRAILER, mCurrentTrailer[0]);
+                        getContentResolver().insert(MoviesEntry.CONTENT_MOVIES, values);
+                    } else {
+                        Toast.makeText(MoviesDetailsActivity.this, "Movie already added", Toast.LENGTH_SHORT).show();
+                    }
+
+                } else {
                     Toast.makeText(MoviesDetailsActivity.this, "Wait for the download to end..", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -209,5 +221,27 @@ public class MoviesDetailsActivity extends AppCompatActivity
     public void onLoaderReset(Loader<MovieDetailsObject> loader) {
         mCurrentTrailer = null;
         mCurrentComment = null;
+    }
+
+    private boolean isMovieAlreadyAdded(String title) {
+
+        Cursor movie = getContentResolver().query(MoviesEntry.CONTENT_MOVIES, new String[]{MoviesEntry.COLUMN_TITLE},
+                MoviesEntry.COLUMN_TITLE + " = ?", new String[]{title}, null, null);
+
+
+        try {
+            movie.moveToFirst();
+            int titleColumnIndex = movie.getColumnIndex(MoviesEntry.COLUMN_TITLE);
+            String titleData = movie.getString(titleColumnIndex);
+            if(title.equals(titleData)) {
+                return true;
+            }else {
+                return false;
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error trying to verify if the movie is already in the favorites database");
+            return false;
+        }
+
     }
 }
