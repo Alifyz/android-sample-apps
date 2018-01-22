@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.alifyz.popularmovies.Database.MoviesContract;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
 
 public class MoviesFavoritesDetailsActivity extends AppCompatActivity {
 

@@ -1,6 +1,6 @@
 package com.alifyz.popularmovies;
 
-import android.app.Instrumentation;
+
 import android.app.LoaderManager;
 import android.content.AsyncTaskLoader;
 import android.content.ContentResolver;
@@ -19,7 +19,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.alifyz.popularmovies.Database.MoviesContract;
-import com.alifyz.popularmovies.RecyclerView.MoviesViewAdapter;
+
 import com.alifyz.popularmovies.RecyclerView.MoviesViewCursorAdapter;
 import com.alifyz.popularmovies.Utils.MoviesFavoriteLoader;
 
