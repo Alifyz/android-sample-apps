@@ -31,6 +31,10 @@ public class MoviesDetailsActivity extends AppCompatActivity
     private String[] mCurrentComment;
     private String[] mCurrentAuthors;
 
+    private final int mFirstItem = 0;
+    private final int mSecondItem = 1;
+    private final int mThirdItem =  2;
+
     private TextView mReviewsTitle;
 
     private TextView mComment1;
@@ -104,7 +108,7 @@ public class MoviesDetailsActivity extends AppCompatActivity
                         values.put(MoviesEntry.COLUMN_DESCRIPTION, mMovieDescription.getText().toString());
                         values.put(MoviesEntry.COLUMN_IMAGE, mPosterUrl);
                         values.put(MoviesEntry.COLUMN_DURATION, mDuration.getText().toString());
-                        values.put(MoviesEntry.COLUMN_TRAILER, mCurrentTrailer[0]);
+                        values.put(MoviesEntry.COLUMN_TRAILER, mCurrentTrailer[mFirstItem]);
                         getContentResolver().insert(MoviesEntry.CONTENT_MOVIES, values);
                     } else {
                         Toast.makeText(MoviesDetailsActivity.this, "Movie already added", Toast.LENGTH_SHORT).show();
@@ -141,7 +145,7 @@ public class MoviesDetailsActivity extends AppCompatActivity
             public void onClick(View view) {
                 if (isDownloadFinished) {
                     Intent trailerIntent = new Intent(Intent.ACTION_VIEW);
-                    trailerIntent.setData(Uri.parse(mCurrentTrailer[0]));
+                    trailerIntent.setData(Uri.parse(mCurrentTrailer[mFirstItem]));
                     if (trailerIntent.resolveActivity(getPackageManager()) != null) {
                         startActivity(trailerIntent);
                     }
@@ -154,7 +158,7 @@ public class MoviesDetailsActivity extends AppCompatActivity
             public void onClick(View view) {
                 if (isDownloadFinished) {
                     Intent trailerIntent = new Intent(Intent.ACTION_VIEW);
-                    trailerIntent.setData(Uri.parse(mCurrentTrailer[1]));
+                    trailerIntent.setData(Uri.parse(mCurrentTrailer[mSecondItem]));
                     if (trailerIntent.resolveActivity(getPackageManager()) != null) {
                         startActivity(trailerIntent);
                     }
@@ -167,7 +171,7 @@ public class MoviesDetailsActivity extends AppCompatActivity
             public void onClick(View view) {
                 if (isDownloadFinished) {
                     Intent trailerIntent = new Intent(Intent.ACTION_VIEW);
-                    trailerIntent.setData(Uri.parse(mCurrentTrailer[2]));
+                    trailerIntent.setData(Uri.parse(mCurrentTrailer[mThirdItem]));
                     if (trailerIntent.resolveActivity(getPackageManager()) != null) {
                         startActivity(trailerIntent);
                     }
@@ -177,7 +181,6 @@ public class MoviesDetailsActivity extends AppCompatActivity
 
 
     }
-
 
     @Override
     public Loader<MovieDetailsObject> onCreateLoader(int id, Bundle bundle) {
@@ -198,14 +201,14 @@ public class MoviesDetailsActivity extends AppCompatActivity
 
         if (mCurrentAuthors != null && mCurrentComment != null) {
             mReviewsTitle.setText(getString(R.string.found_Results));
-            mComment1.setText(mCurrentComment[0]);
-            mAuthor1.setText(mCurrentAuthors[0]);
+            mComment1.setText(mCurrentComment[mFirstItem]);
+            mAuthor1.setText(mCurrentAuthors[mFirstItem]);
 
-            mComment2.setText(mCurrentComment[1]);
-            mAuthor2.setText(mCurrentAuthors[1]);
+            mComment2.setText(mCurrentComment[mSecondItem]);
+            mAuthor2.setText(mCurrentAuthors[mSecondItem]);
 
-            mComment3.setText(mCurrentComment[2]);
-            mAuthor3.setText(mCurrentAuthors[2]);
+            mComment3.setText(mCurrentComment[mThirdItem]);
+            mAuthor3.setText(mCurrentAuthors[mThirdItem]);
         } else {
             mReviewsTitle.setText(getString(R.string.no_results));
             mComment1.setVisibility(View.GONE);
@@ -227,7 +230,6 @@ public class MoviesDetailsActivity extends AppCompatActivity
 
         Cursor movie = getContentResolver().query(MoviesEntry.CONTENT_MOVIES, new String[]{MoviesEntry.COLUMN_TITLE},
                 MoviesEntry.COLUMN_TITLE + " = ?", new String[]{title}, null, null);
-
 
         try {
             movie.moveToFirst();

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Network;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -24,8 +25,7 @@ import com.alifyz.popularmovies.Utils.NetworkUtils;
 
 import java.util.List;
 
-public class MoviesHomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<MoviesObject>>, MoviesViewAdapter.clickListener
-       {
+public class MoviesHomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<MoviesObject>>, MoviesViewAdapter.clickListener {
 
     private RecyclerView mRecyclerView;
     private final int LOADER_ID = 0;
@@ -40,7 +40,7 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
         setContentView(R.layout.activity_main);
         setTitle(getString(R.string.app_name));
 
-        if(NetworkUtils.isInternetOn(this)) {
+        if (NetworkUtils.isInternetOn(this)) {
             getLoaderManager().initLoader(LOADER_ID_POPULAR, null, this).forceLoad();
 
             GridLayoutManager mLayout = new GridLayoutManager(MoviesHomeActivity.this, 2);
@@ -68,10 +68,18 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
         int selection = item.getItemId();
         switch (selection) {
             case R.id.popular_movies:
-                getLoaderManager().restartLoader(LOADER_ID_POPULAR, null, this).forceLoad();
+                if (NetworkUtils.isInternetOn(this)) {
+                    getLoaderManager().restartLoader(LOADER_ID_POPULAR, null, this).forceLoad();
+                } else {
+                    setContentView(R.layout.activity_no_internet);
+                }
                 return true;
             case R.id.top_rated_movies:
-                getLoaderManager().restartLoader(LOADER_ID, null, this).forceLoad();
+                if (NetworkUtils.isInternetOn(this)) {
+                    getLoaderManager().restartLoader(LOADER_ID, null, this).forceLoad();
+                } else {
+                    setContentView(R.layout.activity_no_internet);
+                }
                 return true;
             case R.id.favorites:
                 Intent openFavorites = new Intent(this, MoviesFavoritesHomeActivity.class);
@@ -85,11 +93,11 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
     @Override
     public Loader<List<MoviesObject>> onCreateLoader(int id, Bundle bundle) {
 
-       if(id == LOADER_ID_POPULAR) {
-           return new MoviesLoader(this, NetworkUtils.getPopularMoviesUrl());
-       } else {
-           return new MoviesLoader(this, NetworkUtils.getMostRatedMoviesUrl());
-       }
+        if (id == LOADER_ID_POPULAR) {
+            return new MoviesLoader(this, NetworkUtils.getPopularMoviesUrl());
+        } else {
+            return new MoviesLoader(this, NetworkUtils.getMostRatedMoviesUrl());
+        }
     }
 
     @Override

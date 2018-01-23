@@ -1,6 +1,5 @@
 package com.alifyz.popularmovies;
 
-
 import android.app.LoaderManager;
 import android.content.Intent;
 import android.content.Loader;
@@ -14,7 +13,7 @@ import android.widget.ProgressBar;
 import com.alifyz.popularmovies.Database.MoviesContract;
 import com.alifyz.popularmovies.RecyclerView.MoviesViewCursorAdapter;
 import com.alifyz.popularmovies.Utils.MoviesFavoriteLoader;
-import com.alifyz.popularmovies.Utils.NetworkUtils;
+
 
 public class MoviesFavoritesHomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, MoviesViewCursorAdapter.clickListener {
 
@@ -32,26 +31,20 @@ public class MoviesFavoritesHomeActivity extends AppCompatActivity implements Lo
         setContentView(R.layout.activity_movies_favorites_home);
         setTitle(R.string.my_favorites_title);
 
+        getLoaderManager().initLoader(LOADER_FAV_ID, null, this).forceLoad();
+        mProgressBar = (ProgressBar) findViewById(R.id.pbProcessing_fav);
+        GridLayoutManager mLayout = new GridLayoutManager(MoviesFavoritesHomeActivity.this, 2);
 
-        if(NetworkUtils.isInternetOn(this)) {
-            getLoaderManager().initLoader(LOADER_FAV_ID, null, this).forceLoad();
-            mProgressBar = (ProgressBar) findViewById(R.id.pbProcessing_fav);
-            GridLayoutManager mLayout = new GridLayoutManager(MoviesFavoritesHomeActivity.this, 2);
-
-            mRecyclerView = (RecyclerView) findViewById(R.id.rv_main_fav);
-            mRecyclerView.setHasFixedSize(true);
-            mRecyclerView.setLayoutManager(mLayout);
-            mProgressBar.setVisibility(View.VISIBLE);
-
-        } else {
-            setContentView(R.layout.activity_no_internet);
-        }
+        mRecyclerView = (RecyclerView) findViewById(R.id.rv_main_fav);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(mLayout);
+        mProgressBar.setVisibility(View.VISIBLE);
 
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle bundle) {
-        if(id == LOADER_FAV_ID) {
+        if (id == LOADER_FAV_ID) {
             return new MoviesFavoriteLoader(this);
         } else {
             return null;
@@ -64,7 +57,7 @@ public class MoviesFavoritesHomeActivity extends AppCompatActivity implements Lo
         mProgressBar.setVisibility(View.GONE);
         mData = cursor;
 
-        if(mData.getCount() == 0) {
+        if (mData.getCount() == 0) {
             setContentView(R.layout.activity_no_favorites);
         }
 
@@ -80,7 +73,7 @@ public class MoviesFavoritesHomeActivity extends AppCompatActivity implements Lo
 
     @Override
     public void onListItemClick(int clickedItem) {
-        if(mData != null) {
+        if (mData != null) {
             mData.moveToPosition(clickedItem);
         }
 
