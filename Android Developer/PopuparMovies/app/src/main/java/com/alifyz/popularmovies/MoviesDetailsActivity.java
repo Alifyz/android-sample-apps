@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.alifyz.popularmovies.Database.MoviesContract.MoviesEntry;
 import com.alifyz.popularmovies.Utils.MovieDetailsLoader;
 import com.alifyz.popularmovies.Utils.MovieDetailsObject;
+import com.alifyz.popularmovies.Utils.NetworkUtils;
 import com.squareup.picasso.Picasso;
 
 
@@ -33,7 +34,7 @@ public class MoviesDetailsActivity extends AppCompatActivity
 
     private final int mFirstItem = 0;
     private final int mSecondItem = 1;
-    private final int mThirdItem =  2;
+    private final int mThirdItem = 2;
 
     private TextView mReviewsTitle;
 
@@ -61,19 +62,24 @@ public class MoviesDetailsActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_movies_details);
-
         setTitle(getString(R.string.favorites_title));
+
+        Intent movieInfo = getIntent();
+        mTitle = movieInfo.getStringExtra("Title");
+        mDescription = movieInfo.getStringExtra("Description");
+        mYear = movieInfo.getStringExtra("Year");
+        mPosterUrl = movieInfo.getStringExtra("PosterImage");
+        mRatings = movieInfo.getStringExtra("Ratings") + "/10";
+        mId = movieInfo.getStringExtra("Id");
+
+        getLoaderManager().initLoader(Integer.parseInt(mId), null, this).forceLoad();
 
         final TextView mMovieTitle = (TextView) findViewById(R.id.tv_movie_title);
         final TextView mMovieYear = (TextView) findViewById(R.id.tv_year);
         final TextView mMovieRatings = (TextView) findViewById(R.id.tv_ratings);
         final TextView mMovieDescription = (TextView) findViewById(R.id.tv_movie_description);
         final ImageView mMoviePoster = (ImageView) findViewById(R.id.iv_poster_details);
-
-        boolean result = isMovieAlreadyAdded("Its");
-        Log.d(TAG, String.valueOf(result));
 
         final ImageView mTrailerIcon1 = (ImageView) findViewById(R.id.movie_trailer_icon);
         final ImageView mTrailerIcon2 = (ImageView) findViewById(R.id.movie_trailer_icon2);
@@ -99,8 +105,8 @@ public class MoviesDetailsActivity extends AppCompatActivity
         mAddFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isDownloadFinished) {
-                    if(!isMovieAlreadyAdded(mMovieTitle.getText().toString())) {
+                if (isDownloadFinished) {
+                    if (!isMovieAlreadyAdded(mMovieTitle.getText().toString())) {
                         ContentValues values = new ContentValues();
                         values.put(MoviesEntry.COLUMN_TITLE, mMovieTitle.getText().toString());
                         values.put(MoviesEntry.COLUMN_RELEASE_DATE, mMovieYear.getText().toString());
@@ -119,17 +125,6 @@ public class MoviesDetailsActivity extends AppCompatActivity
                 }
             }
         });
-
-
-        Intent movieInfo = getIntent();
-        mTitle = movieInfo.getStringExtra("Title");
-        mDescription = movieInfo.getStringExtra("Description");
-        mYear = movieInfo.getStringExtra("Year");
-        mPosterUrl = movieInfo.getStringExtra("PosterImage");
-        mRatings = movieInfo.getStringExtra("Ratings") + "/10";
-        mId = movieInfo.getStringExtra("Id");
-
-        getLoaderManager().initLoader(Integer.parseInt(mId), null, this).forceLoad();
 
 
         mMovieTitle.setText(mTitle);
@@ -184,8 +179,9 @@ public class MoviesDetailsActivity extends AppCompatActivity
 
     @Override
     public Loader<MovieDetailsObject> onCreateLoader(int id, Bundle bundle) {
-        return new MovieDetailsLoader(this, id);
+            return new MovieDetailsLoader(this, id);
     }
+
 
     @Override
     public void onLoadFinished(Loader<MovieDetailsObject> loader, MovieDetailsObject movieDetailsObject) {
@@ -218,6 +214,7 @@ public class MoviesDetailsActivity extends AppCompatActivity
             mComment3.setVisibility(View.GONE);
             mAuthor3.setVisibility(View.GONE);
         }
+
     }
 
     @Override
@@ -230,14 +227,13 @@ public class MoviesDetailsActivity extends AppCompatActivity
 
         Cursor movie = getContentResolver().query(MoviesEntry.CONTENT_MOVIES, new String[]{MoviesEntry.COLUMN_TITLE},
                 MoviesEntry.COLUMN_TITLE + " = ?", new String[]{title}, null, null);
-
         try {
             movie.moveToFirst();
             int titleColumnIndex = movie.getColumnIndex(MoviesEntry.COLUMN_TITLE);
             String titleData = movie.getString(titleColumnIndex);
-            if(title.equals(titleData)) {
+            if (title.equals(titleData)) {
                 return true;
-            }else {
+            } else {
                 return false;
             }
         } catch (Exception e) {

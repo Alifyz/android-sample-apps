@@ -1,7 +1,7 @@
 package com.alifyz.popularmovies.Utils;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
-
+import android.util.Log;
 
 
 /**
@@ -20,13 +20,20 @@ public class MovieDetailsLoader extends AsyncTaskLoader<MovieDetailsObject>{
     @Override
     public MovieDetailsObject loadInBackground() {
 
-        String[] trailer = NetworkUtils.getTrailers(String.valueOf(movieId));
-        String[] comment = NetworkUtils.getComments(String.valueOf(movieId));
-        String[] authors = NetworkUtils.getAuthors(String.valueOf(movieId));
-        String duration = NetworkUtils.getDuration(String.valueOf(movieId));
+            String[] trailer = NetworkUtils.getTrailers(String.valueOf(movieId));
+            String[] comment = NetworkUtils.getComments(String.valueOf(movieId));
+            String[] authors = NetworkUtils.getAuthors(String.valueOf(movieId));
+            String duration = NetworkUtils.getDuration(String.valueOf(movieId));
 
-        MovieDetailsObject result = new MovieDetailsObject(trailer, comment, authors, duration);
+            MovieDetailsObject result = new MovieDetailsObject(trailer, comment, authors, duration);
 
-        return result;
+            return result;
+
+    }
+
+    @Override
+    public void onCanceled(MovieDetailsObject data) {
+        super.onCanceled(data);
+        Log.e("Test", "Implement here");
     }
 }

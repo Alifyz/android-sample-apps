@@ -28,6 +28,8 @@ import java.util.List;
 public class MoviesHomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<MoviesObject>>, MoviesViewAdapter.clickListener {
 
     private RecyclerView mRecyclerView;
+    private GridLayoutManager mLayout;
+
     private final int LOADER_ID = 0;
     private final int LOADER_ID_POPULAR = 1;
 
@@ -37,20 +39,13 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         setTitle(getString(R.string.app_name));
+        setContentView(R.layout.activity_main);
 
         if (NetworkUtils.isInternetOn(this)) {
+
             getLoaderManager().initLoader(LOADER_ID_POPULAR, null, this).forceLoad();
-
-            GridLayoutManager mLayout = new GridLayoutManager(MoviesHomeActivity.this, 2);
-
-            mRecyclerView = (RecyclerView) findViewById(R.id.rv_main);
-            mRecyclerView.setHasFixedSize(true);
-            mRecyclerView.setLayoutManager(mLayout);
-
-            mLoadingBar = (ProgressBar) findViewById(R.id.pb_loading_bar);
-            mLoadingBar.setVisibility(View.VISIBLE);
+            bindViews();
 
         } else {
             setContentView(R.layout.activity_no_internet);
@@ -69,14 +64,16 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
         switch (selection) {
             case R.id.popular_movies:
                 if (NetworkUtils.isInternetOn(this)) {
-                    getLoaderManager().restartLoader(LOADER_ID_POPULAR, null, this).forceLoad();
+                    bindViews();
+                    getLoaderManager().initLoader(LOADER_ID_POPULAR, null, this).forceLoad();
                 } else {
                     setContentView(R.layout.activity_no_internet);
                 }
                 return true;
             case R.id.top_rated_movies:
                 if (NetworkUtils.isInternetOn(this)) {
-                    getLoaderManager().restartLoader(LOADER_ID, null, this).forceLoad();
+                    bindViews();
+                    getLoaderManager().initLoader(LOADER_ID, null, this).forceLoad();
                 } else {
                     setContentView(R.layout.activity_no_internet);
                 }
@@ -93,6 +90,11 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
     @Override
     public Loader<List<MoviesObject>> onCreateLoader(int id, Bundle bundle) {
 
+        if(mLoadingBar!=null) {
+            mLoadingBar = (ProgressBar) findViewById(R.id.pb_loading_bar);
+            mLoadingBar.setVisibility(View.VISIBLE);
+        }
+
         if (id == LOADER_ID_POPULAR) {
             return new MoviesLoader(this, NetworkUtils.getPopularMoviesUrl());
         } else {
@@ -102,8 +104,13 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
 
     @Override
     public void onLoadFinished(Loader<List<MoviesObject>> loader, List<MoviesObject> results) {
-        mLoadingBar.setVisibility(View.GONE);
+
+        if(mLoadingBar != null) {
+            mLoadingBar.setVisibility(View.GONE);
+        }
+
         mMovieInfo = results;
+
         MoviesViewAdapter mMoviesViewAdapter = new MoviesViewAdapter(getApplicationContext(), results, this);
         mRecyclerView.setAdapter(mMoviesViewAdapter);
     }
@@ -115,14 +122,30 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
 
     @Override
     public void onListItemClick(int clickedItem) {
-        MoviesObject currentMovie = mMovieInfo.get(clickedItem);
-        Intent movieDetails = new Intent(MoviesHomeActivity.this, MoviesDetailsActivity.class);
-        movieDetails.putExtra("Title", currentMovie.getmMoviesTitle());
-        movieDetails.putExtra("Description", currentMovie.getmMoviesDescription());
-        movieDetails.putExtra("Year", currentMovie.getmReleaseDate());
-        movieDetails.putExtra("PosterImage", currentMovie.getmMovieImage());
-        movieDetails.putExtra("Ratings", currentMovie.getmMovieRatings());
-        movieDetails.putExtra("Id", currentMovie.getmMovieId());
-        startActivity(movieDetails);
+        if(NetworkUtils.isInternetOn(this)) {
+            MoviesObject currentMovie = mMovieInfo.get(clickedItem);
+            Intent movieDetails = new Intent(MoviesHomeActivity.this, MoviesDetailsActivity.class);
+            movieDetails.putExtra("Title", currentMovie.getmMoviesTitle());
+            movieDetails.putExtra("Description", currentMovie.getmMoviesDescription());
+            movieDetails.putExtra("Year", currentMovie.getmReleaseDate());
+            movieDetails.putExtra("PosterImage", currentMovie.getmMovieImage());
+            movieDetails.putExtra("Ratings", currentMovie.getmMovieRatings());
+            movieDetails.putExtra("Id", currentMovie.getmMovieId());
+            startActivity(movieDetails);
+        } else {
+            setContentView(R.layout.activity_no_internet);
+        }
+    }
+
+    private void bindViews() {
+        setContentView(R.layout.activity_main);
+        mLayout = new GridLayoutManager(MoviesHomeActivity.this, 2);
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.rv_main);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(mLayout);
+
+        mLoadingBar = (ProgressBar) findViewById(R.id.pb_loading_bar);
+        mLoadingBar.setVisibility(View.VISIBLE);
     }
 }

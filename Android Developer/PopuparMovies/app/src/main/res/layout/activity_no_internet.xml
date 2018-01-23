@@ -11,8 +11,11 @@
         android:layout_gravity="center_vertical|center_horizontal"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:background="@android:color/black"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
         android:padding="12dp"
         android:textSize="16sp"
         android:layout_gravity="bottom"
