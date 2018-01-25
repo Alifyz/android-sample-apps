@@ -43,10 +43,8 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
         setContentView(R.layout.activity_main);
 
         if (NetworkUtils.isInternetOn(this)) {
-
             getLoaderManager().initLoader(LOADER_ID_POPULAR, null, this).forceLoad();
             bindViews();
-
         } else {
             setContentView(R.layout.activity_no_internet);
         }

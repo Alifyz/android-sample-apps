@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import com.alifyz.popularmovies.BuildConfig;
@@ -145,6 +144,7 @@ public class NetworkUtils {
 
         } catch (JSONException e) {
             Log.e(TAG, "Error Loading the Authors");
+            return new String[] {"No authors were found"};
         }
         return content;
     }
@@ -170,6 +170,7 @@ public class NetworkUtils {
 
         } catch (JSONException e) {
             Log.e(TAG, "Error Loading the Comments");
+            return new String[] {"No comments were found"};
         }
         return content;
     }
@@ -185,6 +186,7 @@ public class NetworkUtils {
             content = jsonRoot.getString("runtime");
         } catch (JSONException e) {
             Log.e(TAG, "Error Loading the Duration");
+            return "Failed to load: ";
         }
 
         return content;

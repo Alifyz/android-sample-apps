@@ -197,14 +197,17 @@ public class MoviesDetailsActivity extends AppCompatActivity
 
         if (mCurrentAuthors != null && mCurrentComment != null) {
             mReviewsTitle.setText(getString(R.string.found_Results));
-            mComment1.setText(mCurrentComment[mFirstItem]);
-            mAuthor1.setText(mCurrentAuthors[mFirstItem]);
+            for(int i = 0; i < mCurrentAuthors.length; i++) {
+                mComment1.setText(mCurrentComment[i]);
+                mAuthor1.setText(mCurrentAuthors[i]);
 
-            mComment2.setText(mCurrentComment[mSecondItem]);
-            mAuthor2.setText(mCurrentAuthors[mSecondItem]);
+                mComment2.setText(mCurrentComment[i]);
+                mAuthor2.setText(mCurrentAuthors[i]);
 
-            mComment3.setText(mCurrentComment[mThirdItem]);
-            mAuthor3.setText(mCurrentAuthors[mThirdItem]);
+                mComment3.setText(mCurrentComment[i]);
+                mAuthor3.setText(mCurrentAuthors[i]);
+            }
+
         } else {
             mReviewsTitle.setText(getString(R.string.no_results));
             mComment1.setVisibility(View.GONE);
