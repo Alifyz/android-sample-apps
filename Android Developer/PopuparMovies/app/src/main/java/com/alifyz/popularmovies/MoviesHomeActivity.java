@@ -41,6 +41,7 @@ public class MoviesHomeActivity extends AppCompatActivity implements LoaderManag
     private Parcelable mLayoutPosition;
     private int mSelectedLoaderId;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
