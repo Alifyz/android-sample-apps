@@ -11,7 +11,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -49,18 +53,59 @@ public class NetworkUtils {
         }
     }
 
+    /**
+     * Extract the Recipe Information from the JSON provided
+     * @param json - extracted using the OkHttp Library
+     * @return - List of recipes
+     */
     public static List<RecipeObject> extractRecipe(String json) {
         String jsonResponse = json;
+        List<RecipeObject> recipeList = new ArrayList<>();
 
         try {
             JSONArray jsonRoot = new JSONArray(jsonResponse);
+            for (int i = 0; i < jsonRoot.length(); i++) {
+                JSONObject jsonRecipe = jsonRoot.getJSONObject(i);
 
-        }catch (JSONException e) {
+                HashMap<String, String> recipes = new HashMap<>();
+                HashMap<String, String> ingredients = new HashMap<>();
+                HashMap<String, String> steps = new HashMap<>();
+
+                recipes.put("id", jsonRecipe.getString("id"));
+                recipes.put("name", jsonRecipe.getString("name"));
+                recipes.put("servings", jsonRecipe.getString("servings"));
+                recipes.put("image", jsonRecipe.getString("image"));
+
+                //Extracting a HashMap with the Ingredients
+                JSONArray jsonIngredients = jsonRecipe.getJSONArray("ingredients");
+                for (int k = 0; k < jsonIngredients.length(); k++) {
+                    JSONObject jsonIngredient = jsonIngredients.getJSONObject(k);
+
+                    ingredients.put("quantity_" + k, jsonIngredient.getString("quantity"));
+                    ingredients.put("measure_" + k, jsonIngredient.getString("measure"));
+                    ingredients.put("ingredient_" + k, jsonIngredient.getString("ingredient"));
+
+                }
+                //Extracting a HashMap with the Steps
+                JSONArray jsonSteps = jsonRecipe.getJSONArray("steps");
+                for (int j = 0; j < jsonSteps.length(); j++) {
+                    JSONObject jsonStep = jsonSteps.getJSONObject(j);
+
+                    steps.put("id_" + j, jsonStep.getString("id"));
+                    steps.put("shortDescription_" + j, jsonStep.getString("shortDescription"));
+                    steps.put("videoURL_" + j, jsonStep.getString("videoURL"));
+                    steps.put("thumbnailURL_" + j, jsonStep.getString("thumbnailURL"));
+                }
+
+                RecipeObject recipe = new RecipeObject(recipes, ingredients, steps);
+                recipeList.add(recipe);
+            }
+        } catch (JSONException e) {
             Log.e(TAG_NAME, "Error Parsing the JSON");
             return null;
         }
 
-        return null;
+        return recipeList;
     }
 
 

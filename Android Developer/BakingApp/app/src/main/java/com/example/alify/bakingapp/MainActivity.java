@@ -9,14 +9,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.alify.bakingapp.network.NetworkUtils;
+import com.example.alify.bakingapp.recipes.RecipeLoader;
 import com.example.alify.bakingapp.recipes.RecipeObject;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<RecipeObject>>{
 
     private final String TAG_NAME = MainActivity.class.getSimpleName();
     private final int LOADER_ID = 0;
+    private List<RecipeObject> mData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,31 +32,19 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public Loader<List<RecipeObject>> onCreateLoader(int i, Bundle bundle) {
-        return new DownloadRecipes(this);
+        return new RecipeLoader(this);
     }
 
     @Override
     public void onLoadFinished(Loader<List<RecipeObject>> loader, List<RecipeObject> recipeObjects) {
-
+        mData = recipeObjects;
     }
 
     @Override
     public void onLoaderReset(Loader<List<RecipeObject>> loader) {
-
+        mData.clear();
     }
 
 
-    private static class DownloadRecipes extends AsyncTaskLoader<List<RecipeObject>> {
 
-        public DownloadRecipes(Context context) {
-            super(context);
-        }
-
-        @Override
-        public List<RecipeObject> loadInBackground() {
-            String json = NetworkUtils.makeHttpRequest();
-            NetworkUtils.extractRecipe(json);
-            return null;
-        }
-    }
 }

@@ -1,5 +1,6 @@
 package com.example.alify.bakingapp.recipes;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -8,19 +9,25 @@ import java.util.Map;
 
 public class RecipeObject {
 
-    private Map<String, String> mRecipes;
-    private Map<String, String> mSteps;
+    private HashMap<String, String> mRecipes;
+    private HashMap<String, String> mIngredients;
+    private HashMap<String, String> mSteps;
 
-    public RecipeObject(Map<String, String> mRecipes, Map<String, String> mSteps) {
+    public RecipeObject(HashMap<String, String> mRecipes, HashMap<String, String> mIngredients,HashMap<String, String> mSteps) {
         this.mRecipes = mRecipes;
+        this.mIngredients = mIngredients;
         this.mSteps = mSteps;
     }
 
-    public Map<String, String> getmRecipes() {
+    public HashMap<String, String> getmRecipes() {
         return mRecipes;
     }
 
-    public Map<String, String> getmSteps() {
+    public HashMap<String, String> getmSteps() {
         return mSteps;
+    }
+
+    public HashMap<String, String> getmIngredients() {
+        return mIngredients;
     }
 }
