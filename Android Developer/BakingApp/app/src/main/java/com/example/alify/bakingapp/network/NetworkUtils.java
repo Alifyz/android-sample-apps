@@ -3,16 +3,15 @@ package com.example.alify.bakingapp.network;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Debug;
-import android.os.Parcelable;
 import android.util.Log;
-
 import com.example.alify.bakingapp.recipes.RecipeObject;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.IOException;
+import java.util.List;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -39,13 +38,11 @@ public class NetworkUtils {
         Request request = new Request.Builder()
                 .url(URL_JSON)
                 .build();
-
         Response response = null;
-        try {
 
+        try {
             response = client.newCall(request).execute();
             return response.body().string();
-
         }catch (IOException e) {
             Log.e(TAG_NAME, e.toString());
             return null;
@@ -53,6 +50,16 @@ public class NetworkUtils {
     }
 
     public static List<RecipeObject> extractRecipe(String json) {
+        String jsonResponse = json;
+
+        try {
+            JSONArray jsonRoot = new JSONArray(jsonResponse);
+
+        }catch (JSONException e) {
+            Log.e(TAG_NAME, "Error Parsing the JSON");
+            return null;
+        }
+
         return null;
     }
 
