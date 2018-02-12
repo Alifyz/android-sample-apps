@@ -35,7 +35,10 @@ public class NetworkUtils {
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 
-    //Retrieve the Information from the URL
+    /**
+     * Helper method to grab the data from the Web
+     * @return JSON String
+     */
     public static String makeHttpRequest() {
 
         OkHttpClient client = new OkHttpClient();
@@ -65,8 +68,8 @@ public class NetworkUtils {
         try {
             JSONArray jsonRoot = new JSONArray(jsonResponse);
             for (int i = 0; i < jsonRoot.length(); i++) {
-                JSONObject jsonRecipe = jsonRoot.getJSONObject(i);
 
+                JSONObject jsonRecipe = jsonRoot.getJSONObject(i);
                 HashMap<String, String> recipes = new HashMap<>();
                 HashMap<String, String> ingredients = new HashMap<>();
                 HashMap<String, String> steps = new HashMap<>();
@@ -76,21 +79,21 @@ public class NetworkUtils {
                 recipes.put("servings", jsonRecipe.getString("servings"));
                 recipes.put("image", jsonRecipe.getString("image"));
 
-                //Extracting a HashMap with the Ingredients
+
                 JSONArray jsonIngredients = jsonRecipe.getJSONArray("ingredients");
                 for (int k = 0; k < jsonIngredients.length(); k++) {
-                    JSONObject jsonIngredient = jsonIngredients.getJSONObject(k);
 
+                    JSONObject jsonIngredient = jsonIngredients.getJSONObject(k);
                     ingredients.put("quantity_" + k, jsonIngredient.getString("quantity"));
                     ingredients.put("measure_" + k, jsonIngredient.getString("measure"));
                     ingredients.put("ingredient_" + k, jsonIngredient.getString("ingredient"));
 
                 }
-                //Extracting a HashMap with the Steps
+
                 JSONArray jsonSteps = jsonRecipe.getJSONArray("steps");
                 for (int j = 0; j < jsonSteps.length(); j++) {
-                    JSONObject jsonStep = jsonSteps.getJSONObject(j);
 
+                    JSONObject jsonStep = jsonSteps.getJSONObject(j);
                     steps.put("id_" + j, jsonStep.getString("id"));
                     steps.put("shortDescription_" + j, jsonStep.getString("shortDescription"));
                     steps.put("videoURL_" + j, jsonStep.getString("videoURL"));
