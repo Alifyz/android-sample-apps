@@ -7,13 +7,19 @@ import android.content.Loader;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.example.alify.bakingapp.network.NetworkUtils;
 import com.example.alify.bakingapp.recipes.RecipeLoader;
 import com.example.alify.bakingapp.recipes.RecipeObject;
+import com.example.alify.bakingapp.views.CardViewAdapter;
 
 import java.util.HashMap;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<RecipeObject>>{
 
@@ -21,10 +27,20 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private final int LOADER_ID = 0;
     private List<RecipeObject> mData;
 
+    @BindView(R.id.rv_main) RecyclerView mRecyclerView;
+    LinearLayoutManager mLinearLayout;
+    CardViewAdapter mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.recipe_list);
+        ButterKnife.bind(this);
+
+        mLinearLayout = new LinearLayoutManager(this);
+        mLinearLayout.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(mLinearLayout);
+        mRecyclerView.setHasFixedSize(true);
 
         getLoaderManager().initLoader(LOADER_ID, null, this).forceLoad();
 
@@ -38,12 +54,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(Loader<List<RecipeObject>> loader, List<RecipeObject> recipeObjects) {
         mData = recipeObjects;
+        mAdapter = new CardViewAdapter(mData, this);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
     public void onLoaderReset(Loader<List<RecipeObject>> loader) {
         mData.clear();
     }
+
+
 
 
 

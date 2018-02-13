@@ -14,12 +14,14 @@ import com.example.alify.bakingapp.R;
 
 public class CardViewHolder extends RecyclerView.ViewHolder {
 
+    public CardView mCardView;
     public ImageView mRecipeCard;
     public TextView mRecipeTitle;
 
     public CardViewHolder(View itemView) {
         super(itemView);
 
+        mCardView = (CardView) itemView.findViewById(R.id.cv_main);
         mRecipeCard = (ImageView) itemView.findViewById(R.id.iv_recipe_card);
         mRecipeTitle = (TextView) itemView.findViewById(R.id.tv_recipe_title);
     }
