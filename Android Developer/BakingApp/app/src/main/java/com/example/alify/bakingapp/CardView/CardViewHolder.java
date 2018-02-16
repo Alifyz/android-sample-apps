@@ -1,4 +1,4 @@
-package com.example.alify.bakingapp.views;
+package com.example.alify.bakingapp.CardView;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;

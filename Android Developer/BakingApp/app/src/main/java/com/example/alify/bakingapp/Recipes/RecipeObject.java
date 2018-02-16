@@ -1,5 +1,6 @@
-package com.example.alify.bakingapp.recipes;
+package com.example.alify.bakingapp.Recipes;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 
@@ -7,7 +8,7 @@ import java.util.HashMap;
  * Created by alify on 2/9/2018.
  */
 
-public class RecipeObject {
+public class RecipeObject  {
 
     private HashMap<String, String> mRecipes;
     private HashMap<String, String> mIngredients;

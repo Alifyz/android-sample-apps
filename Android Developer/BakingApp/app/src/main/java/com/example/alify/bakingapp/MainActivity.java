@@ -1,21 +1,16 @@
 package com.example.alify.bakingapp;
 
 import android.app.LoaderManager;
-import android.content.AsyncTaskLoader;
-import android.content.Context;
 import android.content.Loader;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.example.alify.bakingapp.network.NetworkUtils;
-import com.example.alify.bakingapp.recipes.RecipeLoader;
-import com.example.alify.bakingapp.recipes.RecipeObject;
-import com.example.alify.bakingapp.views.CardViewAdapter;
+import com.example.alify.bakingapp.Recipes.RecipeLoader;
+import com.example.alify.bakingapp.Recipes.RecipeObject;
+import com.example.alify.bakingapp.CardView.CardViewAdapter;
 
-import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;

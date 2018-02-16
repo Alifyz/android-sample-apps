@@ -1,9 +1,9 @@
-package com.example.alify.bakingapp.recipes;
+package com.example.alify.bakingapp.Recipes;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 
-import com.example.alify.bakingapp.network.NetworkUtils;
+import com.example.alify.bakingapp.Network.NetworkUtils;
 
 import java.util.List;
 

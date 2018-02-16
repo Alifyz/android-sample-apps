@@ -1,10 +1,10 @@
-package com.example.alify.bakingapp.network;
+package com.example.alify.bakingapp.Network;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
-import com.example.alify.bakingapp.recipes.RecipeObject;
+import com.example.alify.bakingapp.Recipes.RecipeObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

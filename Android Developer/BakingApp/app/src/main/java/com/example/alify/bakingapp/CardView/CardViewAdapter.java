@@ -1,19 +1,16 @@
-package com.example.alify.bakingapp.views;
+package com.example.alify.bakingapp.CardView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.alify.bakingapp.R;
 import com.example.alify.bakingapp.RecipeActivity;
-import com.example.alify.bakingapp.recipes.RecipeObject;
+import com.example.alify.bakingapp.Recipes.RecipeObject;
 
-import java.io.StringBufferInputStream;
 import java.util.HashMap;
 import java.util.List;
 
@@ -35,7 +32,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewHolder> {
 
     @Override
     public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mLayoutInflater.inflate(R.layout.recipe_main_cardview, parent, false);
+        View view = mLayoutInflater.inflate(R.layout.recipe_list_cardview, parent, false);
         CardViewHolder cardViewHolder = new CardViewHolder(view);
         return cardViewHolder;
     }
@@ -61,8 +58,6 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewHolder> {
                 mContext.startActivity(recipeIntent);
             }
         });
-
-
     }
 
     @Override
