@@ -44,7 +44,9 @@ public class RecipeActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.ingreadient_fragment_container, ingredientsFragment);
+        if(savedInstanceState == null) {
+            fragmentTransaction.add(R.id.ingreadient_fragment_container, ingredientsFragment);
+        }
         fragmentTransaction.commit();
 
 

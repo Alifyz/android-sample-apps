@@ -37,10 +37,12 @@ public class IngredientsFragment extends Fragment {
         mIngredients = (HashMap<String, String>)this.getArguments().getSerializable("data");
 
         mAdapter = new RecyclerViewAdapter(getActivity(), mIngredients);
+
         mRecyclerView.setAdapter(mAdapter);
 
         return rootView;
     }
+
 
 
 }
