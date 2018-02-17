@@ -10,6 +10,7 @@ import java.util.HashMap;
 public class StepsActivity extends AppCompatActivity {
 
     private int mPosition;
+    private int mMaxItem;
     private HashMap<String, String> mInformation;
 
     @Override
@@ -21,14 +22,16 @@ public class StepsActivity extends AppCompatActivity {
         setTitle("Step - " + (mData.getIntExtra("id_position", 0) + 1));
 
         mInformation = (HashMap<String, String>) mData.getSerializableExtra("stepsInfo");
+        mMaxItem = getMaxSize(mInformation);
         mPosition = mData.getIntExtra("id_position", 0);
 
         //TODO - 1 Unpack the Information
         //TODO - 2 Assign the respective value into its views
         //TODO - 3 Create a Dynamic system to change the behavior of each one.
 
+    }
 
-
-
+    private int getMaxSize(HashMap<String, String> information) {
+        return (information.size() / 5);
     }
 }
