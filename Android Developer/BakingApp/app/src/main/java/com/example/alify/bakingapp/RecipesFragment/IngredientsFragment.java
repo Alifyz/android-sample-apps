@@ -23,6 +23,7 @@ import java.util.HashMap;
 public class IngredientsFragment extends Fragment {
 
     private HashMap<String, String> mIngredients;
+    private HashMap<String, String> mSteps;
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mAdapter;
 
@@ -35,8 +36,9 @@ public class IngredientsFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         mIngredients = (HashMap<String, String>)this.getArguments().getSerializable("data");
+        mSteps =       (HashMap<String, String>)this.getArguments().getSerializable("steps");
 
-        mAdapter = new RecyclerViewAdapter(getActivity(), mIngredients);
+        mAdapter = new RecyclerViewAdapter(getActivity(), mIngredients, mSteps);
 
         mRecyclerView.setAdapter(mAdapter);
 

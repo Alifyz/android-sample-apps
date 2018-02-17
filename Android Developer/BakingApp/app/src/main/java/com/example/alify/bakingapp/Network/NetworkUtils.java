@@ -95,6 +95,7 @@ public class NetworkUtils {
                     JSONObject jsonStep = jsonSteps.getJSONObject(j);
                     steps.put("id_" + j, jsonStep.getString("id"));
                     steps.put("shortDescription_" + j, jsonStep.getString("shortDescription"));
+                    steps.put("description_" + j, jsonStep.getString("description"));
                     steps.put("videoURL_" + j, jsonStep.getString("videoURL"));
                     steps.put("thumbnailURL_" + j, jsonStep.getString("thumbnailURL"));
                 }
