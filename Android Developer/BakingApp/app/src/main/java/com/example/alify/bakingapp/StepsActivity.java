@@ -105,7 +105,7 @@ public class StepsActivity extends AppCompatActivity {
             mPosition++;
         }
         if(mPosition < mMaxItem) {
-            mSimpleExoPlayer = null;
+            releasePlayer();
             setTitle("Step - " + mPosition);
             String recipeDescription = mInformation.get("description_" + mPosition);
             mVideoUrl = mInformation.get("videoURL_"+ mPosition);
@@ -119,7 +119,7 @@ public class StepsActivity extends AppCompatActivity {
             mPosition--;
         }
         if(mPosition >= 0) {
-            mSimpleExoPlayer = null;
+            releasePlayer();
             setTitle("Step - " + mPosition);
             String recipeDescription = mInformation.get("description_" + mPosition);
             mVideoUrl = mInformation.get("videoURL_"+ mPosition);
@@ -160,13 +160,15 @@ public class StepsActivity extends AppCompatActivity {
     }
 
     private void releasePlayer() {
-        mSimpleExoPlayer.release();
-        mSimpleExoPlayer = null;
+        if(mSimpleExoPlayer != null) {
+            mSimpleExoPlayer.release();
+            mSimpleExoPlayer = null;
+        }
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
         releasePlayer();
     }
 }
