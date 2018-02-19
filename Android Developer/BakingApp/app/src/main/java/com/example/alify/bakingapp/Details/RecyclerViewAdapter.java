@@ -62,8 +62,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View view) {
 
-
-
                 Intent stepsIntent = new Intent(mContext, StepsActivity.class);
                 stepsIntent.putExtra("id_position", position);
                 stepsIntent.putExtra("stepsInfo", mStepsDetails);
