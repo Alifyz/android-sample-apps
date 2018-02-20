@@ -10,9 +10,7 @@
         android:id="@+id/exoplayer_view"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        app:resize_mode="fill"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></com.google.android.exoplayer2.ui.SimpleExoPlayerView>
