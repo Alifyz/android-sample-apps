@@ -50,7 +50,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewHolder> {
             @Override
             public void onClick(View view) {
                 Intent recipeIntent = new Intent(mContext, RecipeActivity.class);
-
+                recipeIntent.putExtra("id", position);
                 recipeIntent.putExtra("recipe", recipe);
                 recipeIntent.putExtra("steps", steps);
                 recipeIntent.putExtra("ingredients", ingredients);

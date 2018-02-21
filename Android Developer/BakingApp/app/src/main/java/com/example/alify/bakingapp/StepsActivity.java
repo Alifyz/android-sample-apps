@@ -1,5 +1,8 @@
 package com.example.alify.bakingapp;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -11,9 +14,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.alify.bakingapp.Recipes.RecipeObject;
+import com.example.alify.bakingapp.RecipesFragment.IngredientsFragment;
+import com.example.alify.bakingapp.RecipesFragment.MasterIngredientsFragment;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
@@ -37,6 +44,7 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,6 +56,7 @@ public class StepsActivity extends AppCompatActivity {
     private int mMaxItem;
     private HashMap<String, String> mInformation;
     private String mVideoUrl;
+    private int mRecipePosition;
 
     private static final DefaultBandwidthMeter BANDWIDTH_METER =
             new DefaultBandwidthMeter();
@@ -70,6 +79,10 @@ public class StepsActivity extends AppCompatActivity {
     @Nullable
     SimpleExoPlayer mSimpleExoPlayer;
 
+    @Nullable
+    @BindView(R.id.master_fragment_container)
+    FrameLayout mFrameContainer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +90,8 @@ public class StepsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent mData = getIntent();
+        mRecipePosition = mData.getIntExtra("id", 0);
+
         setTitle("Step - " + mPosition);
 
         mInformation = (HashMap<String, String>) mData.getSerializableExtra("stepsInfo");
@@ -95,6 +110,25 @@ public class StepsActivity extends AppCompatActivity {
 
         mPlayerView.setDefaultArtwork(BitmapFactory.decodeResource(getResources(), R.drawable.coffee));
         initializeButtons();
+
+        if(mFrameContainer != null) {
+            MasterIngredientsFragment masterIngredientsFragment = new MasterIngredientsFragment();
+
+            List<RecipeObject> mGeneralInfo = MainActivity.getmData();
+            HashMap<String, String> mInformation = mGeneralInfo.get(mRecipePosition).getmIngredients();
+
+            Bundle metaData = new Bundle();
+            metaData.putInt("id", mRecipePosition);
+            metaData.putSerializable("ingredientsMetaData", mInformation);
+
+
+            FragmentManager mFragmentManager = getFragmentManager();
+            FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
+            masterIngredientsFragment.setArguments(metaData);
+
+            mFragmentTransaction.add(R.id.master_fragment_container, masterIngredientsFragment);
+            mFragmentTransaction.commit();
+        }
 
     }
 

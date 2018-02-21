@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<RecipeObject>>{
 
     private final int LOADER_ID = 0;
-    private List<RecipeObject> mData;
+    private static List<RecipeObject> mData;
     private String mLayoutTag;
 
     @BindView(R.id.rv_main) RecyclerView mRecyclerView;
@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
 
         mRecyclerView.setHasFixedSize(true);
-
         getLoaderManager().initLoader(LOADER_ID, null, this).forceLoad();
 
     }
@@ -70,8 +69,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mData.clear();
     }
 
-
-
-
-
+    public static List<RecipeObject> getmData() {
+        return mData;
+    }
 }
