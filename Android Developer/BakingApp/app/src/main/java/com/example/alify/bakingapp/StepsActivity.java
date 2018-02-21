@@ -1,25 +1,18 @@
 package com.example.alify.bakingapp;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Debug;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.alify.bakingapp.Recipes.RecipeObject;
-import com.example.alify.bakingapp.RecipesFragment.IngredientsFragment;
 import com.example.alify.bakingapp.RecipesFragment.MasterIngredientsFragment;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -29,9 +22,6 @@ import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.extractor.ExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.dash.DashChunkSource;
-import com.google.android.exoplayer2.source.dash.DashMediaSource;
-import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
@@ -40,15 +30,12 @@ import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
 import java.util.HashMap;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Optional;
 
 public class StepsActivity extends AppCompatActivity {
 
@@ -56,7 +43,8 @@ public class StepsActivity extends AppCompatActivity {
     private int mMaxItem;
     private HashMap<String, String> mInformation;
     private String mVideoUrl;
-    private int mRecipePosition;
+
+    private  int mRecipePosition;
 
     private static final DefaultBandwidthMeter BANDWIDTH_METER =
             new DefaultBandwidthMeter();
@@ -101,7 +89,7 @@ public class StepsActivity extends AppCompatActivity {
         initPlayer(mVideoUrl);
 
         if(savedInstanceState == null) {
-            mTextRecipeDescription.setText(mInformation.get("description_" + mPosition)); //Initial value
+            mTextRecipeDescription.setText(mInformation.get("description_" + mPosition));
         } else {
             mTextRecipeDescription.setText(savedInstanceState.getString("description"));
             setTitle(savedInstanceState.getString("stepPosition"));
@@ -111,25 +99,11 @@ public class StepsActivity extends AppCompatActivity {
         mPlayerView.setDefaultArtwork(BitmapFactory.decodeResource(getResources(), R.drawable.coffee));
         initializeButtons();
 
-        if(mFrameContainer != null) {
-            MasterIngredientsFragment masterIngredientsFragment = new MasterIngredientsFragment();
-
-            List<RecipeObject> mGeneralInfo = MainActivity.getmData();
-            HashMap<String, String> mInformation = mGeneralInfo.get(mRecipePosition).getmIngredients();
-
-            Bundle metaData = new Bundle();
-            metaData.putInt("id", mRecipePosition);
-            metaData.putSerializable("ingredientsMetaData", mInformation);
-
-
-            FragmentManager mFragmentManager = getFragmentManager();
-            FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
-            masterIngredientsFragment.setArguments(metaData);
-
-            mFragmentTransaction.add(R.id.master_fragment_container, masterIngredientsFragment);
-            mFragmentTransaction.commit();
+        if(mFrameContainer != null && savedInstanceState != null) {
+           initializeFragment();
+        } else if(mFrameContainer != null) {
+            initializeFragment();
         }
-
     }
 
     private int getMaxSize(HashMap<String, String> information) {
@@ -232,6 +206,21 @@ public class StepsActivity extends AppCompatActivity {
         super.onDestroy();
         releasePlayer();
     }
+
+    private void initializeFragment() {
+        MasterIngredientsFragment masterIngredientsFragment = new MasterIngredientsFragment();
+
+        Bundle metaData = new Bundle();
+        metaData.putSerializable("stepsInformation", mInformation);
+
+        FragmentManager mFragmentManager = getFragmentManager();
+        FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
+        masterIngredientsFragment.setArguments(metaData);
+
+        mFragmentTransaction.add(R.id.master_fragment_container, masterIngredientsFragment);
+        mFragmentTransaction.commit();
+    }
+
 
 
 }

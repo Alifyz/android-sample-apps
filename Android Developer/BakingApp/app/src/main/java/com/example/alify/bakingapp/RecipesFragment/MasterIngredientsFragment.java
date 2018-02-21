@@ -9,10 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.alify.bakingapp.Details.RecyclerViewAdapter;
+import com.example.alify.bakingapp.Details.RecyclerMasterDetailAdapter;
+import com.example.alify.bakingapp.MainActivity;
 import com.example.alify.bakingapp.R;
+import com.example.alify.bakingapp.Recipes.RecipeObject;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by alify on 2/20/2018.
@@ -20,9 +23,11 @@ import java.util.HashMap;
 
 public class MasterIngredientsFragment extends Fragment {
 
-    private HashMap<String, String> mIngredients;
+
     private RecyclerView mRecyclerView;
-    private RecyclerViewAdapter mAdapter;
+    private RecyclerMasterDetailAdapter mMasterAdapter;
+
+    private HashMap<String, String> mSteps;
 
     public MasterIngredientsFragment() {
     }
@@ -35,11 +40,10 @@ public class MasterIngredientsFragment extends Fragment {
         mRecyclerView  = (RecyclerView) rootView.findViewById(R.id.rv_recipe_fragment);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mIngredients = (HashMap<String, String>)this.getArguments().getSerializable("ingredientsMetaData");
+        mSteps = (HashMap<String, String>) this.getArguments().getSerializable("stepsInformation");
 
-        mAdapter = new RecyclerViewAdapter(getActivity(), mIngredients);
-
-        mRecyclerView.setAdapter(mAdapter);
+        mMasterAdapter = new RecyclerMasterDetailAdapter(getActivity(), mSteps);
+        mRecyclerView.setAdapter(mMasterAdapter);
 
         return rootView;
     }

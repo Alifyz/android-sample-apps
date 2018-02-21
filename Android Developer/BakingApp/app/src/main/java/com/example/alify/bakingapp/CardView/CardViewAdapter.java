@@ -54,7 +54,6 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewHolder> {
                 recipeIntent.putExtra("recipe", recipe);
                 recipeIntent.putExtra("steps", steps);
                 recipeIntent.putExtra("ingredients", ingredients);
-
                 mContext.startActivity(recipeIntent);
             }
         });
