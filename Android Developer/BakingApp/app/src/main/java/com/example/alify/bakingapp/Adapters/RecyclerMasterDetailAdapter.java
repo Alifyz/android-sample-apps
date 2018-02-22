@@ -22,10 +22,18 @@ public class RecyclerMasterDetailAdapter extends RecyclerView.Adapter<RecyclerMa
     private LayoutInflater mLayoutInflater;
     private HashMap<String, String> mStepsDetails;
 
+    private CustomCallBack mCustomCallBack;
 
     public RecyclerMasterDetailAdapter(Context mContext, HashMap<String, String> dataSet) {
         this.mContext = mContext;
         this.mStepsDetails = dataSet;
+        mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    public RecyclerMasterDetailAdapter(Context mContext, HashMap<String, String> dataSet, CustomCallBack mCustomCallBack) {
+        this.mContext = mContext;
+        this.mStepsDetails = dataSet;
+        this.mCustomCallBack = mCustomCallBack;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -40,7 +48,18 @@ public class RecyclerMasterDetailAdapter extends RecyclerView.Adapter<RecyclerMa
     @Override
     public void onBindViewHolder(CustomViewHolder holder, final int position) {
         String ingredientName = mStepsDetails.get("shortDescription_" + position);
+
+        final String videoUrl = mStepsDetails.get("videoURL_" + position);
+        final String recipeDetails = mStepsDetails.get("description_" + position);
+
         holder.mStepName.setText(ingredientName);
+
+        holder.mStepName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCustomCallBack.setInformation(recipeDetails, videoUrl);
+            }
+        });
 
     }
 
@@ -59,8 +78,8 @@ public class RecyclerMasterDetailAdapter extends RecyclerView.Adapter<RecyclerMa
         }
     }
 
-
-
-
+    public interface CustomCallBack {
+        public void setInformation(String text, String urlVideo);
+    }
 
 }

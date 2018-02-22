@@ -1,10 +1,13 @@
 package com.example.alify.bakingapp.RecipesFragment;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +23,15 @@ import java.util.HashMap;
  * Created by alify on 2/20/2018.
  */
 
-public class MasterIngredientsFragment extends Fragment  {
+public class MasterIngredientsFragment extends Fragment implements RecyclerMasterDetailAdapter.CustomCallBack {
 
 
 
     private RecyclerView mRecyclerView;
     private RecyclerMasterDetailAdapter mMasterAdapter;
     private HashMap<String, String> mSteps;
+
+    private Context mStepsActivityContext;
 
     public MasterIngredientsFragment() {}
 
@@ -40,13 +45,23 @@ public class MasterIngredientsFragment extends Fragment  {
 
         mSteps = (HashMap<String, String>) this.getArguments().getSerializable("stepsInformation");
 
-        mMasterAdapter = new RecyclerMasterDetailAdapter(getActivity(), mSteps);
+        mMasterAdapter = new RecyclerMasterDetailAdapter(getActivity(), mSteps, this);
 
         mRecyclerView.setAdapter(mMasterAdapter);
-
 
         return rootView;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mStepsActivityContext = context;
+    }
 
+    @Override
+    public void setInformation(String text, String urlVideo) {
+        StepsActivity hostActivity = new StepsActivity();
+        hostActivity.setNewInfo(text);
+        hostActivity.setNewVideo(urlVideo, mStepsActivityContext);
+    }
 }
