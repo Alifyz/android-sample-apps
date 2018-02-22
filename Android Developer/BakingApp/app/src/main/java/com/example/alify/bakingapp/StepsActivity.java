@@ -12,7 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.alify.bakingapp.Adapters.RecyclerMasterDetailAdapter;
 import com.example.alify.bakingapp.RecipesFragment.MasterIngredientsFragment;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -41,7 +43,7 @@ public class StepsActivity extends AppCompatActivity {
 
     private int mPosition = 0;
     private int mMaxItem;
-    private HashMap<String, String> mInformation;
+    private static HashMap<String, String> mInformation;
     private String mVideoUrl;
 
     private  int mRecipePosition;
@@ -61,6 +63,7 @@ public class StepsActivity extends AppCompatActivity {
     @BindView(R.id.tv_step_description)
     TextView mTextRecipeDescription;
 
+    @Nullable
     @BindView(R.id.exoplayer_view)
     SimpleExoPlayerView mPlayerView;
 
@@ -71,6 +74,10 @@ public class StepsActivity extends AppCompatActivity {
     @BindView(R.id.master_fragment_container)
     FrameLayout mFrameContainer;
 
+    @Nullable
+    @BindView(R.id.id_steps_container)
+    FrameLayout mStepsContainer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,28 +86,32 @@ public class StepsActivity extends AppCompatActivity {
 
         Intent mData = getIntent();
         mRecipePosition = mData.getIntExtra("id", 0);
-
         setTitle("Step - " + mPosition);
 
         mInformation = (HashMap<String, String>) mData.getSerializableExtra("stepsInfo");
         mMaxItem = getMaxSize(mInformation);
 
-        mVideoUrl = mInformation.get("videoURL_"+ mPosition);
-        initPlayer(mVideoUrl);
-
-        if(savedInstanceState == null) {
-            mTextRecipeDescription.setText(mInformation.get("description_" + mPosition));
+        if(mStepsContainer != null) {
+            Toast.makeText(this, "implement fragme", Toast.LENGTH_SHORT).show();
         } else {
-            mTextRecipeDescription.setText(savedInstanceState.getString("description"));
-            setTitle(savedInstanceState.getString("stepPosition"));
-            mSimpleExoPlayer.seekTo(savedInstanceState.getLong("playerPosition"));
+            initializeButtons();
+            mVideoUrl = mInformation.get("videoURL_"+ mPosition);
+            initPlayer(mVideoUrl);
+
+            if(savedInstanceState == null) {
+                mTextRecipeDescription.setText(mInformation.get("description_" + mPosition));
+            } else {
+                mTextRecipeDescription.setText(savedInstanceState.getString("description"));
+                setTitle(savedInstanceState.getString("stepPosition"));
+                mSimpleExoPlayer.seekTo(savedInstanceState.getLong("playerPosition"));
+            }
+
+            mPlayerView.setDefaultArtwork(BitmapFactory.decodeResource(getResources(), R.drawable.coffee));
         }
 
-        mPlayerView.setDefaultArtwork(BitmapFactory.decodeResource(getResources(), R.drawable.coffee));
-        initializeButtons();
-
+        //Inflating the Left Fragment (Brief Recipe Step Descriptions)
         if(mFrameContainer != null && savedInstanceState != null) {
-           initializeFragment();
+            initializeFragment();
         } else if(mFrameContainer != null) {
             initializeFragment();
         }

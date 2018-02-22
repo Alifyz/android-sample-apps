@@ -1,14 +1,12 @@
-package com.example.alify.bakingapp.Details;
+package com.example.alify.bakingapp.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.alify.bakingapp.R;
 import com.example.alify.bakingapp.StepsActivity;

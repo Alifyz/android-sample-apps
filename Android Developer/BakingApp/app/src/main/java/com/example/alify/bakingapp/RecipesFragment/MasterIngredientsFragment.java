@@ -8,29 +8,27 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import com.example.alify.bakingapp.Details.RecyclerMasterDetailAdapter;
-import com.example.alify.bakingapp.MainActivity;
+import com.example.alify.bakingapp.Adapters.RecyclerMasterDetailAdapter;
 import com.example.alify.bakingapp.R;
-import com.example.alify.bakingapp.Recipes.RecipeObject;
+import com.example.alify.bakingapp.StepsActivity;
 
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by alify on 2/20/2018.
  */
 
-public class MasterIngredientsFragment extends Fragment {
+public class MasterIngredientsFragment extends Fragment  {
+
 
 
     private RecyclerView mRecyclerView;
     private RecyclerMasterDetailAdapter mMasterAdapter;
-
     private HashMap<String, String> mSteps;
 
-    public MasterIngredientsFragment() {
-    }
+    public MasterIngredientsFragment() {}
 
     @Nullable
     @Override
@@ -43,8 +41,12 @@ public class MasterIngredientsFragment extends Fragment {
         mSteps = (HashMap<String, String>) this.getArguments().getSerializable("stepsInformation");
 
         mMasterAdapter = new RecyclerMasterDetailAdapter(getActivity(), mSteps);
+
         mRecyclerView.setAdapter(mMasterAdapter);
+
 
         return rootView;
     }
+
+
 }
