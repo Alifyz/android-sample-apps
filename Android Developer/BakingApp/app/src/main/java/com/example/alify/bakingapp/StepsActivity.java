@@ -49,7 +49,6 @@ public class StepsActivity extends AppCompatActivity  {
     private static HashMap<String, String> mInformation;
     private String mVideoUrl;
     private Context mContext;
-
     private int mRecipePosition;
 
     private static final DefaultBandwidthMeter BANDWIDTH_METER =
