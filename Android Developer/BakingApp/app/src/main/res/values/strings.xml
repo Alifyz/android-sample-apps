@@ -9,4 +9,7 @@
     <string name="ingredient_measure">Measure:</string>
     <string name="btn_previous">Previous</string>
     <string name="btn_next">Next</string>
+    <string name="layout_tablet">tablet</string>
+    <string name="layout_tablet_xlarge">tablet_x</string>
+    <string name="layout_phone">phone</string>
 </resources>

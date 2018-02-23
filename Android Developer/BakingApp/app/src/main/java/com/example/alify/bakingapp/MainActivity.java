@@ -4,6 +4,7 @@ import android.app.LoaderManager;
 import android.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -18,12 +19,13 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<RecipeObject>>{
 
-    private final String TAG_NAME = MainActivity.class.getSimpleName();
     private final int LOADER_ID = 0;
-    private List<RecipeObject> mData;
+    private static List<RecipeObject> mData;
+    private String mLayoutTag;
 
     @BindView(R.id.rv_main) RecyclerView mRecyclerView;
     LinearLayoutManager mLinearLayout;
+    GridLayoutManager mGridLayoutManager;
     CardViewAdapter mAdapter;
 
     @Override
@@ -34,9 +36,18 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         mLinearLayout = new LinearLayoutManager(this);
         mLinearLayout.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(mLinearLayout);
-        mRecyclerView.setHasFixedSize(true);
 
+        mGridLayoutManager = new GridLayoutManager(this,2);
+
+        mLayoutTag = (String)mRecyclerView.getTag();
+        if(mLayoutTag == getString(R.string.layout_tablet)
+                || mLayoutTag == getString(R.string.layout_tablet_xlarge)) {
+            mRecyclerView.setLayoutManager(mGridLayoutManager);
+        } else {
+            mRecyclerView.setLayoutManager(mLinearLayout);
+        }
+
+        mRecyclerView.setHasFixedSize(true);
         getLoaderManager().initLoader(LOADER_ID, null, this).forceLoad();
 
     }
@@ -58,8 +69,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mData.clear();
     }
 
-
-
-
-
+    public static List<RecipeObject> getmData() {
+        return mData;
+    }
 }

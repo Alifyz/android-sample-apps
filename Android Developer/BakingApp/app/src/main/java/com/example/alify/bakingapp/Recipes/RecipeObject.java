@@ -31,4 +31,5 @@ public class RecipeObject  {
     public HashMap<String, String> getmIngredients() {
         return mIngredients;
     }
+
 }

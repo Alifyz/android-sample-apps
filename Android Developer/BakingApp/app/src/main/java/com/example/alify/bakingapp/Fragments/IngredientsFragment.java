@@ -1,4 +1,4 @@
-package com.example.alify.bakingapp.RecipesFragment;
+package com.example.alify.bakingapp.Fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -9,9 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.alify.bakingapp.Details.RecyclerViewAdapter;
+import com.example.alify.bakingapp.Adapters.RecyclerViewAdapter;
 import com.example.alify.bakingapp.R;
-import com.example.alify.bakingapp.RecipeActivity;
 
 import java.util.HashMap;
 
