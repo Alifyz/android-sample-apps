@@ -1,4 +1,4 @@
-package com.example.alify.bakingapp.RecipesFragment;
+package com.example.alify.bakingapp.Fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;

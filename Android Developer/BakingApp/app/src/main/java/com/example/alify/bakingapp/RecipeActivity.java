@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.alify.bakingapp.RecipesFragment.IngredientsFragment;
+import com.example.alify.bakingapp.Fragments.IngredientsFragment;
 
 import java.util.HashMap;
 

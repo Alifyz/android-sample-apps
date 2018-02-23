@@ -9,16 +9,12 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.alify.bakingapp.Adapters.RecyclerMasterDetailAdapter;
-import com.example.alify.bakingapp.RecipesFragment.MasterIngredientsFragment;
-import com.example.alify.bakingapp.RecipesFragment.MasterStepsFragment;
+import com.example.alify.bakingapp.Fragments.MasterIngredientsFragment;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
@@ -42,7 +38,7 @@ import java.util.HashMap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class StepsActivity extends AppCompatActivity  {
+public class StepsActivity extends AppCompatActivity {
 
     private int mPosition = 0;
     private int mMaxItem;
@@ -67,61 +63,64 @@ public class StepsActivity extends AppCompatActivity  {
 
     static TextView mTextRecipeDescription;
     static SimpleExoPlayerView mPlayerView;
-    SimpleExoPlayer mSimpleExoPlayer;
+    static SimpleExoPlayer mSimpleExoPlayer;
 
     @Nullable
     @BindView(R.id.master_fragment_container)
     FrameLayout mFrameContainer;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_steps);
+        setTitle("Instructions");
         ButterKnife.bind(this);
 
-        //Initializing Static Views and Objects
-        mTextRecipeDescription  = (TextView) findViewById(R.id.tv_step_description);
+        //Recipe Detailed Instruction - ExoPlayer Objects
+        mTextRecipeDescription = (TextView) findViewById(R.id.tv_step_description);
         mPlayerView = (SimpleExoPlayerView) findViewById(R.id.exoplayer_view);
+
+        mPlayerView.setDefaultArtwork(BitmapFactory.decodeResource(getResources(), R.drawable.coffee));
 
         mContext = getApplicationContext();
 
+        //Retrieving Data from the Intent
         Intent mData = getIntent();
         mRecipePosition = mData.getIntExtra("id", 0);
-        setTitle("Step - " + mPosition);
+
 
         //Data set
         mInformation = (HashMap<String, String>) mData.getSerializableExtra("stepsInfo");
         mMaxItem = getMaxSize(mInformation);
-
-        initializeButtons();
         mVideoUrl = mInformation.get("videoURL_" + mPosition);
-        initPlayer(mVideoUrl);
 
         //Restoring the Player Position
         if (savedInstanceState == null) {
             mTextRecipeDescription.setText(mInformation.get("description_" + mPosition));
-
         } else {
             mTextRecipeDescription.setText(savedInstanceState.getString("description"));
             setTitle(savedInstanceState.getString("stepPosition"));
+            initPlayer(mVideoUrl);
             mSimpleExoPlayer.seekTo(savedInstanceState.getLong("playerPosition"));
         }
 
-        mPlayerView.setDefaultArtwork(BitmapFactory.decodeResource(getResources(), R.drawable.coffee));
 
         //Inflating the Left Fragment (Brief Recipe Step Descriptions)
+        //Only for Two Panels Layout 800dp + (horizontal)
         if (mFrameContainer != null && savedInstanceState != null) {
-            initializeFragment();
-            btnPrevious.setVisibility(View.INVISIBLE);
-            btnNext.setVisibility(View.INVISIBLE);
+            initializeLeftFragment();
+            commitFragment();
+            setBtnVisibilityOff();
         } else if (mFrameContainer != null) {
-            initializeFragment();
-            btnPrevious.setVisibility(View.INVISIBLE);
-            btnNext.setVisibility(View.INVISIBLE);
+            initializeLeftFragment();
+            commitFragment();
+            setBtnVisibilityOff();
+        } else {
+            initPlayer(mVideoUrl);
+            initializeButtons();
         }
     }
+
 
     private int getMaxSize(HashMap<String, String> information) {
         return (information.size() / 5);
@@ -220,48 +219,56 @@ public class StepsActivity extends AppCompatActivity  {
         releasePlayer();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if(mSimpleExoPlayer != null) {
-            mSimpleExoPlayer.stop();
-        }
-    }
 
-    private void initializeFragment() {
+    private void initializeLeftFragment() {
         MasterIngredientsFragment masterIngredientsFragment = new MasterIngredientsFragment();
         Bundle metaData = new Bundle();
         metaData.putSerializable("stepsInformation", mInformation);
         masterIngredientsFragment.setArguments(metaData);
         mFragmentTransaction.add(R.id.master_fragment_container, masterIngredientsFragment);
+
+    }
+
+
+    private void commitFragment() {
         mFragmentTransaction.commit();
     }
 
-    public static void setNewInfo(String text) {
+
+    //Update Recipe Instructions
+    public static void updateRecipeInstructions(String text) {
         mTextRecipeDescription.setText(text);
     }
 
-    //Set New Video Information.
+    //Update Video Information
     public void setNewVideo(String videoUrl, Context mContext) {
-        if(mSimpleExoPlayer != null) {
-            mSimpleExoPlayer.release();
-        } else {
+        releasePlayer();
+        if (mSimpleExoPlayer == null) {
             TrackSelection.Factory mAdaptativeTrackSelector = new AdaptiveTrackSelection.Factory(BANDWIDTH_METER);
             TrackSelector mTrackSelector = new DefaultTrackSelector(mAdaptativeTrackSelector);
+
             LoadControl mLoadControl = new DefaultLoadControl();
             mSimpleExoPlayer = ExoPlayerFactory.newSimpleInstance(mContext, mTrackSelector, mLoadControl);
+            mPlayerView.setPlayer(mSimpleExoPlayer);
+            mPlayerView.setDefaultArtwork(BitmapFactory.decodeResource(getResources(), R.drawable.coffee));
+
+            DataSource.Factory dataSourceFactory =
+                    new DefaultDataSourceFactory(mContext, Util.getUserAgent(mContext, "ua"));
+            ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
+            MediaSource videoSource = new ExtractorMediaSource(Uri.parse(videoUrl),
+                    dataSourceFactory, extractorsFactory, null, null);
+
+            mSimpleExoPlayer.prepare(videoSource);
+            mSimpleExoPlayer.setPlayWhenReady(true);
         }
+    }
 
-        DataSource.Factory dataSourceFactory =
-                new DefaultDataSourceFactory(mContext, Util.getUserAgent(mContext, "BakingApp"));
-        ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
-        MediaSource videoSource = new ExtractorMediaSource(Uri.parse(videoUrl),
-                dataSourceFactory, extractorsFactory, null, null);
-
-        mPlayerView.setPlayer(mSimpleExoPlayer);
-        mSimpleExoPlayer.prepare(videoSource);
-        mSimpleExoPlayer.setPlayWhenReady(true);
-
+    //Hide the Buttons when in Two Panel mode.
+    private void setBtnVisibilityOff() {
+        if (btnNext != null && btnPrevious != null) {
+            btnPrevious.setVisibility(View.INVISIBLE);
+            btnNext.setVisibility(View.INVISIBLE);
+        }
     }
 
 

@@ -1,17 +1,14 @@
-package com.example.alify.bakingapp.RecipesFragment;
+package com.example.alify.bakingapp.Fragments;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.alify.bakingapp.Adapters.RecyclerMasterDetailAdapter;
 import com.example.alify.bakingapp.R;
@@ -25,14 +22,11 @@ import java.util.HashMap;
 
 public class MasterIngredientsFragment extends Fragment implements RecyclerMasterDetailAdapter.CustomCallBack {
 
-
-
     private RecyclerView mRecyclerView;
     private RecyclerMasterDetailAdapter mMasterAdapter;
     private HashMap<String, String> mSteps;
 
     private Context mStepsActivityContext;
-
     public MasterIngredientsFragment() {}
 
     @Nullable
@@ -46,7 +40,6 @@ public class MasterIngredientsFragment extends Fragment implements RecyclerMaste
         mSteps = (HashMap<String, String>) this.getArguments().getSerializable("stepsInformation");
 
         mMasterAdapter = new RecyclerMasterDetailAdapter(getActivity(), mSteps, this);
-
         mRecyclerView.setAdapter(mMasterAdapter);
 
         return rootView;
@@ -60,8 +53,8 @@ public class MasterIngredientsFragment extends Fragment implements RecyclerMaste
 
     @Override
     public void setInformation(String text, String urlVideo) {
-        StepsActivity hostActivity = new StepsActivity();
-        hostActivity.setNewInfo(text);
+        StepsActivity hostActivity = (StepsActivity)getActivity();
+        hostActivity.updateRecipeInstructions(text);
         hostActivity.setNewVideo(urlVideo, mStepsActivityContext);
     }
 }

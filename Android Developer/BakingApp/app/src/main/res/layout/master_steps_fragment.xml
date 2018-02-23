@@ -1,34 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.google.android.exoplayer2.ui.SimpleExoPlayerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/exoplayer_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.alify.bakingapp.StepsActivity">
+    app:resize_mode="fill">
 
-    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
-        android:id="@+id/exoplayer_view"
-        android:layout_width="match_parent"
-        android:layout_height="435dp"
-        app:resize_mode="fill">
-    </com.google.android.exoplayer2.ui.SimpleExoPlayerView>
-
-    <TextView
-        android:id="@+id/tv_step_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:lines="8"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Menu"
-        tools:text="Recipe Details" />
+</com.google.android.exoplayer2.ui.SimpleExoPlayerView>
 
 
-</LinearLayout>
+
+

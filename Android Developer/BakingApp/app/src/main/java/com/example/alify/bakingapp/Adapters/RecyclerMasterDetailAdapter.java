@@ -71,7 +71,6 @@ public class RecyclerMasterDetailAdapter extends RecyclerView.Adapter<RecyclerMa
     class CustomViewHolder extends RecyclerView.ViewHolder {
 
         TextView mStepName;
-
         public CustomViewHolder(View itemView) {
             super(itemView);
             mStepName = (TextView) itemView.findViewById(R.id.tv_steps_list_item);
@@ -80,6 +79,7 @@ public class RecyclerMasterDetailAdapter extends RecyclerView.Adapter<RecyclerMa
 
     public interface CustomCallBack {
         public void setInformation(String text, String urlVideo);
+
     }
 
 }
