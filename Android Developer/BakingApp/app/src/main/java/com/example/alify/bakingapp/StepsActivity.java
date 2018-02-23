@@ -219,6 +219,13 @@ public class StepsActivity extends AppCompatActivity {
         releasePlayer();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(mSimpleExoPlayer != null) {
+            mSimpleExoPlayer.stop();
+        }
+    }
 
     private void initializeLeftFragment() {
         MasterIngredientsFragment masterIngredientsFragment = new MasterIngredientsFragment();
