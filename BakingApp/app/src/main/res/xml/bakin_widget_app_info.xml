@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:initialKeyguardLayout="@layout/bakin_widget_app"
+    android:initialLayout="@layout/bakin_widget_app"
+    android:minHeight="180dp"
+    android:minWidth="250dp"
+    android:previewImage="@drawable/coffee"
+    android:resizeMode="horizontal|vertical"
+    android:updatePeriodMillis="0"
+    android:widgetCategory="home_screen">
+</appwidget-provider>
