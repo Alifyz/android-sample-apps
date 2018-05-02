@@ -15,9 +15,7 @@ import java.util.ArrayList;
  */
 public class MainFragment extends Fragment {
 
-    public MainFragment() {
-        // Required empty public constructor
-    }
+    public MainFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

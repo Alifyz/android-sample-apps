@@ -13,6 +13,5 @@ public class Sport extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.viewpager_root, new SportFragment())
                 .commit();
-
     }
 }

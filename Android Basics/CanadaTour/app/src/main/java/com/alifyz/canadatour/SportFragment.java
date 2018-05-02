@@ -15,9 +15,7 @@ import java.util.ArrayList;
  */
 public class SportFragment extends Fragment {
 
-    public SportFragment() {
-        // Required empty public constructor
-    }
+    public SportFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

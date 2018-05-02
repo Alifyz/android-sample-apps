@@ -15,9 +15,7 @@ import java.util.ArrayList;
  */
 public class NatureFragment extends Fragment {
 
-    public NatureFragment() {
-        // Required empty public constructor
-    }
+    public NatureFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

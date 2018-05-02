@@ -16,9 +16,7 @@ import java.util.ArrayList;
 public class RestaurantsFragment extends Fragment {
 
 
-    public RestaurantsFragment() {
-        // Required empty public constructor
-    }
+    public RestaurantsFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,17 +31,11 @@ public class RestaurantsFragment extends Fragment {
         restaurants.add(new Place(R.string.secondRestaurantTitle, R.string.secondRestaurantDescription,
                 R.drawable.luma));
 
-
         PlaceAdapter adapter = new PlaceAdapter(getActivity(), restaurants);
-
 
         ListView listView = (ListView) rootView.findViewById(R.id.main);
         listView.setAdapter(adapter);
 
-
         return rootView;
-
-
     }
-
 }
