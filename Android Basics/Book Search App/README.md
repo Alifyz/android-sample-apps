@@ -1,12 +1,23 @@
-# Android - Canada Tur Guide App
+# Android - Simple Book Search App
 
-# Install
+## Install
 
-# Code
+* Android Studio 2.3 or Higher
+* ``` git clone https://github.com/Alifyz/Android.git ```
 
-# Contact
+## Libraries
 
-# License
+* No external Libraries were used in this App. 
+* Google Books API - Network Connection made by using the Native httpConnection object
+
+## Preview
+![App Review](https://thumbs.gfycat.com/DelayedFluffyAnemonecrab-size_restricted.gif)
+
+## Contact
+
+* alifyz@outlook.com
+
+## License
 
 Copyright 2018 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
