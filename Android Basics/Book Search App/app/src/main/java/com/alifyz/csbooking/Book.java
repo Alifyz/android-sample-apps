@@ -20,12 +20,6 @@ public class Book {
         this.mDescripton = mDescripton;
     }
 
-    public Book(String mTitle, String mAuthor, String mDescripton) {
-        this.mTitle = mTitle;
-        this.mAuthor = mAuthor;
-        this.mDescripton = mDescripton;
-    }
-
     public Bitmap getmImageResource() {
         return mImageResource;
     }

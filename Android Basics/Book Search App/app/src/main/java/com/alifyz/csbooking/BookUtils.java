@@ -20,6 +20,8 @@ import java.util.ArrayList;
 
 /**
  * Created by Alifyz on 11/7/2017.
+ * This Class is intended to provide helper methods to start a Network Request
+ * and then parse the results
  */
 
 public class BookUtils {
@@ -28,10 +30,6 @@ public class BookUtils {
     private static String jsonAuthor;
     private static String jsonDescription;
     private static String jsonImageURL;
-    private static StringBuilder jsonAuthorArray;
-
-    public BookUtils() {
-    }
 
     public static URL parseURL(String httpURL) {
         URL tempURL = null;
@@ -40,7 +38,6 @@ public class BookUtils {
         } catch (MalformedURLException e) {
             Log.e("BookLoader", "Malformed URL");
         }
-
         return tempURL;
     }
 
@@ -50,7 +47,6 @@ public class BookUtils {
         InputStream inputStream = null;
 
         try {
-
             urlConnection = (HttpURLConnection) httpURL.openConnection();
             urlConnection.setReadTimeout(10000);
             urlConnection.setConnectTimeout(15000);
@@ -92,11 +88,10 @@ public class BookUtils {
     public static ArrayList<Book> extractBooks(String rawJSON) {
         ArrayList<Book> books = new ArrayList<>();
 
+        //Iterate Over the JSON File and Parse the Objects as Individuals.
         try {
-
             JSONObject jsonRoot = new JSONObject(rawJSON);
             JSONArray jsonItems = jsonRoot.getJSONArray("items");
-
             for (int i = 0; i < jsonItems.length(); i++) {
 
                 JSONObject jsonBooks = jsonItems.getJSONObject(i);
@@ -120,13 +115,15 @@ public class BookUtils {
                 Book currentBook = new Book(currentBookCover, jsonTitle, jsonAuthor, jsonDescription);
                 books.add(currentBook);
             }
-
         } catch (JSONException e) {
             Log.e("BookUtils", "Error parsing the JSON from the Server");
         }
         return books;
     }
 
+    /*
+     * Helper method to decode the Image UrlStream and return a Bitmap
+     */
     public static Bitmap loadBitmap(String url) {
 
         Bitmap bookCover = null;
@@ -136,7 +133,6 @@ public class BookUtils {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
         try {
             bookCover = BitmapFactory.decodeStream(imageURL.openConnection().getInputStream());
         } catch (IOException e) {
@@ -144,6 +140,4 @@ public class BookUtils {
         }
         return bookCover;
     }
-
-
 }

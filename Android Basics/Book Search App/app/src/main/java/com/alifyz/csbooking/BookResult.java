@@ -44,7 +44,6 @@ public class BookResult extends AppCompatActivity implements LoaderManager.Loade
         }
 
         getLoaderManager().initLoader(0, null, this).forceLoad();
-
     }
 
     @Override
@@ -59,7 +58,6 @@ public class BookResult extends AppCompatActivity implements LoaderManager.Loade
 
     @Override
     public void onLoadFinished(Loader<List<Book>> loader, List<Book> books) {
-
         adapter = new BookAdapter(getApplicationContext(), books);
         bookListView.setAdapter(adapter);
         progressBar.setVisibility(View.GONE);
