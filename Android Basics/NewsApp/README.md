@@ -10,7 +10,7 @@
 ## Libraries & Features
 
 * No external Libraries were used in this App. 
-* ListView - -+ The Guardian API Data
+* ListView + The Guardian API Data
 * The App uses the Internet and Download the Recent News About Brazilian, Politics
 
 
