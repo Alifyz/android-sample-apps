@@ -15,7 +15,7 @@
 
 
 ## Preview
-![App Review](https://gfycat.com/gifs/detail/LikableGregariousKitten)
+![App Review](https://thumbs.gfycat.com/LikableGregariousKitten-size_restricted.gif)
 
 ## Contact
 
