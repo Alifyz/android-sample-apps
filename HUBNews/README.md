@@ -18,6 +18,7 @@
 * Retrofit + Gson 
 * Data Persistence
 * RecyclerView + Custom Typeface
+* Background Services + JobDispacher
 
 
 ## Preview
