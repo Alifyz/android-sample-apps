@@ -50,7 +50,6 @@ public class IngredientsActivity extends AppCompatActivity {
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -94,6 +93,4 @@ public class IngredientsActivity extends AppCompatActivity {
         updateWidget.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         sendBroadcast(updateWidget);
     }
-
-
 }

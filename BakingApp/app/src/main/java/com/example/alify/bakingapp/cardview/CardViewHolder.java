@@ -25,6 +25,4 @@ public class CardViewHolder extends RecyclerView.ViewHolder {
         mRecipeCard = (ImageView) itemView.findViewById(R.id.iv_recipe_card);
         mRecipeTitle = (TextView) itemView.findViewById(R.id.tv_recipe_title);
     }
-
-
 }

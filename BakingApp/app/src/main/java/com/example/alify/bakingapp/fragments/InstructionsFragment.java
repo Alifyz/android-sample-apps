@@ -86,7 +86,6 @@ public class InstructionsFragment extends Fragment {
         return rootView;
     }
 
-
     private void initPlayer(String VideoUrl) {
         if (mSimpleExoPlayer == null) {
             TrackSelection.Factory mAdaptativeTrackSelector = new AdaptiveTrackSelection.Factory(BANDWIDTH_METER);
@@ -135,7 +134,6 @@ public class InstructionsFragment extends Fragment {
         mStepThumbnail = (ImageView) rootview.findViewById(R.id.step_thumbnail);
     }
 
-
     @Override
     public void onPause() {
         super.onPause();
@@ -147,7 +145,6 @@ public class InstructionsFragment extends Fragment {
             }
         }
     }
-
     @Override
     public void onStop() {
         super.onStop();

@@ -35,8 +35,7 @@ public class StepsFragment extends Fragment {
     private TextView mIngredientList;
     private boolean isTabletMode = false;
 
-    public StepsFragment() {
-    }
+    public StepsFragment() { }
 
     @Nullable
     @Override
@@ -166,7 +165,6 @@ public class StepsFragment extends Fragment {
         }
     }
 
-
     class StepsViewHolder extends RecyclerView.ViewHolder {
 
         TextView mStepsTextView;
@@ -177,6 +175,4 @@ public class StepsFragment extends Fragment {
         }
 
     }
-
-
 }

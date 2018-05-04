@@ -59,6 +59,8 @@ public class NetworkUtils {
      * Extract the Recipe Information from the JSON provided
      * @param json - extracted using the OkHttp Library
      * @return - List of recipes
+     * Dear Interviewer/Technical Recruiter: I swear that this function is only for education purposes.
+     * Especially when we have Retrofit+Gson out there :)
      */
     public static List<RecipeObject> extractRecipe(String json) {
         String jsonResponse = json;
@@ -77,7 +79,6 @@ public class NetworkUtils {
                 recipes.put("name", jsonRecipe.getString("name"));
                 recipes.put("servings", jsonRecipe.getString("servings"));
                 recipes.put("image", jsonRecipe.getString("image"));
-
 
                 JSONArray jsonIngredients = jsonRecipe.getJSONArray("ingredients");
                 for (int k = 0; k < jsonIngredients.length(); k++) {
@@ -106,12 +107,6 @@ public class NetworkUtils {
             Log.e(TAG_NAME, "Error Parsing the JSON");
             return null;
         }
-
         return recipeList;
     }
-
-
-
-
-
 }
