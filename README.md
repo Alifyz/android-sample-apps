@@ -15,7 +15,6 @@ This Github Repository is dedicated to my independent and small projects and exp
 
 - Email: alifyz@outlook.com
 - Twitter: @AlifyzPires
-- Blog: http://www.alifyz.com
 
 Most of the projects in this repository were build only for education purpose or as part of the [Android Basics Nanodegree](https://br.udacity.com/course/android-basics-nanodegree-by-google--nd803), and Android Developer by Google Nanodegree. 
 
