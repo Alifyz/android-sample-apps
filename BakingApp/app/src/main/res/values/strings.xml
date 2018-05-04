@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">BakingApp</string>
+    <string name="recipe_image">Recipe Image</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ingredient_name">Name:</string>
+    <string name="ingredient_quantity">Quantity:</string>
+    <string name="ingredient_measure">Measure:</string>
+    <string name="btn_previous">Previous</string>
+    <string name="btn_next">Next</string>
+    <string name="layout_tablet">tablet</string>
+    <string name="layout_tablet_xlarge">tablet_x</string>
+    <string name="layout_phone">phone</string>
+    <string name="tv_no_internet">You are not connected!</string>
+    <string name="btn_try_again">Try Again</string>
+    <string name="tv_ingredients">Ingredients List</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="widget_recipe_title">Empty Recipe</string>
+    <string name="widget_pick_recipe">Pick a Recipe</string>
+    <string name="save_recipe">Save Ingredients</string>
+    <string name="menu_widget">Update Widget</string>
+</resources>
