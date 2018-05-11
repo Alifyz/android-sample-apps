@@ -16,11 +16,6 @@ This Github Repository is dedicated to my independent and small projects and exp
 - Email: alifyz@outlook.com
 - Twitter: @AlifyzPires
 
-Most of the projects in this repository were build only for education purpose or as part of the [Android Basics Nanodegree](https://br.udacity.com/course/android-basics-nanodegree-by-google--nd803), and Android Developer by Google Nanodegree. 
-
-
-You can also check my Intermediate/Advance educational apps on the Android Developer folder in this Repository, which is also part of the Android Developer course at Udacity. 
-
 ### Android Framework
 
 In this folder, you will find projects using the following set of Libraries. 
@@ -39,7 +34,7 @@ License
 
 MIT
 
-Copyright <2018> 
+Copyright - 2018
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
