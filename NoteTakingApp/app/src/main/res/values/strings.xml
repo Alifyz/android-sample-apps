@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">NoteTakingApp</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_description">Description</string>
+    <string name="todo">TO-Do</string>
+    <string name="idea">Idea</string>
+    <string name="important">Important</string>
+    <string name="btn_ok">Ok</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="note_title">Empty Title</string>
+    <string name="hin_note">Your note here</string>
+    <string name="add_note">Show Note</string>
+    <string name="menu_add">New</string>
+</resources>
