@@ -20,19 +20,21 @@ This Github Repository is dedicated to my independent and small projects and exp
 
 In this folder, you will find projects using the following set of Libraries. 
 
-- Creation of Layouts using the Android Design Pattern
-- Async Task and Loaders to Optimize calls off the Main Thread
-- Cursor and Loaders.
-- SQLite Integration
-- External Libraries: (ROOM, ButterKnife, Retrofit, Firebase and so on)
-- Cloud Integration - Firebase
+- Material Design 
+- Multi-Thread Processing 
+- SQLite Data Persistence
+- Dependency Injection (Views): ButterKnife
+- Firebase Cloud
+- Network: Retrofit & OkHttp
+- CrashAnalytics
+- RestAPI - Apps
 - Google Play Services. 
-
+- Push Notifications
 
 License
 ----
 
-MIT
+``MIT
 
 Copyright - 2018
 
