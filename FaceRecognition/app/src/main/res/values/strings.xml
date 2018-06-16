@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FaceRec</string>
+    <string name="process">Process</string>
+    <string name="faceimg">Face Image</string>
+</resources>
