@@ -20,7 +20,7 @@ class HelloRectangle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        color: Colors.greenAccent,
+        color: Colors.deepPurpleAccent,
         height: 400.0,
         width: 300.0,
         child: Center(
