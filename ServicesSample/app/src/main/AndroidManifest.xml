@@ -23,6 +23,9 @@
         <service android:name=".services.ServiceNotification"
             android:exported="false"/>
 
+      <service android:name=".services.ServiceLoadingIndicator"
+          android:exported="false"/>
+
     </application>
 
 </manifest>
