@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.alifyz.servicessample.services.ServiceLoadingIndicator;
 import com.example.alifyz.servicessample.services.ServiceNotification;
 import com.example.alifyz.servicessample.services.ServicePendingIntent;
 
@@ -15,7 +16,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startService(new Intent(this, ServiceNotification.class));
+        //Pending Intent Service
+        //startService(new Intent(this, ServiceNotification.class));
+
+        //Notification Progress Service
+        //startService(new Intent(this, ServiceLoadingIndicator.class));
     }
 
     /*
