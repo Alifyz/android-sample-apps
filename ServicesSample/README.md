@@ -1,5 +1,7 @@
 # Android - Services Sample Code
 
+Code sample that implements the core functionality of Services and Background features of the Android API. 
+
 ## Install
 
 * Android Studio 2.3 or Higher
