@@ -62,7 +62,6 @@ public class ServiceLoadingIndicator extends IntentService {
             timerTask.cancel();
         }
     }
-
     //Implement Notitication Channels for Android Oreo and Above.
     //Ongoing Notification reporting progress.
     private void notifyUsers(NotificationManager m, NotificationCompat.Builder b) {
@@ -84,5 +83,4 @@ public class ServiceLoadingIndicator extends IntentService {
             m.notify(NOTIFICATION_ID, notificationBuilder.build());
         }
     }
-
 }

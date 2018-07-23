@@ -17,7 +17,6 @@ public class ServiceNotification extends IntentService {
     public ServiceNotification() {
         super(SERVICE_NAME);
     }
-
     /*
        The instructions inside the onHandleIntent are parsed inside a HandlerThread.
        However, to make it more powerful or more Thread friendly, the usage of AsyncTask
@@ -33,7 +32,6 @@ public class ServiceNotification extends IntentService {
             // Handle Execption
         }
     }
-
     /*
         Builds a notification and notify the user when the calculations inside the service are done.
      */
