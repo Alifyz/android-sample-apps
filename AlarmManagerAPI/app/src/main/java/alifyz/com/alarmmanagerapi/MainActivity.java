@@ -3,6 +3,7 @@ package alifyz.com.alarmmanagerapi;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Trigger a Pending Intent with AlarmManager at 10:00 AM
+    //The alarm will have a window of 5 minutes
     private void setPendingIntentWithCalendar() {
         PendingIntent pendingIntent = PendingIntent
                 .getActivity(this,
@@ -57,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
         time.set(Calendar.MINUTE, 0);       //10:00 AM
         time.set(Calendar.SECOND, 0);       //10:00:00 AM
 
-        alarm.set(AlarmManager.RTC, time.getTimeInMillis(), pendingIntent);
+        long window = TimeUnit.MINUTES.toMillis(5L);
+
+        //SetWindow is only available at SDK >= 19
+        if(Build.VERSION.SDK_INT >= 19) {
+            alarm.setWindow(AlarmManager.RTC, time.getTimeInMillis(), window, pendingIntent);
+        }
     }
 }
