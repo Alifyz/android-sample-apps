@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <alifyz.com.customviewsample.SuperText.SuperText
-        android:layout_width="wrap_content"
+    <alifyz.com.customviewsample.OwnView.OwnView
+        android:layout_width="500dp"
         android:layout_height="wrap_content"
         android:text="Hello World!"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -15,7 +15,6 @@ public class SuperText extends AppCompatTextView {
         backgroundColor = new Paint();
         backgroundColor.setColor(0xffff0000);
         backgroundColor.setStyle(Paint.Style.FILL);
-
     }
 
     @Override
