@@ -30,7 +30,6 @@ public class OwnView extends View {
 
     //Common way to defined the Size of a Bound View
     private static int getMeasurentSize(int measure, int defaultSize) {
-
         int mode = MeasureSpec.getMode(measure);
         int size = MeasureSpec.getSize(measure);
 

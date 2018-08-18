@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PopSeries</string>
+    <string name="menu_popular">Popular Series</string>
 </resources>
