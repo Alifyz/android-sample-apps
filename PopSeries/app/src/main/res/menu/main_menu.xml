@@ -5,4 +5,8 @@
         android:id="@+id/popular"
         android:title="@string/menu_popular"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/top"
+        android:title="@string/menu_top"
+        app:showAsAction="never"/>
 </menu>
