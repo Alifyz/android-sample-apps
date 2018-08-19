@@ -2,11 +2,15 @@ package alifyz.com.popseries.home
 
 import alifyz.com.popseries.BuildConfig
 import alifyz.com.popseries.R
+import alifyz.com.popseries.model.Series
 import alifyz.com.popseries.network.PopularEndpoint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
-import com.orhanobut.logger.Logger
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -22,13 +26,21 @@ class HomeActivity : AppCompatActivity() {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
-        val endnpoint = retrofit.create(PopularEndpoint::class.java)
-        val call = endnpoint.getPopularSeries(BuildConfig.API_KEY)
+        val endpoint = retrofit.create(PopularEndpoint::class.java)
+        val call = endpoint.getPopularSeries(BuildConfig.API_KEY)
+
+        call.enqueue(object : Callback<Series> {
+            override fun onResponse(call: Call<Series>?, response: Response<Series>?) {
+               Log.d("Retrofit: ", "Success")
+                val response_body = response?.body()
+            }
+
+            override fun onFailure(call: Call<Series>?, t: Throwable?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        })
 
 
-        val series = call.execute().body()
-
-        Logger.d(series)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
