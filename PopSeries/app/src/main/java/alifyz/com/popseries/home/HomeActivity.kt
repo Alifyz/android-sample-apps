@@ -23,7 +23,7 @@ class HomeActivity : AppCompatActivity() {
                 .build()
 
         val endnpoint = retrofit.create(PopularEndpoint::class.java)
-        val call = endnpoint.getPopularSeries(BuildConfig.VERSION_NAME)
+        val call = endnpoint.getPopularSeries(BuildConfig.API_KEY)
 
 
         val series = call.execute().body()
