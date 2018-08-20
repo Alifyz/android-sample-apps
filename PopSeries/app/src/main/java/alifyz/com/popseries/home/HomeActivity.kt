@@ -22,7 +22,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         val retrofit = Retrofit.Builder()
-                .baseUrl("http://api.themoviedb.org/3/")
+                .baseUrl(getString(R.string.base_url))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
