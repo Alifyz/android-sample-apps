@@ -21,8 +21,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -45,8 +43,6 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         })
-
-
     }
 
     override fun onResume() {
@@ -55,13 +51,22 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        when(item.itemId) {
+            R.id.bottom_popular -> {
+                Toast.makeText(applicationContext, "Popular", Toast.LENGTH_SHORT).show()
+            }
+            R.id.bottom_top -> {
+                Toast.makeText(applicationContext, "Top", Toast.LENGTH_SHORT).show()
+            }
+            R.id.bottom_fav -> {
+                Toast.makeText(applicationContext, "Favorites", Toast.LENGTH_SHORT).show()
+            }
+        }
+        return true
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
-
-
 }
