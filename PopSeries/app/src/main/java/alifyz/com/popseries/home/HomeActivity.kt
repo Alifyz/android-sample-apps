@@ -19,7 +19,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,11 +51,17 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        bottom_navigation.setOnNavigationItemSelectedListener(this)
+    }
 
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
+
+
 }
