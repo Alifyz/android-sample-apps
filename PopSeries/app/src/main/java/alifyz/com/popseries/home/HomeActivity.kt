@@ -30,6 +30,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         startFragment()
 
+
         val retrofit = Retrofit.Builder()
                 .baseUrl(getString(R.string.base_url))
                 .addConverterFactory(GsonConverterFactory.create())
@@ -45,7 +46,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             }
 
             override fun onFailure(call: Call<Series>?, t: Throwable?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                TODO("not implemented")
             }
         })
     }

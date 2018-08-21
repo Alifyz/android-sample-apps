@@ -43,8 +43,12 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 
-
     //Logging and Debbuging Library
     implementation 'com.orhanobut:logger:2.2.0'
     implementation 'com.android.support:design:27.1.1'
+
+    //Android Jetpack
+    def room_version = "1.1.1"
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
 }
