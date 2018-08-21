@@ -6,4 +6,5 @@
     <string name="menu_fav">Favorites</string>
     <string name="menu_about">About</string>
     <string name="content_description_poster">Series Poster</string>
+    <string name="base_url_path">https://image.tmdb.org/t/p/w500</string>
 </resources>

@@ -30,12 +30,16 @@ class SeriesAdapter(val context: Context, val dataSet: Series) : RecyclerView.Ad
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentShow = dataSet.results?.get(position)
 
+        val posterUrl = context
+                .getString(R.string.base_url_path)
+                .plus(currentShow?.posterPath)
+
         holder.title.text = currentShow?.name
         holder.year.text = currentShow?.firstAirDate
 
         Glide
                 .with(context)
-                .load(currentShow?.backdropPath)
+                .load(posterUrl)
                 .into(holder.poster)
 
     }
