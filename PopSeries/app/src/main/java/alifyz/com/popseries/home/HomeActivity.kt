@@ -4,6 +4,9 @@ import alifyz.com.popseries.BuildConfig
 import alifyz.com.popseries.R
 import alifyz.com.popseries.model.Series
 import alifyz.com.popseries.network.PopularEndpoint
+import alifyz.com.popseries.ui.FavoriteFragment
+import alifyz.com.popseries.ui.PopularFragments
+import alifyz.com.popseries.ui.TopFragments
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -25,6 +28,8 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        startFragment()
+
         val retrofit = Retrofit.Builder()
                 .baseUrl(getString(R.string.base_url))
                 .addConverterFactory(GsonConverterFactory.create())
@@ -45,6 +50,13 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         })
     }
 
+    private fun startFragment() {
+        val homeFragment = PopularFragments()
+        supportFragmentManager.beginTransaction()
+                .add(R.id.fragment, homeFragment)
+                .commit()
+    }
+
     override fun onResume() {
         super.onResume()
         bottom_navigation.setOnNavigationItemSelectedListener(this)
@@ -53,13 +65,22 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.bottom_popular -> {
-                Toast.makeText(applicationContext, "Popular", Toast.LENGTH_SHORT).show()
+               val popularFragment = PopularFragments()
+               supportFragmentManager.beginTransaction()
+                       .replace(R.id.fragment, popularFragment)
+                       .commit()
             }
             R.id.bottom_top -> {
-                Toast.makeText(applicationContext, "Top", Toast.LENGTH_SHORT).show()
+               val topFragment = TopFragments()
+               supportFragmentManager.beginTransaction()
+                       .replace(R.id.fragment, topFragment)
+                       .commit()
             }
             R.id.bottom_fav -> {
-                Toast.makeText(applicationContext, "Favorites", Toast.LENGTH_SHORT).show()
+               val favoriteFragment = FavoriteFragment()
+               supportFragmentManager.beginTransaction()
+                       .replace(R.id.fragment, favoriteFragment)
+                       .commit()
             }
         }
         return true
