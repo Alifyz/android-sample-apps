@@ -30,7 +30,6 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         startFragment()
 
-
         val retrofit = Retrofit.Builder()
                 .baseUrl(getString(R.string.base_url))
                 .addConverterFactory(GsonConverterFactory.create())
