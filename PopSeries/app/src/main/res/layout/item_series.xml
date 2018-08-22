@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/poster"
             android:layout_margin="2dp"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/opensans_regular"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/title"
             android:layout_margin="2dp"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/opensans_regular"
             android:textSize="12sp"
             tools:text="2015" />
 
