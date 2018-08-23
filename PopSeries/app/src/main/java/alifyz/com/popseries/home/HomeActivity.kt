@@ -1,6 +1,5 @@
 package alifyz.com.popseries.home
 
-
 import alifyz.com.popseries.R
 import alifyz.com.popseries.ui.FavoriteFragment
 import alifyz.com.popseries.ui.PopularFragments
