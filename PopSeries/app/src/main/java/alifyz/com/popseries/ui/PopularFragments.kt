@@ -4,7 +4,7 @@ import alifyz.com.popseries.BuildConfig
 import alifyz.com.popseries.R
 import alifyz.com.popseries.adapter.SeriesAdapter
 import alifyz.com.popseries.model.PopularModel
-import alifyz.com.popseries.network.PopularEndpoint
+import alifyz.com.popseries.network.SeriesEndpoint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -43,7 +43,7 @@ class PopularFragments : Fragment() {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
-        val endpoint = retrofit.create(PopularEndpoint::class.java)
+        val endpoint = retrofit.create(SeriesEndpoint::class.java)
         val call = endpoint.getPopularSeries(BuildConfig.API_KEY)
 
         call.enqueue(object : Callback<PopularModel> {
