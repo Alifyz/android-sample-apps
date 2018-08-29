@@ -2,9 +2,7 @@ package alifyz.com.popseries.database.dao
 
 import alifyz.com.popseries.database.entity.Popular
 import alifyz.com.popseries.database.entity.Top
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 
 @Dao
 interface SeriesDao {
@@ -18,6 +16,9 @@ interface SeriesDao {
     @Insert
     fun insertPopular(vararg series: Popular)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTop(vararg  series : Top)
+
+    @Delete
+    fun delete(vararg  series: Top)
 }

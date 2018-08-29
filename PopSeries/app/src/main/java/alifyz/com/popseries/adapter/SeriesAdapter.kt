@@ -1,7 +1,7 @@
 package alifyz.com.popseries.adapter
 
 import alifyz.com.popseries.R
-import alifyz.com.popseries.model.Series
+import alifyz.com.popseries.model.PopularModel
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 
-class SeriesAdapter(val context: Context, val dataSet: Series) : RecyclerView.Adapter<SeriesAdapter.ViewHolder>() {
+class SeriesAdapter(val context: Context, val dataSet: PopularModel) : RecyclerView.Adapter<SeriesAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title = view.findViewById<TextView>(R.id.title)
