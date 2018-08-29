@@ -60,7 +60,6 @@ class PopularFragments : Fragment() {
 
     fun storeSeries(response: Response<PopularModel>?) {
         val response_body = response?.body()
-
         progress.visibility = View.GONE
         recyclerview_popular.visibility = View.VISIBLE
 
