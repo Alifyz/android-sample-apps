@@ -53,6 +53,7 @@ class PopularFragments : Fragment() {
             }
 
             override fun onFailure(call: Call<PopularModel>?, t: Throwable?) {
+                Log.d("Retrofit: ", "Failed")
                 TODO("not implemented")
             }
         })
