@@ -3,6 +3,7 @@ package alifyz.com.popseries.adapter
 import alifyz.com.popseries.R
 import alifyz.com.popseries.model.PopularModel
 import android.content.Context
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +14,17 @@ import com.bumptech.glide.Glide
 
 class SeriesAdapter(val context: Context, val dataSet: PopularModel) : RecyclerView.Adapter<SeriesAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
+
         val title = view.findViewById<TextView>(R.id.title)
         val year = view.findViewById<TextView>(R.id.year)
         val poster = view.findViewById<ImageView>(R.id.poster)
+        val card = view.findViewById<CardView>(R.id.cardview)
+                .setOnClickListener(this)
+
+        override fun onClick(v: View?) {
+            TODO("Implement open the detail Screen")
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -5,4 +5,9 @@
         android:id="@+id/about"
         android:title="@string/menu_about"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/search"
+        android:title="@string/search_menu"
+        android:icon="@drawable/search"
+        app:showAsAction="ifRoom"/>
 </menu>
