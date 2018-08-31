@@ -2,8 +2,9 @@ package alifyz.com.popseries.ui
 
 import alifyz.com.popseries.BuildConfig
 import alifyz.com.popseries.R
-import alifyz.com.popseries.adapter.SeriesAdapter
+import alifyz.com.popseries.adapter.PopularAdapter
 import alifyz.com.popseries.model.PopularModel
+import alifyz.com.popseries.model.TopModel
 import alifyz.com.popseries.network.SeriesEndpoint
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -34,7 +35,6 @@ class PopularFragments : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
         progress.visibility = View.VISIBLE
         recyclerview_popular.visibility = View.GONE
 
@@ -65,6 +65,6 @@ class PopularFragments : Fragment() {
         recyclerview_popular.visibility = View.VISIBLE
 
         recyclerview_popular.layoutManager = gridLayout
-        recyclerview_popular.adapter = SeriesAdapter(context!!, response_body!!)
+        recyclerview_popular.adapter = PopularAdapter(context!!, response_body!!)
     }
 }

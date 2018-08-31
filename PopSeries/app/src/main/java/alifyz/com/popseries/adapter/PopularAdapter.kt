@@ -12,7 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 
-class SeriesAdapter(val context: Context, val dataSet: PopularModel) : RecyclerView.Adapter<SeriesAdapter.ViewHolder>() {
+class PopularAdapter(val context: Context, val dataSet: PopularModel) : RecyclerView.Adapter<PopularAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
