@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PopSeries</string>
-    <string name="menu_popular">Popular Series</string>
-    <string name="menu_top">Top Series</string>
+    <string name="menu_popular">Popular</string>
+    <string name="menu_top">Trending</string>
     <string name="base_url">http://api.themoviedb.org/3/</string>
     <string name="menu_fav">Favorites</string>
     <string name="menu_about">About</string>
