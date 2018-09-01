@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/colorPrimaryDark"
     android:layout_height="match_parent"
     tools:context=".ui.DetailsActivity">
 
@@ -10,6 +11,30 @@
         android:id="@+id/poster"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/test"
         android:contentDescription="@string/content_description_poster"/>
+
+    <TextView
+        android:id="@+id/popularity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_below="@id/poster"
+        android:textColor="@android:color/holo_green_dark"
+        tools:text="250"
+        android:fontFamily="@font/opensans_bold"
+        android:textSize="21sp"/>
+
+    <TextView
+        android:id="@+id/popularity_desc"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        tools:text="Score"
+        android:fontFamily="@font/opensans_regular"
+        android:layout_below="@id/popularity"/>
 
 </RelativeLayout>
