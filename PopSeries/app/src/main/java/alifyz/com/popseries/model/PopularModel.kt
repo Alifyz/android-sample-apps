@@ -1,18 +1,23 @@
 package alifyz.com.popseries.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class PopularModel {
+class PopularModel : Parcelable {
     @SerializedName("page")
     @Expose
     var page: Int? = null
+
     @SerializedName("total_results")
     @Expose
     var totalResults: Int? = null
+
     @SerializedName("total_pages")
     @Expose
     var totalPages: Int? = null
+
     @SerializedName("results")
     @Expose
     val results: List<Popular>? = null
@@ -56,4 +61,20 @@ class PopularModel {
             @Expose
             var originCountry: List<String>? = null
     )
+
+    constructor(source: Parcel) : this()
+
+    constructor()
+
+    override fun describeContents() = 0
+
+    override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {}
+
+    companion object {
+        @JvmField
+        val CREATOR: Parcelable.Creator<PopularModel> = object : Parcelable.Creator<PopularModel> {
+            override fun createFromParcel(source: Parcel): PopularModel = PopularModel(source)
+            override fun newArray(size: Int): Array<PopularModel?> = arrayOfNulls(size)
+        }
+    }
 }
