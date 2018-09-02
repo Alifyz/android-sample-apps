@@ -7,12 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".ui.DetailsActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:titleTextAppearance="@style/CustomActionBar"
+        android:layout_alignParentTop="true"
+        app:title="@string/actionBarTitle"/>
+
     <ImageView
         android:id="@+id/poster"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="centerCrop"
         android:src="@drawable/test"
+        android:layout_below="@id/toolbar"
         android:contentDescription="@string/content_description_poster"/>
 
     <TextView
