@@ -7,7 +7,7 @@ import alifyz.com.popseries.ui.TopFragments
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.transition.Fade
+import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_home.*
@@ -17,6 +17,8 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        val actionBar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(actionBar)
 
         startFragment()
     }
