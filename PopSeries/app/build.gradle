@@ -56,4 +56,9 @@ dependencies {
     //Animations Library
     def lottieVersion = "2.6.0-beta19"
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    //Android Room
+    def room_version = "2.0.0-beta01"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 }
