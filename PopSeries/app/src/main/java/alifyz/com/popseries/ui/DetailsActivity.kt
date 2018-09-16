@@ -24,7 +24,8 @@ class DetailsActivity : AppCompatActivity() {
         val seriesDetail = gson.fromJson(rawJson, PopularModel.Popular::class.java)
 
         val posterImage = findViewById<ImageView>(R.id.poster)
-        val posterUrl = getString(R.string.base_url_path).plus(seriesDetail?.posterPath)
+        val posterUrl = getString(R.string.original_path)
+                .plus(seriesDetail?.backdropPath)
 
 
         val actionBar = findViewById<Toolbar>(R.id.toolbar)

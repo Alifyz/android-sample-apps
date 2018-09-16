@@ -17,7 +17,7 @@
         android:scaleType="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        android:background="@drawable/background_scrim"/>
 
     <TextView
         android:id="@+id/series_title"

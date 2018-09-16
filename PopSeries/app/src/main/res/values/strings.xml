@@ -14,4 +14,5 @@
     <string name="start_Description">8.1/10</string>
     <string name="save_text">Save</string>
     <string name="rate_test">8.1 / 10</string>
+    <string name="original_path">https://image.tmdb.org/t/p/original</string>
 </resources>
