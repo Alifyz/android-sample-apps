@@ -10,80 +10,12 @@
     <ImageView
         android:id="@+id/poster"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="400dp"
         android:layout_below="@id/toolbar"
         android:contentDescription="@string/content_description_poster"
         android:scaleType="centerCrop"
         android:src="@drawable/test"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/popularity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/poster"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/opensans_bold"
-        android:text="@string/test_meta_score"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="21sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/poster"
-        tools:text="250" />
-
-    <TextView
-        android:id="@+id/popularity_desc"
-        style="@style/header_text"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/test_score"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/popularity" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="12dp"
-        android:contentDescription="@string/start_Description"
-        app:layout_constraintStart_toEndOf="@+id/popularity"
-        app:layout_constraintTop_toBottomOf="@+id/poster"
-        app:srcCompat="@drawable/ic_star_black_24dp" />
-
-    <TextView
-        android:id="@+id/score"
-        style="@style/header_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/rate_test"
-        app:layout_constraintStart_toEndOf="@+id/popularity_desc"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <TextView
-        android:id="@+id/save_text"
-        style="@style/header_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/save_text"
-        app:layout_constraintStart_toEndOf="@+id/score"
-        app:layout_constraintTop_toBottomOf="@+id/save_image" />
-
-    <ImageView
-        android:id="@+id/save_image"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="12dp"
-        android:contentDescription="@string/start_Description"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/poster"
-        app:srcCompat="@drawable/ic_cloud_download_black_24dp" />
 
 </android.support.constraint.ConstraintLayout>
