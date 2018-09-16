@@ -5,8 +5,11 @@ import alifyz.com.popseries.model.PopularModel
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 
 import com.google.gson.GsonBuilder
+import kotlinx.android.synthetic.main.activity_details.*
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -19,8 +22,17 @@ class DetailsActivity : AppCompatActivity() {
         val gson = builder.create()
         val seriesDetail = gson.fromJson(rawJson, PopularModel.Popular::class.java)
 
+        val posterImage = findViewById<ImageView>(R.id.poster)
+        val posterUrl = getString(R.string.base_url_path).plus(seriesDetail?.backdropPath)
+
+
         val actionBar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(actionBar)
+        Glide.with(this)
+                .load(posterUrl)
+                .into(posterImage)
+
+        series_title.text = seriesDetail.name
     }
 }
 
