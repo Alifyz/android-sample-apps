@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#484848</color>
     <color name="colorDark">#000066</color>
+    <color name="activeStartColor">#fb5364</color>
+    <color name="desactiveStartColor">#4b4a5a</color>
+
 </resources>

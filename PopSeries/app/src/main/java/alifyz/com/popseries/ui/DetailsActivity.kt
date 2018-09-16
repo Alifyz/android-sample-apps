@@ -34,12 +34,20 @@ class DetailsActivity : AppCompatActivity() {
                 .load(posterUrl)
                 .into(posterImage)
 
+
+        rating_count.text = seriesDetail.voteCount!!.toString().plus(" Reviews")
+        rating.rating = setRate(seriesDetail.voteAverage)
         series_title.text = seriesDetail.originalName
 
         //Transparent StatusBar
         window.setFlags(
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+    }
+
+    private fun setRate(voteAverage: Double?): Float {
+        val vote = voteAverage?.div(10)?.times(5)
+        return vote!!.toFloat()
     }
 }
 
