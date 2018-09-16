@@ -8,33 +8,41 @@
     tools:context=".ui.DetailsActivity"
     android:fitsSystemWindows="true">
 
-    <ImageView
-        android:id="@+id/poster"
+    <FrameLayout
+        android:id="@+id/header_background"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_below="@id/toolbar"
-        android:contentDescription="@string/content_description_poster"
-        android:scaleType="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/background_scrim"/>
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/poster"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:contentDescription="@string/content_description_poster"
+            android:scaleType="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/background_scrim"/>
+
+        <View
+            android:id="@+id/scrim"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:background="@drawable/background_scrim"/>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/series_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:textSize="36sp"
-        android:textColor="@android:color/white"
+        android:layout_marginStart="2dp"
         android:fontFamily="@font/opensans_regular"
-        app:layout_constraintBottom_toBottomOf="@+id/poster"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toBottomOf="@+id/header_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/poster"
-        app:layout_constraintVertical_bias="0.98" />
+        tools:text="The Big Bang Theory" />
+
 
 </android.support.constraint.ConstraintLayout>

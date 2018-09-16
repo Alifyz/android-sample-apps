@@ -34,7 +34,7 @@ class DetailsActivity : AppCompatActivity() {
                 .load(posterUrl)
                 .into(posterImage)
 
-        series_title.text = seriesDetail.name
+        series_title.text = seriesDetail.originalName
 
         //Transparent StatusBar
         window.setFlags(
