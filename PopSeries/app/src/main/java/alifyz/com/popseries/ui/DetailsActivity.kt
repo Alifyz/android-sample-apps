@@ -5,6 +5,7 @@ import alifyz.com.popseries.model.PopularModel
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
+import android.view.WindowManager
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 
@@ -23,7 +24,7 @@ class DetailsActivity : AppCompatActivity() {
         val seriesDetail = gson.fromJson(rawJson, PopularModel.Popular::class.java)
 
         val posterImage = findViewById<ImageView>(R.id.poster)
-        val posterUrl = getString(R.string.base_url_path).plus(seriesDetail?.backdropPath)
+        val posterUrl = getString(R.string.base_url_path).plus(seriesDetail?.posterPath)
 
 
         val actionBar = findViewById<Toolbar>(R.id.toolbar)
@@ -33,6 +34,11 @@ class DetailsActivity : AppCompatActivity() {
                 .into(posterImage)
 
         series_title.text = seriesDetail.name
+
+        //Transparent StatusBar
+        window.setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     }
 }
 

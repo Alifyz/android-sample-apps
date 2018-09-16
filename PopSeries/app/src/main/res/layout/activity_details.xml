@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context=".ui.DetailsActivity">
+    tools:context=".ui.DetailsActivity"
+    android:fitsSystemWindows="true">
 
     <ImageView
         android:id="@+id/poster"
@@ -13,9 +14,10 @@
         android:layout_height="400dp"
         android:layout_below="@id/toolbar"
         android:contentDescription="@string/content_description_poster"
-        android:scaleType="centerCrop"
+        android:scaleType="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
     <TextView
         android:id="@+id/series_title"
@@ -26,7 +28,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:textStyle="bold"
-        android:textSize="24sp"
+        android:textSize="36sp"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/poster"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.07"
