@@ -36,11 +36,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="2dp"
         android:fontFamily="@font/opensans_regular"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
         android:textAlignment="textStart"
+        android:textColor="@android:color/white"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="@+id/header_background"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="The Big Bang Theory" />
 
