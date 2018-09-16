@@ -38,11 +38,16 @@ class DetailsActivity : AppCompatActivity() {
         rating_count.text = setRateCount(seriesDetail)
         rating.rating = setRate(seriesDetail.voteAverage)
         series_title.text = seriesDetail.originalName
+        release_year.text = setReleaseYear(seriesDetail.firstAirDate)
 
         //Transparent StatusBar
         window.setFlags(
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+    }
+
+    fun setReleaseYear(firstAirDate: String?): CharSequence? {
+       return firstAirDate!!.substring(0,4)
     }
 
     fun setRateCount(seriesDetail: PopularModel.Popular) =
