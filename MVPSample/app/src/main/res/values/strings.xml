@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MVPSample</string>
+    <string name="act_login">Login Screen</string>
 </resources>
