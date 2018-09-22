@@ -1,4 +1,4 @@
-package login
+package ui.login
 
 class LoginPresenter(loginView: LoginView) {
 
