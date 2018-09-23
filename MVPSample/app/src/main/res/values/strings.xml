@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MVPSample</string>
+    <string name="act_login">Login Screen</string>
+    <string name="et_login_hint">Jon Doe</string>
+    <string name="et_password_hint">Password</string>
+    <string name="btn_login_txt">Login</string>
+    <string name="btn_signup_txt">Sign Up</string>
+    <string name="img_account_logo_desc">User Account Image</string>
 </resources>
