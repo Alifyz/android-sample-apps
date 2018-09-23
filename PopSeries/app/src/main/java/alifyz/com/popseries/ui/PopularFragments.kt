@@ -4,7 +4,6 @@ import alifyz.com.popseries.BuildConfig
 import alifyz.com.popseries.R
 import alifyz.com.popseries.adapter.PopularAdapter
 import alifyz.com.popseries.model.PopularModel
-import alifyz.com.popseries.model.TopModel
 import alifyz.com.popseries.network.SeriesEndpoint
 import android.os.Bundle
 import android.support.v4.app.Fragment

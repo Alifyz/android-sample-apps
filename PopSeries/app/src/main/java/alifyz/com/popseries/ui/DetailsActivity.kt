@@ -34,7 +34,6 @@ class DetailsActivity : AppCompatActivity() {
                 .load(posterUrl)
                 .into(posterImage)
 
-
         rating_count.text = setRateCount(seriesDetail)
         rating.rating = setRate(seriesDetail.voteAverage)
         series_title.text = seriesDetail.originalName
@@ -47,7 +46,6 @@ class DetailsActivity : AppCompatActivity() {
     }
 
 
-
     fun setRateCount(seriesDetail: PopularModel.Popular) =
             seriesDetail.voteCount!!.toString().plus(" Reviews")
 
@@ -55,7 +53,5 @@ class DetailsActivity : AppCompatActivity() {
         val vote = voteAverage?.div(10)?.times(5)
         return vote!!.toFloat()
     }
-
-
 }
 
