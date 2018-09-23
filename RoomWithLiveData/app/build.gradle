@@ -38,4 +38,7 @@ dependencies {
     // Lifecycle components
     implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
+
+    //Anko Library
+    implementation "org.jetbrains.anko:anko:$anko_version"
 }
