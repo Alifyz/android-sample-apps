@@ -2,27 +2,19 @@ package com.alifyz.roomwithlivedata.repository
 
 import android.app.Application
 import android.arch.lifecycle.LiveData
+import android.support.annotation.WorkerThread
 import com.alifyz.roomwithlivedata.database.files.AppDatabase
 import com.alifyz.roomwithlivedata.database.files.dao.DesertDao
 import com.alifyz.roomwithlivedata.database.files.entity.DesertEntity
 import org.jetbrains.anko.doAsync
 
-class DesertRepository(application : Application) {
+class DesertRepository(private val dao : DesertDao) {
 
-    var mDesertDao : DesertDao? = null
-    var mAllDeserts : LiveData<List<DesertEntity>>? = null
-    var localDatabase : AppDatabase
+    val allDeserts : LiveData<List<DesertEntity>> = dao.getAllDeserts()
 
-    init {
-        val roomDatabase = AppDatabase.getInstance(application)
-        localDatabase = roomDatabase
-        mDesertDao = roomDatabase.desertDao()
-        mAllDeserts = roomDatabase.desertDao().getAllDeserts()
+    @WorkerThread
+    suspend fun insertDesert(desert : DesertEntity) {
+        dao.insertDesert(desert)
     }
 
-    fun addDesert(newDesert : DesertEntity) {
-        doAsync {
-            localDatabase.desertDao().insertDesert(newDesert)
-        }
-    }
 }
