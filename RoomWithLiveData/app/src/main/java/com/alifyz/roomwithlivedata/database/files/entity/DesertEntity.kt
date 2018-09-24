@@ -10,5 +10,5 @@ data class DesertEntity(
         @ColumnInfo(name = "name")
         val mDesertName : String?,
         @ColumnInfo(name = "price")
-        val mDesertPrice : Double?
+        val mDesertPrice : String?
 )

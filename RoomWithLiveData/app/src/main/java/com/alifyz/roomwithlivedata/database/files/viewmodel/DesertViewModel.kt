@@ -17,7 +17,7 @@ class DesertViewModel(application : Application) : AndroidViewModel(application)
     val deserts : LiveData<List<DesertEntity>>
 
     init {
-        val dao = AppDatabase.getInstance(application).desertDao()
+        val dao = AppDatabase.getInstance(application)!!.desertDao()
         repository = DesertRepository(dao)
         deserts = repository.allDeserts
     }
