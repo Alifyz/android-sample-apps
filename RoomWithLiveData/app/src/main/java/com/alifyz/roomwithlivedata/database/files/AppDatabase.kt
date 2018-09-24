@@ -15,16 +15,13 @@ abstract class AppDatabase : RoomDatabase(){
 
     //Static Creation of the Local Database
     companion object {
-        @Volatile
 
+        @Volatile
         private var INSTANCE : AppDatabase? = null
 
         fun getInstance(context : Context) : AppDatabase? {
-
-            val tempInstance = INSTANCE
-
             if(INSTANCE != null) {
-                return tempInstance
+                return INSTANCE
             }
 
             synchronized(this) {
