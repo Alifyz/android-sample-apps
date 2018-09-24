@@ -11,15 +11,13 @@ import kotlinx.coroutines.experimental.async
 
 class DesertViewModel(application : Application) : AndroidViewModel(application) {
 
-    private var parentJob = Job()
-
     private val repository : DesertRepository
     val deserts : LiveData<List<DesertEntity>>
 
     init {
-        val dao = AppDatabase.getInstance(application)!!.desertDao()
+        val dao = AppDatabase.getInstance(application)?.desertDao()
         repository = DesertRepository(dao)
-        deserts = repository.allDeserts
+        deserts = repository.allDeserts!!
     }
 
     fun insertDesert(desert : DesertEntity) {
