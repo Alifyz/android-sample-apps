@@ -5,8 +5,8 @@ import android.arch.persistence.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "favorite")
-data class FavoriteEntity(
+@Entity(tableName = "trending")
+data class TrendingEntity(
         @PrimaryKey
         var id: Int? = null,
         @SerializedName("original_name")
