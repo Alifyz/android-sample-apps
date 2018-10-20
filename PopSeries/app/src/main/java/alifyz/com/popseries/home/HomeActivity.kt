@@ -1,5 +1,6 @@
 package alifyz.com.popseries.home
 
+import alifyz.com.popseries.BuildConfig
 import alifyz.com.popseries.R
 import alifyz.com.popseries.ui.FavoriteFragment
 import alifyz.com.popseries.ui.PopularFragments
@@ -10,6 +11,7 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import com.appspector.sdk.AppSpector
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -17,6 +19,9 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        startAppSpector()
+
         val actionBar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(actionBar)
 
@@ -62,5 +67,14 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
+    }
+
+    private fun startAppSpector() {
+        AppSpector
+                .build(this)
+                .withDefaultMonitors()
+                .addHttpMonitor()
+                .addEnvironmentMonitor()
+                .run(BuildConfig.SPECTOR_API)
     }
 }

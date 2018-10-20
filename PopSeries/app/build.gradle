@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.appspector.sdk'
 
 android {
     compileSdkVersion 27
@@ -21,6 +22,7 @@ android {
 
         debug {
             buildConfigField('String', 'API_KEY', project.API)
+            buildConfigField('String', 'SPECTOR_API', project.SPECTOR_API)
         }
     }
 
@@ -65,4 +67,7 @@ dependencies {
     //LifeCycle Aware Components
     def lifecycle_version = "1.1.1"
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+
+    //AppRemote Debugging Spector
+    implementation "com.appspector:android-sdk:1.0.4"
 }
