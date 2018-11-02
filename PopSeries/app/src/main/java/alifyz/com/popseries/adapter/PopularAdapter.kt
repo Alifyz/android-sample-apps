@@ -18,6 +18,7 @@ import com.google.gson.GsonBuilder
 
 class PopularAdapter(val context: Context, val dataSet: PopularModel) : RecyclerView.Adapter<PopularAdapter.ViewHolder>() {
 
+
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
         val title = view.findViewById<TextView>(R.id.title)

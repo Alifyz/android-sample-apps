@@ -1,8 +1,12 @@
 package alifyz.com.popseries.adapter
 
 import alifyz.com.popseries.R
+import alifyz.com.popseries.model.PopularModel
 import alifyz.com.popseries.model.TopModel
+import alifyz.com.popseries.ui.DetailsActivity
 import android.content.Context
+import android.content.Intent
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -11,8 +15,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.google.gson.GsonBuilder
 
 class TopAdapter(val context: Context, val dataSet: TopModel) : RecyclerView.Adapter<TopAdapter.ViewHolder>() {
+
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
@@ -23,7 +29,7 @@ class TopAdapter(val context: Context, val dataSet: TopModel) : RecyclerView.Ada
                 .setOnClickListener(this)
 
         override fun onClick(v: View?) {
-            TODO("Implement open the detail Screen")
+
         }
     }
 

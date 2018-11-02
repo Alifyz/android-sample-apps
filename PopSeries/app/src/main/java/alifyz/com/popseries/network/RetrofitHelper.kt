@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-class Retrofit {
+class RetrofitHelper {
 
     companion object {
         fun getInstance() : Retrofit {
