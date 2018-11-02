@@ -2,8 +2,10 @@ package alifyz.com.popseries.ui
 
 import alifyz.com.popseries.BuildConfig
 import alifyz.com.popseries.R
+import alifyz.com.popseries.adapter.PopularAdapter
 import alifyz.com.popseries.adapter.TopAdapter
 import alifyz.com.popseries.model.TopModel
+import alifyz.com.popseries.network.RetrofitHelper
 import alifyz.com.popseries.network.SeriesEndpoint
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -36,22 +38,19 @@ class TopFragments : Fragment() {
         progress.visibility = View.VISIBLE
         recyclerview_top.visibility = View.GONE
 
-        val retrofit = Retrofit.Builder()
-                .baseUrl(getString(R.string.base_url))
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
+        val retrofit = RetrofitHelper.getInstance()
 
         val endpoint = retrofit.create(SeriesEndpoint::class.java)
         val call = endpoint.getTopSeries(BuildConfig.API_KEY)
 
         call.enqueue(object : Callback<TopModel> {
             override fun onResponse(call: Call<TopModel>?, response: Response<TopModel>?) {
-                Log.d("Retrofit: ", "Success")
+                Log.d("RetrofitHelper: ", "Success")
                 storeSeries(response)
             }
 
             override fun onFailure(call: Call<TopModel>?, t: Throwable?) {
-                Log.d("Retrofit: ", "Failed")
+                Log.d("RetrofitHelper: ", "Failed")
                 TODO("not implemented")
             }
         })

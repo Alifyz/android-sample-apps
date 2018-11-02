@@ -1,9 +1,6 @@
-package alifyz.com.popseries.home
+package alifyz.com.popseries.ui
 
 import alifyz.com.popseries.R
-import alifyz.com.popseries.ui.FavoriteFragment
-import alifyz.com.popseries.ui.PopularFragments
-import alifyz.com.popseries.ui.TopFragments
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -17,8 +14,6 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
-
 
         val actionBar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(actionBar)

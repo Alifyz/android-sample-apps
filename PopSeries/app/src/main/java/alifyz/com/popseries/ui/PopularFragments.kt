@@ -4,6 +4,7 @@ import alifyz.com.popseries.BuildConfig
 import alifyz.com.popseries.R
 import alifyz.com.popseries.adapter.PopularAdapter
 import alifyz.com.popseries.model.PopularModel
+import alifyz.com.popseries.network.RetrofitHelper
 import alifyz.com.popseries.network.SeriesEndpoint
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -16,8 +17,6 @@ import kotlinx.android.synthetic.main.fragment_popular.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class PopularFragments : Fragment() {
 
@@ -37,22 +36,19 @@ class PopularFragments : Fragment() {
         progress.visibility = View.VISIBLE
         recyclerview_popular.visibility = View.GONE
 
-        val retrofit = Retrofit.Builder()
-                .baseUrl(getString(R.string.base_url))
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
+        val retrofit = RetrofitHelper.getInstance()
 
         val endpoint = retrofit.create(SeriesEndpoint::class.java)
         val call = endpoint.getPopularSeries(BuildConfig.API_KEY)
 
         call.enqueue(object : Callback<PopularModel> {
             override fun onResponse(call: Call<PopularModel>?, response: Response<PopularModel>?) {
-                Log.d("Retrofit: ", "Success")
+                Log.d("RetrofitHelper: ", "Success")
                 storeSeries(response)
             }
 
             override fun onFailure(call: Call<PopularModel>?, t: Throwable?) {
-                Log.d("Retrofit: ", "Failed")
+                Log.d("RetrofitHelper: ", "Failed")
                 TODO("not implemented")
             }
         })
