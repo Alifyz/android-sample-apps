@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.appspector.sdk'
+apply plugin: "androidx.navigation.safeargs"
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
@@ -64,10 +65,25 @@ dependencies {
     implementation "android.arch.persistence.room:runtime:$room_version"
     annotationProcessor "android.arch.persistence.room:compiler:$room_version"
 
-    //LifeCycle Aware Components
+    //ViewModel and LiveDataViewModel and LiveData
     def lifecycle_version = "1.1.1"
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    kapt "android.arch.lifecycle:compiler:$lifecycle_version"
+    testImplementation "android.arch.core:core-testing:$lifecycle_version"
 
-    //AppRemote Debugging Spector
-    implementation "com.appspector:android-sdk:1.0.4"
+    //Paging Library
+    def paging_version = "1.0.0"
+    implementation "android.arch.paging:runtime:$paging_version"
+    testImplementation "android.arch.paging:common:$paging_version"
+
+    //Navigation
+    def nav_version = "1.0.0-alpha07"
+    implementation "android.arch.navigation:navigation-fragment:$nav_version"
+    implementation "android.arch.navigation:navigation-ui:$nav_version"
+    androidTestImplementation "android.arch.navigation:navigation-testing:$nav_version"
+
+
+
+
+
 }
