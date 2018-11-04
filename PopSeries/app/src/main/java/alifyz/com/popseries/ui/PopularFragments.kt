@@ -2,8 +2,8 @@ package alifyz.com.popseries.ui
 
 import alifyz.com.popseries.BuildConfig
 import alifyz.com.popseries.R
-import alifyz.com.popseries.adapter.PopularAdapter
-import alifyz.com.popseries.model.PopularModel
+import alifyz.com.popseries.adapter.HomeSeriesAdapter
+import alifyz.com.popseries.model.SeriesModel
 import alifyz.com.popseries.network.RetrofitHelper
 import alifyz.com.popseries.network.SeriesEndpoint
 import android.os.Bundle
@@ -41,25 +41,25 @@ class PopularFragments : Fragment() {
         val endpoint = retrofit.create(SeriesEndpoint::class.java)
         val call = endpoint.getPopularSeries(BuildConfig.API_KEY)
 
-        call.enqueue(object : Callback<PopularModel> {
-            override fun onResponse(call: Call<PopularModel>?, response: Response<PopularModel>?) {
+        call.enqueue(object : Callback<SeriesModel> {
+            override fun onResponse(call: Call<SeriesModel>?, response: Response<SeriesModel>?) {
                 Log.d("RetrofitHelper: ", "Success")
                 storeSeries(response)
             }
 
-            override fun onFailure(call: Call<PopularModel>?, t: Throwable?) {
+            override fun onFailure(call: Call<SeriesModel>?, t: Throwable?) {
                 Log.d("RetrofitHelper: ", "Failed")
                 TODO("not implemented")
             }
         })
     }
 
-    fun storeSeries(response: Response<PopularModel>?) {
+    fun storeSeries(response: Response<SeriesModel>?) {
         val response_body = response?.body()
         progress.visibility = View.GONE
         recyclerview_popular.visibility = View.VISIBLE
 
         recyclerview_popular.layoutManager = gridLayout
-        recyclerview_popular.adapter = PopularAdapter(context!!, response_body!!)
+        recyclerview_popular.adapter = HomeSeriesAdapter(context!!, response_body!!)
     }
 }

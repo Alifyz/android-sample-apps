@@ -1,7 +1,7 @@
 package alifyz.com.popseries.ui
 
 import alifyz.com.popseries.R
-import alifyz.com.popseries.model.PopularModel
+import alifyz.com.popseries.model.SeriesModel
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
@@ -21,7 +21,7 @@ class DetailsActivity : AppCompatActivity() {
         val rawJson = intent.getStringExtra("data")
         val builder = GsonBuilder()
         val gson = builder.create()
-        val seriesDetail = gson.fromJson(rawJson, PopularModel.Popular::class.java)
+        val seriesDetail = gson.fromJson(rawJson, SeriesModel.SeriesMetaData::class.java)
 
         val posterImage = findViewById<ImageView>(R.id.poster)
         val posterUrl = getString(R.string.original_path)
@@ -46,7 +46,7 @@ class DetailsActivity : AppCompatActivity() {
     }
 
 
-    fun setRateCount(seriesDetail: PopularModel.Popular) =
+    fun setRateCount(seriesDetail: SeriesModel.SeriesMetaData) =
             seriesDetail.voteCount!!.toString().plus(" Reviews")
 
     fun setRate(voteAverage: Double?): Float {

@@ -2,9 +2,8 @@ package alifyz.com.popseries.ui
 
 import alifyz.com.popseries.BuildConfig
 import alifyz.com.popseries.R
-import alifyz.com.popseries.adapter.PopularAdapter
-import alifyz.com.popseries.adapter.TopAdapter
-import alifyz.com.popseries.model.TopModel
+import alifyz.com.popseries.adapter.HomeSeriesAdapter
+import alifyz.com.popseries.model.SeriesModel
 import alifyz.com.popseries.network.RetrofitHelper
 import alifyz.com.popseries.network.SeriesEndpoint
 import android.os.Bundle
@@ -18,8 +17,6 @@ import kotlinx.android.synthetic.main.fragment_top.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class TopFragments : Fragment() {
 
@@ -43,25 +40,25 @@ class TopFragments : Fragment() {
         val endpoint = retrofit.create(SeriesEndpoint::class.java)
         val call = endpoint.getTopSeries(BuildConfig.API_KEY)
 
-        call.enqueue(object : Callback<TopModel> {
-            override fun onResponse(call: Call<TopModel>?, response: Response<TopModel>?) {
+        call.enqueue(object : Callback<SeriesModel> {
+            override fun onResponse(call: Call<SeriesModel>?, response: Response<SeriesModel>?) {
                 Log.d("RetrofitHelper: ", "Success")
                 storeSeries(response)
             }
 
-            override fun onFailure(call: Call<TopModel>?, t: Throwable?) {
+            override fun onFailure(call: Call<SeriesModel>?, t: Throwable?) {
                 Log.d("RetrofitHelper: ", "Failed")
                 TODO("not implemented")
             }
         })
     }
 
-    fun storeSeries(response: Response<TopModel>?) {
+    fun storeSeries(response: Response<SeriesModel>?) {
         val response_body = response?.body()
         progress.visibility = View.GONE
         recyclerview_top.visibility = View.VISIBLE
 
         recyclerview_top.layoutManager = gridLayout
-        recyclerview_top.adapter = TopAdapter(context!!, response_body!!)
+        recyclerview_top.adapter = HomeSeriesAdapter(context!!, response_body!!)
     }
 }

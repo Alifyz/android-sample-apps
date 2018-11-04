@@ -1,7 +1,6 @@
 package alifyz.com.popseries.network
 
-import alifyz.com.popseries.model.PopularModel
-import alifyz.com.popseries.model.TopModel
+import alifyz.com.popseries.model.SeriesModel
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,8 +22,8 @@ class RetrofitHelper {
 interface SeriesEndpoint{
 
     @GET("discover/tv")
-    fun getPopularSeries(@Query("api_key") apikey : String) : Call<PopularModel>
+    fun getPopularSeries(@Query("api_key") apikey : String) : Call<SeriesModel>
 
     @GET("trending/tv/week")
-    fun getTopSeries(@Query("api_key") apikey : String) : Call<TopModel>
+    fun getTopSeries(@Query("api_key") apikey : String) : Call<SeriesModel>
 }
