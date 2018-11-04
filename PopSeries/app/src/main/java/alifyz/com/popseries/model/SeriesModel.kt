@@ -5,7 +5,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class PopularModel : Parcelable {
+class SeriesModel : Parcelable {
     @SerializedName("page")
     @Expose
     var page: Int? = null
@@ -20,9 +20,9 @@ class PopularModel : Parcelable {
 
     @SerializedName("results")
     @Expose
-    val results: List<Popular>? = null
+    val results: List<SeriesMetaData>? = null
 
-    inner class Popular(
+    inner class SeriesMetaData(
             var id: Int? = null,
             @SerializedName("original_name")
             @Expose
@@ -72,9 +72,9 @@ class PopularModel : Parcelable {
 
     companion object {
         @JvmField
-        val CREATOR: Parcelable.Creator<PopularModel> = object : Parcelable.Creator<PopularModel> {
-            override fun createFromParcel(source: Parcel): PopularModel = PopularModel(source)
-            override fun newArray(size: Int): Array<PopularModel?> = arrayOfNulls(size)
+        val CREATOR: Parcelable.Creator<SeriesModel> = object : Parcelable.Creator<SeriesModel> {
+            override fun createFromParcel(source: Parcel): SeriesModel = SeriesModel(source)
+            override fun newArray(size: Int): Array<SeriesModel?> = arrayOfNulls(size)
         }
     }
 }
