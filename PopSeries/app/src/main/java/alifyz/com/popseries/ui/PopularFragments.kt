@@ -19,7 +19,28 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PopularFragments : Fragment() {
+class PopularFragments : Fragment(), PopularUIContract.View {
+
+
+    override fun setLoadingIndicator(active: Boolean) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showEmptyContent() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showOffline() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showSavedAlert() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun isActive(): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     val gridLayout = GridLayoutManager(
             context,
@@ -27,6 +48,7 @@ class PopularFragments : Fragment() {
             GridLayoutManager.VERTICAL,
             false)
 
+    override  lateinit var presenter : PopularUIContract.Presenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_popular, container, false)
