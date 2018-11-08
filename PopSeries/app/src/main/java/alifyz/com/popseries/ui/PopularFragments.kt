@@ -3,6 +3,7 @@ package alifyz.com.popseries.ui
 import alifyz.com.popseries.BuildConfig
 import alifyz.com.popseries.R
 import alifyz.com.popseries.adapter.HomeSeriesAdapter
+import alifyz.com.popseries.arch.PopularUIContract
 import alifyz.com.popseries.model.SeriesModel
 import alifyz.com.popseries.network.RetrofitHelper
 import alifyz.com.popseries.network.SeriesEndpoint

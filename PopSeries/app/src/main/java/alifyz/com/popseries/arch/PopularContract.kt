@@ -14,6 +14,8 @@ interface PopularUIContract {
         fun isActive(): Boolean
     }
 
-    interface Presenter : BasePresenter
+    interface Presenter : BasePresenter {
+        fun openDetails()
+    }
 }
 
