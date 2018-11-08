@@ -14,8 +14,6 @@ interface PopularUIContract {
         fun isActive(): Boolean
     }
 
-    interface Presenter : BasePresenter {
-        fun loadDataFromInternet()
-    }
+    interface Presenter : BasePresenter
 }
 
