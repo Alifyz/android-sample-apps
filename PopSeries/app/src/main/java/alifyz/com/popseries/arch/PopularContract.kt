@@ -5,19 +5,11 @@ interface PopularUIContract {
     interface View : BaseView<Presenter> {
         fun setLoadingIndicator(active: Boolean)
 
-        fun showMissingTask()
+        fun showEmptyContent()
 
-        fun hideTitle()
+        fun showOffline()
 
-        fun showTitle(title: String)
-
-        fun hideDescription()
-
-        fun showTaskDeleted()
-
-        fun showTaskMarkedComplete()
-
-        fun showTaskMarkedActive()
+        fun showSavedAlert()
 
         fun isActive(): Boolean
     }

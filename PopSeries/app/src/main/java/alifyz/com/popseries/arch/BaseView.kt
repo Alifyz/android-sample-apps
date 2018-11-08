@@ -1,5 +1,5 @@
 package alifyz.com.popseries.arch
 
 interface BaseView<T> {
-    fun setPresenter(T : BasePresenter)
+    fun setPresenter(presenter: T)
 }
