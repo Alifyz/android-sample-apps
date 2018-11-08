@@ -3,6 +3,7 @@ package alifyz.com.popseries.ui
 
 import alifyz.com.popseries.R
 import alifyz.com.popseries.adapter.HomeSeriesAdapter
+import alifyz.com.popseries.arch.PopularPresenter
 import alifyz.com.popseries.arch.PopularUIContract
 import alifyz.com.popseries.model.SeriesModel
 import android.os.Bundle
@@ -46,7 +47,7 @@ class PopularFragments : Fragment(), PopularUIContract.View {
 
 
 
-    override  lateinit var presenter : PopularUIContract.Presenter
+    override  lateinit var presenter : PopularPresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_popular, container, false)
@@ -55,6 +56,7 @@ class PopularFragments : Fragment(), PopularUIContract.View {
     override fun onResume() {
         super.onResume()
         presenter.start()
+
     }
 
 }

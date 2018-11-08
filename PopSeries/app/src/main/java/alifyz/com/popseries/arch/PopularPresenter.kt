@@ -10,9 +10,21 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class PopularPresenter : PopularUIContract.Presenter {
+class PopularPresenter(private val popularView : PopularUIContract.View) : PopularUIContract.Presenter {
+
+    init {
+        popularView.presenter = this
+    }
 
     override fun start() {
+        loadDataFromInternet()
+    }
+
+    override fun openDetails() {
+
+    }
+
+    private fun loadDataFromInternet() {
         val retrofit = RetrofitHelper.getInstance()
 
         val endpoint = retrofit.create(SeriesEndpoint::class.java)
@@ -20,17 +32,12 @@ class PopularPresenter : PopularUIContract.Presenter {
 
         call.enqueue(object : Callback<SeriesModel> {
             override fun onResponse(call: Call<SeriesModel>?, response: Response<SeriesModel>?) {
-                Log.d("RetrofitHelper: ", "Success")
+                popularView.setAdapter(response)
             }
-
             override fun onFailure(call: Call<SeriesModel>?, t: Throwable?) {
                 Log.d("RetrofitHelper: ", "Failed")
                 TODO("not implemented")
             }
         })
-    }
-
-    override fun openDetails() {
-
     }
 }

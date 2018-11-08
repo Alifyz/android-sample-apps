@@ -5,7 +5,7 @@ import retrofit2.Response
 
 interface PopularUIContract {
 
-    interface View : BaseView<Presenter> {
+    interface View : BaseView<PopularPresenter> {
         fun setLoadingIndicator(active: Boolean)
 
         fun showEmptyContent()
