@@ -10,7 +10,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class PopularPresenter(private val popularView : PopularUIContract.View) : PopularUIContract.Presenter {
+class PopularPresenter(
+        private val popularView : PopularUIContract.View) : PopularUIContract.Presenter {
 
     init {
         popularView.presenter = this
@@ -33,6 +34,7 @@ class PopularPresenter(private val popularView : PopularUIContract.View) : Popul
         call.enqueue(object : Callback<SeriesModel> {
             override fun onResponse(call: Call<SeriesModel>?, response: Response<SeriesModel>?) {
                 popularView.setAdapter(response)
+                popularView.setLoadingIndicator(false)
             }
             override fun onFailure(call: Call<SeriesModel>?, t: Throwable?) {
                 Log.d("RetrofitHelper: ", "Failed")

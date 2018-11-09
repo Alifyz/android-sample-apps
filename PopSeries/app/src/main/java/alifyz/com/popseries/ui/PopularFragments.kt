@@ -17,20 +17,17 @@ import retrofit2.Response
 
 class PopularFragments : Fragment(), PopularUIContract.View {
 
-    override fun setLoadingIndicator(active: Boolean) {
-        if(active) {
-            progress.visibility = View.VISIBLE
-            recyclerview_popular.visibility = View.GONE
-        } else {
-            progress.visibility = View.GONE
-            recyclerview_popular.visibility = View.VISIBLE
-        }
+
+    override lateinit var presenter : PopularPresenter
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_popular, container, false)
     }
 
-    override fun setAdapter(response: Response<SeriesModel>?) {
-        val gridLayout = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
-        recyclerview_popular.layoutManager = gridLayout
-        recyclerview_popular.adapter = HomeSeriesAdapter(context!!, response?.body()!!)
+    override fun onResume() {
+        super.onResume()
+        presenter = PopularPresenter(this)
+        presenter.start()
     }
 
     override fun showEmptyContent() {
@@ -45,18 +42,24 @@ class PopularFragments : Fragment(), PopularUIContract.View {
         TODO("not implemented")
     }
 
-
-
-    override  lateinit var presenter : PopularPresenter
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_popular, container, false)
+    override fun showErrorScreen() {
+        TODO("Not implemented")
     }
 
-    override fun onResume() {
-        super.onResume()
-        presenter.start()
+    override fun setLoadingIndicator(active: Boolean) {
+        if(active) {
+            progress.visibility = View.VISIBLE
+            recyclerview_popular.visibility = View.GONE
+        } else {
+            progress.visibility = View.GONE
+            recyclerview_popular.visibility = View.VISIBLE
+        }
+    }
 
+    override fun setAdapter(response: Response<SeriesModel>?) {
+        val gridLayout = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+        recyclerview_popular.layoutManager = gridLayout
+        recyclerview_popular.adapter = HomeSeriesAdapter(context!!, response?.body()!!)
     }
 
 }

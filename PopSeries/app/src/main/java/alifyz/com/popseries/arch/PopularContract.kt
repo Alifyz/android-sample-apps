@@ -15,6 +15,8 @@ interface PopularUIContract {
         fun showSavedAlert()
 
         fun setAdapter(response: Response<SeriesModel>?)
+
+        fun showErrorScreen()
     }
 
     interface Presenter : BasePresenter {
