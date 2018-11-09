@@ -3,9 +3,9 @@ package alifyz.com.popseries.arch
 import alifyz.com.popseries.model.SeriesModel
 import retrofit2.Response
 
-interface PopularContract {
+interface TrendingContract {
 
-    interface View : BaseView<PopularPresenter> {
+    interface View : BaseView<TrendingPresenter>{
         fun setLoadingIndicator(active: Boolean)
 
         fun showEmptyContent()
@@ -21,4 +21,3 @@ interface PopularContract {
 
     interface Presenter : BasePresenter
 }
-
