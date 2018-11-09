@@ -22,7 +22,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     private fun startFragment() {
-        val homeFragment = PopularFragments()
+        val homeFragment = PopularSeriesFragment()
         supportFragmentManager.beginTransaction()
                 .add(R.id.fragment, homeFragment)
                 .commit()
@@ -36,19 +36,19 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.bottom_popular -> {
-               val popularFragment = PopularFragments()
+               val popularFragment = PopularSeriesFragment()
                supportFragmentManager.beginTransaction()
                        .replace(R.id.fragment, popularFragment)
                        .commit()
             }
             R.id.bottom_top -> {
-               val topFragment = TopFragments()
+               val topFragment = TrendingSeriesFragment()
                supportFragmentManager.beginTransaction()
                        .replace(R.id.fragment, topFragment)
                        .commit()
             }
             R.id.bottom_fav -> {
-               val favoriteFragment = FavoriteFragment()
+               val favoriteFragment = FavoriteSeriesFragment()
                supportFragmentManager.beginTransaction()
                        .replace(R.id.fragment, favoriteFragment)
                        .commit()

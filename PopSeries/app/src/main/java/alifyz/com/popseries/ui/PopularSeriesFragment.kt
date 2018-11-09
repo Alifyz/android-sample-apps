@@ -4,7 +4,7 @@ package alifyz.com.popseries.ui
 import alifyz.com.popseries.R
 import alifyz.com.popseries.adapter.HomeSeriesAdapter
 import alifyz.com.popseries.arch.PopularPresenter
-import alifyz.com.popseries.arch.PopularUIContract
+import alifyz.com.popseries.arch.PopularContract
 import alifyz.com.popseries.model.SeriesModel
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -15,7 +15,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_popular.*
 import retrofit2.Response
 
-class PopularFragments : Fragment(), PopularUIContract.View {
+class PopularSeriesFragment : Fragment(), PopularContract.View {
 
 
     override lateinit var presenter : PopularPresenter
