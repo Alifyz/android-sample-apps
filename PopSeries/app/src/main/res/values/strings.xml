@@ -16,4 +16,5 @@
     <string name="rate_test">8.1 / 10</string>
     <string name="original_path">https://image.tmdb.org/t/p/original</string>
     <string name="storyline">Sumário</string>
+    <string name="appendToResponse">videos,images,reviews,credits,recommendations</string>
 </resources>

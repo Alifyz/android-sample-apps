@@ -3,89 +3,6 @@ package alifyz.com.popseries.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class Backdrop {
-
-    @SerializedName("aspect_ratio")
-    @Expose
-    var aspectRatio: Double? = null
-    @SerializedName("file_path")
-    @Expose
-    var filePath: String? = null
-    @SerializedName("height")
-    @Expose
-    var height: Int? = null
-    @SerializedName("iso_639_1")
-    @Expose
-    var iso6391: String? = null
-    @SerializedName("vote_average")
-    @Expose
-    var voteAverage: Double? = null
-    @SerializedName("vote_count")
-    @Expose
-    var voteCount: Int? = null
-    @SerializedName("width")
-    @Expose
-    var width: Int? = null
-
-}
-
-
-class Cast {
-
-    @SerializedName("character")
-    @Expose
-    var character: String? = null
-    @SerializedName("credit_id")
-    @Expose
-    var creditId: String? = null
-    @SerializedName("id")
-    @Expose
-    var id: Int? = null
-    @SerializedName("name")
-    @Expose
-    var name: String? = null
-    @SerializedName("gender")
-    @Expose
-    var gender: Int? = null
-    @SerializedName("profile_path")
-    @Expose
-    var profilePath: String? = null
-    @SerializedName("order")
-    @Expose
-    var order: Int? = null
-
-}
-
-class CreatedBy {
-
-    @SerializedName("id")
-    @Expose
-    var id: Int? = null
-    @SerializedName("credit_id")
-    @Expose
-    var creditId: String? = null
-    @SerializedName("name")
-    @Expose
-    var name: String? = null
-    @SerializedName("gender")
-    @Expose
-    var gender: Int? = null
-    @SerializedName("profile_path")
-    @Expose
-    var profilePath: String? = null
-
-}
-
-class Credits {
-
-    @SerializedName("cast")
-    @Expose
-    var cast: List<Cast>? = null
-    @SerializedName("crew")
-    @Expose
-    var crew: List<Any>? = null
-
-}
 
 
 class SeriesDetailModel {
@@ -191,6 +108,93 @@ class SeriesDetailModel {
     var recommendations: Recommendations? = null
 
 }
+
+class Backdrop {
+
+    @SerializedName("aspect_ratio")
+    @Expose
+    var aspectRatio: Double? = null
+    @SerializedName("file_path")
+    @Expose
+    var filePath: String? = null
+    @SerializedName("height")
+    @Expose
+    var height: Int? = null
+    @SerializedName("iso_639_1")
+    @Expose
+    var iso6391: String? = null
+    @SerializedName("vote_average")
+    @Expose
+    var voteAverage: Double? = null
+    @SerializedName("vote_count")
+    @Expose
+    var voteCount: Int? = null
+    @SerializedName("width")
+    @Expose
+    var width: Int? = null
+
+}
+
+
+class Cast {
+
+    @SerializedName("character")
+    @Expose
+    var character: String? = null
+    @SerializedName("credit_id")
+    @Expose
+    var creditId: String? = null
+    @SerializedName("id")
+    @Expose
+    var id: Int? = null
+    @SerializedName("name")
+    @Expose
+    var name: String? = null
+    @SerializedName("gender")
+    @Expose
+    var gender: Int? = null
+    @SerializedName("profile_path")
+    @Expose
+    var profilePath: String? = null
+    @SerializedName("order")
+    @Expose
+    var order: Int? = null
+
+}
+
+class CreatedBy {
+
+    @SerializedName("id")
+    @Expose
+    var id: Int? = null
+    @SerializedName("credit_id")
+    @Expose
+    var creditId: String? = null
+    @SerializedName("name")
+    @Expose
+    var name: String? = null
+    @SerializedName("gender")
+    @Expose
+    var gender: Int? = null
+    @SerializedName("profile_path")
+    @Expose
+    var profilePath: String? = null
+
+}
+
+class Credits {
+
+    @SerializedName("cast")
+    @Expose
+    var cast: List<Cast>? = null
+    @SerializedName("crew")
+    @Expose
+    var crew: List<Any>? = null
+
+}
+
+
+
 
 
 class Genre {
