@@ -57,6 +57,7 @@ class HomeSeriesAdapter(val context: Context, val dataSet: SeriesModel) : Recycl
         holder.title.text = currentShow?.name
         holder.year.text = currentShow?.firstAirDate
 
+
         Glide
                 .with(context)
                 .load(posterUrl)

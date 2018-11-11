@@ -119,5 +119,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/line" />
 
+    <TextView
+        android:id="@+id/storyline_txt_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/opensans_regular"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/desactiveStartColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/storyline_txt" />
+
+
 </android.support.constraint.ConstraintLayout>
 </ScrollView>
