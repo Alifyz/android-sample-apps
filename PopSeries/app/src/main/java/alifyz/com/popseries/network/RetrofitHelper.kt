@@ -22,8 +22,11 @@ class RetrofitHelper {
 interface SeriesEndpoint{
 
     @GET("discover/tv")
-    fun getPopularSeries(@Query("api_key") apikey : String) : Call<SeriesModel>
+    fun getPopularSeries(@Query("api_key") apikey : String, @Query("language") language : String) : Call<SeriesModel>
 
     @GET("trending/tv/week")
-    fun getTopSeries(@Query("api_key") apikey : String) : Call<SeriesModel>
+    fun getTopSeries(@Query("api_key") apikey : String, @Query("language") language : String) : Call<SeriesModel>
+
+    @GET("details")
+    fun getShowDetails()
 }

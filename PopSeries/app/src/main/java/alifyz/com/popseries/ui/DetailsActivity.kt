@@ -37,6 +37,7 @@ class DetailsActivity : AppCompatActivity() {
         rating_count.text = setRateCount(seriesDetail)
         rating.rating = setRate(seriesDetail.voteAverage)
         series_title.text = seriesDetail.originalName
+        storyline_txt_description.text = seriesDetail.overview
 
 
         //Transparent StatusBar

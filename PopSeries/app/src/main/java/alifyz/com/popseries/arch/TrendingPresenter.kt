@@ -23,7 +23,7 @@ class TrendingPresenter(private val view : TrendingContract.View) : TrendingCont
         val retrofit = RetrofitHelper.getInstance()
 
         val endpoint = retrofit.create(SeriesEndpoint::class.java)
-        val call = endpoint.getTopSeries(BuildConfig.API_KEY)
+        val call = endpoint.getTopSeries(BuildConfig.API_KEY,  "pt-BR")
 
         call.enqueue(object : Callback<SeriesModel> {
             override fun onResponse(call: Call<SeriesModel>?, response: Response<SeriesModel>?) {
