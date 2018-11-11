@@ -14,23 +14,30 @@ import kotlinx.android.synthetic.main.activity_details.*
 class DetailsActivity : AppCompatActivity(), DetailsContract.View {
 
     override lateinit var presenter: DetailsPresenter
+    lateinit var rawJson : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
         presenter = DetailsPresenter(this)
+        rawJson = intent.getStringExtra("data")
+
     }
 
     override fun onStart() {
         super.onStart()
         presenter.setFlags(window)
-        presenter.extractData(intent.getStringExtra("data"))
+        presenter.extractData(rawJson)
+        presenter.loadAdditionalInformation(
+                presenter.extractId(rawJson),
+                "en-US",
+                getString(R.string.appendToResponse))
     }
 
     override fun bindViews(seriesObject: SeriesModel.SeriesMetaData) {
         val posterImage = findViewById<ImageView>(R.id.poster)
         val posterUrl = getString(R.string.original_path)
-                .plus(seriesObject?.backdropPath)
+                .plus(seriesObject.backdropPath)
 
 
         val actionBar = findViewById<Toolbar>(R.id.toolbar)

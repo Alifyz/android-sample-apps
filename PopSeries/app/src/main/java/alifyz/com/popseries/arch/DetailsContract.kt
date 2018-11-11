@@ -27,7 +27,9 @@ interface DetailsContract {
 
     interface Presenter : BasePresenter {
         fun extractData(intentData : String)
-        fun load()
+        fun loadAdditionalInformation(id : String, language : String, appendToResponse : String)
         fun setFlags(window : Window)
+        fun extractId(intentData: String) : String
+        fun deserialize(intentData: String) : SeriesModel.SeriesMetaData
     }
 }

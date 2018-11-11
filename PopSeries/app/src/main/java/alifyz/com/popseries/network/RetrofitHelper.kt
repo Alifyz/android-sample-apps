@@ -38,5 +38,5 @@ interface SeriesEndpoint{
             @Path("id") id : String,
             @Query("api_key") apikey : String,
             @Query("language") language : String,
-            @Query("append_to_response") appendToResponse : String) : SeriesDetailModel
+            @Query("append_to_response") appendToResponse : String) : Call<SeriesDetailModel>
 }
