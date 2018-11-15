@@ -8,8 +8,6 @@ import alifyz.com.popseries.network.SeriesEndpoint
 import android.view.Window
 import android.view.WindowManager
 import com.google.gson.GsonBuilder
-import com.orhanobut.logger.AndroidLogAdapter
-import com.orhanobut.logger.Logger
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
