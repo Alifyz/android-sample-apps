@@ -17,4 +17,5 @@
     <string name="original_path">https://image.tmdb.org/t/p/original</string>
     <string name="storyline">Sumário</string>
     <string name="appendToResponse">videos,images,reviews,credits,recommendations</string>
+    <string name="crews_title">Atores</string>
 </resources>

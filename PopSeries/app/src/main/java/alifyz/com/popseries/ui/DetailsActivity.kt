@@ -1,15 +1,19 @@
 package alifyz.com.popseries.ui
 
 import alifyz.com.popseries.R
+import alifyz.com.popseries.adapter.CastAdapter
 import alifyz.com.popseries.arch.DetailsContract
 import alifyz.com.popseries.arch.DetailsPresenter
+import alifyz.com.popseries.model.Credits
 import alifyz.com.popseries.model.SeriesModel
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_details.*
+import kotlinx.android.synthetic.main.activity_details_crew.*
+import kotlinx.android.synthetic.main.activity_details_header.*
 
 class DetailsActivity : AppCompatActivity(), DetailsContract.View {
 
@@ -81,5 +85,9 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
         TODO("not implemented")
     }
 
+    override fun setAdditionalViews(cast: Credits?) {
+        recycler_crew.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recycler_crew.adapter = CastAdapter(this, cast!!)
+    }
 }
 

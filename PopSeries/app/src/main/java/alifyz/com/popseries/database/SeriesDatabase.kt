@@ -19,18 +19,27 @@ abstract class SeriesDatabase : RoomDatabase() {
     abstract fun SeriesDao() : SeriesDao
 
     companion object {
+
+        @Volatile
         private var INSTANCE : SeriesDatabase? = null
 
         @Synchronized
         fun getInstance(context : Context) : SeriesDatabase? {
             if(INSTANCE == null) {
-                INSTANCE = Room.databaseBuilder(
-                        context,
-                        SeriesDatabase::class.java,
-                        "series.db").build()
-                return INSTANCE
+
+                return INSTANCE ?: synchronized(this) {
+                    INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
+                }
+
             }
             return INSTANCE
+        }
+
+        private fun buildDatabase(context : Context) : SeriesDatabase {
+            return Room.databaseBuilder(
+                    context.applicationContext,
+                    SeriesDatabase::class.java,
+                    "series.db").build()
         }
     }
 
