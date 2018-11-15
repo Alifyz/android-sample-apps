@@ -42,11 +42,8 @@ class DetailsPresenter(private var view : DetailsContract.View) : DetailsContrac
             }
 
             override fun onResponse(call: Call<SeriesDetailModel>, response: Response<SeriesDetailModel>) {
-                val builder = GsonBuilder()
-                val gson = builder.create()
-                val responseJson = gson.toJson(response.body())
-                Logger.addLogAdapter(AndroidLogAdapter())
-                Logger.json(responseJson)
+                val credits = response.body()?.credits
+                view.setAdditionalViews(credits)
             }
         })
     }
