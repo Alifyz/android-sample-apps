@@ -5,16 +5,14 @@ import alifyz.com.popseries.model.SeriesDetailModel
 import alifyz.com.popseries.model.SeriesModel
 import alifyz.com.popseries.network.RetrofitHelper
 import alifyz.com.popseries.network.SeriesEndpoint
-import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import com.google.gson.GsonBuilder
+import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.orhanobut.logger.AndroidLogAdapter
-
 
 
 class DetailsPresenter(private var view : DetailsContract.View) : DetailsContract.Presenter {
@@ -44,12 +42,13 @@ class DetailsPresenter(private var view : DetailsContract.View) : DetailsContrac
             }
 
             override fun onResponse(call: Call<SeriesDetailModel>, response: Response<SeriesDetailModel>) {
+                val builder = GsonBuilder()
+                val gson = builder.create()
+                val responseJson = gson.toJson(response.body())
                 Logger.addLogAdapter(AndroidLogAdapter())
-                Logger.json(response.raw().toString())
+                Logger.json(responseJson)
             }
         })
-
-
     }
 
     override fun deserialize(intentData: String): SeriesModel.SeriesMetaData {
@@ -58,7 +57,7 @@ class DetailsPresenter(private var view : DetailsContract.View) : DetailsContrac
         return  gson.fromJson(intentData, SeriesModel.SeriesMetaData::class.java)
     }
 
-    override fun extractId(intentData: String) : String{
+    override fun extractId(intentData: String) : String {
        return deserialize(intentData).id.toString()
     }
 

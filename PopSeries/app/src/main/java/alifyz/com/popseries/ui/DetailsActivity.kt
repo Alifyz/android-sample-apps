@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_details.*
+import kotlinx.android.synthetic.main.activity_details_header.*
 
 class DetailsActivity : AppCompatActivity(), DetailsContract.View {
 
