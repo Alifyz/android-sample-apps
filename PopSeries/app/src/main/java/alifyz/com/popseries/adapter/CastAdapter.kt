@@ -37,7 +37,6 @@ class CastAdapter (val context : Context, val dataSet : Credits) : RecyclerView.
         holder.profileName.text = dataSet.cast?.get(position)?.name
     }
 
-
     inner class ViewHolder(view : View) : RecyclerView.ViewHolder(view) {
         val profilePicture = view.findViewById<ImageView>(R.id.profile_picture)
         val profileName = view.findViewById<TextView>(R.id.profile_name)

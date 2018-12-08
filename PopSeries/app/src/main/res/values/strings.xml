@@ -18,4 +18,6 @@
     <string name="storyline">Sumário</string>
     <string name="appendToResponse">videos,images,reviews,credits,recommendations</string>
     <string name="crews_title">Atores</string>
+    <string name="transition_coverImage">cover_image</string>
+    <string name="transition_title">cover_title</string>
 </resources>
