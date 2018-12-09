@@ -3,16 +3,18 @@ package alifyz.com.popseries.adapter
 import alifyz.com.popseries.R
 import alifyz.com.popseries.model.SeriesModel
 import alifyz.com.popseries.ui.DetailsActivity
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.content.ContextCompat.startActivity
+import android.support.v4.util.Pair
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.google.gson.GsonBuilder
 
@@ -21,8 +23,6 @@ class HomeSeriesAdapter(val context: Context, val dataSet: SeriesModel) : Recycl
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
-        val title = view.findViewById<TextView>(R.id.title)
-        val year = view.findViewById<TextView>(R.id.year)
         val poster = view.findViewById<ImageView>(R.id.poster)
         val card = view.findViewById<CardView>(R.id.cardview)
                 .setOnClickListener(this)
@@ -35,7 +35,12 @@ class HomeSeriesAdapter(val context: Context, val dataSet: SeriesModel) : Recycl
             val intent = Intent(context, DetailsActivity::class.java)
             intent.putExtra("data", gson.toJson(seriesDetail))
 
-            startActivity(context, intent, null)
+            val coverImageAnimationSettings = Pair.create(poster as View, "cover_image")
+
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    context as Activity, coverImageAnimationSettings)
+
+            startActivity(context, intent, options.toBundle())
         }
     }
 
@@ -53,10 +58,6 @@ class HomeSeriesAdapter(val context: Context, val dataSet: SeriesModel) : Recycl
         val posterUrl = context
                 .getString(R.string.base_url_path)
                 .plus(currentShow?.posterPath)
-
-        holder.title.text = currentShow?.name
-        holder.year.text = currentShow?.firstAirDate
-
 
         Glide
                 .with(context)

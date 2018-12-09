@@ -1,10 +1,12 @@
 package alifyz.com.popseries.ui
 
 import alifyz.com.popseries.R
+import android.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.widget.Toolbar
+import android.transition.Transition
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_home.*
@@ -17,7 +19,6 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         val actionBar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(actionBar)
-
         startFragment()
     }
 
@@ -61,6 +62,4 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
-
-
 }
