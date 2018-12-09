@@ -20,9 +20,32 @@
                 android:layout_height="match_parent"
                 android:transitionName="@string/transition_coverImage"
                 android:contentDescription="@string/content_description_poster"
-                android:scaleType="centerCrop"
+                android:scaleType="centerCrop" />
+            <View
+                android:id="@+id/scrim"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="@drawable/background_scrim"/>
 
+            <TextView
+                android:id="@+id/series_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="2dp"
+                android:fontFamily="@font/opensans_regular"
+                android:transitionName="@string/transition_title"
+                android:gravity="start"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/header_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.096"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="The Big Bang Theory" />
         </FrameLayout>
 
 </android.support.v7.widget.CardView>

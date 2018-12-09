@@ -5,6 +5,7 @@ import alifyz.com.popseries.model.SeriesDetailModel
 import alifyz.com.popseries.model.SeriesModel
 import alifyz.com.popseries.network.RetrofitHelper
 import alifyz.com.popseries.network.SeriesEndpoint
+import android.support.transition.Explode
 import android.view.Window
 import android.view.WindowManager
 import com.google.gson.GsonBuilder

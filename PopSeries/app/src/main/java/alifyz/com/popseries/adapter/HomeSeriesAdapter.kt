@@ -15,6 +15,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.google.gson.GsonBuilder
 
@@ -26,6 +27,8 @@ class HomeSeriesAdapter(val context: Context, val dataSet: SeriesModel) : Recycl
         val poster = view.findViewById<ImageView>(R.id.poster)
         val card = view.findViewById<CardView>(R.id.cardview)
                 .setOnClickListener(this)
+        val scrim = view.findViewById<View>(R.id.scrim)
+        val title = view.findViewById<TextView>(R.id.series_title)
 
         override fun onClick(v: View?) {
             val seriesDetail = dataSet.results?.get(adapterPosition)
@@ -36,9 +39,11 @@ class HomeSeriesAdapter(val context: Context, val dataSet: SeriesModel) : Recycl
             intent.putExtra("data", gson.toJson(seriesDetail))
 
             val coverImageAnimationSettings = Pair.create(poster as View, "cover_image")
+            val coverScrimAnimationSettings = Pair.create(scrim as View, "cover_image")
+            val coverTitleAnimationSettings = Pair.create(title as View, "cover_title")
 
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                    context as Activity, coverImageAnimationSettings)
+                    context as Activity, coverImageAnimationSettings, coverScrimAnimationSettings, coverTitleAnimationSettings)
 
             startActivity(context, intent, options.toBundle())
         }
@@ -54,7 +59,7 @@ class HomeSeriesAdapter(val context: Context, val dataSet: SeriesModel) : Recycl
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentShow = dataSet.results?.get(position)
-
+        holder.title.text = currentShow?.name
         val posterUrl = context
                 .getString(R.string.base_url_path)
                 .plus(currentShow?.posterPath)
