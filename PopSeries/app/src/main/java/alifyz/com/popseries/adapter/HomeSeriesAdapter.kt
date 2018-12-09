@@ -26,6 +26,7 @@ class HomeSeriesAdapter(val context: Context, val dataSet: SeriesModel) : Recycl
         val poster = view.findViewById<ImageView>(R.id.poster)
         val card = view.findViewById<CardView>(R.id.cardview)
                 .setOnClickListener(this)
+        val scrim = view.findViewById<View>(R.id.scrim)
 
         override fun onClick(v: View?) {
             val seriesDetail = dataSet.results?.get(adapterPosition)
@@ -36,9 +37,10 @@ class HomeSeriesAdapter(val context: Context, val dataSet: SeriesModel) : Recycl
             intent.putExtra("data", gson.toJson(seriesDetail))
 
             val coverImageAnimationSettings = Pair.create(poster as View, "cover_image")
+            val coverScrimAnimationSettings = Pair.create(scrim as View, "cover_image")
 
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                    context as Activity, coverImageAnimationSettings)
+                    context as Activity, coverImageAnimationSettings, coverScrimAnimationSettings)
 
             startActivity(context, intent, options.toBundle())
         }

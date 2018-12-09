@@ -20,9 +20,12 @@
                 android:layout_height="match_parent"
                 android:transitionName="@string/transition_coverImage"
                 android:contentDescription="@string/content_description_poster"
-                android:scaleType="centerCrop"
+                android:scaleType="centerCrop" />
+            <View
+                android:id="@+id/scrim"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="@drawable/background_scrim"/>
-
         </FrameLayout>
 
 </android.support.v7.widget.CardView>

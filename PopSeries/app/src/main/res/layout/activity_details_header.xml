@@ -18,13 +18,14 @@
             android:layout_height="400dp"
             android:transitionName="@string/transition_coverImage"
             android:contentDescription="@string/content_description_poster"
-            android:scaleType="center"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:background="@drawable/background_scrim"/>
 
         <View
             android:id="@+id/scrim"
+            android:transitionName="@string/transition_coverImage"
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:background="@drawable/background_scrim"/>

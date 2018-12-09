@@ -24,7 +24,7 @@ class PopularPresenter(private val view : PopularContract.View) : PopularContrac
         val retrofit = RetrofitHelper.getInstance()
 
         val endpoint = retrofit.create(SeriesEndpoint::class.java)
-        val call = endpoint.getPopularSeries(BuildConfig.API_KEY, "pt-BR")
+        val call = endpoint.getPopularSeries(BuildConfig.API_KEY, "en-US")
 
         call.enqueue(object : Callback<SeriesModel> {
             override fun onResponse(call: Call<SeriesModel>?, response: Response<SeriesModel>?) {
