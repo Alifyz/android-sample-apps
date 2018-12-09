@@ -43,7 +43,7 @@ class HomeSeriesAdapter(val context: Context, val dataSet: SeriesModel) : Recycl
             val coverTitleAnimationSettings = Pair.create(title as View, "cover_title")
 
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                    context as Activity, coverImageAnimationSettings, coverScrimAnimationSettings)
+                    context as Activity, coverImageAnimationSettings, coverScrimAnimationSettings, coverTitleAnimationSettings)
 
             startActivity(context, intent, options.toBundle())
         }
