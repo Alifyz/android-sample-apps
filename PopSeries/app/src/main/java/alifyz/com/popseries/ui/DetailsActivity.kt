@@ -25,7 +25,6 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
         setContentView(R.layout.activity_details)
         presenter = DetailsPresenter(this)
         rawJson = intent.getStringExtra("data")
-
     }
 
     override fun onStart() {
@@ -41,7 +40,7 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
     override fun bindViews(seriesObject: SeriesModel.SeriesMetaData) {
         val posterImage = findViewById<ImageView>(R.id.poster)
         val posterUrl = getString(R.string.original_path)
-                .plus(seriesObject.backdropPath)
+                .plus(seriesObject.posterPath)
 
 
         val actionBar = findViewById<Toolbar>(R.id.toolbar)
