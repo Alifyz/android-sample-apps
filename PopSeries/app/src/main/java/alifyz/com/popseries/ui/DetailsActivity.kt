@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
+import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_details_crew.*
@@ -69,7 +70,13 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
     }
 
     override fun setLoadingIndicator(active: Boolean) {
-        TODO("not implemented")
+        if(active) {
+            progress_crew.visibility = View.VISIBLE
+            recycler_crew.visibility = View.INVISIBLE
+        }else {
+            progress_crew.visibility = View.GONE
+            recycler_crew.visibility = View.VISIBLE
+        }
     }
 
     override fun showEmptyContent() {

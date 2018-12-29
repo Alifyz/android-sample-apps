@@ -2,7 +2,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginBottom="4dp">
 
     <TextView
         android:id="@+id/crews_title"
@@ -27,10 +28,11 @@
         android:layout_below="@id/crews_title">
     </android.support.v7.widget.RecyclerView>
 
-   <!-- <ProgressBar
+    <ProgressBar
         android:id="@+id/progress_crew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>-->
+        android:indeterminateTint="@color/activeStartColor"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>

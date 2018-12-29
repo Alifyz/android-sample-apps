@@ -28,6 +28,7 @@ class DetailsPresenter(private var view : DetailsContract.View) : DetailsContrac
 
     override fun loadAdditionalInformation(id: String, language: String, appendToResponse : String) {
 
+        view.setLoadingIndicator(true)
         val api = BuildConfig.API_KEY
 
         val retrofit = RetrofitHelper.getInstance()
@@ -43,6 +44,7 @@ class DetailsPresenter(private var view : DetailsContract.View) : DetailsContrac
             override fun onResponse(call: Call<SeriesDetailModel>, response: Response<SeriesDetailModel>) {
                 val credits = response.body()?.credits
                 view.setAdditionalViews(credits)
+                view.setLoadingIndicator(false)
             }
         })
     }

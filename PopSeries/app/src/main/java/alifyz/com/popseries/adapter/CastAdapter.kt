@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
 
 class CastAdapter (val context : Context, val dataSet : Credits) : RecyclerView.Adapter<CastAdapter.ViewHolder>() {
@@ -32,6 +33,7 @@ class CastAdapter (val context : Context, val dataSet : Credits) : RecyclerView.
         Glide
                 .with(context)
                 .load(posterUrl)
+                .apply(RequestOptions().placeholder(R.drawable.ic_file_download_black_24dp))
                 .into(holder.profilePicture)
 
         holder.profileName.text = dataSet.cast?.get(position)?.name
