@@ -29,7 +29,6 @@ class TrendingSeriesFragment : Fragment(), TrendingContract.View {
         presenter.start()
     }
 
-
     override fun setLoadingIndicator(active: Boolean) {
         if(active) {
             progress.visibility = View.VISIBLE
