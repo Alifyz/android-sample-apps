@@ -33,11 +33,12 @@ class PopularSeriesFragment : Fragment(), PopularContract.View {
         return inflater.inflate(R.layout.fragment_popular, container, false)
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         presenter = PopularPresenter(this)
         presenter.start()
     }
+
 
     override fun showEmptyContent() {
         TODO("not implemented")
@@ -66,8 +67,10 @@ class PopularSeriesFragment : Fragment(), PopularContract.View {
     }
 
     override fun setAdapter(response: Response<SeriesModel>?) {
-        recyclerview_popular.layoutManager = gridLayout
-        recyclerview_popular.adapter = HomeSeriesAdapter(context!!, response?.body()!!)
+        recyclerview_popular?.let {
+            it.layoutManager = gridLayout
+            it.adapter = HomeSeriesAdapter(context!!, response?.body()!!)
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
