@@ -17,16 +17,18 @@ import retrofit2.Response
 class TrendingSeriesFragment : Fragment(), TrendingContract.View {
 
     override lateinit var presenter: TrendingPresenter
+    val gridLayout = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_top, container, false)
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         presenter = TrendingPresenter(this)
         presenter.start()
     }
+
 
     override fun setLoadingIndicator(active: Boolean) {
         if(active) {
@@ -51,9 +53,10 @@ class TrendingSeriesFragment : Fragment(), TrendingContract.View {
     }
 
     override fun setAdapter(response: Response<SeriesModel>?) {
-        val gridLayout = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
-        recyclerview_top.layoutManager = gridLayout
-        recyclerview_top.adapter = HomeSeriesAdapter(context!!, response!!.body()!!)
+        recyclerview_top?.let {
+            it.layoutManager = gridLayout
+            it.adapter = HomeSeriesAdapter(context!!, response!!.body()!!)
+        }
     }
 
     override fun showErrorScreen() {
