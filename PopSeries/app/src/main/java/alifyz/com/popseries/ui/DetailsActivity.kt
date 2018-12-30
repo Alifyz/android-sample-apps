@@ -72,9 +72,11 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
     override fun setLoadingIndicator(active: Boolean) {
         if(active) {
             progress_crew.visibility = View.VISIBLE
+            crews_title.visibility = View.INVISIBLE
             recycler_crew.visibility = View.INVISIBLE
         }else {
             progress_crew.visibility = View.GONE
+            crews_title.visibility = View.VISIBLE
             recycler_crew.visibility = View.VISIBLE
         }
     }

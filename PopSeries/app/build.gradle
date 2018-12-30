@@ -5,11 +5,11 @@ apply plugin: "androidx.navigation.safeargs"
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "alifyz.com.popseries"
         minSdkVersion 21
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -34,10 +34,11 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation 'com.android.support:cardview-v7:28.0.0'
 
     //Networking & Serialization
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
@@ -50,7 +51,7 @@ dependencies {
 
     //Logging and Debbuging Library
     implementation 'com.orhanobut:logger:2.2.0'
-    implementation 'com.android.support:design:27.1.1'
+
 
     //Anko Utils Library
     def anko_version = "0.10.5"
