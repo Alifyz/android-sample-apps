@@ -2,9 +2,11 @@ package alifyz.com.popseries.ui
 
 import alifyz.com.popseries.R
 import alifyz.com.popseries.adapter.CastAdapter
+import alifyz.com.popseries.adapter.CommentAdapter
 import alifyz.com.popseries.arch.DetailsContract
 import alifyz.com.popseries.arch.DetailsPresenter
 import alifyz.com.popseries.model.Credits
+import alifyz.com.popseries.model.Reviews
 import alifyz.com.popseries.model.SeriesModel
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -13,10 +15,14 @@ import android.support.v7.widget.Toolbar
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.activity_details.*
+import kotlinx.android.synthetic.main.activity_details_comments.*
 import kotlinx.android.synthetic.main.activity_details_crew.*
 import kotlinx.android.synthetic.main.activity_details_header.*
+import kotlinx.android.synthetic.main.item_details_comment.*
 
 class DetailsActivity : AppCompatActivity(), DetailsContract.View {
+
 
     override lateinit var presenter: DetailsPresenter
     lateinit var rawJson : String
@@ -79,6 +85,15 @@ class DetailsActivity : AppCompatActivity(), DetailsContract.View {
             crews_title.visibility = View.VISIBLE
             recycler_crew.visibility = View.VISIBLE
         }
+    }
+
+    override fun setReviews(reviews: Reviews?) {
+        recycler_comments.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        recycler_comments.adapter = CommentAdapter(this, reviews!!)
+    }
+
+    override fun setEmptyReviews() {
+        comment_section.visibility = View.GONE
     }
 
     override fun showEmptyContent() {

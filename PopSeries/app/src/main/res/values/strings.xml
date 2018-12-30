@@ -20,4 +20,8 @@
     <string name="crews_title">Atores</string>
     <string name="transition_coverImage">cover_image</string>
     <string name="transition_title">cover_title</string>
+    <string name="comment_title">Resenhas</string>
+    <string name="lore_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</string>
+    <string name="empty_review">Nenhuma resenha encontrada &#8230;</string>
+    <string name="send_review">Enviar Resenha</string>
 </resources>
