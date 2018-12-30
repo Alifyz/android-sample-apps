@@ -1,6 +1,7 @@
 package alifyz.com.popseries.arch
 
 import alifyz.com.popseries.model.Credits
+import alifyz.com.popseries.model.Reviews
 import alifyz.com.popseries.model.SeriesModel
 import android.view.Window
 
@@ -24,6 +25,10 @@ interface DetailsContract {
         fun setRateCount(seriesDetail: SeriesModel.SeriesMetaData) : String
 
         fun setAdditionalViews(cast : Credits?)
+
+        fun setReviews(reviews : Reviews?)
+
+        fun setEmptyReviews()
 
     }
 

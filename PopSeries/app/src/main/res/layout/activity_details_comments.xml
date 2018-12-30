@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:background="@android:color/black"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="4dp"
-    android:background="@android:color/black">
+    android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/crews_title"
+        android:id="@+id/comment_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/opensans_regular"
@@ -18,22 +21,16 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/crews_title" />
-
+        android:text="@string/comment_title" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_crew"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        android:layout_below="@id/crews_title">
-    </android.support.v7.widget.RecyclerView>
-
-    <ProgressBar
-        android:id="@+id/progress_crew"
+        android:id="@+id/recycler_comments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminateTint="@color/activeStartColor"
-        android:layout_centerInParent="true"/>
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/comment_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </RelativeLayout>
