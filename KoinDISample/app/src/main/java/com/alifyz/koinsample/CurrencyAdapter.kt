@@ -9,7 +9,7 @@ import com.alifyz.koinsample.model.Currency
 
 class CurrencyAdapter : RecyclerView.Adapter<CurrencyAdapter.ViewHolder>() {
 
-    val currencies : List<Currency> = arrayListOf()
+    var currencies : List<Currency> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent, false)
@@ -17,7 +17,7 @@ class CurrencyAdapter : RecyclerView.Adapter<CurrencyAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-       return currencies.size
+       return currencies.count()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
