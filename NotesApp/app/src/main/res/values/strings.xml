@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">NotesApp</string>
+    <string name="new_note">Adicionar anotação</string>
+    <string name="dica">Texto</string>
+    <string name="btn_adicionar">Adicionar</string>
+    <string name="Atualizar">Atualizar</string>
+</resources>
