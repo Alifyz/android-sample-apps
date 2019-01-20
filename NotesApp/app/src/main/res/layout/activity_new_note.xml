@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/dica"
-                android:maxLength="32"/>
+                android:maxLength="32" android:id="@+id/et_texto"/>
     </android.support.design.widget.TextInputLayout>
 
 
