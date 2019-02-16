@@ -2,8 +2,8 @@ package com.alifyz.amazons3sample
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
 import com.amazonaws.mobile.client.AWSMobileClient
@@ -11,9 +11,11 @@ import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferState
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility
 import com.amazonaws.services.s3.AmazonS3Client
+import com.jaiselrahman.filepicker.activity.FilePickerActivity
+import com.jaiselrahman.filepicker.model.MediaFile
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
-import java.lang.Exception
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,17 +27,17 @@ class MainActivity : AppCompatActivity() {
 
         AWSMobileClient.getInstance().initialize(this).execute()
         pick.setOnClickListener {
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.setType("*/*")
+
+            val intent = Intent(this, FilePickerActivity::class.java)
             startActivityForResult(intent, REQUEST_RESULT)
         }
     }
 
 
-    fun uploadToAmazonS3(filePath : String, file : File) {
+    fun uploadToAmazonS3(mediaFile: MediaFile) {
         val transferUtility = buildTransferUtility()
-        val uploadObserver = transferUtility.upload(filePath, file)
-
+        val file = File(mediaFile.path)
+        val uploadObserver = transferUtility.upload(mediaFile.name, file)
 
         uploadObserver.setTransferListener(object : TransferListener {
             override fun onProgressChanged(id: Int, bytesCurrent: Long, bytesTotal: Long) {
@@ -65,13 +67,9 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(requestCode == REQUEST_RESULT) {
             if(resultCode == Activity.RESULT_OK) {
-                val uri = data?.data
-                filePreview.setImageURI(uri)
-                val filePath = uri?.path
-                val file = File(filePath)
-                if (filePath != null) {
-                    uploadToAmazonS3(filePath, file)
-                }
+                val extras = data?.extras
+                val listFiles = extras?.getParcelableArrayList<MediaFile>(FilePickerActivity.MEDIA_FILES)
+                listFiles?.get(0)?.let { uploadToAmazonS3(it) }
             }
         }
     }
