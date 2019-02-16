@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
+import com.amazonaws.auth.BasicAWSCredentials
 import com.amazonaws.mobile.client.AWSMobileClient
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferState
@@ -20,6 +21,7 @@ import java.io.File
 class MainActivity : AppCompatActivity() {
 
     private val REQUEST_RESULT = 100
+    private val BUCKET_NAME = "sbucket-userfiles-mobilehub-2069569018"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     fun uploadToAmazonS3(mediaFile: MediaFile) {
         val transferUtility = buildTransferUtility()
         val file = File(mediaFile.path)
-        val uploadObserver = transferUtility.upload(mediaFile.name, file)
+        val uploadObserver = transferUtility.upload(BUCKET_NAME,mediaFile.name, file)
 
         uploadObserver.setTransferListener(object : TransferListener {
             override fun onProgressChanged(id: Int, bytesCurrent: Long, bytesTotal: Long) {
@@ -57,10 +59,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun buildTransferUtility(): TransferUtility {
+
+        val credentials = BasicAWSCredentials("KEY",
+                                "SECRET_KEY")
+
         return TransferUtility.builder()
             .context(this.applicationContext)
             .awsConfiguration(AWSMobileClient.getInstance().configuration)
-            .s3Client(AmazonS3Client(AWSMobileClient.getInstance().credentialsProvider))
+            .s3Client(AmazonS3Client(credentials))
             .build()
     }
 
