@@ -24,12 +24,14 @@ In this folder, you will find projects using the following set of Libraries.
 - Multi-Thread Processing 
 - SQLite Data Persistence
 - Dependency Injection (Views): ButterKnife
-- Firebase Cloud
+- Firebase Services
 - Network: Retrofit & OkHttp
 - CrashAnalytics
 - RestAPI - Apps
 - Google Play Services. 
 - Push Notifications
+- Amazon AWS (Mobile Hub Services)
+
 
 License
 ----
