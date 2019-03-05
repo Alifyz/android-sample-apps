@@ -1,8 +1,7 @@
 # Android MVP 
 
-This project is meant to be an example of the MVP pattern for Android projects. 
-
-Este repositório é destinado ao padrão MVP em projetos Android. 
+* (English)This repository for demonstration purposes of the MVP Design Pattern for Android. 
+* (Portuguese)Este repositório é destinado ao padrão MVP em projetos Android. 
 
 # Pre-requisites
 
