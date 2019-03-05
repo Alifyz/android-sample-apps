@@ -1,7 +1,5 @@
 # Android MVP 
 
-[![N|Solid](http://i65.tinypic.com/1235hjl.png)](www.alifyz.com)
-
 This project is meant to be an example of the MVP pattern for Android projects. 
 
 Este repositório é destinado ao padrão MVP em projetos Android. 
@@ -12,6 +10,9 @@ Este repositório é destinado ao padrão MVP em projetos Android.
   - Android SDK Build Tools 23+
   - Min SDK Level: 19
  
+# Preview
+![Preview](http://i65.tinypic.com/1235hjl.png)
+
 # Contact Info
 
 - Email: alifyz@outlook.com
